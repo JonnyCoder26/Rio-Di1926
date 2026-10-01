@@ -1758,13 +1758,20 @@ document.querySelectorAll('.dayhead').forEach(function(h){
   h.addEventListener('click',function(){ h.parentElement.classList.toggle('open'); });
 });
 /* Todos los días empiezan contraídos al cargar la página. */
-[].slice.call(document.querySelectorAll('.day')).forEach(function(d){
-  d.classList.remove('open');
-});
+window.__contraerDias = function(){
+  if(document.body.classList.contains('editing')) return;   /* no estorbar al que edita */
+  [].slice.call(document.querySelectorAll('.day')).forEach(function(d){
+    d.classList.remove('open');
+  });
+  var b=document.getElementById('btnDias');
+  if(b) b.textContent='📖 Abrir todos los días';
+};
+window.__contraerDias();
 (function(){
   var s=document.getElementById('dias'); if(!s) return;
   var b=document.createElement('button');
-  b.className='maptoggle'; b.style.marginBottom='14px'; b.textContent='📕 Contraer todos los días';
+  b.className='maptoggle'; b.id='btnDias'; b.style.marginBottom='14px';
+  b.textContent='📖 Abrir todos los días';
   b.addEventListener('click',function(){
     var ds=[].slice.call(document.querySelectorAll('.day'));
     var abrir = !ds.some(function(d){return d.classList.contains('open');});
@@ -2036,7 +2043,7 @@ window.addEventListener('scroll',upd,{passive:true}); upd();
 
 /* ================= EDITOR ================= */
 (function(){
-  var CONTENT_VER = 6;   /* subir este número cada vez que cambie el contenido del archivo */
+  var CONTENT_VER = 7;   /* subir este número cada vez que cambie el contenido del archivo */
   var KEY='rio2026:v4';
   try{ localStorage.removeItem('rio2026:v1'); localStorage.removeItem('rio2026:v2'); }catch(e){}
   var body=document.body;
@@ -2053,7 +2060,7 @@ window.addEventListener('scroll',upd,{passive:true}); upd();
   var syncOn = !!(window.SYNC && SYNC.url && SYNC.key);
   var syncURL = syncOn ? (SYNC.url.replace(/\/+$/,'') + '/rest/v1/itinerario') : null;
   var syncHead = syncOn ? {'apikey':SYNC.key,'Authorization':'Bearer '+SYNC.key,'Content-Type':'application/json'} : null;
-  var ultimoSello = 0, subiendo = false;
+  var ultimoSello = 0, subiendo = false, pendiente = null;
 
   function marcaSync(txt, color){
     var e=document.getElementById('syncEstado'); if(!e) return;
@@ -2067,6 +2074,9 @@ window.addEventListener('scroll',upd,{passive:true}); upd();
         if(!j || !j.length) return null;
         var fila=j[0];
         if(fila.sello && fila.sello > ultimoSello){
+          /* si alguien está editando en este celular, no le borramos lo que
+             está escribiendo: se vuelve a intentar en el siguiente chequeo. */
+          if(document.body.classList.contains('editing')) return null;
           ultimoSello = fila.sello;
           aplicar(fila.data);
           try{ localStorage.setItem(KEY, JSON.stringify(fila.data)); }catch(e){}
@@ -2078,7 +2088,10 @@ window.addEventListener('scroll',upd,{passive:true}); upd();
       .catch(function(){ if(!silencioso) marcaSync('Sin conexión','var(--tx3)'); return null; });
   }
   function subir(d){
-    if(!syncOn || subiendo) return;
+    if(!syncOn) return;
+    /* Si ya hay un envío en camino, este queda en cola y sale apenas termine.
+       Antes se descartaba, y con mala señal el último cambio no llegaba.   */
+    if(subiendo){ pendiente = d; return; }
     subiendo = true;
     ultimoSello = Date.now();
     var cuerpo = JSON.stringify([{id:SYNC.viaje, data:d, sello:ultimoSello}]);
@@ -2090,25 +2103,37 @@ window.addEventListener('scroll',upd,{passive:true}); upd();
     }).then(function(r){
       marcaSync(r.ok ? '✓ Guardado para los 4' : 'No se pudo guardar', r.ok ? 'var(--green)' : 'var(--red)');
     }).catch(function(){ marcaSync('Sin conexión — se guardó en este celular','var(--tx3)'); })
-      .finally(function(){ subiendo=false; });
+      .finally(function(){
+        subiendo=false;
+        if(pendiente){ var p=pendiente; pendiente=null; subir(p); }
+      });
   }
   window.__subir = subir;
 
   function leer(){
     try{ return JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ return {}; }
   }
+  /* Los controles de edicion (duracion, flechas) se inyectan por JS.
+     No deben guardarse: si se guardan, al volver a cargar quedan pegados
+     en el HTML restaurado y los botones dejan de responder.               */
+  function htmlLimpio(nodo){
+    var c=nodo.cloneNode(true);
+    [].slice.call(c.querySelectorAll('.durbox, .rowctl, .startbox, .addstop')).forEach(function(n){ n.remove(); });
+    [].slice.call(c.querySelectorAll('[contenteditable]')).forEach(function(n){ n.removeAttribute('contenteditable'); });
+    return c.innerHTML;
+  }
   function guardar(){
     var d={tl:{},ed:{}};
     [].slice.call(document.querySelectorAll('[data-tl]')).forEach(function(u){
-      d.tl[u.getAttribute('data-tl')]=u.innerHTML;
+      d.tl[u.getAttribute('data-tl')]=htmlLimpio(u);
     });
     [].slice.call(document.querySelectorAll('[data-ed]')).forEach(function(e){
-      d.ed[e.getAttribute('data-ed')]=e.innerHTML;
+      d.ed[e.getAttribute('data-ed')]=htmlLimpio(e);
     });
     d.ver=CONTENT_VER;
     d.com={};
     [].slice.call(document.querySelectorAll('#comWrap .place')).forEach(function(pl,i){
-      d.com['p'+i]=pl.innerHTML;
+      d.com['p'+i]=htmlLimpio(pl);
     });
     d.chk={};
     [].slice.call(document.querySelectorAll('[data-chk]')).forEach(function(c){
@@ -2153,51 +2178,112 @@ window.addEventListener('scroll',upd,{passive:true}); upd();
   function m2s(m){ m=((m%1440)+1440)%1440; return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0'); }
   function s2m(s){ var p=(s||'').trim().match(/(\d{1,2})\D(\d{2})/); return p? (+p[1])*60+(+p[2]) : null; }
 
-  function recalcular(ul){
+  function minutos(li){
+    var d=parseInt(li.getAttribute('data-min'),10);
+    if(!Number.isFinite(d) || d<0) d=60;
+    return d;
+  }
+  /* Recalcula las horas de un día en cadena.
+     Si se pasa una fila como ancla, esa conserva su hora y TODAS las de
+     abajo se corren según cuánto dura cada parada. Sin ancla, manda la
+     hora de la primera parada del día.                                   */
+  function recalcular(ul, ancla){
     if(!ul) return;
     var lis=[].slice.call(ul.children).filter(function(n){return n.tagName==='LI';});
     if(!lis.length) return;
 
-    /* La primera hora es el ancla del día; las demás se calculan en cadena. */
-    var primera=lis[0].querySelector('.hr');
-    var t=s2m(primera ? primera.textContent : null);
+    var i0=0;
+    if(ancla){ var k=lis.indexOf(ancla); if(k>-1) i0=k; }
+    var hr0=lis[i0].querySelector('.hr');
+    var t=s2m(hr0 ? hr0.textContent : null);
+    if(t===null && i0!==0){
+      i0=0; hr0=lis[0].querySelector('.hr'); t=s2m(hr0 ? hr0.textContent : null);
+    }
     if(t===null) return;
 
-    lis.forEach(function(li){
-      var hr=li.querySelector('.hr');
-      if(!hr) return;
-      hr.textContent=m2s(t);
-
-      var d=parseInt(li.getAttribute('data-min'),10);
-      if(!Number.isFinite(d) || d<0) d=60;
-      t+=d;
-    });
+    for(var i=i0;i<lis.length;i++){
+      var hr=lis[i].querySelector('.hr');
+      if(!hr) continue;
+      if(i>i0) hr.textContent=m2s(t);   /* la fila ancla no se toca */
+      t+=minutos(lis[i]);
+    }
   }
   function recalcularTodo(){
-    [].slice.call(document.querySelectorAll('[data-tl]')).forEach(recalcular);
+    [].slice.call(document.querySelectorAll('[data-tl]')).forEach(function(u){ recalcular(u); });
+    sincroInicio();
   }
   window.__recalc=recalcularTodo;
+
+  /* Deja la casilla "el día arranca a las…" igual a la hora de la 1ª parada */
+  function sincroInicio(){
+    [].slice.call(document.querySelectorAll('.startbox')).forEach(function(box){
+      var ul=box.nextElementSibling;
+      if(!ul || !ul.hasAttribute || !ul.hasAttribute('data-tl')) return;
+      var p=ul.querySelector('li .hr'), inp=box.querySelector('input');
+      if(!p || !inp || document.activeElement===inp) return;
+      var m=(p.textContent||'').trim().match(/(\d{1,2})\D(\d{2})/);
+      if(!m) return;
+      var v=String(+m[1]).padStart(2,'0')+':'+m[2];
+      inp.value=v; inp.setAttribute('value',v);
+    });
+  }
+
+  var t_guardar2;
+  function guardarPronto(){ clearTimeout(t_guardar2); t_guardar2=setTimeout(guardar,600); }
+
+  /* ---- un solo escucha para TODOS los controles de tiempo ----
+     Va en el document, así funciona también en las paradas nuevas,
+     duplicadas o restauradas desde la nube.                       */
+  var t_hora;
+  function tocaTiempo(e){
+    var el=e.target;
+    if(!el || !el.closest) return;
+
+    var dur=el.closest('.durbox input');
+    if(dur){
+      var li=dur.closest('li'); if(!li) return;
+      var v=parseInt(dur.value,10);
+      if(!Number.isFinite(v) || v<0) return;      /* mientras escriben, nada */
+      li.setAttribute('data-min', String(v));
+      dur.setAttribute('value', String(v));
+      recalcular(li.parentNode, li);
+      sincroInicio();
+      guardarPronto();
+      return;
+    }
+
+    var ini=el.closest('.startbox input');
+    if(ini){
+      var box=ini.closest('.startbox');
+      var ul=box && box.nextElementSibling;
+      if(ul && ul.hasAttribute && ul.hasAttribute('data-tl') && ini.value){
+        var p=ul.querySelector('li .hr');
+        if(p){ p.textContent=ini.value; ini.setAttribute('value',ini.value); recalcular(ul); guardarPronto(); }
+      }
+      return;
+    }
+
+    var hr=el.closest('[data-tl] .hr');
+    if(hr){
+      var li2=hr.closest('li'); if(!li2) return;
+      clearTimeout(t_hora);
+      t_hora=setTimeout(function(){ recalcular(li2.parentNode, li2); sincroInicio(); },700);
+    }
+  }
+  document.addEventListener('input', tocaTiempo);
+  document.addEventListener('change', tocaTiempo);
 
   /* controles de duración por parada + hora de inicio por día */
   function montarTiempos(){
     [].slice.call(document.querySelectorAll('[data-tl] > li')).forEach(function(li){
-      if(li.querySelector(':scope > .bd > .durbox')) return;
       var bd=li.querySelector('.bd'); if(!bd) return;
       if(!li.getAttribute('data-min')) li.setAttribute('data-min','60');
+      /* se reconstruye siempre, para que el número coincida con data-min */
+      var vieja=li.querySelector(':scope > .bd > .durbox');
+      if(vieja) vieja.remove();
       var d=document.createElement('div');
       d.className='durbox';
       d.innerHTML='⏱ dura <input type="number" min="5" step="5" value="'+li.getAttribute('data-min')+'"> min';
-      var durInput=d.querySelector('input');
-      function actualizarDuracion(){
-        var valor=parseInt(durInput.value,10);
-        if(!Number.isFinite(valor) || valor<0) valor=60;
-        li.setAttribute('data-min', String(valor));
-        durInput.setAttribute('value', String(valor));
-        recalcular(li.parentNode);
-        guardar();
-      }
-      durInput.addEventListener('input',actualizarDuracion);
-      durInput.addEventListener('change',actualizarDuracion);
       bd.appendChild(d);
     });
     [].slice.call(document.querySelectorAll('[data-tl]')).forEach(function(ul){
@@ -2206,18 +2292,19 @@ window.addEventListener('scroll',upd,{passive:true}); upd();
       var s=document.createElement('div');
       s.className='startbox';
       s.innerHTML='🕐 El día arranca a las <input type="time" value="'+((primera?primera.textContent:'08:00').trim())+'">';
-      s.querySelector('input').addEventListener('input',function(){
-        var p=ul.querySelector('li .hr'); if(p && this.value){ p.textContent=this.value; recalcular(ul); guardar(); }
-      });
       ul.parentNode.insertBefore(s, ul);
     });
+    sincroInicio();
   }
   window.__montarTiempos=montarTiempos;
 
   /* ---------- controles por parada ---------- */
   function montar(){
+    /* si el HTML restaurado traía controles pegados, se quitan: los nuevos
+       sí quedan conectados a los escuchas de arriba.                        */
+    [].slice.call(document.querySelectorAll('[data-tl] .rowctl')).forEach(function(n){ n.remove(); });
+    [].slice.call(document.querySelectorAll('[data-tl] .durbox')).forEach(function(n){ n.remove(); });
     [].slice.call(document.querySelectorAll('[data-tl] > li')).forEach(function(li){
-      if(li.querySelector(':scope > .bd > .rowctl')) return;
       var bd=li.querySelector('.bd'); if(!bd) return;
       var c=document.createElement('div');
       c.className='rowctl';
@@ -2329,7 +2416,28 @@ window.addEventListener('scroll',upd,{passive:true}); upd();
             body:JSON.stringify([{id:'__prueba__',data:{ok:true},sello:Date.now()}])
           }).then(function(w){
             if(w.ok){ marcaSync('✓ Todo funciona','var(--green)');
-              alert('✓ Sincronización funcionando.\n\nLa tabla existe y se puede escribir. Los cambios que hagan les van a llegar a los cuatro.'); }
+              /* además de probar, contamos qué hay guardado del viaje */
+              return fetch(syncURL+'?id=eq.'+encodeURIComponent(SYNC.viaje)+'&select=data,sello',{headers:syncHead})
+                .then(function(rr){ return rr.ok ? rr.json() : []; })
+                .then(function(jj){
+                  var msg='✓ Sincronización funcionando.\n\nLa tabla existe y se puede escribir. Los cambios que hagan les llegan a los cuatro.\n\n';
+                  if(!jj || !jj.length){
+                    msg+='Todavía no hay nada guardado del viaje. Se guardará solo apenas alguien cambie algo.';
+                  } else {
+                    var t=JSON.stringify(jj[0].data||{});
+                    var dur=(t.match(/data-min=/g)||[]).length;
+                    var chk=Object.keys((jj[0].data||{}).chk||{}).length;
+                    msg+='Guardado del viaje:\n'
+                       + '· versión ' + ((jj[0].data||{}).ver || '?') + (((jj[0].data||{}).ver===7)?' (al día)':' (vieja — se actualiza con el primer cambio)') + '\n'
+                       + '· ' + dur + ' duraciones de parada\n'
+                       + '· ' + chk + ' casillas marcadas\n'
+                       + '· ' + Math.round(t.length/1024) + ' KB\n'
+                       + '· última vez: ' + new Date(jj[0].sello||0).toLocaleString();
+                  }
+                  alert(msg);
+                })
+                .catch(function(){ alert('✓ Sincronización funcionando.\n\nLa tabla existe y se puede escribir.'); });
+            }
             else { marcaSync('Sin permiso de escritura','var(--red)');
               alert('⚠️ Lee la tabla pero NO puede escribir.\n\nFalta la política de permisos. En Supabase → SQL Editor, corran:\n\nalter table itinerario enable row level security;\ncreate policy "abierto" on itinerario for all using (true) with check (true);'); }
           });
@@ -2396,6 +2504,7 @@ window.addEventListener('scroll',upd,{passive:true}); upd();
     if(syncOn){
       if(hayLocal) aplicar(local); else montar();
       recalcularTodo();
+      if(window.__contraerDias) window.__contraerDias();
       bajar(true);
       setInterval(function(){ bajar(true); }, 45000);
       window.addEventListener('focus', function(){ bajar(true); });
@@ -2408,10 +2517,12 @@ window.addEventListener('scroll',upd,{passive:true}); upd();
         if(hayLocal) aplicar(local);
         if(!base && !hayLocal) montar();
         recalcularTodo();
+        if(window.__contraerDias) window.__contraerDias();
       })
       .catch(function(){
         if(hayLocal) aplicar(local); else montar();
         recalcularTodo();
+        if(window.__contraerDias) window.__contraerDias();
       });
   }
   arrancar();
