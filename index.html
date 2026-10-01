@@ -1757,7 +1757,10 @@ var SYNC = {
 document.querySelectorAll('.dayhead').forEach(function(h){
   h.addEventListener('click',function(){ h.parentElement.classList.toggle('open'); });
 });
-[].slice.call(document.querySelectorAll('.day')).forEach(function(d){ d.classList.add('open'); });
+/* Todos los días empiezan contraídos al cargar la página. */
+[].slice.call(document.querySelectorAll('.day')).forEach(function(d){
+  d.classList.remove('open');
+});
 (function(){
   var s=document.getElementById('dias'); if(!s) return;
   var b=document.createElement('button');
@@ -2137,6 +2140,7 @@ window.addEventListener('scroll',upd,{passive:true}); upd();
       var c=document.querySelector('[data-chk="'+k+'"]'); if(c) c.checked=!!d.chk[k];
     });
     montar();
+    recalcularTodo();
   }
   var t_aviso;
   function aviso(txt){
@@ -2150,15 +2154,22 @@ window.addEventListener('scroll',upd,{passive:true}); upd();
   function s2m(s){ var p=(s||'').trim().match(/(\d{1,2})\D(\d{2})/); return p? (+p[1])*60+(+p[2]) : null; }
 
   function recalcular(ul){
+    if(!ul) return;
     var lis=[].slice.call(ul.children).filter(function(n){return n.tagName==='LI';});
     if(!lis.length) return;
-    var t=s2m(lis[0].querySelector('.hr') ? lis[0].querySelector('.hr').textContent : null);
+
+    /* La primera hora es el ancla del día; las demás se calculan en cadena. */
+    var primera=lis[0].querySelector('.hr');
+    var t=s2m(primera ? primera.textContent : null);
     if(t===null) return;
-    lis.forEach(function(li,i){
-      var hr=li.querySelector('.hr'); if(!hr) return;
+
+    lis.forEach(function(li){
+      var hr=li.querySelector('.hr');
+      if(!hr) return;
       hr.textContent=m2s(t);
-      var d=parseInt(li.getAttribute('data-min')||'60',10);
-      if(isNaN(d)||d<0) d=60;
+
+      var d=parseInt(li.getAttribute('data-min'),10);
+      if(!Number.isFinite(d) || d<0) d=60;
       t+=d;
     });
   }
@@ -2176,10 +2187,17 @@ window.addEventListener('scroll',upd,{passive:true}); upd();
       var d=document.createElement('div');
       d.className='durbox';
       d.innerHTML='⏱ dura <input type="number" min="5" step="5" value="'+li.getAttribute('data-min')+'"> min';
-      d.querySelector('input').addEventListener('input',function(){
-        li.setAttribute('data-min', this.value||'60');
-        recalcular(li.parentNode); guardar();
-      });
+      var durInput=d.querySelector('input');
+      function actualizarDuracion(){
+        var valor=parseInt(durInput.value,10);
+        if(!Number.isFinite(valor) || valor<0) valor=60;
+        li.setAttribute('data-min', String(valor));
+        durInput.setAttribute('value', String(valor));
+        recalcular(li.parentNode);
+        guardar();
+      }
+      durInput.addEventListener('input',actualizarDuracion);
+      durInput.addEventListener('change',actualizarDuracion);
       bd.appendChild(d);
     });
     [].slice.call(document.querySelectorAll('[data-tl]')).forEach(function(ul){
@@ -2377,6 +2395,7 @@ window.addEventListener('scroll',upd,{passive:true}); upd();
     var local=leer(), hayLocal = local && (local.tl||local.ed);
     if(syncOn){
       if(hayLocal) aplicar(local); else montar();
+      recalcularTodo();
       bajar(true);
       setInterval(function(){ bajar(true); }, 45000);
       window.addEventListener('focus', function(){ bajar(true); });
@@ -2388,9 +2407,11 @@ window.addEventListener('scroll',upd,{passive:true}); upd();
         if(base) aplicar(base);
         if(hayLocal) aplicar(local);
         if(!base && !hayLocal) montar();
+        recalcularTodo();
       })
       .catch(function(){
         if(hayLocal) aplicar(local); else montar();
+        recalcularTodo();
       });
   }
   arrancar();
