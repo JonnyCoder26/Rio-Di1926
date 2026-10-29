@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Río de Janeiro · 20–26 diciembre 2026</title>
 <link rel="shortcut icon" href="icono.png" type="image/x-icon">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#fbf7f0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Río 2026">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
   
 
 <style>
@@ -448,6 +455,34 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
   .tw td:empty, .tw td.dash{display:none}
   .swipe{display:none}
 }
+/* Para probar en el día */
+.probar-dia{background:#fff7ec;border:1.5px solid #e8c48f;border-radius:12px;padding:12px 14px;margin:12px 0}
+.probar-dia .pdh{font-size:12px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;color:var(--orange);margin-bottom:4px}
+.probar-dia ul{list-style:none}
+.probar-dia li{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #f0dcbc;font-size:15px;color:var(--tx2);line-height:1.4}
+.probar-dia li:last-child{border-bottom:0}
+.probar-dia .pe{flex:none;font-size:19px;line-height:1.2}
+.probar-dia b{color:var(--tx)}
+.probar-dia small{display:block;font-size:13px;font-weight:800;color:var(--gold);margin-top:2px}
+.probar-dia .lnk{display:inline-block;margin-top:6px;font-size:14px;font-weight:700}
+.hcard.alerta{border:2px solid #e0a09b;background:#fffaf9}
+.hcard.alerta h3{color:var(--red)}
+.hcard.alerta .av{font-size:15px;color:var(--tx2);padding:10px 0;border-bottom:1px solid #f2d2cf}
+.hcard.alerta .av:first-of-type{padding-top:0}
+.hcard.alerta .av:last-of-type{border-bottom:0}
+.hcard.alerta .av b{color:var(--red)}
+.hcard.seg h3{color:var(--red)}
+.reglas{margin:0 0 0 18px;font-size:15px;color:var(--tx2)}
+.reglas li{margin-bottom:7px}
+.reglas b{color:var(--tx)}
+.navis{flex:none;font-size:12px;font-weight:800;color:var(--red);background:#fdeae8;border-radius:100px;padding:3px 8px;white-space:nowrap}
+.instbox{padding:4px 16px 14px 60px;font-size:14.5px;color:var(--tx2);border-top:1px solid var(--line)}
+.instbox p{margin-top:8px}
+.instbox b{color:var(--tx)}
+.offline{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(70px + env(safe-area-inset-bottom));z-index:230;
+  background:var(--tx);color:#fff;font-size:12.5px;font-weight:700;padding:7px 14px;border-radius:100px;
+  box-shadow:0 4px 14px rgba(0,0,0,.2);display:none;white-space:nowrap}
+.offline.on{display:block}
 /* Más */
 .mgroup{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);margin:22px 0 8px}
 .mlist{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
@@ -544,12 +579,15 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
 <section id="mas">
   <div class="eyebrow">Todo lo demás</div>
   <h2>Más</h2>
+  <div class="mgroup" style="color:var(--red)">🛡️ Seguridad primero</div>
+  <div class="mlist" style="border-color:#e0a09b">
+    <a class="mrow" href="#cuidado"><span class="mi">&#128737;&#65039;</span><span class="mt"><b>Seguridad y cuidados</b><span>Las reglas, calor, lluvia, emergencias</span></span><span class="chev">&#8250;</span></a>
+    <a class="mrow" href="#caminar"><span class="mi">&#128694;</span><span class="mt"><b>Por dónde caminar</b><span>Zonas verdes, amarillas y rojas</span></span><span class="chev">&#8250;</span></a>
+  </div>
   <div class="mgroup">En Río</div>
   <div class="mlist">
     <a class="mrow" href="#mapa-sec"><span class="mi">&#128506;&#65039;</span><span class="mt"><b>Mapa</b><span>Los 54 sitios y cómo cargarlos en Google Maps</span></span><span class="chev">&#8250;</span></a>
     <a class="mrow" href="#moverse"><span class="mi">&#128647;</span><span class="mt"><b>Cómo moverse</b><span>Metro, Uber y bonde</span></span><span class="chev">&#8250;</span></a>
-    <a class="mrow" href="#caminar"><span class="mi">&#128694;</span><span class="mt"><b>Por dónde caminar</b><span>Zonas verdes, amarillas y rojas</span></span><span class="chev">&#8250;</span></a>
-    <a class="mrow" href="#cuidado"><span class="mi">&#128737;&#65039;</span><span class="mt"><b>Cuidados</b><span>Calor, seguridad, lluvia y enchufes</span></span><span class="chev">&#8250;</span></a>
     <a class="mrow" href="#frases"><span class="mi">&#128483;&#65039;</span><span class="mt"><b>Frases</b><span>Portugués de supervivencia</span></span><span class="chev">&#8250;</span></a>
   </div>
   <div class="mgroup">Antes de viajar</div>
@@ -564,6 +602,12 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
   </div>
   <div class="mgroup">Herramientas</div>
   <div class="mlist">
+    <button class="mrow" id="masInst"><span class="mi">&#128242;</span><span class="mt"><b>Instalar en el celular</b><span id="instSub">Queda como app y funciona sin internet</span></span><span class="chev">&#8250;</span></button>
+    <div class="instbox" id="instBox" hidden>
+      <p><b>iPhone (Safari):</b> toquen el botón <b>Compartir</b> (el cuadrito con la flecha hacia arriba) → <b>Agregar a inicio</b>.</p>
+      <p><b>Android (Chrome):</b> menú <b>⋮</b> → <b>Instalar aplicación</b> o <b>Agregar a la pantalla principal</b>.</p>
+      <p>Ábranla <b>una vez con internet</b> antes de viajar para que quede guardada. Después abre aunque no haya señal; los cambios que hagan sin señal se sincronizan cuando vuelva.</p>
+    </div>
     <button class="mrow" id="masEdit"><span class="mi">&#9999;&#65039;</span><span class="mt"><b>Editar el itinerario</b><span>Los cambios se sincronizan en los cuatro celulares</span></span><span class="chev">&#8250;</span></button>
   </div>
 </section>
@@ -836,6 +880,7 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
         <li class="hi" data-min="80"><div class="hr">18:00</div><div class="bd"><div class="a">Mirante do Pasmado · primer atardecer</div><div class="mv no">🚖 <b>Uber desde Santa Teresa, 20 min · R$ 30.</b> Del morro <b>nunca se baja caminando</b>, ni de día.</div><div class="n"><b>Movido aquí desde el sábado</b> para que el último día no vayan corriendo con maletas. Gratis, a 10 min del hotel. Desde aquí sale <b>la postal clásica</b>: la ensenada de Botafogo llena de veleros con el Pan de Azúcar detrás. <b>El sol se mete a las 18:36.</b> Quédense hasta las 19:00, cuando se enciende la ciudad.</div><div class="addr" data-orig="Ladeira do Pasmado s/n, Botafogo" data-q="Mirante do Pasmado, Botafogo, Rio de Janeiro"><div class="a1">📌 Ladeira do Pasmado s/n, Botafogo</div><div class="a2">Entrada por Rua General Severiano · gratis · atardecer 18:36</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Mirante%20do%20Pasmado%2C%20Botafogo%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Ladeira do Pasmado s/n, Botafogo">Copiar dirección</button></div></div></div></li>
         <li data-min="60"><div class="hr">19:20</div><div class="bd"><div class="a">Cena cerca del hotel <span class="pz">R$ 30–45 · 18.000–27.000 COP</span></div><div class="mv ok">🚶 <b>Del hotel, 400 m · 5 min.</b> Largo do Machado. Se camina de noche sin problema: es zona comercial con gente.</div><div class="n"><b>Braseirinho da Glória</b> — carne a la brasa, muy de barrio, y lo más parecido a un asadero colombiano que van a encontrar cerca. Pollo, picanha, arroz y papas. A menos de 10 minutos del hotel.</div><div class="addr" data-orig="Braseirinho da Glória — barrio Glória" data-q="Braseirinho da Glória, Glória, Rio de Janeiro"><div class="a1">📌 Braseirinho da Glória — barrio Glória</div><div class="a2">Carne a la brasa · R$ 30–45 · búsquenlo por el nombre en Google Maps, queda a 10 min del hotel</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Braseirinho%20da%20Gl%C3%B3ria%2C%20Gl%C3%B3ria%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Largo do Machado 29, loja 16 (Galeria Condor), Catete">Copiar dirección</button></div></div></div></li>
       </ul>
+      <div class="probar-dia"><div class="pdh">🍬 Para probar hoy en la zona</div><ul><li><span class="pe">🥯</span><span><b>Pão de queijo</b> · en el desayuno del hotel, recién salido<small>R$ 5–8 · SÍ O SÍ</small></span></li><li><span class="pe">🥤</span><span><b>Guaraná Antarctica</b> · con el almuerzo en Os Ximenes<small>R$ 6–10</small></span></li><li><span class="pe">🍹</span><span><b>Primera caipirinha</b> · Bar do Mineiro, Santa Teresa, a las 15:30. Pídanla "com pouco açúcar"<small>R$ 22–30 · SÍ O SÍ</small></span></li><li><span class="pe">🥟</span><span><b>Pastel de feijoada</b> · en el mismo Bar do Mineiro: es la especialidad de la casa</span></li><li><span class="pe">🍇</span><span><b>Açaí</b> · Tacacá do Norte, R. Barão do Flamengo 35, al volver al hotel. El mejor de Río<small>R$ 25–35</small></span></li></ul><a class="lnk" href="#probar">Toda la lista para probar</a></div>
       <div class="note alert"><b>Sobre el Aterro:</b> de día es de los sitios más agradables de Río, pero al caer la tarde los tramos alejados de la avenida se vacían y sí es zona de robos. La regla: <b>Aterro antes del mediodía, nunca al anochecer.</b> Después de las 18:00, si quieren caminar cerca del hotel, quédense sobre la Rua do Catete o el Largo do Machado, que tienen comercio y gente.</div>
     </div>
   </div>
@@ -866,6 +911,7 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
         <li class="hi" data-min="180"><div class="hr">19:30</div><div class="bd"><div class="a">Roda de Samba da Pedra do Sal</div><div class="mv no">🚖 <b>Quédense en la plaza, no exploren alrededor.</b> La roda es segura y hay mucha gente, pero las calles laterales del barrio Saúde no. Pidan el Uber de vuelta desde adentro.</div><div class="n"><b>Solo lunes, 19:00 a 00:00, entrada gratis.</b> El sitio donde nació el samba, en la llamada "Pequeña África". Se para en la calle, se toma cerveza de los puestos, se baila. Es la experiencia más auténtica del viaje y no cuesta nada.</div><div class="addr" data-orig="Largo João da Baiana s/n, Saúde" data-q="Pedra do Sal, Largo João da Baiana, Saúde, Rio de Janeiro"><div class="a1">📌 Largo João da Baiana s/n, Saúde</div><div class="a2">Samba SOLO lunes 19:00-24:00 · gratis · vayan y vuelvan en Uber</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pedra%20do%20Sal%2C%20Largo%20Jo%C3%A3o%20da%20Baiana%2C%20Sa%C3%BAde%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Largo João da Baiana s/n, Saúde">Copiar dirección</button></div></div></div></li>
         <li data-min="60"><div class="hr">22:30</div><div class="bd"><div class="a">Uber al hotel</div><div class="n">Pidan el Uber desde adentro de la roda, no caminando por calles laterales.</div></div></li>
       </ul>
+      <div class="probar-dia"><div class="pdh">🍬 Para probar hoy en la zona</div><ul><li><span class="pe">🥟</span><span><b>Pastel de frango</b> · Chic's, dentro del SAARA<small>R$ 5</small></span></li><li><span class="pe">🧃</span><span><b>Caldo de cana</b> · jugo de caña, el compañero del pastel</span></li><li><span class="pe">🍰</span><span><b>Pastel de nata, brigadeiro o quindim</b> · Confeitaria Colombo, con el café de las 14:15<small>R$ 30 · café y postre</small></span></li><li><span class="pe">☕</span><span><b>Cafezinho</b> · después del almuerzo, en cualquier barra del Centro</span></li><li><span class="pe">🍇</span><span><b>Açaí</b> · Tapí, Av. Rio Branco, cerca del SAARA<small>R$ 20–30</small></span></li><li><span class="pe">🍹</span><span><b>Caipirinha en la calle</b> · puestos de la Pedra do Sal, con samba en vivo. En efectivo<small>R$ 15–25</small></span></li></ul><a class="lnk" href="#probar">Toda la lista para probar</a></div>
       <div class="note alert"><b>Seguridad, este día en particular.</b> El SAARA en la semana de Navidad es la zona con más carteristas de Río, y la Pedra do Sal es una fiesta callejera de noche. Para los dos: <b>mochila adelante</b>, nada en bolsillos traseros, sin joyas ni relojes, celular guardado, y máximo R$ 150 en efectivo por persona. Pasaportes en la caja fuerte del hotel.</div>
     </div>
   </div>
@@ -898,6 +944,7 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
         <li data-min="75"><div class="hr">20:30</div><div class="bd"><div class="a">Cena · Restaurante Adriano (Botafogo) <span class="pz">R$ 28–40 · 17.000–24.000 COP</span></div><div class="mv no">🚖 <b>Uber, 10 min · R$ 20.</b> De Urca a Botafogo de noche, en carro.</div><div class="n">Casi 70 años abierto, un corredor angosto lleno de gente del barrio. El <b>filé de peixe à milanesa</b> sale R$ 28. A 10 min en Uber desde Urca.</div><div class="addr" data-orig="Rua Real Grandeza 162, Botafogo" data-q="Restaurante Adriano, Rua Real Grandeza 162, Botafogo, Rio de Janeiro"><div class="a1">📌 Rua Real Grandeza 162, Botafogo</div><div class="a2">Abierto desde 1954 · pescado a la milanesa R$ 28</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Restaurante%20Adriano%2C%20Rua%20Real%20Grandeza%20162%2C%20Botafogo%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Rua Real Grandeza 162, Botafogo">Copiar dirección</button></div></div></div></li>
         <li data-min="60"><div class="hr">21:45</div><div class="bd"><div class="a">Uber al hotel</div></div></li>
       </ul>
+      <div class="probar-dia"><div class="pdh">🍬 Para probar hoy en la zona</div><ul><li><span class="pe">🦐</span><span><b>Pastel de camarão</b> · Mureta da Urca. No se lo pierdan</span></li><li><span class="pe">🍺</span><span><b>Chopp o Brahma bem gelada</b> · sentados en el muro de la Mureta, mirando la bahía<small>R$ 8–14</small></span></li><li><span class="pe">🍹</span><span><b>Caipirinha</b> · en la Mureta al mediodía o en Belmonte Botafogo de noche<small>R$ 20–30</small></span></li><li><span class="pe">🥧</span><span><b>Empadas</b> · las de Belmonte son famosas</span></li><li><span class="pe">🍇</span><span><b>Açaí</b> · Tapí Botafogo, antes o después de la cena<small>R$ 20–30</small></span></li></ul><a class="lnk" href="#probar">Toda la lista para probar</a></div>
       <div class="note"><b>🎒 La mochila del martes</b> — hoy no pasan por la habitación:<br>protector solar y gorra · <b>una camiseta seca por persona</b> (van a sudar en la Pista) · batería portátil cargada · agua · desodorante · <b>algo abrigado ligero</b> (arriba del Pan de Azúcar a las 19:00 corre viento y baja bastante la temperatura) · efectivo para el Bar Urca · paraguas pequeño.</div>
       <div class="note money"><b>Si quieren recortar aquí:</b> el Bondinho es lo más caro del viaje (~R$ 210 c/u = R$ 840 los cuatro). Se puede <b>subir gratis caminando al Morro da Urca</b> por el sendero que arranca en la Pista Cláudio Coutinho (40 min, moderado) y pagar solo el tramo de arriba. Pero con el plan del día completo, vale la pena pagar los dos tramos.</div>
     </div>
@@ -951,6 +998,7 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
         <li class="hi" data-min="45"><div class="hr">20:15</div><div class="bd"><div class="a">🍇 Açaí de premio · Polis Sucos</div><div class="mv ok">🚶 <b>De Havaianas, 300 m · 4 min.</b> Ipanema de noche se camina tranquilo por las calles comerciales.</div><div class="n">Rua Maria Quitéria 70, Ipanema — a 3 cuadras de Havaianas. Hacen el <b>tradicional sin azúcar</b>, que es el bueno. R$ 25–35.</div><div class="addr" data-orig="Rua Maria Quitéria 70, Ipanema" data-q="Polis Sucos, Rua Maria Quitéria 70, Ipanema, Rio de Janeiro"><div class="a1">📌 Rua Maria Quitéria 70, Ipanema</div><div class="a2">Açaí sin azúcar R$ 25-35 · abre hasta tarde</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Polis%20Sucos%2C%20Rua%20Maria%20Quit%C3%A9ria%2070%2C%20Ipanema%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Rua Maria Quitéria 70, Ipanema">Copiar dirección</button></div></div></div></li>
         <li data-min="60"><div class="hr">21:00</div><div class="bd"><div class="a">Metro General Osório → Catete</div><div class="mv ok">🚶 <b>De Polis Sucos a la estación, 400 m · 5 min</b>, y 20 min de metro.</div><div class="n">Línea 1 directa, ~20 min. Corre hasta medianoche. <b>Cenen liviano</b> — con el açaí y lo que comieron ya está, y Ipanema se sale del presupuesto de plato.</div></div></li>
       </ul>
+      <div class="probar-dia"><div class="pdh">🍬 Para probar hoy en la zona</div><ul><li><span class="pe">🍪</span><span><b>Biscoito Globo + mate</b> · si pasa un vendedor por la playa de Leblon o Ipanema<small>R$ 10 · SÍ O SÍ</small></span></li><li><span class="pe">🍹</span><span><b>Caipirinha de cachaça</b> · Academia da Cachaça, Leblon. Desde 1985<small>R$ 30–40</small></span></li><li><span class="pe">🍢</span><span><b>Petiscos de bar</b> · para acompañar: coxinha, bolinho de bacalhau o torresmo</span></li><li><span class="pe">🍇</span><span><b>Açaí</b> · Polis Sucos, R. Maria Quitéria 70, Ipanema, a las 20:15<small>R$ 25–35</small></span></li><li><span class="pe">🥤</span><span><b>Jugos que no hay en Colombia</b> · también en Polis: maracujá, cajá o graviola</span></li></ul><a class="lnk" href="#probar">Toda la lista para probar</a></div>
       <div class="note alert"><b>Si amanece nublado, no suban.</b> El Cristo metido en nube no se ve y el boleto no se devuelve. Revisen la webcam del Corcovado antes de pedir el Uber; si está cerrado, cambien este día por el del 24 y vayan el jueves temprano.</div>
       <div class="note"><b>Plan B si no consiguen el turno de las 8:00:</b> las <b>vans oficiales salen de Largo do Machado desde las 7:00</b> — y Largo do Machado está a <b>5 minutos caminando del hotel</b>. Cuestan R$ 132, casi lo mismo que el tren, y se ahorran el traslado a Cosme Velho.</div>
     </div>
@@ -990,6 +1038,7 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
         <li class="hi" data-min="30"><div class="hr">21:30</div><div class="bd"><div class="a">🍾 Licor para el brindis · Zona Sul 24 horas</div><div class="mv ok">🚶 <b>Del hotel, 800 m · 12 min.</b> Por la Rua do Catete hacia Flamengo. <b>Se camina de noche sin problema</b>: es avenida comercial iluminada. O Uber por R$ 12.</div><div class="n"><b>Rua Machado de Assis 40, Flamengo</b> — <b>abierto las 24 horas</b>, así que no importa a qué hora vuelvan del rodizio.<br>Es la cadena de supermercados de confianza de la Zona Sur: producto original, factura, precios normales. <b>Nada de comprar licor en la calle ni a vendedores.</b><br><br><b>Qué comprar:</b> una <b>cachaça artesanal</b> (Magnífica, Salinas o Ypióca Ouro, R$ 40–90) con limones y azúcar para hacer caipiriñas en la habitación, o un espumante nacional (Chandon o Salton, R$ 45–90), que es lo que toma todo Brasil en Navidad.<br><br><b>Hay otro Zona Sul 24 h</b> en Copacabana (Av. N. S. de Copacabana 936), por si prefieren comprar antes de cenar.</div><div class="addr" data-orig="Rua Machado de Assis 40, Flamengo" data-q="Supermercado Zona Sul, Rua Machado de Assis 40, Flamengo, Rio de Janeiro"><div class="a1">📌 Rua Machado de Assis 40, Flamengo</div><div class="a2">ABIERTO 24 HORAS · licor, agua y protector solar</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Supermercado%20Zona%20Sul%2C%20Rua%20Machado%20de%20Assis%2040%2C%20Flamengo%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Rua Machado de Assis 40, Flamengo">Copiar dirección</button></div></div></div></li>
         <li data-min="60"><div class="hr">22:00</div><div class="bd"><div class="a">Brindis en el hotel</div><div class="n">A medianoche en Brasil se dan abrazos y se dice "Feliz Natal". Si están en la piscina o en el lobby, van a estar rodeados de brasileños haciendo lo mismo.</div></div></li>
       </ul>
+      <div class="probar-dia"><div class="pdh">🍬 Para probar hoy en la zona</div><ul><li><span class="pe">🫓</span><span><b>Tapioca</b> · carritos del Boulevard Olímpico. De queso, de coco o de goiabada<small>R$ 12–25</small></span></li><li><span class="pe">🥩</span><span><b>Picanha con farofa</b> · en el rodizio: échenle la farofa encima, así se come allá</span></li><li><span class="pe">🍇</span><span><b>Açaí</b> · Casa do Açaí, R. Siqueira Campos 143, a 120 m del rodizio<small>R$ 15–20</small></span></li><li><span class="pe">🍹</span><span><b>Caipirinha</b> · Galeto Sat's, con más de 300 cachaças, o el propio rodizio<small>R$ 25–35</small></span></li><li><span class="pe">🍾</span><span><b>Espumante para el brindis</b> · Zona Sul 24 horas: Chandon o Salton, lo que toma todo Brasil en Navidad<small>R$ 45–90 la botella</small></span></li></ul><a class="lnk" href="#probar">Toda la lista para probar</a></div>
       <div class="note money"><b>Cuidado con una trampa:</b> la <b>Churrascaria Palace</b> (Copacabana, la más tradicional de Río, desde 1951) aparece en varias listas de "custo-benefício" con precios viejos de R$ 113. Hoy hay clientes reportando <b>R$ 350 por persona</b>. La descarté por eso. Si la ven recomendada por ahí, pregunten el precio antes de sentarse.</div>
     </div>
   </div>
@@ -1023,6 +1072,7 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
         <li data-min="60"><div class="hr">20:00</div><div class="bd"><div class="a">Ipanema iluminada <span class="pz">R$ 20–30 · 12.000–18.000 COP</span></div><div class="mv ok">🚶 <b>Del Arpoador a General Osório, 900 m · 13 min.</b> Por la Rua Visconde de Pirajá. <b>Ipanema de noche se camina tranquilo</b> por las calles comerciales — pero <b>por la arena no</b>.</div><div class="n">Suban por la <b>Rua Visconde de Pirajá</b> hacia la estación. Si les da hambre, algo liviano: un pastel, un sándwich o el açaí que se saltaron. <b>Ojo: el 25 en la noche muchas cocinas están cerradas</b>, así que no cuenten con cena de restaurante.</div><div class="addr" data-orig="Av. Vieira Souto (borde de la playa), Ipanema" data-q="Quiosques Avenida Vieira Souto, Ipanema, Rio de Janeiro"><div class="a1">📌 Av. Vieira Souto (borde de la playa), Ipanema</div><div class="a2">Caipirinha frente al mar R$ 25-35</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Quiosques%20Avenida%20Vieira%20Souto%2C%20Ipanema%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Av. Vieira Souto (borde de la playa), Ipanema">Copiar dirección</button></div></div></div></li>
         <li data-min="60"><div class="hr">21:00</div><div class="bd"><div class="a">Metro General Osório → Catete</div><div class="mv mtr">🚇 <b>El segundo y último metro del día.</b> Línea 1 directa, 20 min.</div><div class="n">El segundo y último metro del día. Último tren alrededor de las 23:00 en feriado; si se pasan, Uber.</div></div></li>
       </ul>
+      <div class="probar-dia"><div class="pdh">🍬 Para probar hoy en la zona</div><ul><li><span class="pe">🧀</span><span><b>Queijo coalho</b> · en la arena, del parrillero. Com orégano o con melaza<small>R$ 10–15 · SÍ O SÍ</small></span></li><li><span class="pe">🍪</span><span><b>Biscoito Globo + mate con limón</b> · del mismo carrito que grita "Glooobo!"<small>R$ 10 · SÍ O SÍ</small></span></li><li><span class="pe">🥥</span><span><b>Água de coco</b> · en la playa. Con los dos de arriba, todo sale en menos de R$ 35</span></li><li><span class="pe">🫓</span><span><b>Tapioca</b> · carritos de playa<small>R$ 12–25</small></span></li><li><span class="pe">🍇</span><span><b>Açaí</b> · Casa do Açaí o Blezz, R. Siqueira Campos, al salir de Faenza<small>R$ 15–35</small></span></li><li><span class="pe">🍹</span><span><b>Caipirinha frente al mar</b> · quioscos de Av. Vieira Souto, Ipanema<small>R$ 25–35</small></span></li></ul><a class="lnk" href="#probar">Toda la lista para probar</a></div>
       <div class="note money"><b>🏖️ Si no les dan el kit de playa:</b> alquilen en la barraca. Silla <b>R$ 15–25</b> y sombrilla <b>R$ 25–40</b>; los cuatro, <b>~R$ 110–180</b> (R$ 28–45 c/u). Pregunten el precio antes de sentarse y lleven efectivo. Más detalles en la pestaña <a class="lnk" href="#playa">Plata</a>.</div>
       <div class="note"><b>📏 La caminata, en números:</b> Posto 4 → Posto 6 son <b>2 km</b> · Posto 6 → Forte <b>400 m</b> · Forte → Arpoador <b>1,2 km</b> · Arpoador → General Osório <b>900 m</b>. Total <b>4,5 km</b> repartidos entre las 14:45 y las 21:00, todo plano y todo sobre calçadão. Con paradas cada rato, lo hace cualquiera sin problema.</div>
       <div class="note alert"><b>Playa, en serio.</b> No lleven nada que no puedan perder: ni relojes, ni cadenas, ni la cámara buena. Un celular por persona máximo y siempre alguien sentado con las cosas — <b>túrnense para meterse al agua</b>, nunca los cuatro a la vez. <br><br><b>🏴 Métanse SOLO donde hay bandera verde.</b> Verde: seguro. Amarilla: cuidado, solo si nadan bien. <b>Roja: no se metan, punto.</b> Las corrientes de resaca en Copacabana e Ipanema arrastran de verdad y se llevan gente todos los años. Si no son nadadores fuertes, no pasen de la cintura ni con bandera verde. Y <b>de noche se camina por el calçadão y las avenidas, nunca por la arena</b>.</div>
@@ -1056,6 +1106,7 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
         <li data-min="195"><div class="hr">22:30</div><div class="bd"><div class="a">🥃 Duty Free · la cachaça</div><div class="mv mtr">🛂 <b>Después de migración</b>, no antes. El duty free está pasando el control, en el nivel de Embarque Internacional del Terminal 2 — hay otra tienda en el mezzanine. <b>Abren 24 horas</b>, así que a esa hora está funcionando.</div><div class="n">Aquí es donde compran la cachaça, no en la calle: en el duty free sale <b>sin impuestos</b> y va sellada, así que puede ir en el equipaje de mano sin problema por la regla de los 100 ml.<br><br><b>Cuáles llevar:</b> las buenas son <b>Ypióca Ouro, Salinas, Magnífica o Weber Haus</b> — cachaça envejecida en madera, que se toma sola. La blanca barata es solo para caipiriñas.<br><br><b>Cuánto pueden traer:</b> por seguridad aérea el tope son <b>5 litros por persona</b> (unas 6 botellas), y la DIAN deja entrar hasta 10 unidades siempre que todo el equipaje no pase de USD 2.000. O sea que <b>dos o tres botellas cada uno no son ningún problema</b>.<br><br><b>Ojo:</b> si hacen escala en otro país antes de Colombia y tienen que recoger y volver a pasar seguridad, la bolsa sellada se puede volver un lío. Si el vuelo es directo, tranquilos.</div></div></li>
         <li data-min="60"><div class="hr">01:45</div><div class="bd"><div class="a">✈️ Vuelo de regreso</div><div class="n">Boa viagem.</div></div></li>
       </ul>
+      <div class="probar-dia"><div class="pdh">🍬 Para probar hoy en la zona</div><ul><li><span class="pe">🍲</span><span><b>Feijoada</b> · se come los sábados y hoy es sábado. Plan de almuerzo, nunca de cena</span></li><li><span class="pe">🥩</span><span><b>Filé Oswaldo Aranha</b> · el plato más carioca. Pídanlo en Café Lamas</span></li><li><span class="pe">🍹</span><span><b>La última caipirinha</b> · Café Lamas, desde 1874<small>R$ 25–30</small></span></li><li><span class="pe">🍇</span><span><b>El último açaí</b> · Tacacá do Norte, el mejor, para cerrar<small>R$ 25–35</small></span></li><li><span class="pe">🍫</span><span><b>Brigadeiro y beijinho</b> · en cualquier padaria, para el camino<small>R$ 4–10</small></span></li><li><span class="pe">🛍️</span><span><b>Biscoito Globo para llevar</b> · en paquete, en el supermercado Zona Sul</span></li></ul><a class="lnk" href="#probar">Toda la lista para probar</a></div>
       <div class="note"><b>Antes de salir del hotel, revisen:</b> caja fuerte, cargadores en los tomacorrientes, ropa en el baño, y el kit de playa devuelto. Es donde siempre se queda algo.</div>
     </div>
   </div>
@@ -2280,13 +2331,19 @@ window.__contraerDias();
       body:cuerpo
     }).then(function(r){
       marcaSync(r.ok ? '✓ Guardado para los 4' : 'No se pudo guardar', r.ok ? 'var(--green)' : 'var(--red)');
-    }).catch(function(){ marcaSync('Sin conexión — se guardó en este celular','var(--tx3)'); })
+      if(!r.ok) sinEnviar = d;
+    }).catch(function(){ sinEnviar = d; marcaSync('Sin conexión — se guardó en este celular','var(--tx3)'); })
       .finally(function(){
         subiendo=false;
         if(pendiente){ var p=pendiente; pendiente=null; subir(p); }
       });
   }
   window.__subir = subir;
+  /* lo que se guardó sin señal se manda apenas vuelva internet */
+  var sinEnviar = null;
+  window.addEventListener('online',function(){
+    if(sinEnviar){ var d=sinEnviar; sinEnviar=null; subir(d); }
+  });
 
   function leer(){
     try{ return JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ return {}; }
@@ -2708,6 +2765,7 @@ window.__contraerDias();
 </script>
 
 
+<div class="offline" id="offline">📴 Sin internet · usando la copia guardada</div>
 <div class="tabbar" id="tabbar" role="navigation" aria-label="Secciones">
   <a href="#hoy" data-tab="hoy"><span class="ic">&#128205;</span>Hoy</a>
   <a href="#dias" data-tab="dias"><span class="ic">&#128197;</span>Días</a>
@@ -2796,6 +2854,14 @@ window.__contraerDias();
     });
   }
 
+  [].slice.call(document.querySelectorAll('#dias .day')).forEach(function(c){
+    var n=c.querySelectorAll('.daybody .note.alert').length, hd=c.querySelector('.dayhead'), ar=hd && hd.querySelector('.arrow');
+    if(!n || !ar) return;
+    var s=document.createElement('span'); s.className='navis'; s.textContent='⚠️ '+n;
+    s.title = n===1 ? '1 aviso importante' : n+' avisos importantes';
+    hd.insertBefore(s, ar);
+  });
+
   document.getElementById('masEdit').addEventListener('click',function(){
     ir('#dias', function(){ arriba(0); var b=document.getElementById('edOn'); if(b) b.click(); });
   });
@@ -2832,6 +2898,20 @@ window.__contraerDias();
     return '<div class="hcard"><h3>La semana de un vistazo</h3><ul class="week" id="hoyWeek">'+filas+'</ul></div>';
   }
 
+  /* las reglas de seguridad salen de la sección Cuidados, para no tener dos versiones */
+  function reglas(){
+    var h3=[].slice.call(document.querySelectorAll('#cuidado h3')).filter(function(x){ return /Seguridad/.test(x.textContent); })[0];
+    var ul=h3 && h3.parentNode.querySelector('ul');
+    if(!ul) return '';
+    return '<div class="hcard seg"><h3>🛡️ Seguridad · las reglas</h3><ul class="reglas">'+ul.innerHTML+'</ul>'
+      +'<div class="hbtns"><a class="hbtn gh" href="#caminar">🚶 Por dónde caminar</a><a class="hbtn gh" href="#cuidado">Todos los cuidados</a></div></div>';
+  }
+  function avisos(cards){
+    var n=[];
+    cards.forEach(function(c){ [].slice.call(c.querySelectorAll('.daybody .note.alert')).forEach(function(x){ n.push(x.innerHTML); }); });
+    if(!n.length) return '';
+    return '<div class="hcard alerta"><h3>⚠️ Importante hoy</h3>'+n.map(function(x){ return '<div class="av">'+x+'</div>'; }).join('')+'</div>';
+  }
   function pendientes(){
     return [].slice.call(document.querySelectorAll('[data-chk]')).filter(function(c){ return !c.checked; });
   }
@@ -2862,7 +2942,11 @@ window.__contraerDias();
       } else {
         html+='<div class="hcard"><h3>Reservas</h3><p>✅ Todo lo de la lista está hecho.</p></div>';
       }
-      html+='<div class="hbtns" style="margin-top:12px"><a class="hbtn gh" href="#documentos">🗄️ Documentos</a><a class="hbtn gh" href="#plata">💰 Presupuesto</a></div>';
+      var doc=document.querySelector('#documentos .note.alert');
+      if(doc) html+='<div class="hcard alerta"><h3>🛂 Lo obligatorio para viajar</h3><div class="av">'+doc.innerHTML+'</div>'
+        +'<div class="hbtns"><a class="hbtn gh" href="#documentos">Ver documentos</a></div></div>';
+      html+='<div class="hbtns" style="margin-top:12px"><a class="hbtn gh" href="#plata">💰 Presupuesto</a><a class="hbtn gh" href="#reservas">📋 Reservas</a></div>';
+      html+=reglas();
       html+=semana(null);
     }
     else if(durante){
@@ -2894,6 +2978,7 @@ window.__contraerDias();
       } else if(paradas.length){
         html+='<div class="hcard"><h3>Listo por hoy</h3><p>El plan de hoy ya terminó.'+(man?' Mañana: <b>'+esc(man.dt)+'</b>.':'')+'</p></div>';
       }
+      html+=avisos(hoy.map(function(x){ return x.card; }));
       var hotel=document.querySelector('#dias .addr[data-q*="Riale"]');
       html+='<div class="hcard"><h3>A la mano</h3><div class="hbtns" style="margin-top:0">'
         +(hotel?'<a class="hbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(hotel.getAttribute('data-q'))+'">🏨 Volver al hotel</a>':'')
@@ -2907,8 +2992,10 @@ window.__contraerDias();
             }).join('')
           +'</ul></div>';
       }
+      hoy.forEach(function(x){ var pr=x.card.querySelector('.probar-dia'); if(pr) html+=pr.outerHTML; });
       if(man) html+='<div class="hcard"><h3>Mañana · '+esc(SEMANA[man.sem]||man.sem)+' '+man.num+'</h3><div class="w1" style="font-weight:700">'+esc(man.dt)+'</div><div class="hsub" style="font-size:14.5px">'+esc(man.dd)+'</div>'
         +'<div class="hbtns"><button class="hbtn gh full" data-day="'+D.indexOf(man)+'">Ver el día</button></div></div>';
+      html+=reglas();
       html+=semana(now.d);
       box._paradas=paradas;
     }
@@ -3094,6 +3181,22 @@ window.__contraerDias();
     if(e.target.matches && e.target.matches('[data-chk]')) pintarPendientes();
   });
   setInterval(function(){ if(actual==='hoy' && !body.classList.contains('editing')) pintarHoy(); }, 60000);
+
+  /* ---------- instalar y sin internet ---------- */
+  var promptInst=null, instBox=document.getElementById('instBox'), instSub=document.getElementById('instSub');
+  var instalada = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone;
+  if(instalada) instSub.textContent='✓ Ya está instalada en este celular';
+  window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); promptInst=e; instSub.textContent='Toquen aquí para instalarla'; });
+  document.getElementById('masInst').addEventListener('click',function(){
+    if(promptInst){ promptInst.prompt(); promptInst=null; return; }
+    instBox.hidden=!instBox.hidden;
+  });
+  var off=document.getElementById('offline');
+  function red(){ off.classList.toggle('on', navigator.onLine===false); }
+  window.addEventListener('online',red); window.addEventListener('offline',red); red();
+  if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost')){
+    window.addEventListener('load',function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
+  }
 
   window.addEventListener('hashchange',mostrar);
   body.classList.add('tabs');

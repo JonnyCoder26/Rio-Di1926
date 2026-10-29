@@ -6,11 +6,21 @@ Itinerario del viaje. Una sola página.
 
 - `index.html` — la página completa. Todo está adentro.
 - `rio-2026-mapa.kml` — los 54 sitios para cargar en Google My Maps.
+- `icono.png`, `icono-192.png`, `icono-512.png`, `apple-touch-icon.png` — los íconos.
+- `manifest.webmanifest` — para instalarla en el celular como app.
+- `sw.js` — para que funcione sin internet.
 
 ## Cómo publicarla
 
-Subir los dos archivos a la raíz del hosting. El archivo tiene que
-llamarse `index.html`.
+Subir **todos** los archivos a la raíz del hosting, en la misma carpeta.
+El archivo tiene que llamarse `index.html`. El hosting tiene que ser
+`https` para que funcione sin internet y se pueda instalar.
+
+## Instalar en el celular
+
+Pestaña **Más → Instalar en el celular**. En iPhone: Compartir → Agregar a
+inicio. En Android: menú ⋮ → Instalar aplicación. Hay que abrirla una vez
+con internet antes de viajar para que quede guardada.
 
 ## Editar
 
