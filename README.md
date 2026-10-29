@@ -14,5 +14,19 @@ llamarse `index.html`.
 
 ## Editar
 
-Botón ✏️ Editar abajo a la derecha. Los cambios se guardan solos
+Pestaña **Más → ✏️ Editar el itinerario**. Los cambios se guardan solos
 y se sincronizan entre los cuatro celulares.
+
+## Navegación
+
+La página funciona como una app, con cinco pestañas abajo:
+
+- **Hoy**: antes del viaje, la cuenta regresiva y lo que falta reservar.
+  Del 20 al 26 de diciembre, el plan del día y la próxima parada (hora de Río).
+- **Días**: el itinerario completo.
+- **Comer**: qué probar y dónde comer.
+- **Plata**: el presupuesto.
+- **Más**: mapa, moverse, caminar, cuidados, frases, documentos, reservas,
+  souvenirs, datos y el botón para editar.
+
+Para ver cómo se ve "Hoy" un día del viaje: `index.html?hoy=2026-12-22T15:00`.
