@@ -483,6 +483,53 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
   background:var(--tx);color:#fff;font-size:12.5px;font-weight:700;padding:7px 14px;border-radius:100px;
   box-shadow:0 4px 14px rgba(0,0,0,.2);display:none;white-space:nowrap}
 .offline.on{display:block}
+/* Cuentas y maleta */
+.gin{width:100%;font-size:16px;font-family:inherit;color:var(--tx);background:var(--card2);border:1px solid var(--line);
+  border-radius:12px;padding:12px 13px;margin-top:8px}
+.gmonto{display:grid;grid-template-columns:1fr 92px;gap:8px}
+.glab{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--tx3);margin:14px 0 6px}
+.gchips,.mper{display:flex;flex-wrap:wrap;gap:6px}
+.gchip{min-height:42px;padding:6px 14px;border-radius:100px;border:1px solid var(--line);background:var(--card);color:var(--tx2);
+  font-family:inherit;font-size:14.5px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.gchip.on{background:var(--tx);border-color:var(--tx);color:#fff}
+.gchip small{font-size:11.5px;font-weight:800;opacity:.75}
+.gestado{font-size:12.5px;color:var(--tx3);font-weight:700;margin-top:8px;min-height:1em}
+.gnota{font-size:14px;color:var(--tx2);margin:8px 0}
+.gok{font-size:16px;font-weight:700;color:var(--green)}
+.gpago{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.gpago:last-of-type{border-bottom:0}
+.gm{font-weight:800;color:var(--tx);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.gm small{display:block;font-size:11.5px;color:var(--tx3);font-weight:700}
+.gtot{font-size:13px;color:var(--tx2);margin-top:10px;padding-top:10px;border-top:2px solid var(--gold);line-height:1.5}
+.gitem{padding:10px 0;border-bottom:1px solid var(--line)}
+.gitem:last-child{border-bottom:0}
+.gi1{display:flex;justify-content:space-between;gap:12px;font-size:15.5px}
+.gi2{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--tx3);margin-top:2px}
+.gdel{flex:none;min-width:40px;min-height:36px;border:1px solid var(--line);background:var(--card);border-radius:9px;cursor:pointer;font-size:15px}
+details.gnom summary{cursor:pointer;font-weight:700;font-size:15px;list-style:none;min-height:28px}
+details.gnom summary::-webkit-details-marker{display:none}
+/* Taxista */
+.taxi{position:fixed;inset:0;z-index:400;background:#fff;overflow:auto;display:flex;align-items:center;justify-content:center;
+  padding:calc(20px + env(safe-area-inset-top)) 20px calc(20px + env(safe-area-inset-bottom))}
+.taxi[hidden]{display:none}
+.taxi-in{max-width:640px;width:100%}
+.tx-pt{font-size:22px;font-weight:800;color:var(--tx)}
+.tx-es{font-size:14px;color:var(--tx3);margin-bottom:22px}
+.tx-n{font-size:clamp(22px,6vw,30px);font-weight:700;color:var(--tx2);line-height:1.2;margin-bottom:6px}
+.tx-a{font-size:clamp(32px,10vw,54px);font-weight:850;line-height:1.08;letter-spacing:-.8px;color:#000}
+.tx-b{font-size:17px;color:var(--tx2);margin-top:10px}
+.tx-c{font-size:22px;font-weight:800;color:var(--gold);margin:10px 0 26px}
+/* Frases con audio */
+.ph.conaudio{cursor:pointer;align-items:center}
+.ph .hablar{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card2);font-size:17px;cursor:pointer}
+.ph.suena .hablar{background:var(--teal);border-color:var(--teal)}
+/* Lluvia */
+details.lluvia summary{cursor:pointer;list-style:none;font-weight:800;font-size:15.5px;color:var(--blue);min-height:28px}
+details.lluvia summary::-webkit-details-marker{display:none}
+details.lluvia[open] summary{margin-bottom:8px}
+details.lluvia p{font-size:15px;color:var(--tx2)}
+details.lluvia ul{margin:8px 0 0 18px;font-size:15px;color:var(--tx2)}
+details.lluvia li{margin-bottom:6px}
 /* Más */
 .mgroup{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);margin:22px 0 8px}
 .mlist{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
@@ -593,6 +640,7 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
   <div class="mgroup">Antes de viajar</div>
   <div class="mlist">
     <a class="mrow" href="#documentos"><span class="mi">&#128452;&#65039;</span><span class="mt"><b>Documentos</b><span>Pasaporte, cédula y aeropuertos</span></span><span class="chev">&#8250;</span></a>
+    <a class="mrow" href="#maleta"><span class="mi">&#129523;</span><span class="mt"><b>Maleta</b><span>Lo que lleva cada uno</span></span><span class="badge" id="maletaBadge" hidden></span><span class="chev">&#8250;</span></a>
     <a class="mrow" href="#reservas"><span class="mi">&#128203;</span><span class="mt"><b>Reservas</b><span>Qué reservar y cuándo</span></span><span class="badge" id="pendBadge" hidden></span><span class="chev">&#8250;</span></a>
   </div>
   <div class="mgroup">Para disfrutar</div>
@@ -602,6 +650,7 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
   </div>
   <div class="mgroup">Herramientas</div>
   <div class="mlist">
+    <button class="mrow js-ics"><span class="mi">&#128197;</span><span class="mt"><b>Agregar al calendario</b><span>Las reservas con hora fija, con alarma</span></span><span class="chev">&#8250;</span></button>
     <button class="mrow" id="masInst"><span class="mi">&#128242;</span><span class="mt"><b>Instalar en el celular</b><span id="instSub">Queda como app y funciona sin internet</span></span><span class="chev">&#8250;</span></button>
     <div class="instbox" id="instBox" hidden>
       <p><b>iPhone (Safari):</b> toquen el botón <b>Compartir</b> (el cuadrito con la flecha hacia arriba) → <b>Agregar a inicio</b>.</p>
@@ -610,6 +659,20 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
     </div>
     <button class="mrow" id="masEdit"><span class="mi">&#9999;&#65039;</span><span class="mt"><b>Editar el itinerario</b><span>Los cambios se sincronizan en los cuatro celulares</span></span><span class="chev">&#8250;</span></button>
   </div>
+</section>
+
+<section id="cuentas">
+  <div class="eyebrow">Entre los cuatro</div>
+  <h2 data-chip="💸 Cuentas">Cuentas del grupo</h2>
+  <p class="lede">Anoten lo que cada uno paga por todos. La página calcula quién le debe a quién, y se ve igual en los cuatro celulares.</p>
+  <div id="cuentasIn"></div>
+</section>
+
+<section id="maleta">
+  <div class="eyebrow">Antes de viajar</div>
+  <h2>Maleta</h2>
+  <p class="lede">Cada uno marca lo suyo. Todos ven cómo van los demás.</p>
+  <div id="maletaIn"></div>
 </section>
 
 <section id="documentos">
@@ -673,6 +736,8 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
   <div class="note tip">
     <b>✅ Hotel cuadrado.</b> Ya confirmaron la noche del 19 al 20. Eso era lo más urgente de la lista, así que queda tachado. Lo que sigue arriba de todo ahora es el <b>tren del Cristo</b> y el <b>late check-out del 26</b>.
   </div>
+
+  <button class="hbtn full js-ics" style="margin-bottom:14px">📅 Agregar las reservas al calendario</button>
 
   <div class="ck">
     <div class="when">🔴 Lo más urgente · se agota primero</div>
@@ -2316,6 +2381,59 @@ window.__contraerDias();
       })
       .catch(function(){ if(!silencioso) marcaSync('Sin conexión','var(--tx3)'); return null; });
   }
+  /* ---------- escribir una fila ----------
+     Si el grupo ya corrió supabase/proteger.sql, se guarda con la función
+     guardar_viaje y la clave del grupo (pedida una vez por celular).
+     Si no, se guarda directo como siempre.                              */
+  var CLAVE_KEY='rio2026:clave', modoClave=null;   /* null: no se sabe · true: protegido · false: abierto */
+  var rpcURL = syncOn ? (SYNC.url.replace(/\/+$/,'') + '/rest/v1/rpc/guardar_viaje') : null;
+  function claveGuardada(){ try{ return localStorage.getItem(CLAVE_KEY)||''; }catch(e){ return ''; } }
+  function pedirClave(msg){
+    var c=window.prompt(msg||'Escriban la clave del grupo para guardar cambios:');
+    c=(c||'').trim();
+    if(c){ try{ localStorage.setItem(CLAVE_KEY,c); }catch(e){} }
+    return c;
+  }
+  function directo(id,data,sello){
+    return fetch(syncURL+'?on_conflict=id', {
+      method:'POST',
+      headers:Object.assign({}, syncHead, {'Prefer':'resolution=merge-duplicates'}),
+      body:JSON.stringify([{id:id, data:data, sello:sello}])
+    }).then(function(r){ return {ok:r.ok, motivo:r.ok?'':'error'}; });
+  }
+  /* devuelve {ok, motivo}: motivo 'clave' o 'error'. Sin señal, la promesa falla. */
+  function escribirFila(id, data, sello, reintento){
+    if(!syncOn) return Promise.resolve({ok:false, motivo:'error'});
+    if(modoClave===false) return directo(id,data,sello);
+    var clave=claveGuardada();
+    if(modoClave===true && !clave) clave=pedirClave();
+    if(modoClave===true && !clave) return Promise.resolve({ok:false, motivo:'clave'});
+    return fetch(rpcURL, {method:'POST', headers:syncHead,
+        body:JSON.stringify({p_id:id, p_data:data, p_sello:sello, p_clave:clave})})
+      .then(function(r){
+        if(r.ok){ modoClave=true; return {ok:true}; }
+        return r.json().catch(function(){ return {}; }).then(function(j){
+          var m=String((j && (j.message||'')) + ' ' + (j && j.code || ''));
+          if(r.status===404 || /PGRST202|Could not find the function/i.test(m)){ modoClave=false; return directo(id,data,sello); }
+          modoClave=true;
+          if(/clave/i.test(m)){
+            try{ localStorage.removeItem(CLAVE_KEY); }catch(e){}
+            if(!reintento && pedirClave(clave ? 'Esa clave no es. Escriban la clave del grupo:' : null)) return escribirFila(id,data,sello,true);
+            return {ok:false, motivo:'clave'};
+          }
+          return {ok:false, motivo:'error'};
+        });
+      });
+  }
+  function leerFila(id){
+    if(!syncOn) return Promise.resolve(null);
+    return fetch(syncURL+'?id=eq.'+encodeURIComponent(id)+'&select=data,sello', {headers:syncHead})
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ return j && j.length ? j[0] : null; });
+  }
+  window.__escribirFila = escribirFila;
+  window.__leerFila = leerFila;
+
   function subir(d){
     if(!syncOn) return;
     /* Si ya hay un envío en camino, este queda en cola y sale apenas termine.
@@ -2323,14 +2441,11 @@ window.__contraerDias();
     if(subiendo){ pendiente = d; return; }
     subiendo = true;
     ultimoSello = Date.now();
-    var cuerpo = JSON.stringify([{id:SYNC.viaje, data:d, sello:ultimoSello}]);
     marcaSync('Guardando…','var(--gold)');
-    fetch(syncURL+'?on_conflict=id', {
-      method:'POST',
-      headers:Object.assign({}, syncHead, {'Prefer':'resolution=merge-duplicates'}),
-      body:cuerpo
-    }).then(function(r){
-      marcaSync(r.ok ? '✓ Guardado para los 4' : 'No se pudo guardar', r.ok ? 'var(--green)' : 'var(--red)');
+    escribirFila(SYNC.viaje, d, ultimoSello).then(function(r){
+      if(r.ok) marcaSync('✓ Guardado para los 4','var(--green)');
+      else if(r.motivo==='clave') marcaSync('Falta la clave del grupo — quedó en este celular','var(--red)');
+      else marcaSync('No se pudo guardar','var(--red)');
       if(!r.ok) sinEnviar = d;
     }).catch(function(){ sinEnviar = d; marcaSync('Sin conexión — se guardó en este celular','var(--tx3)'); })
       .finally(function(){
@@ -2353,7 +2468,7 @@ window.__contraerDias();
      en el HTML restaurado y los botones dejan de responder.               */
   function htmlLimpio(nodo){
     var c=nodo.cloneNode(true);
-    [].slice.call(c.querySelectorAll('.durbox, .rowctl, .startbox, .addstop')).forEach(function(n){ n.remove(); });
+    [].slice.call(c.querySelectorAll('.durbox, .rowctl, .startbox, .addstop, .js-extra')).forEach(function(n){ n.remove(); });
     [].slice.call(c.querySelectorAll('[contenteditable]')).forEach(function(n){ n.removeAttribute('contenteditable'); });
     return c.innerHTML;
   }
@@ -2645,11 +2760,7 @@ window.__contraerDias();
     fetch(syncURL+'?select=id&limit=1',{headers:syncHead})
       .then(function(r){
         if(r.status===200) return r.json().then(function(){
-          return fetch(syncURL+'?on_conflict=id',{
-            method:'POST',
-            headers:Object.assign({},syncHead,{'Prefer':'resolution=merge-duplicates'}),
-            body:JSON.stringify([{id:'__prueba__',data:{ok:true},sello:Date.now()}])
-          }).then(function(w){
+          return escribirFila('__prueba__',{ok:true},Date.now()).then(function(w){
             if(w.ok){ marcaSync('✓ Todo funciona','var(--green)');
               /* además de probar, contamos qué hay guardado del viaje */
               return fetch(syncURL+'?id=eq.'+encodeURIComponent(SYNC.viaje)+'&select=data,sello',{headers:syncHead})
@@ -2673,8 +2784,10 @@ window.__contraerDias();
                 })
                 .catch(function(){ alert('✓ Sincronización funcionando.\n\nLa tabla existe y se puede escribir.'); });
             }
+            else if(w.motivo==='clave'){ marcaSync('Falta la clave del grupo','var(--red)');
+              alert('🔐 La edición está protegida y esa clave no es la del grupo.\n\nPídanle la clave a quien la puso en Supabase y vuelvan a probar.'); }
             else { marcaSync('Sin permiso de escritura','var(--red)');
-              alert('⚠️ Lee la tabla pero NO puede escribir.\n\nFalta la política de permisos. En Supabase → SQL Editor, corran:\n\nalter table itinerario enable row level security;\ncreate policy "abierto" on itinerario for all using (true) with check (true);'); }
+              alert('⚠️ Lee la tabla pero NO puede escribir.\n\nLa forma segura de dar permiso es correr el archivo supabase/proteger.sql en Supabase → SQL Editor. Ahí también se pone la clave del grupo.'); }
           });
         });
         if(r.status===404){ marcaSync('Falta la tabla','var(--red)');
@@ -2784,11 +2897,11 @@ window.__contraerDias();
     hoy:   ['hoy'],
     dias:  ['dias','editar'],
     comer: ['probar','comer'],
-    plata: ['plata'],
+    plata: ['cuentas','plata'],
     mas:   ['mas']
   };
   /* páginas que se abren desde "Más" */
-  var SUB = ['mapa-sec','documentos','reservas','moverse','caminar','cuidado','frases','souvenirs','datos'];
+  var SUB = ['maleta','mapa-sec','documentos','reservas','moverse','caminar','cuidado','frases','souvenirs','datos'];
   var body=document.body, hero=document.querySelector('header.hero'), foot=document.querySelector('footer');
   var subbar=document.getElementById('subbar'), subtit=document.getElementById('subtit');
   var tabLinks=[].slice.call(document.querySelectorAll('#tabbar a'));
@@ -2979,10 +3092,16 @@ window.__contraerDias();
         html+='<div class="hcard"><h3>Listo por hoy</h3><p>El plan de hoy ya terminó.'+(man?' Mañana: <b>'+esc(man.dt)+'</b>.':'')+'</p></div>';
       }
       html+=avisos(hoy.map(function(x){ return x.card; }));
+      var ll=document.querySelector('#cuidado [data-chip="Si llueve"]');
+      if(ll){
+        var llc=ll.parentNode.cloneNode(true); llc.querySelector('h3').remove();
+        html+='<details class="hcard lluvia"><summary>🌧️ ¿Está lloviendo? Toquen aquí</summary>'+llc.innerHTML+'</details>';
+      }
       var hotel=document.querySelector('#dias .addr[data-q*="Riale"]');
       html+='<div class="hcard"><h3>A la mano</h3><div class="hbtns" style="margin-top:0">'
         +(hotel?'<a class="hbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(hotel.getAttribute('data-q'))+'">🏨 Volver al hotel</a>':'')
-        +'<a class="hbtn gh" href="tel:+552121126000">📞 Llamar al hotel</a></div>'
+        +'<a class="hbtn gh" href="tel:+552121126000">📞 Llamar al hotel</a>'
+        +(hotel?'<button class="hbtn gh" data-taxi-hotel>🚕 Mostrarle el hotel al taxista</button>':'')+'</div>'
         +'<div class="tels"><a href="tel:190">190<span>Policía</span></a><a href="tel:192">192<span>Ambulancia</span></a><a href="tel:193">193<span>Bomberos</span></a></div></div>';
       if(paradas.length){
         html+='<div class="hcard"><h3>El plan de hoy</h3><ul class="stops" id="hoyStops">'
@@ -3175,6 +3294,7 @@ window.__contraerDias();
   document.addEventListener('click',function(e){
     var box=document.getElementById('hoyIn');
     if(!box || !box.contains(e.target)) return;
+    if(e.target.closest('[data-taxi-hotel]')){ var ho=document.querySelector('#dias .addr[data-q*="Riale"]'); if(ho && window.__taxista) window.__taxista(ho); return; }
     var st=e.target.closest('[data-stop]');
     if(st && box._paradas){ var p=box._paradas[+st.getAttribute('data-stop')]; if(p){ abrirDia(p.card, p.li); } return; }
     var dy=e.target.closest('[data-day],[data-i]');
@@ -3204,6 +3324,425 @@ window.__contraerDias();
   window.addEventListener('hashchange',mostrar);
   body.classList.add('tabs');
   mostrar();
+})();
+</script>
+
+<div class="taxi" id="taxi" hidden role="dialog" aria-modal="true" aria-label="Dirección para el taxista">
+  <div class="taxi-in">
+    <div class="tx-pt">Por favor, me leve para:</div>
+    <div class="tx-es">Por favor, lléveme a:</div>
+    <div class="tx-n" id="txN"></div>
+    <div class="tx-a" id="txA"></div>
+    <div class="tx-b" id="txB"></div>
+    <div class="tx-c">Rio de Janeiro</div>
+    <div class="hbtns">
+      <button class="hbtn" id="txShare">📤 Compartir</button>
+      <a class="hbtn gh" id="txMap" target="_blank" rel="noopener">🗺️ Abrir en Maps</a>
+      <button class="hbtn gh full" id="txClose">✕ Cerrar</button>
+    </div>
+  </div>
+</div>
+<script>
+/* ============================================================
+   CUENTAS DEL GRUPO y MALETA
+   Van en su propia fila ("rio-2026-grupo"), aparte del itinerario:
+   editar el plan no pisa las cuentas, ni al revés.
+   Cada dato lleva la hora en que se cambió. Al juntar lo de dos
+   celulares gana el más reciente, así nada se pierde si dos
+   guardan al mismo tiempo. Sin señal queda en el celular y se
+   manda cuando vuelve.
+   ============================================================ */
+(function(){
+  var FILA=((window.SYNC && SYNC.viaje) || 'rio-2026')+'-grupo';
+  var LKEY='rio2026:grupo', SKEY='rio2026:grupo:sucio', YO='rio2026:yo';
+  var G=cargar(), enviando=false, otraVez=false;
+
+  function cargar(){
+    var g={}; try{ g=JSON.parse(localStorage.getItem(LKEY)||'{}')||{}; }catch(e){}
+    g.n=g.n||{}; g.g=g.g||{}; g.m=g.m||{}; return g;
+  }
+  function guardarLocal(){ try{ localStorage.setItem(LKEY, JSON.stringify(G)); }catch(e){} }
+  function sucio(v){
+    try{ if(v===undefined) return localStorage.getItem(SKEY)==='1'; localStorage.setItem(SKEY, v?'1':'0'); }catch(e){}
+    return !!v;
+  }
+  /* trae lo de b a G; gana el dato más reciente */
+  function juntar(b){
+    var cambio=false;
+    ['n','g','m'].forEach(function(s){
+      var B=(b && b[s]) || {};
+      Object.keys(B).forEach(function(k){
+        var x=G[s][k], y=B[k];
+        if(y && typeof y.t==='number' && (!x || y.t>x.t)){ G[s][k]=y; cambio=true; }
+      });
+    });
+    return cambio;
+  }
+  function val(s,k){ var x=G[s][k]; return x ? x.v : undefined; }
+  function poner(s,k,v){ G[s][k]={v:v, t:Date.now()}; guardarLocal(); sucio(true); pintar(); enviar(); }
+
+  function estado(t){ [].slice.call(document.querySelectorAll('.gestado')).forEach(function(e){ e.textContent=t; }); }
+  function enviar(){
+    if(!window.__leerFila || !window.__escribirFila) return;
+    if(enviando){ otraVez=true; return; }
+    enviando=true; estado('Guardando…');
+    __leerFila(FILA).then(function(f){
+      if(f && f.data) juntar(f.data);
+      guardarLocal();
+      return __escribirFila(FILA, G, Date.now());
+    }).then(function(r){
+      if(r.ok){ sucio(false); estado('✓ Guardado para los 4'); }
+      else estado(r.motivo==='clave' ? 'Falta la clave del grupo · quedó en este celular' : 'No se pudo guardar · quedó en este celular');
+    }).catch(function(){ estado('Sin señal · se manda cuando vuelva'); })
+    .then(function(){
+      enviando=false; pintar();
+      if(otraVez){ otraVez=false; enviar(); }
+    });
+  }
+  function bajar(){
+    if(!window.__leerFila || enviando) return;
+    if(sucio()){ enviar(); return; }
+    __leerFila(FILA).then(function(f){ if(f && f.data && juntar(f.data)){ guardarLocal(); pintar(); } }).catch(function(){});
+  }
+  window.addEventListener('online', bajar);
+  window.addEventListener('focus', bajar);
+  /* al abrir Plata o Maleta, traer lo último de los demás */
+  window.addEventListener('hashchange', function(){ if(/^#(plata|cuentas|maleta)$/.test(location.hash)) bajar(); });
+  setInterval(bajar, 45000);
+
+  /* ---------- nombres ---------- */
+  function nombres(){ var a=[]; for(var i=0;i<4;i++) a.push(val('n',''+i) || ('Viajero '+(i+1))); return a; }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function tasa(){ var t=null; try{ t=parseFloat(localStorage.getItem('rio2026:tasa')); }catch(e){} return t>0 ? t : 605; }
+  function fmt(n, dec){ return n.toLocaleString('es-CO',{minimumFractionDigits:dec||0, maximumFractionDigits:dec||0}); }
+  function reales(n){ return 'R$ '+fmt(Math.round(n*100)/100, (Math.round(n)===Math.round(n*100)/100)?0:2); }
+  function pesos(n){ var c=n*tasa(); return fmt(c>=10000 ? Math.round(c/1000)*1000 : Math.round(c/100)*100); }
+
+  /* ---------- CUENTAS ---------- */
+  var box=document.getElementById('cuentasIn');
+  var pago='0', para={'0':1,'1':1,'2':1,'3':1};
+  if(box){
+    box.innerHTML=
+      '<div class="hcard" style="margin-top:0"><h3 data-chip="Quién debe">Quién le debe a quién</h3><div id="cSaldo"></div></div>'
+     +'<div class="hcard"><h3 data-chip="Anotar">Anotar un gasto</h3>'
+     +  '<input class="gin" id="gQ" type="text" maxlength="60" placeholder="Qué fue · ej. Uber al Centro" autocomplete="off">'
+     +  '<div class="gmonto"><input class="gin" id="gM" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Cuánto">'
+     +  '<select class="gin" id="gMon" aria-label="Moneda"><option value="R$">R$</option><option value="COP">COP</option></select></div>'
+     +  '<div class="glab">Pagó</div><div class="gchips" id="gPago"></div>'
+     +  '<div class="glab">Para quiénes</div><div class="gchips" id="gPara"></div>'
+     +  '<button class="hbtn full" id="gAdd" style="margin-top:12px">＋ Anotar gasto</button>'
+     +  '<div class="gestado"></div></div>'
+     +'<div class="hcard"><h3 data-chip="Gastos">Gastos anotados</h3><div id="cLista"></div></div>'
+     +'<details class="hcard gnom"><summary>✏️ Nombres de los viajeros</summary><div id="gNom"></div>'
+     +  '<p class="gnota">Los nombres salen en las cuentas y en la maleta de los cuatro celulares.</p></details>';
+    document.getElementById('gNom').innerHTML=[0,1,2,3].map(function(i){
+      return '<input class="gin" data-nom="'+i+'" type="text" maxlength="20" placeholder="Viajero '+(i+1)+'">';
+    }).join('');
+    box.addEventListener('click',function(e){
+      var c=e.target.closest('[data-pago]'); if(c){ pago=c.getAttribute('data-pago'); pintar(); return; }
+      c=e.target.closest('[data-para]');
+      if(c){ var k=c.getAttribute('data-para'); if(para[k]) delete para[k]; else para[k]=1; pintar(); return; }
+      c=e.target.closest('[data-borrar]');
+      if(c){
+        var id=c.getAttribute('data-borrar'), g=val('g',id);
+        if(g && confirm('¿Borrar "'+g.q+'" ('+g.mon+' '+g.m+')? Se borra para los cuatro.')) poner('g',id,null);
+        return;
+      }
+      if(e.target.closest('#gAdd')){
+        var q=document.getElementById('gQ'), m=document.getElementById('gM'), mon=document.getElementById('gMon');
+        var monto=parseFloat(String(m.value).replace(',','.'));
+        var quienes=Object.keys(para).sort();
+        if(!(monto>0)){ m.focus(); estado('Falta cuánto fue'); return; }
+        if(!quienes.length){ estado('Elijan para quiénes fue'); return; }
+        var id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+        poner('g',id,{q:(q.value.trim()||'Gasto'), m:monto, mon:mon.value, p:pago, para:quienes, f:Date.now()});
+        q.value=''; m.value=''; para={'0':1,'1':1,'2':1,'3':1};
+        pintar();
+      }
+    });
+    box.addEventListener('change',function(e){
+      var n=e.target.getAttribute && e.target.getAttribute('data-nom');
+      if(n!=null){ var v=e.target.value.trim(); if(v!==(val('n',n)||'')) poner('n',n,v||null); }
+    });
+  }
+
+  function gastos(){
+    return Object.keys(G.g).map(function(k){ var x=G.g[k]; return x && x.v ? {id:k, v:x.v} : null; })
+      .filter(Boolean).sort(function(a,b){ return (b.v.f||0)-(a.v.f||0); });
+  }
+  function enReales(v){ return v.mon==='COP' ? v.m/tasa() : v.m; }
+  function saldos(){
+    var neto=[0,0,0,0], pagado=[0,0,0,0], total=0;
+    gastos().forEach(function(x){
+      var r=enReales(x.v), q=(x.v.para||[]).filter(function(i){ return i>='0' && i<='3'; });
+      if(!q.length) return;
+      total+=r; pagado[+x.v.p]+=r; neto[+x.v.p]+=r;
+      q.forEach(function(i){ neto[+i]-=r/q.length; });
+    });
+    /* quién le paga a quién: el que más debe le paga al que más puso */
+    var deben=[], ponen=[], pagos=[];
+    neto.forEach(function(n,i){ if(n<-0.01) deben.push({i:i,n:-n}); else if(n>0.01) ponen.push({i:i,n:n}); });
+    deben.sort(function(a,b){return b.n-a.n;}); ponen.sort(function(a,b){return b.n-a.n;});
+    while(deben.length && ponen.length){
+      var d=deben[0], p=ponen[0], m=Math.min(d.n,p.n);
+      pagos.push({de:d.i, a:p.i, m:m});
+      d.n-=m; p.n-=m;
+      if(d.n<0.01) deben.shift(); if(p.n<0.01) ponen.shift();
+    }
+    return {pagos:pagos, pagado:pagado, total:total};
+  }
+
+  function chips(sel, attr, activo){
+    return nombres().map(function(n,i){
+      var on = attr==='data-pago' ? (''+i)===activo : !!activo[''+i];
+      return '<button type="button" class="gchip'+(on?' on':'')+'" '+attr+'="'+i+'">'+esc(n)+'</button>';
+    }).join('');
+  }
+
+  function pintarCuentas(){
+    if(!box) return;
+    var N=nombres(), s=saldos(), L=gastos();
+    document.getElementById('gPago').innerHTML=chips('gPago','data-pago',pago);
+    document.getElementById('gPara').innerHTML=chips('gPara','data-para',para);
+    [].slice.call(box.querySelectorAll('[data-nom]')).forEach(function(inp){
+      if(document.activeElement!==inp) inp.value=val('n',inp.getAttribute('data-nom'))||'';
+    });
+    var h='';
+    if(!L.length) h='<p class="gnota">Todavía no hay gastos anotados.</p>';
+    else if(!s.pagos.length) h='<p class="gok">✓ Están a paz y salvo.</p>';
+    else h=s.pagos.map(function(p){
+      return '<div class="gpago"><span><b>'+esc(N[p.de])+'</b> le paga a <b>'+esc(N[p.a])+'</b></span>'
+        +'<span class="gm">'+reales(p.m)+'<small>≈ '+pesos(p.m)+' COP</small></span></div>';
+    }).join('');
+    if(L.length){
+      h+='<div class="gtot">Entre todos: <b>'+reales(s.total)+'</b> · '
+        + N.map(function(n,i){ return esc(n)+' puso '+reales(s.pagado[i]); }).join(' · ')+'</div>';
+    }
+    document.getElementById('cSaldo').innerHTML=h;
+    document.getElementById('cLista').innerHTML = L.length ? L.map(function(x){
+      var v=x.v, q=(v.para||[]), d=new Date(v.f||0);
+      var pq = q.length===4 ? 'para los cuatro' : 'para '+q.map(function(i){ return esc(N[+i]); }).join(', ');
+      return '<div class="gitem"><div class="gi1"><b>'+esc(v.q)+'</b><span class="gm">'+esc(v.mon)+' '+fmt(v.m, v.m%1?2:0)+'</span></div>'
+        +'<div class="gi2"><span>pagó '+esc(N[+v.p])+' · '+pq+' · '+d.getDate()+'/'+(d.getMonth()+1)+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+'</span>'
+        +'<button class="gdel" data-borrar="'+x.id+'" aria-label="Borrar">🗑</button></div></div>';
+    }).join('') : '<p class="gnota">Aquí van a aparecer.</p>';
+  }
+
+  /* ---------- MALETA ---------- */
+  var COSAS=[
+    ['Documentos',[['pas','Pasaporte','Vigente hasta después de junio de 2027'],['ced','Cédula','De respaldo, en la billetera'],
+      ['tiq','Tiquetes de ida y vuelta','En el celular y en el correo'],['seg','Seguro de viaje','Con el teléfono a mano'],
+      ['tar','Tarjetas','Y avisarle al banco que viajan a Brasil'],['fot','Fotos de pasaporte y tarjetas','Guardadas en la nube']]],
+    ['Para el celular',[['ada','Adaptador tipo N','Brasil usa 3 patas redondas'],['car','Cargador'],['bat','Batería portátil','Cargada cada noche'],
+      ['esim','eSIM o chip con datos','Sin datos no hay Uber ni mapas']]],
+    ['Sol y calor',[['blo','Bloqueador SPF 50','Sale mucho más barato comprarlo en Colombia'],['gor','Gorra'],['gaf','Gafas de sol'],
+      ['rep','Repelente'],['bot','Botella de agua rellenable'],['par','Paraguas pequeño','En diciembre llueve']]],
+    ['Ropa',[['bañ','Vestido de baño'],['cha','Chanclas'],['ten','Tenis cómodos','El viernes son 4,5 km caminando'],
+      ['fre','Ropa fresca','Máximas de 32–38 °C'],['abr','Algo abrigado ligero','Arriba del Pan de Azúcar corre viento de noche'],
+      ['mis','Ropa para la misa','Domingo 20'],['nav','Ropa para Nochebuena','Cena del 24']]],
+    ['Salud',[['med','Medicamentos personales','Con la fórmula, por si preguntan']]]
+  ];
+  var TOTAL=COSAS.reduce(function(a,g){ return a+g[1].length; },0);
+  var mbox=document.getElementById('maletaIn');
+  function yo(){ try{ var y=localStorage.getItem(YO); if(/^[0-3]$/.test(y||'')) return y; }catch(e){} return '0'; }
+  function listos(i){ var n=0; COSAS.forEach(function(g){ g[1].forEach(function(c){ if(val('m',i+'|'+c[0])) n++; }); }); return n; }
+  if(mbox){
+    mbox.addEventListener('click',function(e){
+      var c=e.target.closest('[data-yo]');
+      if(c){ try{ localStorage.setItem(YO, c.getAttribute('data-yo')); }catch(err){} pintar(); }
+    });
+    mbox.addEventListener('change',function(e){
+      var k=e.target.getAttribute && e.target.getAttribute('data-cosa');
+      if(k) poner('m', yo()+'|'+k, e.target.checked);
+    });
+  }
+  function pintarMaleta(){
+    var N=nombres(), y=yo(), b=document.getElementById('maletaBadge');
+    if(b){ var falta=TOTAL-listos(y); b.hidden=!falta; b.textContent='te faltan '+falta; }
+    if(!mbox) return;
+    var h='<div class="mper">'+N.map(function(n,i){
+      var l=listos(''+i);
+      return '<button class="gchip'+((''+i)===y?' on':'')+'" data-yo="'+i+'">'+esc(n)+'<small>'+l+'/'+TOTAL+'</small></button>';
+    }).join('')+'</div>'
+    +'<p class="gnota">Viendo la maleta de <b>'+esc(N[+y])+'</b>. Toquen su nombre arriba para ver la suya. Los nombres se cambian en <a class="lnk" href="#cuentas">Cuentas</a>.</p>';
+    COSAS.forEach(function(g){
+      h+='<div class="ck"><div class="when">'+esc(g[0])+'</div>'+g[1].map(function(c){
+        var on=!!val('m',y+'|'+c[0]);
+        return '<label><input type="checkbox" data-cosa="'+c[0]+'"'+(on?' checked':'')+'><span>'+esc(c[1])+(c[2]?'<small>'+esc(c[2])+'</small>':'')+'</span></label>';
+      }).join('')+'</div>';
+    });
+    h+='<div class="gestado"></div>';
+    mbox.innerHTML=h;
+  }
+
+  function pintar(){ pintarCuentas(); pintarMaleta(); }
+  window.__pintarGrupo=pintar;
+  pintar();
+  if(sucio()) enviar(); else bajar();
+})();
+
+/* ============================================================
+   MOSTRAR AL TAXISTA · la dirección en grande, en portugués
+   ============================================================ */
+(function(){
+  var ov=document.getElementById('taxi'); if(!ov) return;
+  var actual=null;
+  function botones(){
+    [].slice.call(document.querySelectorAll('.addr .a3, #comWrap .place .pacts')).forEach(function(a3){
+      if(a3.querySelector('.taxi-btn')) return;
+      var b=document.createElement('button');
+      b.className='pbtn gh js-extra taxi-btn'; b.type='button'; b.textContent='🚕 Al taxista';
+      a3.appendChild(b);
+    });
+  }
+  function datos(el){
+    var ad=el.closest('.addr');
+    if(ad){
+      var a1=(ad.querySelector('.a1')||{}).textContent||'';
+      var li=ad.closest('li'), nom=li ? ((li.querySelector('.bd .a')||{}).textContent||'') : '';
+      nom=nom.replace(/R\$.*$/,'').replace(/^[^\p{L}\d]+/u,'').trim();
+      /* el nombre del sitio sale de la búsqueda de Maps ("Riale Imperial Flamengo Hotel, Rua…"), si la trae */
+      var q0=(ad.getAttribute('data-q')||'').split(',')[0].trim(), orig=(ad.getAttribute('data-orig')||'');
+      if(q0 && orig.indexOf(q0)!==0 && !/^(Rua|R\.|Av\.|Avenida|Praça|Largo|Estrada|Travessa)\b/i.test(q0)) nom=q0;
+      return {n:nom, a:(ad.getAttribute('data-orig')||a1.replace(/^📌\s*/,'')).trim(),
+              b:((ad.querySelector('.a2')||{}).textContent||'').trim(), q:ad.getAttribute('data-q')||a1};
+    }
+    var pl=el.closest('.place');
+    if(pl){
+      var v=pl.querySelector('.vm');
+      return {n:((pl.querySelector('.pn')||{}).textContent||'').trim(), a:((pl.querySelector('.paddr')||{}).textContent||'').replace(/^📌\s*/,'').trim(),
+              b:'', q:v ? v.getAttribute('data-q') : ''};
+    }
+    return null;
+  }
+  function abrir(d){
+    if(!d) return;
+    d.a=d.a.split(' · ')[0];   /* solo la dirección: las notas en español no le sirven al taxista */
+    actual=d;
+    document.getElementById('txN').textContent=d.n;
+    document.getElementById('txA').textContent=d.a;
+    document.getElementById('txB').textContent=d.b;
+    document.getElementById('txMap').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(d.q||d.a);
+    ov.hidden=false; document.body.style.overflow='hidden';
+  }
+  function cerrar(){ ov.hidden=true; document.body.style.overflow=''; }
+  window.__taxista=function(el){ abrir(datos(el)); };
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.taxi-btn'); if(b){ abrir(datos(b)); return; }
+    if(e.target.closest('#txClose') || e.target===ov){ cerrar(); return; }
+    if(e.target.closest('#txShare') && actual){
+      var t=(actual.n?actual.n+'\n':'')+actual.a+', Rio de Janeiro\nhttps://www.google.com/maps/search/?api=1&query='+encodeURIComponent(actual.q||actual.a);
+      if(navigator.share) navigator.share({text:t}).catch(function(){});
+      else window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank');
+    }
+  });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !ov.hidden) cerrar(); });
+  botones();
+  /* cuando la sincronización o el editor cambian una parada, el botón vuelve a aparecer */
+  var dias=document.getElementById('dias');
+  if(dias && window.MutationObserver){
+    var t=null;
+    new MutationObserver(function(){ clearTimeout(t); t=setTimeout(botones,200); }).observe(dias,{childList:true,subtree:true});
+  }
+  var com=document.getElementById('comWrap');
+  if(com && window.MutationObserver) new MutationObserver(function(){ setTimeout(botones,200); }).observe(com,{childList:true,subtree:true});
+})();
+
+/* ============================================================
+   AGREGAR AL CALENDARIO · sale del itinerario, con las horas de hoy
+   ============================================================ */
+(function(){
+  /* [qué parada, cuántos minutos antes avisa] */
+  var CITAS=[
+    [/Misa en la Catedral/,60],[/Roda de Samba/,60],[/Ingreso al Parque Bondinho/,90],
+    [/Suena el despertador/,0],[/Uber a Cosme Velho/,10],[/Tren del Corcovado/,60],
+    [/AquaRio/,60],[/Cena de Navidad/,120],[/Buffet en Faenza/,60],[/Tour Maracan/,90],
+    [/check-out/i,60],[/Uber al aeropuerto/,60],[/Vuelo de regreso/,240]
+  ];
+  function txt(s){ return String(s||'').replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/([,;])/g,'\\$1'); }
+  function z(n){ return String(n).padStart(2,'0'); }
+  function utc(d,min){ /* Río es UTC−3 todo el año */
+    var t=new Date(Date.UTC(2026,11,d,0,0)+ (min+180)*60000);
+    return t.getUTCFullYear()+z(t.getUTCMonth()+1)+z(t.getUTCDate())+'T'+z(t.getUTCHours())+z(t.getUTCMinutes())+'00Z';
+  }
+  function eventos(){
+    var ev=[];
+    [].slice.call(document.querySelectorAll('#dias .day')).forEach(function(c){
+      var d=+((c.querySelector('.daynum b')||{}).textContent||0), antes=-1, extra=0;
+      [].slice.call(c.querySelectorAll('[data-tl] > li')).forEach(function(li){
+        var m=/(\d{1,2}):(\d{2})/.exec((li.querySelector('.hr')||{}).textContent||''); if(!m) return;
+        var min=(+m[1])*60+(+m[2]);
+        if(min<antes) extra=1;            /* pasó la medianoche: es el día siguiente */
+        antes=min;
+        var a=li.querySelector('.bd .a'); if(!a) return;
+        var nom=a.cloneNode(true); [].slice.call(nom.querySelectorAll('.pz')).forEach(function(x){ x.remove(); });
+        nom=nom.textContent.trim();
+        CITAS.forEach(function(ci){
+          if(!ci[0].test(nom)) return;
+          var ad=li.querySelector('.addr'), n=li.querySelector('.bd .n');
+          ev.push({d:d+extra, min:min, dur:parseInt(li.getAttribute('data-min'),10)||60, s:nom, aviso:ci[1],
+                   loc:ad ? (ad.getAttribute('data-q')||'') : '', desc:n ? n.textContent.trim().slice(0,400) : ''});
+        });
+      });
+    });
+    return ev;
+  }
+  function ics(){
+    var now=new Date(), stamp=now.getUTCFullYear()+z(now.getUTCMonth()+1)+z(now.getUTCDate())+'T'+z(now.getUTCHours())+z(now.getUTCMinutes())+'00Z';
+    var L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Rio 2026//ES','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:Río 2026'];
+    eventos().forEach(function(e,i){
+      L.push('BEGIN:VEVENT','UID:rio2026-'+e.d+'-'+e.min+'-'+i+'@itinerario','DTSTAMP:'+stamp,
+        'DTSTART:'+utc(e.d,e.min),'DTEND:'+utc(e.d,e.min+e.dur),'SUMMARY:'+txt('Río · '+e.s));
+      if(e.loc) L.push('LOCATION:'+txt(e.loc));
+      if(e.desc) L.push('DESCRIPTION:'+txt(e.desc));
+      L.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+txt(e.s),'TRIGGER:-PT'+e.aviso+'M','END:VALARM','END:VEVENT');
+    });
+    L.push('END:VCALENDAR');
+    /* el formato pide cortar las líneas largas (máx. 75 bytes) */
+    return L.map(function(l){
+      var out=[], cur='', n=0;
+      Array.from(l).forEach(function(ch){
+        var by=unescape(encodeURIComponent(ch)).length;
+        if(n+by>(out.length?74:75)){ out.push(cur); cur=''; n=0; }
+        cur+=ch; n+=by;
+      });
+      out.push(cur);
+      return out.join('\r\n ');
+    }).join('\r\n')+'\r\n';
+  }
+  window.__ics=ics;
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.js-ics')) return;
+    var a=document.createElement('a');
+    a.href='data:text/calendar;charset=utf-8,'+encodeURIComponent(ics());
+    a.download='rio-2026.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+  });
+})();
+
+/* ============================================================
+   FRASES CON AUDIO · el celular las dice en portugués de Brasil
+   ============================================================ */
+(function(){
+  if(!('speechSynthesis' in window)) return;
+  function voz(){
+    var vs=speechSynthesis.getVoices();
+    return vs.filter(function(v){ return /^pt[-_]BR/i.test(v.lang); })[0] || vs.filter(function(v){ return /^pt/i.test(v.lang); })[0] || null;
+  }
+  [].slice.call(document.querySelectorAll('#frases .ph')).forEach(function(ph){
+    var pt=ph.querySelector('.pt'); if(!pt) return;
+    var b=document.createElement('button'); b.type='button'; b.className='hablar'; b.setAttribute('aria-label','Escuchar en portugués'); b.textContent='🔊';
+    ph.appendChild(b); ph.classList.add('conaudio');
+  });
+  document.addEventListener('click',function(e){
+    var ph=e.target.closest('#frases .ph.conaudio'); if(!ph) return;
+    var t=(ph.querySelector('.pt')||{}).textContent||''; if(!t) return;
+    speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(t.replace(/\s*\/\s*/g,'. ').replace(/…/g,''));
+    u.lang='pt-BR'; u.rate=0.85; var v=voz(); if(v) u.voice=v;
+    ph.classList.add('suena'); u.onend=u.onerror=function(){ ph.classList.remove('suena'); };
+    speechSynthesis.speak(u);
+  });
 })();
 </script>
 
