@@ -385,7 +385,7 @@ body.tabs .tabbar{display:flex}
 .prow{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--tx2)}
 .prow b{color:var(--tx);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .prow.tot{border-bottom:0;border-top:2px solid var(--gold);margin-top:2px;color:var(--tx);font-weight:700}
-.prow.opt{color:var(--tx3);font-style:italic}
+.prow.popt{color:var(--tx3);font-style:italic}
 .conv{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:end}
 .conv label{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--tx3)}
 .conv input{width:100%;margin-top:4px;font-size:22px;font-weight:750;font-family:inherit;color:var(--tx);
@@ -410,6 +410,7 @@ details.pday .pt2{flex:none;font-size:15px;font-weight:800;color:var(--gold);tex
 details.pday .pt2 small{display:block;font-size:11.5px;color:var(--tx3);font-weight:700}
 details.pday[open] summary{border-bottom:1px dashed var(--line)}
 details.pday .pin{padding:4px 0 12px}
+.psub{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--orange);margin:12px 0 2px}
 .hoymoney{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .hoymoney span{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:6px 12px;font-size:13.5px;color:var(--tx2)}
 .hoymoney b{color:var(--tx)}
@@ -945,7 +946,7 @@ details.lluvia li{margin-bottom:6px}
         <li class="hi" data-min="80"><div class="hr">18:00</div><div class="bd"><div class="a">Mirante do Pasmado · primer atardecer</div><div class="mv no">🚖 <b>Uber desde Santa Teresa, 20 min · R$ 30.</b> Del morro <b>nunca se baja caminando</b>, ni de día.</div><div class="n"><b>Movido aquí desde el sábado</b> para que el último día no vayan corriendo con maletas. Gratis, a 10 min del hotel. Desde aquí sale <b>la postal clásica</b>: la ensenada de Botafogo llena de veleros con el Pan de Azúcar detrás. <b>El sol se mete a las 18:36.</b> Quédense hasta las 19:00, cuando se enciende la ciudad.</div><div class="addr" data-orig="Ladeira do Pasmado s/n, Botafogo" data-q="Mirante do Pasmado, Botafogo, Rio de Janeiro"><div class="a1">📌 Ladeira do Pasmado s/n, Botafogo</div><div class="a2">Entrada por Rua General Severiano · gratis · atardecer 18:36</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Mirante%20do%20Pasmado%2C%20Botafogo%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Ladeira do Pasmado s/n, Botafogo">Copiar dirección</button></div></div></div></li>
         <li data-min="60"><div class="hr">19:20</div><div class="bd"><div class="a">Cena cerca del hotel <span class="pz">R$ 30–45 · 18.000–27.000 COP</span></div><div class="mv ok">🚶 <b>Del hotel, 400 m · 5 min.</b> Largo do Machado. Se camina de noche sin problema: es zona comercial con gente.</div><div class="n"><b>Braseirinho da Glória</b> — carne a la brasa, muy de barrio, y lo más parecido a un asadero colombiano que van a encontrar cerca. Pollo, picanha, arroz y papas. A menos de 10 minutos del hotel.</div><div class="addr" data-orig="Braseirinho da Glória — barrio Glória" data-q="Braseirinho da Glória, Glória, Rio de Janeiro"><div class="a1">📌 Braseirinho da Glória — barrio Glória</div><div class="a2">Carne a la brasa · R$ 30–45 · búsquenlo por el nombre en Google Maps, queda a 10 min del hotel</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Braseirinho%20da%20Gl%C3%B3ria%2C%20Gl%C3%B3ria%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Largo do Machado 29, loja 16 (Galeria Condor), Catete">Copiar dirección</button></div></div></div></li>
       </ul>
-      <div class="probar-dia"><div class="pdh">🍬 Para probar hoy en la zona</div><ul><li><span class="pe">🥯</span><span><b>Pão de queijo</b> · en el desayuno del hotel, recién salido<small>R$ 5–8 · SÍ O SÍ</small></span></li><li><span class="pe">🥤</span><span><b>Guaraná Antarctica</b> · con el almuerzo en Os Ximenes<small>R$ 6–10</small></span></li><li><span class="pe">🍹</span><span><b>Primera caipirinha</b> · Bar do Mineiro, Santa Teresa, a las 15:30. Pídanla "com pouco açúcar"<small>R$ 22–30 · SÍ O SÍ</small></span></li><li><span class="pe">🥟</span><span><b>Pastel de feijoada</b> · en el mismo Bar do Mineiro: es la especialidad de la casa</span></li><li><span class="pe">🍇</span><span><b>Açaí</b> · Tacacá do Norte, R. Barão do Flamengo 35, al volver al hotel. El mejor de Río<small>R$ 25–35</small></span></li></ul><a class="lnk" href="#probar">Toda la lista para probar</a></div>
+      <div class="probar-dia"><div class="pdh">🍬 Para probar hoy en la zona</div><ul><li data-nocuenta><span class="pe">🥯</span><span><b>Pão de queijo</b> · en el desayuno del hotel, recién salido<small>R$ 5–8 · SÍ O SÍ</small></span></li><li><span class="pe">🥤</span><span><b>Guaraná Antarctica</b> · con el almuerzo en Os Ximenes<small>R$ 6–10</small></span></li><li><span class="pe">🍹</span><span><b>Primera caipirinha</b> · Bar do Mineiro, Santa Teresa, a las 15:30. Pídanla "com pouco açúcar"<small>R$ 22–30 · SÍ O SÍ</small></span></li><li><span class="pe">🥟</span><span><b>Pastel de feijoada</b> · en el mismo Bar do Mineiro: es la especialidad de la casa</span></li><li><span class="pe">🍇</span><span><b>Açaí</b> · Tacacá do Norte, R. Barão do Flamengo 35, al volver al hotel. El mejor de Río<small>R$ 25–35</small></span></li></ul><a class="lnk" href="#probar">Toda la lista para probar</a></div>
       <div class="note alert"><b>Sobre el Aterro:</b> de día es de los sitios más agradables de Río, pero al caer la tarde los tramos alejados de la avenida se vacían y sí es zona de robos. La regla: <b>Aterro antes del mediodía, nunca al anochecer.</b> Después de las 18:00, si quieren caminar cerca del hotel, quédense sobre la Rua do Catete o el Largo do Machado, que tienen comercio y gente.</div>
     </div>
   </div>
@@ -976,7 +977,7 @@ details.lluvia li{margin-bottom:6px}
         <li class="hi" data-min="180"><div class="hr">19:30</div><div class="bd"><div class="a">Roda de Samba da Pedra do Sal</div><div class="mv no">🚖 <b>Quédense en la plaza, no exploren alrededor.</b> La roda es segura y hay mucha gente, pero las calles laterales del barrio Saúde no. Pidan el Uber de vuelta desde adentro.</div><div class="n"><b>Solo lunes, 19:00 a 00:00, entrada gratis.</b> El sitio donde nació el samba, en la llamada "Pequeña África". Se para en la calle, se toma cerveza de los puestos, se baila. Es la experiencia más auténtica del viaje y no cuesta nada.</div><div class="addr" data-orig="Largo João da Baiana s/n, Saúde" data-q="Pedra do Sal, Largo João da Baiana, Saúde, Rio de Janeiro"><div class="a1">📌 Largo João da Baiana s/n, Saúde</div><div class="a2">Samba SOLO lunes 19:00-24:00 · gratis · vayan y vuelvan en Uber</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pedra%20do%20Sal%2C%20Largo%20Jo%C3%A3o%20da%20Baiana%2C%20Sa%C3%BAde%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Largo João da Baiana s/n, Saúde">Copiar dirección</button></div></div></div></li>
         <li data-min="60"><div class="hr">22:30</div><div class="bd"><div class="a">Uber al hotel</div><div class="n">Pidan el Uber desde adentro de la roda, no caminando por calles laterales.</div></div></li>
       </ul>
-      <div class="probar-dia"><div class="pdh">🍬 Para probar hoy en la zona</div><ul><li><span class="pe">🥟</span><span><b>Pastel de frango</b> · Chic's, dentro del SAARA<small>R$ 5</small></span></li><li><span class="pe">🧃</span><span><b>Caldo de cana</b> · jugo de caña, el compañero del pastel</span></li><li><span class="pe">🍰</span><span><b>Pastel de nata, brigadeiro o quindim</b> · Confeitaria Colombo, con el café de las 14:15<small>R$ 30 · café y postre</small></span></li><li><span class="pe">☕</span><span><b>Cafezinho</b> · después del almuerzo, en cualquier barra del Centro</span></li><li><span class="pe">🍇</span><span><b>Açaí</b> · Tapí, Av. Rio Branco, cerca del SAARA<small>R$ 20–30</small></span></li><li><span class="pe">🍹</span><span><b>Caipirinha en la calle</b> · puestos de la Pedra do Sal, con samba en vivo. En efectivo<small>R$ 15–25</small></span></li></ul><a class="lnk" href="#probar">Toda la lista para probar</a></div>
+      <div class="probar-dia"><div class="pdh">🍬 Para probar hoy en la zona</div><ul><li data-nocuenta><span class="pe">🥟</span><span><b>Pastel de frango</b> · Chic's, dentro del SAARA<small>R$ 5</small></span></li><li><span class="pe">🧃</span><span><b>Caldo de cana</b> · jugo de caña, el compañero del pastel</span></li><li data-nocuenta><span class="pe">🍰</span><span><b>Pastel de nata, brigadeiro o quindim</b> · Confeitaria Colombo, con el café de las 14:15<small>R$ 30 · café y postre</small></span></li><li><span class="pe">☕</span><span><b>Cafezinho</b> · después del almuerzo, en cualquier barra del Centro</span></li><li><span class="pe">🍇</span><span><b>Açaí</b> · Tapí, Av. Rio Branco, cerca del SAARA<small>R$ 20–30</small></span></li><li><span class="pe">🍹</span><span><b>Caipirinha en la calle</b> · puestos de la Pedra do Sal, con samba en vivo. En efectivo<small>R$ 15–25</small></span></li></ul><a class="lnk" href="#probar">Toda la lista para probar</a></div>
       <div class="note alert"><b>Seguridad, este día en particular.</b> El SAARA en la semana de Navidad es la zona con más carteristas de Río, y la Pedra do Sal es una fiesta callejera de noche. Para los dos: <b>mochila adelante</b>, nada en bolsillos traseros, sin joyas ni relojes, celular guardado, y máximo R$ 150 en efectivo por persona. Pasaportes en la caja fuerte del hotel.</div>
     </div>
   </div>
@@ -1103,7 +1104,7 @@ details.lluvia li{margin-bottom:6px}
         <li class="hi" data-min="30"><div class="hr">21:30</div><div class="bd"><div class="a">🍾 Licor para el brindis · Zona Sul 24 horas</div><div class="mv ok">🚶 <b>Del hotel, 800 m · 12 min.</b> Por la Rua do Catete hacia Flamengo. <b>Se camina de noche sin problema</b>: es avenida comercial iluminada. O Uber por R$ 12.</div><div class="n"><b>Rua Machado de Assis 40, Flamengo</b> — <b>abierto las 24 horas</b>, así que no importa a qué hora vuelvan del rodizio.<br>Es la cadena de supermercados de confianza de la Zona Sur: producto original, factura, precios normales. <b>Nada de comprar licor en la calle ni a vendedores.</b><br><br><b>Qué comprar:</b> una <b>cachaça artesanal</b> (Magnífica, Salinas o Ypióca Ouro, R$ 40–90) con limones y azúcar para hacer caipiriñas en la habitación, o un espumante nacional (Chandon o Salton, R$ 45–90), que es lo que toma todo Brasil en Navidad.<br><br><b>Hay otro Zona Sul 24 h</b> en Copacabana (Av. N. S. de Copacabana 936), por si prefieren comprar antes de cenar.</div><div class="addr" data-orig="Rua Machado de Assis 40, Flamengo" data-q="Supermercado Zona Sul, Rua Machado de Assis 40, Flamengo, Rio de Janeiro"><div class="a1">📌 Rua Machado de Assis 40, Flamengo</div><div class="a2">ABIERTO 24 HORAS · licor, agua y protector solar</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Supermercado%20Zona%20Sul%2C%20Rua%20Machado%20de%20Assis%2040%2C%20Flamengo%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Rua Machado de Assis 40, Flamengo">Copiar dirección</button></div></div></div></li>
         <li data-min="60"><div class="hr">22:00</div><div class="bd"><div class="a">Brindis en el hotel</div><div class="n">A medianoche en Brasil se dan abrazos y se dice "Feliz Natal". Si están en la piscina o en el lobby, van a estar rodeados de brasileños haciendo lo mismo.</div></div></li>
       </ul>
-      <div class="probar-dia"><div class="pdh">🍬 Para probar hoy en la zona</div><ul><li><span class="pe">🫓</span><span><b>Tapioca</b> · carritos del Boulevard Olímpico. De queso, de coco o de goiabada<small>R$ 12–25</small></span></li><li><span class="pe">🥩</span><span><b>Picanha con farofa</b> · en el rodizio: échenle la farofa encima, así se come allá</span></li><li><span class="pe">🍇</span><span><b>Açaí</b> · Casa do Açaí, R. Siqueira Campos 143, a 120 m del rodizio<small>R$ 15–20</small></span></li><li><span class="pe">🍹</span><span><b>Caipirinha</b> · Galeto Sat's, con más de 300 cachaças, o el propio rodizio<small>R$ 25–35</small></span></li><li><span class="pe">🍾</span><span><b>Espumante para el brindis</b> · Zona Sul 24 horas: Chandon o Salton, lo que toma todo Brasil en Navidad<small>R$ 45–90 la botella</small></span></li></ul><a class="lnk" href="#probar">Toda la lista para probar</a></div>
+      <div class="probar-dia"><div class="pdh">🍬 Para probar hoy en la zona</div><ul><li><span class="pe">🫓</span><span><b>Tapioca</b> · carritos del Boulevard Olímpico. De queso, de coco o de goiabada<small>R$ 12–25</small></span></li><li><span class="pe">🥩</span><span><b>Picanha con farofa</b> · en el rodizio: échenle la farofa encima, así se come allá</span></li><li><span class="pe">🍇</span><span><b>Açaí</b> · Casa do Açaí, R. Siqueira Campos 143, a 120 m del rodizio<small>R$ 15–20</small></span></li><li><span class="pe">🍹</span><span><b>Caipirinha</b> · Galeto Sat's, con más de 300 cachaças, o el propio rodizio<small>R$ 25–35</small></span></li><li data-div="4"><span class="pe">🍾</span><span><b>Espumante para el brindis</b> · Zona Sul 24 horas: Chandon o Salton, lo que toma todo Brasil en Navidad<small>R$ 45–90 la botella</small></span></li></ul><a class="lnk" href="#probar">Toda la lista para probar</a></div>
       <div class="note money"><b>Cuidado con una trampa:</b> la <b>Churrascaria Palace</b> (Copacabana, la más tradicional de Río, desde 1951) aparece en varias listas de "custo-benefício" con precios viejos de R$ 113. Hoy hay clientes reportando <b>R$ 350 por persona</b>. La descarté por eso. Si la ven recomendada por ahí, pregunten el precio antes de sentarse.</div>
     </div>
   </div>
@@ -3175,6 +3176,14 @@ window.__contraerDias();
         var mt=li.querySelector('.mv.mtr'), rm;
         if(mt && (rm=rango(mt.textContent))) g.items.push({ic:'🚇', n:'Metro', r:rm});
       });
+      /* antojos de la zona: açaí, caipirinha, mecatos ("Para probar hoy") */
+      [].slice.call(x.card.querySelectorAll('.probar-dia li')).forEach(function(li){
+        if(li.hasAttribute('data-nocuenta')) return;
+        var sm=li.querySelector('small'), r=sm && rango(sm.textContent); if(!r) return;
+        var dv=parseInt(li.getAttribute('data-div'),10)||1;
+        g.items.push({ic:((li.querySelector('.pe')||{}).textContent||'🍬'), n:((li.querySelector('b')||{}).textContent||'')+(dv>1?' · la botella entre '+dv:''),
+                      r:[r[0]/dv, r[1]/dv], antojo:true});
+      });
     });
     /* entradas: de la tabla del presupuesto, por el día que dice cada fila */
     var tEnt=[].slice.call(document.querySelectorAll('#plata table')).filter(function(t){ return /Atracci/.test(t.textContent); })[0];
@@ -3220,12 +3229,29 @@ window.__contraerDias();
           smin+=g.min; smax+=g.max;
           return '<details class="pday"><summary><div class="daynum"><b>'+g.num+'</b><span>'+esc(g.sem)+'</span></div>'
             +'<div class="pt1">'+esc(g.dt)+'</div><div class="pt2">'+rtxt([g.min,g.max])+'<small>≈ '+cop(g.min)+(g.max!==g.min?'–'+cop(g.max):'')+' COP</small></div></summary><div class="pin">'
-            + (g.items.length ? g.items.map(function(it){ return '<div class="prow"><span>'+it.ic+' '+esc(it.n)+'</span><b>'+rtxt(it.r)+'</b></div>'; }).join('') : '<div class="prow"><span>Sin gastos marcados en el plan</span><b>—</b></div>')
-            + (g.playa ? '<div class="prow opt"><span>🏖️ Sillas y sombrilla si no hay kit (aparte)</span><b>R$ 28–45</b></div>' : '')
+            + (function(){
+                var plan=g.items.filter(function(it){ return !it.antojo; }), ant=g.items.filter(function(it){ return it.antojo; });
+                var fila=function(it){ return '<div class="prow"><span>'+it.ic+' '+esc(it.n)+'</span><b>'+rtxt(it.r)+'</b></div>'; };
+                var s='';
+                s+= plan.length ? plan.map(fila).join('') : '<div class="prow"><span>Sin gastos marcados en el plan</span><b>—</b></div>';
+                if(ant.length){
+                  var a0=0,a1=0; ant.forEach(function(it){ a0+=it.r[0]; a1+=it.r[1]; });
+                  s+='<div class="psub">🍬 Antojos de la zona · '+rtxt([a0,a1])+'</div>'+ant.map(fila).join('');
+                }
+                return s;
+              })()
+            + (g.playa ? '<div class="prow popt"><span>🏖️ Sillas y sombrilla si no hay kit (aparte)</span><b>R$ 28–45</b></div>' : '')
             + '</div></details>';
         }).join('')
       +'<div class="prow tot"><span>Suma de los días</span><b>'+rtxt([smin,smax])+'</b></div>'
-      +'<p style="font-size:13.5px;color:var(--tx2);margin-top:8px">Sale de los precios que ya tiene el itinerario. El Uber se divide entre los cuatro. No incluye compras, açaí ni caipiriñas sueltas.</p></div>';
+      + (function(){
+          var a0=0,a1=0; G.forEach(function(g){ g.items.forEach(function(it){ if(it.antojo){ a0+=it.r[0]; a1+=it.r[1]; } }); });
+          var fila=[].slice.call(document.querySelectorAll('#plata table tr')).filter(function(tr){ return /Açaí, caipiriñas y snacks/.test(tr.textContent); })[0];
+          var pres=fila ? parseFloat((fila.children[2]||{}).textContent) : 0;
+          if(!a1 || !pres || a0<=pres) return '';
+          return '<div class="note money" style="margin:12px 0 0"><b>Ojo con los antojos:</b> el presupuesto de abajo calculó <b>R$ '+fmt(pres)+' por persona</b> para açaí, caipiriñas y snacks en toda la semana. Si prueban todo lo de la lista son <b>'+rtxt([a0,a1])+'</b>. Elijan, o súmenle la diferencia.</div>';
+        })()
+      +'<p style="font-size:13.5px;color:var(--tx2);margin-top:8px">Sale de los precios que ya tiene el itinerario: entradas, comidas, Uber (dividido entre los cuatro), metro y los antojos de cada día (açaí, caipirinha, mecatos). Lo que no tiene precio no se suma. No incluye compras.</p></div>';
     box.innerHTML=html;
   }
   document.addEventListener('input',function(e){

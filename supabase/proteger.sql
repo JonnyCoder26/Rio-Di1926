@@ -8,6 +8,9 @@
 --   · nadie puede borrar
 --
 -- Cómo usarlo:
+--   0. NO guarden la clave en este archivo dentro del repositorio: es
+--      público y GitHub Pages también lo publica. Cópienlo, cambien la
+--      clave solo en el editor de Supabase y córranlo ahí.
 --   1. Cambien  CAMBIEN-ESTA-CLAVE  (abajo) por la clave que quieran.
 --   2. Supabase → SQL Editor → New query → peguen todo → Run.
 --   3. Pásenle la clave a los otros tres. La página la pide una sola vez
