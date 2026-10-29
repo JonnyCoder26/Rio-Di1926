@@ -25,7 +25,9 @@ La página funciona como una app, con cinco pestañas abajo:
   Del 20 al 26 de diciembre, el plan del día y la próxima parada (hora de Río).
 - **Días**: el itinerario completo.
 - **Comer**: qué probar y dónde comer.
-- **Plata**: el presupuesto.
+- **Plata**: convertidor de reales a pesos (la tasa se puede cambiar), el total
+  del viaje, lo que cuesta cada día por persona (calculado del itinerario)
+  y qué hacer si no hay kit de playa. Abajo, el presupuesto detallado.
 - **Más**: mapa, moverse, caminar, cuidados, frases, documentos, reservas,
   souvenirs, datos y el botón para editar.
 

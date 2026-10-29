@@ -352,6 +352,7 @@ body.tabs .tabbar{display:flex}
 .hbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:0 16px;border-radius:12px;
   background:var(--blue);color:#fff;font-size:15px;font-weight:750;text-decoration:none;border:0;cursor:pointer;font-family:inherit}
 .hbtn.gh{background:var(--card2);color:var(--tx);border:1px solid var(--line)}
+.hbtns .hbtn{flex:1 1 auto}
 .hbtn.full{width:100%}
 .stops{list-style:none}
 .stops li{display:flex;gap:12px;align-items:baseline;padding:11px 4px;border-bottom:1px solid var(--line);cursor:pointer;min-height:44px}
@@ -373,6 +374,80 @@ body.tabs .tabbar{display:flex}
 .pend li{padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
 .pend li:last-child{border-bottom:0}
 .pend small{display:block;color:var(--tx3);font-size:12.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+/* Plata */
+.prow{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--tx2)}
+.prow b{color:var(--tx);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.prow.tot{border-bottom:0;border-top:2px solid var(--gold);margin-top:2px;color:var(--tx);font-weight:700}
+.prow.opt{color:var(--tx3);font-style:italic}
+.conv{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:end}
+.conv label{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--tx3)}
+.conv input{width:100%;margin-top:4px;font-size:22px;font-weight:750;font-family:inherit;color:var(--tx);
+  background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-variant-numeric:tabular-nums}
+.conv .eq{font-size:20px;color:var(--tx3);padding-bottom:12px}
+.tasa{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:14px;color:var(--tx2)}
+.tasa input{width:80px;font-size:15px;font-weight:700;font-family:inherit;text-align:center;background:var(--card2);
+  border:1px solid var(--line);border-radius:9px;padding:8px}
+.qconv{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px}
+.qconv div{background:var(--card2);border-radius:10px;padding:8px 6px;text-align:center;font-size:12.5px;color:var(--tx2);line-height:1.3}
+.qconv b{display:block;font-size:15px;color:var(--tx)}
+.tot3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tot3 div{background:var(--card2);border-radius:12px;padding:10px 8px;text-align:center;font-size:12px;color:var(--tx2);font-weight:700;line-height:1.3}
+.tot3 b{display:block;font-size:17px;color:var(--tx);letter-spacing:-.3px;margin-bottom:2px}
+details.pday{border-bottom:1px solid var(--line)}
+details.pday:last-of-type{border-bottom:0}
+details.pday summary{list-style:none;display:flex;align-items:center;gap:12px;padding:10px 0;cursor:pointer;min-height:56px}
+details.pday summary::-webkit-details-marker{display:none}
+details.pday .daynum{width:42px;height:42px}
+details.pday .pt1{flex:1;min-width:0;font-size:15px;font-weight:700;line-height:1.3}
+details.pday .pt2{flex:none;font-size:15px;font-weight:800;color:var(--gold);text-align:right;font-variant-numeric:tabular-nums;line-height:1.25}
+details.pday .pt2 small{display:block;font-size:11.5px;color:var(--tx3);font-weight:700}
+details.pday[open] summary{border-bottom:1px dashed var(--line)}
+details.pday .pin{padding:4px 0 12px}
+.hoymoney{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.hoymoney span{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:6px 12px;font-size:13.5px;color:var(--tx2)}
+.hoymoney b{color:var(--tx)}
+.tels{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.tels a{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:56px;border-radius:12px;
+  background:#fdeae8;color:var(--red);text-decoration:none;font-weight:800;font-size:18px;line-height:1.1}
+.tels a span{font-size:11.5px;font-weight:700;color:var(--tx2)}
+/* Atajos dentro de una pestaña larga */
+.jump{display:none;position:sticky;top:0;z-index:45;background:rgba(251,247,240,.96);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.jump.on{display:block}
+.subbar.on ~ .jump{top:53px}
+.jump .in{max-width:820px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:8px 16px;scrollbar-width:none}
+.jump .in::-webkit-scrollbar{display:none}
+.jump a{flex:none;min-height:36px;display:inline-flex;align-items:center;padding:0 13px;border-radius:100px;
+  border:1px solid var(--line);background:var(--card);color:var(--tx);text-decoration:none;font-size:13.5px;font-weight:700;white-space:nowrap}
+body.tabs h2, body.tabs h3, body.tabs .card{scroll-margin-top:120px}
+/* Botones y controles más grandes para el dedo */
+.pbtn,.gbtn,.gobtn{min-height:42px;padding:9px 14px;font-size:13.5px;border-radius:9px}
+.mapfilters button{min-height:40px;padding:8px 14px;font-size:13.5px}
+.edbtn{min-height:42px}
+.comtog,.maptoggle{min-height:48px}
+.ck label{min-height:48px}
+.ck input{width:22px;height:22px;margin-top:1px}
+body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none}
+/* Tablas como tarjetas en el celular */
+@media(max-width:600px){
+  .tw{border:0;overflow:visible;border-radius:0}
+  .tw table{min-width:0}
+  .tw thead{display:none}
+  .tw tr{display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:6px 12px;
+    border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:12px 14px;background:var(--card)}
+  .tw td{display:block;border:0;padding:0;position:static;background:none !important;text-align:left;white-space:normal;
+    font-size:15px;font-variant-numeric:tabular-nums}
+  .tw td::before{content:attr(data-label);display:block;color:var(--tx3);font-size:11px;font-weight:800;
+    letter-spacing:.8px;text-transform:uppercase;margin-bottom:1px;white-space:nowrap}
+  .tw td.long, .tw td:first-child{grid-column:1/-1}
+  .tw td:first-child{font-size:16.5px;padding-bottom:8px;margin-bottom:2px;border-bottom:1px solid var(--line)}
+  .tw td:first-child::before{display:none}
+  .tw tr.tot{border:2px solid var(--gold);background:var(--card2)}
+  .tw tr.tot td{border-top:0;background:none !important}
+  .tw tr.tot td:first-child{border-bottom-color:var(--gold)}
+  .tw td:empty, .tw td.dash{display:none}
+  .swipe{display:none}
+}
 /* Más */
 .mgroup{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);margin:22px 0 8px}
 .mlist{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
@@ -458,6 +533,7 @@ body.tabs .tabbar{display:flex}
 </header>
 
 <div class="subbar" id="subbar"><div class="in"><a href="#mas" aria-label="Volver a Más">&#8249; Más</a><b id="subtit"></b></div></div>
+<div class="jump" id="jump"><div class="in" id="jumpIn"></div></div>
 
 <div class="wrap">
 
@@ -585,6 +661,7 @@ body.tabs .tabbar{display:flex}
     <label><input type="checkbox" data-chk="c14"><span>Descargar Google Maps de Río sin conexión</span></label>
     <label><input type="checkbox" data-chk="c15"><span>Avisar a los bancos que viajan a Brasil</span></label>
     <label><input type="checkbox" data-chk="c16"><span>Foto de pasaportes y tarjetas guardada en la nube</span></label>
+    <label><input type="checkbox" data-chk="c18"><span>Preguntar al hotel por el kit de playa para el viernes 25 <small>Sillas, sombrilla y toallas. Si no lo prestan, en la barraca sale ~R$ 110–180 los cuatro: lleven ese efectivo.</small></span></label>
     <label><input type="checkbox" data-chk="c17"><span>Bloqueador SPF 50, gorras y repelente <small>Comprarlos en Colombia sale mucho más barato.</small></span></label>
   </div>
 </section>
@@ -946,6 +1023,7 @@ body.tabs .tabbar{display:flex}
         <li data-min="60"><div class="hr">20:00</div><div class="bd"><div class="a">Ipanema iluminada <span class="pz">R$ 20–30 · 12.000–18.000 COP</span></div><div class="mv ok">🚶 <b>Del Arpoador a General Osório, 900 m · 13 min.</b> Por la Rua Visconde de Pirajá. <b>Ipanema de noche se camina tranquilo</b> por las calles comerciales — pero <b>por la arena no</b>.</div><div class="n">Suban por la <b>Rua Visconde de Pirajá</b> hacia la estación. Si les da hambre, algo liviano: un pastel, un sándwich o el açaí que se saltaron. <b>Ojo: el 25 en la noche muchas cocinas están cerradas</b>, así que no cuenten con cena de restaurante.</div><div class="addr" data-orig="Av. Vieira Souto (borde de la playa), Ipanema" data-q="Quiosques Avenida Vieira Souto, Ipanema, Rio de Janeiro"><div class="a1">📌 Av. Vieira Souto (borde de la playa), Ipanema</div><div class="a2">Caipirinha frente al mar R$ 25-35</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Quiosques%20Avenida%20Vieira%20Souto%2C%20Ipanema%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Av. Vieira Souto (borde de la playa), Ipanema">Copiar dirección</button></div></div></div></li>
         <li data-min="60"><div class="hr">21:00</div><div class="bd"><div class="a">Metro General Osório → Catete</div><div class="mv mtr">🚇 <b>El segundo y último metro del día.</b> Línea 1 directa, 20 min.</div><div class="n">El segundo y último metro del día. Último tren alrededor de las 23:00 en feriado; si se pasan, Uber.</div></div></li>
       </ul>
+      <div class="note money"><b>🏖️ Si no les dan el kit de playa:</b> alquilen en la barraca. Silla <b>R$ 15–25</b> y sombrilla <b>R$ 25–40</b>; los cuatro, <b>~R$ 110–180</b> (R$ 28–45 c/u). Pregunten el precio antes de sentarse y lleven efectivo. Más detalles en la pestaña <a class="lnk" href="#playa">Plata</a>.</div>
       <div class="note"><b>📏 La caminata, en números:</b> Posto 4 → Posto 6 son <b>2 km</b> · Posto 6 → Forte <b>400 m</b> · Forte → Arpoador <b>1,2 km</b> · Arpoador → General Osório <b>900 m</b>. Total <b>4,5 km</b> repartidos entre las 14:45 y las 21:00, todo plano y todo sobre calçadão. Con paradas cada rato, lo hace cualquiera sin problema.</div>
       <div class="note alert"><b>Playa, en serio.</b> No lleven nada que no puedan perder: ni relojes, ni cadenas, ni la cámara buena. Un celular por persona máximo y siempre alguien sentado con las cosas — <b>túrnense para meterse al agua</b>, nunca los cuatro a la vez. <br><br><b>🏴 Métanse SOLO donde hay bandera verde.</b> Verde: seguro. Amarilla: cuidado, solo si nadan bien. <b>Roja: no se metan, punto.</b> Las corrientes de resaca en Copacabana e Ipanema arrastran de verdad y se llevan gente todos los años. Si no son nadadores fuertes, no pasen de la cintura ni con bandera verde. Y <b>de noche se camina por el calçadão y las avenidas, nunca por la arena</b>.</div>
     </div>
@@ -985,7 +1063,7 @@ body.tabs .tabbar{display:flex}
 
 <section id="probar">
   <div class="eyebrow">Lista de misión</div>
-  <h2>🍽️ Todo lo que hay que probar</h2>
+  <h2 data-chip="Probar">🍽️ Todo lo que hay que probar</h2>
   <p class="lede">Nueve cosas brasileñas, ninguna cara. Las marcadas <span class="sisi">SÍ O SÍ</span> son las que no se pueden dejar pasar: si vuelven sin haberlas probado, se perdieron algo del viaje.</p>
 
   <div class="note alert"><b>Las cuatro imperdibles, y dónde caen solas en el itinerario:</b><br>
@@ -1042,7 +1120,7 @@ body.tabs .tabbar{display:flex}
   </div>
 
   
-  <h3 style="font-size:20px;margin:30px 0 6px">Y si quieren ir más allá</h3>
+  <h3 style="font-size:20px;margin:30px 0 6px" data-chip="Más allá">Y si quieren ir más allá</h3>
   <p style="color:var(--tx2);font-size:15.5px;margin-bottom:14px">Nada de esto es obligatorio, pero si les gusta comer, aquí está el resto de la cocina brasileña que van a tener enfrente.</p>
   <div class="grid">
     <div class="mini">
@@ -1098,12 +1176,12 @@ body.tabs .tabbar{display:flex}
 
 <section id="comer">
   <div class="eyebrow">Mesa</div>
-  <h2>Dónde comer</h2>
+  <h2 data-chip="Dónde comer">Dónde comer</h2>
   <p class="lede">El tope diario es <b>R$ 33 a R$ 58 por plato</b> (20.000–35.000 COP), con dos excepciones para el 24 y el 25. Aquí están los sitios exactos, el rodizio comparado, el açaí, las caipiriñas y las cadenas.</p>
 
   <div class="note tip"><b>La regla de oro: coman donde come la gente que trabaja.</b> Centro, Catete, Flamengo, Botafogo y Lapa tienen restaurantes buenos y baratos porque viven de oficinistas y vecinos. Copacabana, Ipanema y Leblon cobran el doble por lo mismo. Cuando estén en la Zona Sur, <b>usen el metro para volver a comer cerca del hotel</b>.</div>
 
-  <h3 style="font-size:19px;margin:26px 0 12px">🥩 El rodizio del 24 · las tres opciones</h3>
+  <h3 style="font-size:19px;margin:26px 0 12px" data-chip="Rodizio del 24">🥩 El rodizio del 24 · las tres opciones</h3>
   <div class="tw">
     <table>
       <thead><tr><th>Churrascaria</th><th>Dónde</th><th class="num">Precio</th><th class="num">En COP</th><th>Cómo es</th></tr></thead>
@@ -1118,7 +1196,7 @@ body.tabs .tabbar{display:flex}
   <div class="note money"><b>La opción recomendada:</b> <b>Carretão Siqueira Campos</b> — el más barato de los tres y con buena carne. Si quieren que la <b>Nochebuena se sienta especial</b> y no les molesta gastar, <b>Fogo de Chão</b>: mantel, servicio y ambiente de ocasión, y aun así R$ 180 son 109.000 pesos. Para la noche de Navidad puede valer la diferencia.</div>
   <div class="note alert"><b>Trampa que casi caigo:</b> la <b>Churrascaria Palace</b> (Copacabana, desde 1951, la más tradicional de Río) sale en muchas listas de "custo-benefício" con precios de R$ 113 — pero son datos viejos. Hay clientes reportando <b>R$ 350 por persona</b>. Si se la recomiendan, pregunten el precio <b>antes</b> de sentarse.</div>
 
-  <h3 style="font-size:19px;margin:30px 0 12px">🍇 Açaí · uno para cada día</h3>
+  <h3 style="font-size:19px;margin:30px 0 12px" data-chip="Açaí">🍇 Açaí · uno para cada día</h3>
 
   <div class="note alert"><b>Sobre "The Best Açaí":</b> lo busqué. Es una <b>franquicia</b> — el nombre es marketing, no un premio. El local de Copacabana (Av. Atlântica 1536) está calificado <b>3,0 de 5</b> y aparece de <b>189 entre 265</b> sitios de postres de Río. La queja repetida es que <b>no lo baten:</b> viene congelado de fábrica, "como helado de caja". Sirve para salir del paso —abre hasta la 1 a.m. y está sobre la playa— pero no es el mejor ni de lejos. Abajo están los que sí.</div>
 
@@ -1168,7 +1246,7 @@ body.tabs .tabbar{display:flex}
     </div>
   </div>
 
-  <h3 style="font-size:19px;margin:30px 0 12px">🍹 Caipiriñas · una para cada noche</h3>
+  <h3 style="font-size:19px;margin:30px 0 12px" data-chip="Caipiriñas">🍹 Caipiriñas · una para cada noche</h3>
 
   <div class="note tip"><b>Si quieres una sola respuesta sin complicarte:</b> <b>Belmonte, Praia do Flamengo 300.</b> Es una cadena carioca de botecos, está a 10 minutos caminando del hotel, abre hasta muy tarde, y ahí pueden ir <b>cualquier noche del viaje</b> sin planear nada. Caipirinha R$ 25–30, y de paso las empadas son famosas. Esa es la de default.</div>
 
@@ -1223,7 +1301,7 @@ body.tabs .tabbar{display:flex}
     </div>
   </div>
 
-  <h3 style="font-size:19px;margin:30px 0 12px">🍔 Cadenas de comida rápida</h3>
+  <h3 style="font-size:19px;margin:30px 0 12px" data-chip="Comida rápida">🍔 Cadenas de comida rápida</h3>
   <p class="lede" style="margin-bottom:14px">Sirven perfectamente para resolver una comida rápida y barata. Estas son las brasileñas, que son mejores que las gringas.</p>
   <div class="grid">
     <div class="mini">
@@ -1263,7 +1341,7 @@ body.tabs .tabbar{display:flex}
   <p class="lede">Tramo por tramo, con horario. Verde es tranquilo, amarillo pide cabeza, rojo no se camina. Río no es peligroso en todas partes ni a toda hora — es cuestión de saber cuál es cuál.</p>
 
   <div class="card" style="border-left:3px solid var(--green)">
-    <h3>🟢 Se camina tranquilo · de día y de noche</h3>
+    <h3 data-chip="🟢 Tranquilo">🟢 Se camina tranquilo · de día y de noche</h3>
     <ul style="margin:10px 0 0 18px;color:var(--tx2);font-size:14.5px">
       <li><b>Hotel → Largo do Machado → Rua do Catete.</b> 5–10 min. Es su barrio: comercio, gente, metro, policía. Pueden salir a comer de noche sin pensarlo.</li>
       <li><b>Hotel → Rua Marquês de Abrantes (Café Lamas) → Praia do Flamengo (Belmonte).</b> 8–10 min. Avenida ancha y con movimiento hasta tarde.</li>
@@ -1277,7 +1355,7 @@ body.tabs .tabbar{display:flex}
   </div>
 
   <div class="card" style="border-left:3px solid var(--orange)">
-    <h3>🟡 Se camina, pero solo de día y con cabeza</h3>
+    <h3 data-chip="🟡 Solo de día">🟡 Se camina, pero solo de día y con cabeza</h3>
     <ul style="margin:10px 0 0 18px;color:var(--tx2);font-size:14.5px">
       <li><b>Centro: SAARA → Real Gabinete → Colombo → Cinelândia.</b> 1,5 km. <b>Solo en día hábil y en horario de oficina</b>, cuando está lleno de gente trabajando. Es su lunes 21. Después de las 18:00 y los fines de semana el Centro se vacía y cambia por completo.</li>
       <li><b>Lapa: Selarón → Arcos → Catedral.</b> 1 km, todo de día. Hay flujo constante de turistas. <b>De noche Lapa es fiesta</b>: se puede, pero en grupo, sobre las calles principales y sin nada de valor encima.</li>
@@ -1289,7 +1367,7 @@ body.tabs .tabbar{display:flex}
   </div>
 
   <div class="card" style="border-left:3px solid var(--red)">
-    <h3>🔴 No se camina, punto</h3>
+    <h3 data-chip="🔴 No se camina">🔴 No se camina, punto</h3>
     <ul style="margin:10px 0 0 18px;color:var(--tx2);font-size:14.5px">
       <li><b>La arena de cualquier playa después del atardecer.</b> Es la regla número uno. El calçadão sí, la arena no.</li>
       <li><b>Cualquier calle que suba hacia un morro.</b> Si la calle empieza a empinarse y las casas cambian, den la vuelta.</li>
@@ -1557,7 +1635,26 @@ body.tabs .tabbar{display:flex}
   <h2>Presupuesto para 4 personas</h2>
   <p class="lede">Sin vuelos ni hotel. Referencia de agosto 2026: <b>1 real ≈ 605 pesos colombianos</b>. Verifiquen la tasa antes de viajar.</p>
 
-  <h3 style="font-size:16px;margin:18px 0 10px;color:var(--tx2)">Entradas · por persona</h3>
+  <div id="plataIn"></div>
+
+  <div class="card" id="playa" style="border-left:3px solid var(--mar)">
+    <h3 data-chip="🏖️ Playa sin kit">🏖️ Sillas y sombrilla si no les dan el kit</h3>
+    <p>El plan del viernes 25 cuenta con el <b>kit de playa gratis del hotel</b>. Si no lo hay, o ya está prestado, se alquila en cualquier barraca de la arena:</p>
+    <div class="prow"><span>🪑 Silla, cada una</span><b>R$ 15–25</b></div>
+    <div class="prow"><span>⛱️ Sombrilla, cada una</span><b>R$ 25–40</b></div>
+    <div class="prow"><span>Los cuatro · 4 sillas + 2 sombrillas</span><b>R$ 110–180</b></div>
+    <div class="prow tot"><span>Por persona</span><b>R$ 28–45 · 17.000–27.000 COP</b></div>
+    <ul style="margin:12px 0 0 18px;color:var(--tx2);font-size:15px">
+      <li style="margin-bottom:6px"><b>Pregunten el precio antes de sentarse:</b> <i>"Quanto é a cadeira e o guarda-sol?"</i></li>
+      <li style="margin-bottom:6px">Se paga al final del día. <b>Lleven efectivo</b>: no todas las barracas reciben tarjeta.</li>
+      <li style="margin-bottom:6px">Si les exigen consumo mínimo, sigan a la siguiente barraca: hay una cada pocos metros.</li>
+      <li style="margin-bottom:6px"><b>La opción gratis:</b> las cangas del SAARA tendidas en la arena.</li>
+      <li>El martes 22 en Praia Vermelha es un rato corto: con la canga alcanza.</li>
+    </ul>
+    <div class="note tip" style="margin-bottom:0"><b>Ya cabe en el presupuesto:</b> sale de los imprevistos (R$ 237 por persona). Precios de temporada alta en Copacabana, reportados en enero de 2026.</div>
+  </div>
+
+  <h3 style="font-size:16px;margin:18px 0 10px;color:var(--tx2)" data-chip="Entradas">Entradas · por persona</h3>
   <div class="tw">
     <table>
       <thead><tr><th>Atracción</th><th>Día</th><th class="num">R$</th><th class="num">COP aprox.</th></tr></thead>
@@ -1575,7 +1672,7 @@ body.tabs .tabbar{display:flex}
   <p class="swipe">→ desliza la tabla para ver los pesos colombianos</p>
   <div class="note tip"><b>Bajó R$ 80 por persona</b> (R$ 320 los cuatro) al quitar el Museo del Mañana y el Jardín Botánico.</div>
 
-  <h3 style="font-size:16px;margin:22px 0 10px;color:var(--tx2)">Comida · por persona</h3>
+  <h3 style="font-size:16px;margin:22px 0 10px;color:var(--tx2)" data-chip="Comida">Comida · por persona</h3>
   <div class="tw">
     <table>
       <thead><tr><th>Concepto</th><th class="num">Unidad</th><th class="num">Total R$</th><th class="num">Total COP</th></tr></thead>
@@ -1590,7 +1687,7 @@ body.tabs .tabbar{display:flex}
   </div>
   <p class="swipe">→ desliza la tabla</p>
 
-  <h3 style="font-size:16px;margin:22px 0 10px;color:var(--tx2)">Todo el viaje</h3>
+  <h3 style="font-size:16px;margin:22px 0 10px;color:var(--tx2)" data-chip="Total">Todo el viaje</h3>
   <div class="tw">
     <table>
       <thead><tr><th>Rubro</th><th class="num">Por persona</th><th class="num">Los 4</th><th class="num">Los 4 en COP</th></tr></thead>
@@ -1671,13 +1768,13 @@ body.tabs .tabbar{display:flex}
   <h2>Calor, seguridad y plan B</h2>
 
   <div class="card" style="border-left:3px solid var(--gold)">
-    <h3>🔌 El adaptador de enchufe · lo que casi nadie empaca</h3>
+    <h3 data-chip="Enchufes">🔌 El adaptador de enchufe · lo que casi nadie empaca</h3>
     <p>Brasil usa el enchufe <b>tipo N</b>: tres patas redondas en triángulo. <b>Los cargadores colombianos no entran.</b> Ni el del celular, ni el del computador, ni el secador.</p>
     <p style="margin-top:8px">Río va a <b>127 V</b>, igual que Colombia, así que <b>no necesitan transformador</b> — solo el adaptador físico. Compren <b>dos o tres</b> antes de viajar: en el aeropuerto de Río se los venden al triple, y con cuatro personas cargando celular todas las noches, uno solo no alcanza.</p>
   </div>
 
   <div class="card" style="border-left:3px solid var(--purple)">
-    <h3>🗣️ Los falsos amigos que meten en problemas</h3>
+    <h3 data-chip="Falsos amigos">🗣️ Los falsos amigos que meten en problemas</h3>
     <p>El portuñol funciona, pero estas palabras significan otra cosa y algunas dan pena de verdad:</p>
     <div style="margin-top:10px">
       <div class="ph"><span class="es"><b>embaraçada</b></span><span class="pt">avergonzada, no embarazada</span></div>
@@ -1699,7 +1796,7 @@ body.tabs .tabbar{display:flex}
   </div>
 
   <div class="card" style="border-left:3px solid var(--teal)">
-    <h3>📋 Otras cosas que hay que tener en cuenta</h3>
+    <h3 data-chip="Otras cosas">📋 Otras cosas que hay que tener en cuenta</h3>
     <ul style="margin:10px 0 0 18px;color:var(--tx2);font-size:14.5px">
       <li><b>Horarios de comida brasileños.</b> Almuerzo 12:00–15:00, cena 19:00–22:30. Entre las 15:00 y las 19:00 <b>muchas cocinas cierran</b>. Si les da hambre a las 17:00, es padaria o cadena.</li>
       <li><b>Agua de la llave, no.</b> Botellada siempre. En supermercado sale R$ 3 la de 1,5 L; en la playa R$ 8.</li>
@@ -1716,7 +1813,7 @@ body.tabs .tabbar{display:flex}
   </div>
 
   <div class="card" style="border-left:3px solid var(--orange)">
-    <h3>🌡️ El calor va a ser el enemigo real</h3>
+    <h3 data-chip="Calor">🌡️ El calor va a ser el enemigo real</h3>
     <p>Diciembre en Río son <b>30 a 38 °C con humedad altísima</b>. Se siente peor de lo que marca el termómetro y es lo que más gente tumba en este viaje, sobre todo a los mayores.</p>
     <ul style="margin:10px 0 0 18px;color:var(--tx2);font-size:14.5px">
       <li><b>3 litros de agua por persona al día.</b> No es exageración.</li>
@@ -1729,7 +1826,7 @@ body.tabs .tabbar{display:flex}
   </div>
 
   <div class="card" style="border-left:3px solid var(--red)">
-    <h3>🛡️ Seguridad, sin dramatizar</h3>
+    <h3 data-chip="Seguridad">🛡️ Seguridad, sin dramatizar</h3>
     <p>Río se disfruta perfectamente si uno no se hace notar. Las reglas son simples y funcionan:</p>
     <ul style="margin:10px 0 0 18px;color:var(--tx2);font-size:14.5px">
       <li><b>Celular guardado</b> mientras caminan. Si necesitan el mapa, párense contra una pared o entren a un local.</li>
@@ -1745,7 +1842,7 @@ body.tabs .tabbar{display:flex}
   </div>
 
   <div class="card" style="border-left:3px solid var(--blue)">
-    <h3>🌧️ Si llueve (y en diciembre llueve)</h3>
+    <h3 data-chip="Si llueve">🌧️ Si llueve (y en diciembre llueve)</h3>
     <p>Las tormentas de diciembre son fuertes pero cortas: caen entre las 15:00 y las 18:00 y en una hora pasan. Casi nunca hay que cancelar el día entero, solo reordenarlo.</p>
     <ul style="margin:10px 0 0 18px;color:var(--tx2);font-size:14.5px">
       <li><b>Si el Cristo está en nube:</b> no suban, el boleto no se devuelve. Cambien el 23 por el 24 y vayan el jueves temprano.</li>
@@ -2667,6 +2764,8 @@ window.__contraerDias();
     tabLinks.forEach(function(a){ a.classList.toggle('on', a.getAttribute('data-tab')===d.tab); });
     if(d.tab==='hoy') pintarHoy();
     if(d.tab==='mas') pintarPendientes();
+    if(d.tab==='plata') pintarPlata();
+    atajos(visibles);
     actual=d.key;
     if(alLlegar){ var f=alLlegar; alLlegar=null; f(); }
     else if(d.el) d.el.scrollIntoView();
@@ -2772,6 +2871,9 @@ window.__contraerDias();
       var titulo=hoy.length ? hoy[hoy.length-1] : null;
       html+='<div class="hoyday">Hoy · '+(titulo?SEMANA[titulo.sem]||titulo.sem:'')+' '+now.d+' de diciembre</div>';
       if(titulo) html+='<div class="big">'+esc(titulo.dt)+'</div><div class="hsub">'+esc(titulo.dd)+'</div>';
+      var gd=gastoPorDia().filter(function(g){ return g.num===now.d; })[0];
+      if(gd && gd.max) html+='<div class="hoymoney"><span>💰 Hoy, por persona: <b>'+rtxt([gd.min,gd.max])+'</b> · ≈ '+cop(gd.min)+(gd.max!==gd.min?'–'+cop(gd.max):'')+' COP</span></div>';
+      if(gd && gd.playa) html+='<div class="note money" style="margin-top:12px"><b>🏖️ Hoy es playa.</b> Pidan el kit en recepción. Si no hay, lleven <b>R$ 45 en efectivo por persona</b> para sillas y sombrilla. <a class="lnk" href="#playa">Ver precios</a></div>';
       var paradas=[];
       hoy.forEach(function(x){
         [].slice.call(x.card.querySelectorAll('.tl > li')).forEach(function(li){
@@ -2792,6 +2894,11 @@ window.__contraerDias();
       } else if(paradas.length){
         html+='<div class="hcard"><h3>Listo por hoy</h3><p>El plan de hoy ya terminó.'+(man?' Mañana: <b>'+esc(man.dt)+'</b>.':'')+'</p></div>';
       }
+      var hotel=document.querySelector('#dias .addr[data-q*="Riale"]');
+      html+='<div class="hcard"><h3>A la mano</h3><div class="hbtns" style="margin-top:0">'
+        +(hotel?'<a class="hbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(hotel.getAttribute('data-q'))+'">🏨 Volver al hotel</a>':'')
+        +'<a class="hbtn gh" href="tel:+552121126000">📞 Llamar al hotel</a></div>'
+        +'<div class="tels"><a href="tel:190">190<span>Policía</span></a><a href="tel:192">192<span>Ambulancia</span></a><a href="tel:193">193<span>Bomberos</span></a></div></div>';
       if(paradas.length){
         html+='<div class="hcard"><h3>El plan de hoy</h3><ul class="stops" id="hoyStops">'
           + paradas.map(function(p,i){
@@ -2811,6 +2918,169 @@ window.__contraerDias();
     }
     box.innerHTML=html;
   }
+
+  /* ---------- PLATA ---------- */
+  var TASA_KEY='rio2026:tasa';
+  function tasaBase(){
+    var m=/1 real ≈ ([\d.]+)/.exec((document.querySelector('#plata .lede')||{}).textContent||'');
+    return m ? +m[1].replace(/\./g,'') : 605;
+  }
+  function tasa(){
+    var t=null; try{ t=parseFloat(localStorage.getItem(TASA_KEY)); }catch(e){}
+    return t>0 ? t : tasaBase();
+  }
+  function fmt(n){ return Math.round(n).toLocaleString('es-CO'); }
+  function cop(r){ var n=r*tasa(); return fmt(n>=1000 ? Math.round(n/1000)*1000 : n); }
+  /* "R$ 30–45 · 18.000…" → [30,45] */
+  function rango(txt){
+    var m=/R\$\s*(\d+(?:[.,]\d+)?)(?:\s*[–-]\s*(\d+(?:[.,]\d+)?))?/.exec(txt||'');
+    if(!m) return null;
+    var a=parseFloat(m[1].replace(',','.')), b=m[2]?parseFloat(m[2].replace(',','.')):a;
+    return [a,b];
+  }
+  function rtxt(r){ return 'R$ '+fmt(r[0])+(r[1]!==r[0]?'–'+fmt(r[1]):''); }
+  function sinPrecio(a){
+    var c=a.cloneNode(true); [].slice.call(c.querySelectorAll('.pz')).forEach(function(z){ z.remove(); });
+    return c.textContent.trim();
+  }
+
+  /* lo que cuesta cada día, por persona, leído del propio itinerario */
+  function gastoPorDia(){
+    var porNum={};
+    dias().forEach(function(x){
+      var g=porNum[x.num]=porNum[x.num]||{num:x.num, sem:x.sem, dt:x.dt, card:x.card, items:[], min:0, max:0, playa:false};
+      g.dt=x.dt; g.card=x.card;
+      var uberAntes=false;   /* parada "Uber a…" con precio: el tramo de la siguiente es el mismo viaje */
+      [].slice.call(x.card.querySelectorAll('[data-tl] > li')).forEach(function(li){
+        var a=li.querySelector('.bd .a'); if(!a) return;
+        var pz=a.querySelector('.pz'), r, nom=sinPrecio(a).replace(/^[^\p{L}\d]+/u,'');
+        if(pz && (r=rango(pz.textContent))) g.items.push({ic:'🍽️', n:nom, r:r});
+        if(/kit de playa/i.test(li.textContent)) g.playa=true;
+        var u=null, esParada=/^Uber/.test(nom);
+        if(esParada){
+          var sin=li.cloneNode(true); [].slice.call(sin.querySelectorAll('.pz')).forEach(function(z){ z.remove(); });
+          u=rango(sin.textContent);
+        } else if(!uberAntes){
+          var mv=li.querySelector('.mv.no');
+          if(mv && /Uber/.test(mv.textContent)) u=rango(mv.textContent);
+        }
+        if(u) g.items.push({ic:'🚖', n:'Uber · '+rtxt(u)+' el carro', r:[u[0]/4,u[1]/4]});
+        uberAntes = esParada && !!u;
+        var mt=li.querySelector('.mv.mtr'), rm;
+        if(mt && (rm=rango(mt.textContent))) g.items.push({ic:'🚇', n:'Metro', r:rm});
+      });
+    });
+    /* entradas: de la tabla del presupuesto, por el día que dice cada fila */
+    var tEnt=[].slice.call(document.querySelectorAll('#plata table')).filter(function(t){ return /Atracci/.test(t.textContent); })[0];
+    if(tEnt) [].slice.call(tEnt.querySelectorAll('tbody tr:not(.tot)')).forEach(function(tr){
+      var td=tr.children, d=/(\d{1,2})/.exec(td[1]?td[1].textContent:''), v=parseFloat((td[2]||{}).textContent);
+      var g=d && porNum[+d[1]], n=td[0].textContent.trim();
+      if(!g || !(v>0)) return;
+      /* si la parada ya trae su precio, no se cuenta dos veces */
+      g.items=g.items.filter(function(it){ return it.n.toLowerCase().indexOf(n.toLowerCase())<0; });
+      g.items.unshift({ic:'🎟️', n:n, r:[v,v]});
+    });
+    return Object.keys(porNum).sort(function(a,b){return a-b;}).map(function(k){
+      var g=porNum[k];
+      g.items.forEach(function(it){ g.min+=it.r[0]; g.max+=it.r[1]; });
+      return g;
+    });
+  }
+
+  function pintarPlata(){
+    var box=document.getElementById('plataIn'); if(!box) return;
+    var html='';
+    /* convertidor */
+    html+='<div class="hcard" style="margin-top:0"><h3 id="pConv" data-chip="💱 Convertir">💱 Convertir</h3>'
+      +'<div class="conv"><div><label for="cvR">Reales R$</label><input id="cvR" type="number" inputmode="decimal" placeholder="0"></div>'
+      +'<div class="eq">=</div><div><label for="cvC">Pesos COP</label><input id="cvC" type="number" inputmode="numeric" placeholder="0"></div></div>'
+      +'<div class="qconv">'+[5,10,20,50,100,200].map(function(v){ return '<div><b>R$ '+v+'</b>'+cop(v)+'</div>'; }).join('')+'</div>'
+      +'<div class="tasa">Tasa: 1 R$ = <input id="cvT" type="number" inputmode="numeric" value="'+tasa()+'"> COP</div></div>';
+    /* total */
+    var tTot=[].slice.call(document.querySelectorAll('#plata table')).filter(function(t){ return /Rubro/.test(t.textContent); })[0];
+    var fila=tTot && tTot.querySelector('tr.tot');
+    if(fila){
+      var c=fila.children;
+      html+='<div class="hcard"><h3>Todo el viaje · estimado</h3><div class="tot3">'
+        +'<div><b>'+esc(c[1].textContent)+'</b>por persona</div>'
+        +'<div><b>'+esc(c[2].textContent)+'</b>los cuatro</div>'
+        +'<div><b>'+esc(c[3].textContent)+'</b>COP los cuatro</div></div>'
+        +'<div class="hbtns"><a class="hbtn gh full" href="#plataDet">Ver el detalle</a></div></div>';
+    }
+    /* por día */
+    var G=gastoPorDia(), smin=0, smax=0;
+    html+='<div class="hcard"><h3 id="pDia" data-chip="Cada día">Lo que cuesta cada día · por persona</h3>'
+      + G.map(function(g){
+          smin+=g.min; smax+=g.max;
+          return '<details class="pday"><summary><div class="daynum"><b>'+g.num+'</b><span>'+esc(g.sem)+'</span></div>'
+            +'<div class="pt1">'+esc(g.dt)+'</div><div class="pt2">'+rtxt([g.min,g.max])+'<small>≈ '+cop(g.min)+(g.max!==g.min?'–'+cop(g.max):'')+' COP</small></div></summary><div class="pin">'
+            + (g.items.length ? g.items.map(function(it){ return '<div class="prow"><span>'+it.ic+' '+esc(it.n)+'</span><b>'+rtxt(it.r)+'</b></div>'; }).join('') : '<div class="prow"><span>Sin gastos marcados en el plan</span><b>—</b></div>')
+            + (g.playa ? '<div class="prow opt"><span>🏖️ Sillas y sombrilla si no hay kit (aparte)</span><b>R$ 28–45</b></div>' : '')
+            + '</div></details>';
+        }).join('')
+      +'<div class="prow tot"><span>Suma de los días</span><b>'+rtxt([smin,smax])+'</b></div>'
+      +'<p style="font-size:13.5px;color:var(--tx2);margin-top:8px">Sale de los precios que ya tiene el itinerario. El Uber se divide entre los cuatro. No incluye compras, açaí ni caipiriñas sueltas.</p></div>';
+    box.innerHTML=html;
+  }
+  document.addEventListener('input',function(e){
+    var id=e.target.id; if(id!=='cvR' && id!=='cvC' && id!=='cvT') return;
+    var R=document.getElementById('cvR'), C=document.getElementById('cvC');
+    if(id==='cvT'){
+      var t=parseFloat(e.target.value);
+      if(t>0){ try{ localStorage.setItem(TASA_KEY, t); }catch(err){} }
+      [].slice.call(document.querySelectorAll('.qconv div')).forEach(function(d){
+        var v=parseFloat(d.querySelector('b').textContent.replace('R$',''));
+        d.lastChild.textContent=cop(v);
+      });
+      id='cvR';
+    }
+    if(id==='cvR'){ var r=parseFloat(R.value); C.value = r>=0 ? Math.round(r*tasa()) : ''; }
+    else { var c=parseFloat(C.value); R.value = c>=0 ? (Math.round(c/tasa()*100)/100) : ''; }
+  });
+
+  /* ---------- tablas como tarjetas: cada celda lleva el nombre de su columna ---------- */
+  [].slice.call(document.querySelectorAll('.tw table')).forEach(function(t){
+    var th=[].slice.call(t.querySelectorAll('thead th')).map(function(x){ return x.textContent.trim(); });
+    [].slice.call(t.querySelectorAll('tbody tr')).forEach(function(tr){
+      [].slice.call(tr.children).forEach(function(td,i){
+        td.setAttribute('data-label', th[i]||'');
+        var s=td.textContent.trim();
+        if(s.length>34) td.classList.add('long');
+        if(s==='—') td.classList.add('dash');
+      });
+    });
+  });
+  (function(){
+    var h3=[].slice.call(document.querySelectorAll('#plata h3')).filter(function(x){ return /Entradas/.test(x.textContent); })[0];
+    if(h3) h3.id='plataDet';
+  })();
+
+  /* ---------- atajos: chips para saltar dentro de una pestaña larga ---------- */
+  var jump=document.getElementById('jump'), jumpIn=document.getElementById('jumpIn');
+  function corto(t){
+    t=t.replace(/[\u{1F000}-\u{1FAFF}☀-➿️]/gu,'').split('·')[0].trim();
+    return t.charAt(0).toUpperCase()+t.slice(1);
+  }
+  function atajos(visibles){
+    var hs=[];
+    visibles.forEach(function(id){
+      var s=document.getElementById(id); if(!s) return;
+      [].slice.call(s.querySelectorAll('h2, h3')).forEach(function(h,i){
+        if(h.closest('.day, .mini, .hcard') && !h.hasAttribute('data-chip')) return;
+        if(visibles.length===1 && h.tagName==='H2') return;
+        if(!h.id) h.id = id+'-h'+i;
+        hs.push(h);
+      });
+    });
+    if(hs.length<3){ jump.classList.remove('on'); jumpIn.innerHTML=''; return; }
+    jumpIn.innerHTML=hs.map(function(h){ return '<a href="#'+h.id+'" data-jump>'+esc(h.getAttribute('data-chip')||corto(h.textContent))+'</a>'; }).join('');
+    jump.classList.add('on');
+  }
+  jumpIn.addEventListener('click',function(e){
+    var a=e.target.closest('[data-jump]'); if(!a) return;
+    e.preventDefault();
+    var el=document.getElementById(a.getAttribute('href').slice(1)); if(el) el.scrollIntoView({behavior:'smooth'});
+  });
 
   document.addEventListener('click',function(e){
     var box=document.getElementById('hoyIn');
