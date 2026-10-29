@@ -668,21 +668,21 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
 <section id="reservas">
   <div class="eyebrow">Antes de viajar</div>
   <h2>Qué reservar y cuándo</h2>
-  <p class="lede">Estamos en agosto. Hay cosas que se agotan meses antes y una que hay que revisar hoy mismo.</p>
+  <p class="lede">Ya falta poco. Lo que está arriba se agota primero: si algo de esa parte no está marcado, es lo que hay que hacer <b>hoy</b>.</p>
 
   <div class="note tip">
     <b>✅ Hotel cuadrado.</b> Ya confirmaron la noche del 19 al 20. Eso era lo más urgente de la lista, así que queda tachado. Lo que sigue arriba de todo ahora es el <b>tren del Cristo</b> y el <b>late check-out del 26</b>.
   </div>
 
   <div class="ck">
-    <div class="when">🔴 Ahora mismo · agosto</div>
+    <div class="when">🔴 Lo más urgente · se agota primero</div>
     <label><input type="checkbox" checked><span>Confirmar con el hotel la noche del 19 al 20 <small>✅ Hecho</small></span></label>
     <label><input type="checkbox" data-chk="c1"><span>Tren del Corcovado, miércoles 23, turno de las 8:00 <small>tremdocorcovado.rio · R$ 134 · turno de las 8:00, el primero del día. Se agota con meses de anticipación.</small></span></label>
     <label><input type="checkbox" data-chk="c2"><span>Pedir late check-out para el sábado 26 <small>Por escrito. Aunque cobren. Alternativa: guardado de maletas + ducha confirmados.</small></span></label>
   </div>
 
   <div class="ck">
-    <div class="when">🟠 Octubre</div>
+    <div class="when">🟠 Cuanto antes</div>
     <label><input type="checkbox" data-chk="c3"><span>Bondinho Pan de Azúcar, martes 22, turno de las 14:00 <small>bondinho.com.br · ~R$ 210 · el ticket vale por todo el día dentro del parque</small></span></label>
     <label><input type="checkbox" data-chk="c4"><span>Rodizio del 24 · elegir y reservar <small>Comparación de las tres opciones en la sección Comer. La reserva de Nochebuena hay que hacerla con un mes de anticipación.</small></span></label>
     <label><input type="checkbox" data-chk="c5"><span>Faenza, viernes 25 · buffet de Navidad <small>Rua Siqueira Campos 18 · desde R$ 118 · el 25 es feriado, confirmen que abren</small></span></label>
@@ -690,7 +690,7 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
   </div>
 
   <div class="ck">
-    <div class="when">🟡 Noviembre</div>
+    <div class="when">🟡 En noviembre</div>
     <label><input type="checkbox" data-chk="c7"><span>AquaRio, jueves 24, entrada 9:00 <small>~R$ 80 online, más barato que en taquilla</small></span></label>
     <label><input type="checkbox" data-chk="c8"><span>Revisar la programación de diciembre del Sunset del Bondinho <small>blog.bondinho.com.br · el DJ set no es todos los días, cambia cada mes</small></span></label>
     <label><input type="checkbox" data-chk="c9"><span>eSIM o chip brasileño <small>Sin datos no hay Uber ni mapas. Un eSIM de 10 GB sale ~US$ 15.</small></span></label>
@@ -1684,7 +1684,7 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
 <section id="plata">
   <div class="eyebrow">Números</div>
   <h2>Presupuesto para 4 personas</h2>
-  <p class="lede">Sin vuelos ni hotel. Referencia de agosto 2026: <b>1 real ≈ 605 pesos colombianos</b>. Verifiquen la tasa antes de viajar.</p>
+  <p class="lede">Sin vuelos ni hotel. Las cuentas en pesos usan <b>1 real ≈ 605 pesos colombianos</b>, la tasa de agosto 2026. En el convertidor de abajo pueden poner la tasa del día: el convertidor y el gasto por día se ajustan solos.</p>
 
   <div id="plataIn"></div>
 
@@ -3017,7 +3017,7 @@ window.__contraerDias();
     return t>0 ? t : tasaBase();
   }
   function fmt(n){ return Math.round(n).toLocaleString('es-CO'); }
-  function cop(r){ var n=r*tasa(); return fmt(n>=1000 ? Math.round(n/1000)*1000 : n); }
+  function cop(r){ var n=r*tasa(); return fmt(n>=10000 ? Math.round(n/1000)*1000 : Math.round(n/100)*100); }
   /* "R$ 30–45 · 18.000…" → [30,45] */
   function rango(txt){
     var m=/R\$\s*(\d+(?:[.,]\d+)?)(?:\s*[–-]\s*(\d+(?:[.,]\d+)?))?/.exec(txt||'');
@@ -3124,6 +3124,9 @@ window.__contraerDias();
     if(id==='cvR'){ var r=parseFloat(R.value); C.value = r>=0 ? Math.round(r*tasa()) : ''; }
     else { var c=parseFloat(C.value); R.value = c>=0 ? (Math.round(c/tasa()*100)/100) : ''; }
   });
+
+  /* al terminar de escribir la tasa, el gasto por día se vuelve a calcular en pesos */
+  document.addEventListener('change',function(e){ if(e.target.id==='cvT') pintarPlata(); });
 
   /* ---------- tablas como tarjetas: cada celda lleva el nombre de su columna ---------- */
   [].slice.call(document.querySelectorAll('.tw table')).forEach(function(t){
