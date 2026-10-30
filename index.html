@@ -410,6 +410,19 @@ details.pday .pt2{flex:none;font-size:15px;font-weight:800;color:var(--gold);tex
 details.pday .pt2 small{display:block;font-size:11.5px;color:var(--tx3);font-weight:700}
 details.pday[open] summary{border-bottom:1px dashed var(--line)}
 details.pday .pin{padding:4px 0 12px}
+.ptot{display:flex;flex-direction:column;gap:2px;padding-bottom:10px;border-bottom:2px solid var(--gold);margin-bottom:4px}
+.ptot b{font-size:24px;letter-spacing:-.5px}
+.ptot span{font-size:13.5px;color:var(--tx2)}
+.pcat{padding:10px 0;border-bottom:1px solid var(--line)}
+.pc1{display:flex;justify-content:space-between;gap:10px;font-size:15.5px;font-weight:700}
+.pc1 b{font-variant-numeric:tabular-nums}
+.pc2{font-size:13px;color:var(--green);font-weight:700;margin-top:2px}
+.pc2.justo{color:var(--orange)}
+.pc2.corto{color:var(--red)}
+.pbar{height:8px;background:var(--card2);border-radius:8px;margin-top:6px;overflow:hidden}
+.pbar i{display:block;height:100%;background:var(--teal);border-radius:8px}
+.pbar i.over{background:var(--red)}
+.pc3{font-size:12.5px;color:var(--tx2);margin-top:3px}
 .psub{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--orange);margin:12px 0 2px}
 .hoymoney{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .hoymoney span{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:6px 12px;font-size:13.5px;color:var(--tx2)}
@@ -1752,6 +1765,12 @@ details.lluvia li{margin-bottom:6px}
   <h2>Presupuesto para 4 personas</h2>
   <p class="lede">Sin vuelos ni hotel. Las cuentas en pesos usan <b>1 real ≈ 605 pesos colombianos</b>, la tasa de agosto 2026. En el convertidor de abajo pueden poner la tasa del día: el convertidor y el gasto por día se ajustan solos.</p>
 
+  <!-- Presupuesto del grupo, en pesos colombianos, para los cuatro.
+       Para cambiarlo, editen los números de data-*. -->
+  <div id="presu" hidden
+       data-vuelos="8682000" data-comida="4100000" data-mecatos="1000000"
+       data-entradas="1090000" data-transporte="800000" data-souvenirs="1950000"></div>
+  <div id="presuIn"></div>
   <div id="plataIn"></div>
 
   <div class="card" id="playa" style="border-left:3px solid var(--mar)">
@@ -3202,7 +3221,49 @@ window.__contraerDias();
     });
   }
 
+  /* ---------- nuestro presupuesto: presupuesto vs. plan vs. gastado ---------- */
+  var CATS=[['vuelos','✈️','Vuelos'],['comida','🍽️','Comidas y refrescos'],['mecatos','🍹','Mecatos'],
+            ['entradas','🎟️','Entradas'],['transporte','🚖','Transporte'],['souvenirs','🛍️','Souvenirs y regalos']];
+  window.__CATS=CATS;
+  function estimadoPlan(){
+    /* lo que suman los precios del itinerario, para los cuatro, en reales */
+    var e={comida:[0,0],mecatos:[0,0],entradas:[0,0],transporte:[0,0],souvenirs:[0,0]};
+    gastoPorDia().forEach(function(g){ g.items.forEach(function(it){
+      var k = it.antojo ? 'mecatos' : it.ic==='🎟️' ? 'entradas' : (it.ic==='🚖'||it.ic==='🚇') ? 'transporte' : 'comida';
+      e[k][0]+=it.r[0]*4; e[k][1]+=it.r[1]*4;
+    }); });
+    var tr=[].slice.call(document.querySelectorAll('#plata table tr')).filter(function(t){ return /Compras \(SAARA/.test(t.textContent); })[0];
+    var v=tr && parseFloat(((tr.children[2]||{}).textContent||'').replace(/[^\d]/g,''));
+    if(v>0) e.souvenirs=[v,v];
+    return e;
+  }
+  function pintarPresu(){
+    var box=document.getElementById('presuIn'), d=document.getElementById('presu'); if(!box || !d) return;
+    var est=estimadoPlan(), gas=(window.__gastosPorCat ? window.__gastosPorCat() : {}), T=0, Tg=0;
+    var filas=CATS.map(function(c){
+      var p=parseFloat(d.getAttribute('data-'+c[0]))||0; T+=p;
+      var g=gas[c[0]]||0; Tg+=g;
+      var e=est[c[0]], e0=e?e[0]*tasa():0, e1=e?e[1]*tasa():0;
+      var pct=p ? Math.min(100, Math.round(g/p*100)) : 0;
+      var aviso = e && e1>p*1.02 ? (e0>p ? 'corto' : 'justo') : '';
+      return '<div class="pcat">'
+        +'<div class="pc1"><span>'+c[1]+' '+c[2]+'</span><b>'+fmt(p)+'</b></div>'
+        +(e ? '<div class="pc2'+(aviso?' '+aviso:'')+'">El plan calcula '+fmt(Math.round(e0/1000)*1000)+(Math.round(e1/1000)!==Math.round(e0/1000)?'–'+fmt(Math.round(e1/1000)*1000):'')
+            +(aviso==='corto' ? ' · ⚠️ no alcanza' : aviso==='justo' ? ' · ⚠️ puede quedar corto' : ' · ✓ alcanza')+'</div>'
+            : '<div class="pc2">Ya definido</div>')
+        +(g ? '<div class="pbar"><i style="width:'+pct+'%"'+(g>p?' class="over"':'')+'></i></div><div class="pc3">Gastado: '+fmt(Math.round(g))+' · '+(g>p?'se pasaron por '+fmt(Math.round(g-p)):'quedan '+fmt(Math.round(p-g)))+'</div>' : '')
+        +'</div>';
+    }).join('');
+    box.innerHTML='<div class="hcard" style="margin-top:0"><h3 id="pPresu" data-chip="💼 Presupuesto">💼 Nuestro presupuesto · los cuatro</h3>'
+      +'<div class="ptot"><b>'+fmt(T)+' COP</b><span>≈ R$ '+fmt(Math.round(T/tasa()))+' · '+fmt(Math.round(T/4))+' COP por persona</span></div>'
+      +filas
+      +(Tg ? '<div class="prow tot"><span>Gastado hasta ahora</span><b>'+fmt(Math.round(Tg))+' COP</b></div>' : '')
+      +'<p class="gnota">"El plan calcula" suma los precios del itinerario para los cuatro, a 1 R$ = '+fmt(tasa())+' COP. "Gastado" sale de lo que anoten en <a class="lnk" href="#cuentas">Cuentas</a> con su categoría.</p></div>';
+  }
+  window.__pintarPresu=pintarPresu;
+
   function pintarPlata(){
+    pintarPresu();
     var box=document.getElementById('plataIn'); if(!box) return;
     var html='';
     /* convertidor */
@@ -3454,6 +3515,7 @@ window.__contraerDias();
      +  '<input class="gin" id="gQ" type="text" maxlength="60" placeholder="Qué fue · ej. Uber al Centro" autocomplete="off">'
      +  '<div class="gmonto"><input class="gin" id="gM" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Cuánto">'
      +  '<select class="gin" id="gMon" aria-label="Moneda"><option value="R$">R$</option><option value="COP">COP</option></select></div>'
+     +  '<select class="gin" id="gCat" aria-label="Categoría">'+(window.__CATS||[]).filter(function(c){ return c[0]!=='vuelos'; }).map(function(c){ return '<option value="'+c[0]+'">'+c[1]+' '+c[2]+'</option>'; }).join('')+'<option value="otro">Otro</option></select>'
      +  '<div class="glab">Pagó</div><div class="gchips" id="gPago"></div>'
      +  '<div class="glab">Para quiénes</div><div class="gchips" id="gPara"></div>'
      +  '<button class="hbtn full" id="gAdd" style="margin-top:12px">＋ Anotar gasto</button>'
@@ -3481,12 +3543,24 @@ window.__contraerDias();
         if(!(monto>0)){ m.focus(); estado('Falta cuánto fue'); return; }
         if(!quienes.length){ estado('Elijan para quiénes fue'); return; }
         var id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
-        poner('g',id,{q:(q.value.trim()||'Gasto'), m:monto, mon:mon.value, p:pago, para:quienes, f:Date.now()});
-        q.value=''; m.value=''; para={'0':1,'1':1,'2':1,'3':1};
+        var cat=document.getElementById('gCat');
+        poner('g',id,{q:(q.value.trim()||'Gasto'), m:monto, mon:mon.value, p:pago, para:quienes, c:(cat?cat.value:'otro'), f:Date.now()});
+        q.value=''; m.value=''; para={'0':1,'1':1,'2':1,'3':1}; catTocada=false;
         pintar();
       }
     });
+    var catTocada=false;
+    box.addEventListener('input',function(e){
+      if(e.target.id!=='gQ' || catTocada) return;
+      var t=e.target.value.toLowerCase(), c=document.getElementById('gCat'); if(!c) return;
+      c.value = /uber|metro|taxi|bonde|bus|van|tren/.test(t) ? 'transporte'
+        : /a[çc]a[ií]|caipi|coco|cervez|chopp|brahma|globo|mate|dulce|brigadeiro|helado|tapioca|coalho|snack|mecato/.test(t) ? 'mecatos'
+        : /entrada|ticket|boleto|tour|bondinho|p[aã]o de a|cristo|aqua|forte|maracan/.test(t) ? 'entradas'
+        : /souvenir|havaianas|regalo|saara|canga|recuerdo/.test(t) ? 'souvenirs'
+        : 'comida';
+    });
     box.addEventListener('change',function(e){
+      if(e.target.id==='gCat') catTocada=true;
       var n=e.target.getAttribute && e.target.getAttribute('data-nom');
       if(n!=null){ var v=e.target.value.trim(); if(v!==(val('n',n)||'')) poner('n',n,v||null); }
     });
@@ -3548,6 +3622,8 @@ window.__contraerDias();
     document.getElementById('cLista').innerHTML = L.length ? L.map(function(x){
       var v=x.v, q=(v.para||[]), d=new Date(v.f||0);
       var pq = q.length===4 ? 'para los cuatro' : 'para '+q.map(function(i){ return esc(N[+i]); }).join(', ');
+      var ct=(window.__CATS||[]).filter(function(c){ return c[0]===v.c; })[0];
+      if(ct) pq=ct[1]+' · '+pq;
       return '<div class="gitem"><div class="gi1"><b>'+esc(v.q)+'</b><span class="gm">'+esc(v.mon)+' '+fmt(v.m, v.m%1?2:0)+'</span></div>'
         +'<div class="gi2"><span>pagó '+esc(N[+v.p])+' · '+pq+' · '+d.getDate()+'/'+(d.getMonth()+1)+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+'</span>'
         +'<button class="gdel" data-borrar="'+x.id+'" aria-label="Borrar">🗑</button></div></div>';
@@ -3601,7 +3677,12 @@ window.__contraerDias();
     mbox.innerHTML=h;
   }
 
-  function pintar(){ pintarCuentas(); pintarMaleta(); }
+  window.__gastosPorCat=function(){
+    var s={};
+    gastos().forEach(function(x){ var k=x.v.c||'otro'; s[k]=(s[k]||0)+enReales(x.v)*tasa(); });
+    return s;
+  };
+  function pintar(){ pintarCuentas(); pintarMaleta(); if(window.__pintarPresu) window.__pintarPresu(); }
   window.__pintarGrupo=pintar;
   pintar();
   if(sucio()) enviar(); else bajar();

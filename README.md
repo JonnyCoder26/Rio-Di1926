@@ -48,6 +48,9 @@ Mientras no corran el SQL, la página sigue guardando como antes.
 
 ## Qué trae
 
+- **Nuestro presupuesto** (pestaña Plata): el presupuesto del grupo por
+  categoría, comparado con lo que calcula el plan y con lo gastado. Los
+  números están en `index.html`, en el bloque `id="presu"`.
 - **Cuentas del grupo** (pestaña Plata): cada uno anota lo que pagó y la
   página dice quién le debe a quién. Se ve igual en los cuatro celulares.
 - **Maleta** (Más): cada uno marca lo que ya empacó.
