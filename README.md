@@ -13,9 +13,19 @@ Itinerario del viaje. Una sola página.
 
 ## Cómo publicarla
 
-Subir **todos** los archivos a la raíz del hosting, en la misma carpeta.
-El archivo tiene que llamarse `index.html`. El hosting tiene que ser
-`https` para que funcione sin internet y se pueda instalar.
+Está publicada con **GitHub Pages** desde la rama `main`:
+https://jonnycoder26.github.io/Rio-Di1926/
+
+Cada vez que se hace merge a `main`, GitHub la vuelve a publicar sola en
+uno o dos minutos. No hay que subir nada a mano. Para revisarlo:
+Settings → Pages → *Deploy from a branch* → `main` / `(root)`.
+
+Los celulares que ya la tienen guardada reciben la versión nueva la
+próxima vez que la abran con internet.
+
+**No escriban la clave del grupo en `supabase/proteger.sql` dentro del
+repositorio**: el repositorio es público y GitHub Pages también publica
+ese archivo. La clave se pone solo en el editor de Supabase, al correrlo.
 
 ## Instalar en el celular
 
@@ -38,6 +48,9 @@ Mientras no corran el SQL, la página sigue guardando como antes.
 
 ## Qué trae
 
+- **Nuestro presupuesto** (pestaña Plata): el presupuesto del grupo por
+  categoría, comparado con lo que calcula el plan y con lo gastado. Los
+  números están en `index.html`, en el bloque `id="presu"`.
 - **Cuentas del grupo** (pestaña Plata): cada uno anota lo que pagó y la
   página dice quién le debe a quién. Se ve igual en los cuatro celulares.
 - **Maleta** (Más): cada uno marca lo que ya empacó.
