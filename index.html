@@ -1765,10 +1765,10 @@ details.lluvia li{margin-bottom:6px}
   <h2>Presupuesto para 4 personas</h2>
   <p class="lede">Sin vuelos ni hotel. Las cuentas en pesos usan <b>1 real ≈ 605 pesos colombianos</b>, la tasa de agosto 2026. En el convertidor de abajo pueden poner la tasa del día: el convertidor y el gasto por día se ajustan solos.</p>
 
-  <!-- Presupuesto del grupo, en pesos colombianos, para los cuatro.
-       Para cambiarlo, editen los números de data-*. -->
-  <div id="presu" hidden
-       data-vuelos="8682000" data-comida="4100000" data-mecatos="1000000"
+  <!-- Presupuesto en pesos colombianos. Cubre a data-personas viajeros
+       (quiénes, se elige en Cuentas). Para cambiarlo, editen los data-*. -->
+  <div id="presu" hidden data-personas="3" data-total="18000000"
+       data-vuelos="8682000" data-comida="4100000" data-mecatos="1100000"
        data-entradas="1090000" data-transporte="800000" data-souvenirs="1950000"></div>
   <div id="presuIn"></div>
   <div id="plataIn"></div>
@@ -3227,16 +3227,19 @@ window.__contraerDias();
   window.__CATS=CATS;
   function estimadoPlan(){
     /* lo que suman los precios del itinerario, para los cuatro, en reales */
-    var e={comida:[0,0],mecatos:[0,0],entradas:[0,0],transporte:[0,0],souvenirs:[0,0]};
+    var e={comida:[0,0],mecatos:[0,0],entradas:[0,0],transporte:[0,0],souvenirs:[0,0]}, np=personasPresu();
     gastoPorDia().forEach(function(g){ g.items.forEach(function(it){
       var k = it.antojo ? 'mecatos' : it.ic==='🎟️' ? 'entradas' : (it.ic==='🚖'||it.ic==='🚇') ? 'transporte' : 'comida';
-      e[k][0]+=it.r[0]*4; e[k][1]+=it.r[1]*4;
+      e[k][0]+=it.r[0]*np; e[k][1]+=it.r[1]*np;
     }); });
     var tr=[].slice.call(document.querySelectorAll('#plata table tr')).filter(function(t){ return /Compras \(SAARA/.test(t.textContent); })[0];
     var v=tr && parseFloat(((tr.children[2]||{}).textContent||'').replace(/[^\d]/g,''));
-    if(v>0) e.souvenirs=[v,v];
+    if(v>0) e.souvenirs=[v/4*np, v/4*np];   /* la tabla trae el valor de los cuatro */
     return e;
   }
+  function personasPresu(){ var d=document.getElementById('presu'); return (d && parseInt(d.getAttribute('data-personas'),10)) || 4; }
+  window.__personasPresu=personasPresu;
+  var NUM=['','una','dos','tres','cuatro'];
   function pintarPresu(){
     var box=document.getElementById('presuIn'), d=document.getElementById('presu'); if(!box || !d) return;
     var est=estimadoPlan(), gas=(window.__gastosPorCat ? window.__gastosPorCat() : {}), T=0, Tg=0;
@@ -3254,11 +3257,20 @@ window.__contraerDias();
         +(g ? '<div class="pbar"><i style="width:'+pct+'%"'+(g>p?' class="over"':'')+'></i></div><div class="pc3">Gastado: '+fmt(Math.round(g))+' · '+(g>p?'se pasaron por '+fmt(Math.round(g-p)):'quedan '+fmt(Math.round(p-g)))+'</div>' : '')
         +'</div>';
     }).join('');
-    box.innerHTML='<div class="hcard" style="margin-top:0"><h3 id="pPresu" data-chip="💼 Presupuesto">💼 Nuestro presupuesto · los cuatro</h3>'
-      +'<div class="ptot"><b>'+fmt(T)+' COP</b><span>≈ R$ '+fmt(Math.round(T/tasa()))+' · '+fmt(Math.round(T/4))+' COP por persona</span></div>'
+    /* si el total es mayor que la suma de las categorías, la diferencia queda para imprevistos */
+    var Tt=parseFloat(d.getAttribute('data-total'))||0, libre=Tt-T;
+    if(libre>0){
+      filas+='<div class="pcat"><div class="pc1"><span>🧯 Imprevistos · sin asignar</span><b>'+fmt(libre)+'</b></div>'
+        +'<div class="pc2">Colchón para lo que se pase en otra categoría</div></div>';
+      T=Tt;
+    }
+    var np=personasPresu(), quien=(window.__quienesPresu ? window.__quienesPresu() : null);
+    box.innerHTML='<div class="hcard" style="margin-top:0"><h3 id="pPresu" data-chip="💼 Presupuesto">💼 Nuestro presupuesto · '+(np===1?'una persona':'para '+NUM[np])+'</h3>'
+      +'<div class="ptot"><b>'+fmt(T)+' COP</b><span>≈ R$ '+fmt(Math.round(T/tasa()))+' · '+fmt(Math.round(T/np))+' COP por persona</span>'
+      +(quien ? '<span>Cubre a <b>'+esc(quien.join(', '))+'</b> · <a class="lnk" href="#cuentas">cambiar</a></span>' : '')+'</div>'
       +filas
       +(Tg ? '<div class="prow tot"><span>Gastado hasta ahora</span><b>'+fmt(Math.round(Tg))+' COP</b></div>' : '')
-      +'<p class="gnota">"El plan calcula" suma los precios del itinerario para los cuatro, a 1 R$ = '+fmt(tasa())+' COP. "Gastado" sale de lo que anoten en <a class="lnk" href="#cuentas">Cuentas</a> con su categoría.</p></div>';
+      +'<p class="gnota">"El plan calcula" suma los precios del itinerario para '+NUM[np]+' personas, a 1 R$ = '+fmt(tasa())+' COP. "Gastado" sale de lo que anoten en <a class="lnk" href="#cuentas">Cuentas</a>: solo la parte de quienes entran en el presupuesto.</p></div>';
   }
   window.__pintarPresu=pintarPresu;
 
@@ -3308,7 +3320,7 @@ window.__contraerDias();
       + (function(){
           var a0=0,a1=0; G.forEach(function(g){ g.items.forEach(function(it){ if(it.antojo){ a0+=it.r[0]; a1+=it.r[1]; } }); });
           /* contra el presupuesto de mecatos del grupo (por persona, en reales) */
-          var pr=document.getElementById('presu'), pres=pr ? (parseFloat(pr.getAttribute('data-mecatos'))||0)/4/tasa() : 0;
+          var pr=document.getElementById('presu'), pres=pr ? (parseFloat(pr.getAttribute('data-mecatos'))||0)/personasPresu()/tasa() : 0;
           if(!a1 || !pres || a1<=pres) return '';
           return '<div class="note money" style="margin:12px 0 0"><b>Ojo con los antojos:</b> para mecatos tienen <b>'+rtxt([pres,pres])+' por persona</b> ('+fmt(Math.round(pres*tasa()))+' COP). Si prueban todo lo de la lista son <b>'+rtxt([a0,a1])+'</b>'+(a0<=pres?': alcanza si no repiten.':'. Elijan qué probar.')+'</div>';
         })()
@@ -3521,8 +3533,10 @@ window.__contraerDias();
      +  '<button class="hbtn full" id="gAdd" style="margin-top:12px">＋ Anotar gasto</button>'
      +  '<div class="gestado"></div></div>'
      +'<div class="hcard"><h3 data-chip="Gastos">Gastos anotados</h3><div id="cLista"></div></div>'
-     +'<details class="hcard gnom"><summary>✏️ Nombres de los viajeros</summary><div id="gNom"></div>'
-     +  '<p class="gnota">Los nombres salen en las cuentas y en la maleta de los cuatro celulares.</p></details>';
+     +'<details class="hcard gnom"><summary>✏️ Nombres y presupuesto</summary><div id="gNom"></div>'
+     +  '<p class="gnota">Los nombres salen en las cuentas y en la maleta de los cuatro celulares.</p>'
+     +  '<div class="glab">Entran en el presupuesto</div><div class="gchips" id="gPresu"></div>'
+     +  '<p class="gnota" id="gPresuNota"></p></details>';
     document.getElementById('gNom').innerHTML=[0,1,2,3].map(function(i){
       return '<input class="gin" data-nom="'+i+'" type="text" maxlength="20" placeholder="Viajero '+(i+1)+'">';
     }).join('');
@@ -3530,6 +3544,13 @@ window.__contraerDias();
       var c=e.target.closest('[data-pago]'); if(c){ pago=c.getAttribute('data-pago'); pintar(); return; }
       c=e.target.closest('[data-para]');
       if(c){ var k=c.getAttribute('data-para'); if(para[k]) delete para[k]; else para[k]=1; pintar(); return; }
+      c=e.target.closest('[data-presu]');
+      if(c){
+        var sel=quienesIdx().slice(), k2=c.getAttribute('data-presu'), at=sel.indexOf(k2);
+        if(at>-1) sel.splice(at,1); else sel.push(k2);
+        if(sel.length) poner('n','presu',sel.sort());
+        return;
+      }
       c=e.target.closest('[data-borrar]');
       if(c){
         var id=c.getAttribute('data-borrar'), g=val('g',id);
@@ -3604,6 +3625,13 @@ window.__contraerDias();
     var N=nombres(), s=saldos(), L=gastos();
     document.getElementById('gPago').innerHTML=chips('gPago','data-pago',pago);
     document.getElementById('gPara').innerHTML=chips('gPara','data-para',para);
+    var Q=quienesIdx(), np=(window.__personasPresu ? window.__personasPresu() : 4);
+    document.getElementById('gPresu').innerHTML=nombres().map(function(n,i){
+      return '<button type="button" class="gchip'+(Q.indexOf(''+i)>-1?' on':'')+'" data-presu="'+i+'">'+esc(n)+'</button>';
+    }).join('');
+    document.getElementById('gPresuNota').textContent = Q.length===np
+      ? 'El presupuesto es para '+np+' personas. "Gastado" cuenta solo la parte de ellas.'
+      : '⚠️ El presupuesto es para '+np+' personas y hay '+Q.length+' marcadas.';
     [].slice.call(box.querySelectorAll('[data-nom]')).forEach(function(inp){
       if(document.activeElement!==inp) inp.value=val('n',inp.getAttribute('data-nom'))||'';
     });
@@ -3677,9 +3705,24 @@ window.__contraerDias();
     mbox.innerHTML=h;
   }
 
+  /* quiénes cubre el presupuesto: por defecto, los primeros según data-personas */
+  function quienesIdx(){
+    var v=val('n','presu');
+    if(Array.isArray(v) && v.length) return v;
+    var n=(window.__personasPresu ? window.__personasPresu() : 4), a=[];
+    for(var i=0;i<n;i++) a.push(''+i);
+    return a;
+  }
+  window.__quienesPresu=function(){ var N=nombres(); return quienesIdx().map(function(i){ return N[+i]; }); };
+  /* gastado por categoría, en pesos: solo la parte de quienes entran en el presupuesto */
   window.__gastosPorCat=function(){
-    var s={};
-    gastos().forEach(function(x){ var k=x.v.c||'otro'; s[k]=(s[k]||0)+enReales(x.v)*tasa(); });
+    var s={}, Q=quienesIdx();
+    gastos().forEach(function(x){
+      var q=(x.v.para||[]); if(!q.length) return;
+      var mias=q.filter(function(i){ return Q.indexOf(i)>-1; }).length; if(!mias) return;
+      var k=x.v.c||'otro';
+      s[k]=(s[k]||0)+enReales(x.v)*tasa()*mias/q.length;
+    });
     return s;
   };
   function pintar(){ pintarCuentas(); pintarMaleta(); if(window.__pintarPresu) window.__pintarPresu(); }
