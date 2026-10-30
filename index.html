@@ -8,6 +8,21 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#fbf7f0">
+<script>
+/* modo oscuro: "auto" sigue al celular; "claro" u "oscuro" si lo eligen en Más */
+(function(){
+  var t='auto'; try{ t=localStorage.getItem('rio2026:tema')||'auto'; }catch(e){}
+  var mq=window.matchMedia ? matchMedia('(prefers-color-scheme: dark)') : null;
+  function aplicar(){
+    var osc = t==='oscuro' || (t==='auto' && mq && mq.matches);
+    document.documentElement.classList.toggle('oscuro', !!osc);
+    var m=document.querySelector('meta[name="theme-color"]'); if(m) m.setAttribute('content', osc ? '#11171b' : '#fbf7f0');
+  }
+  window.__tema=function(nuevo){ if(nuevo){ t=nuevo; try{ localStorage.setItem('rio2026:tema',t); }catch(e){} } aplicar(); return t; };
+  if(mq && mq.addEventListener) mq.addEventListener('change',aplicar);
+  aplicar();
+})();
+</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Río 2026">
@@ -396,6 +411,8 @@ body.tabs .tabbar{display:flex}
 .tasa{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:14px;color:var(--tx2)}
 .tasa input{width:80px;font-size:15px;font-weight:700;font-family:inherit;text-align:center;background:var(--card2);
   border:1px solid var(--line);border-radius:9px;padding:8px}
+.tinfo{font-size:13px;color:var(--tx2);margin-top:8px;line-height:1.45}
+.tbtn{background:none;border:0;padding:0;font:inherit;font-weight:700;cursor:pointer}
 .qconv{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px}
 .qconv div{background:var(--card2);border-radius:10px;padding:8px 6px;text-align:center;font-size:12.5px;color:var(--tx2);line-height:1.3}
 .qconv b{display:block;font-size:15px;color:var(--tx)}
@@ -491,6 +508,10 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
 .reglas{margin:0 0 0 18px;font-size:15px;color:var(--tx2)}
 .reglas li{margin-bottom:7px}
 .reglas b{color:var(--tx)}
+.nclima{flex:none;font-size:12.5px;font-weight:800;color:var(--tx2);background:var(--bg);border:1px solid var(--line);border-radius:100px;padding:2px 8px;white-space:nowrap}
+.hcard.cristo{border:2px solid var(--blue)}
+.hcard.cristo h3{color:var(--blue)}
+.hcard.cristo p{font-size:15px;color:var(--tx2);margin-top:6px}
 .navis{flex:none;font-size:12px;font-weight:800;color:var(--red);background:#fdeae8;border-radius:100px;padding:3px 8px;white-space:nowrap}
 .instbox{padding:4px 16px 14px 60px;font-size:14.5px;color:var(--tx2);border-top:1px solid var(--line)}
 .instbox p{margin-top:8px}
@@ -590,6 +611,54 @@ body.tabs section.on, body.tabs header.hero.on{animation:vista 180ms var(--ease-
   .gdel:active,.ph .hablar:active,.tabbar a:active,.mrow:active,.dayhead:active,.week li:active,.stops li:active,
   .tabbar a.on .ic{transform:none}
 }
+/* ===== MODO OSCURO =====
+   html.oscuro lo pone el script del <head>: automático según el
+   celular, o el que elijan en Más → Apariencia.                    */
+html.oscuro{
+  color-scheme:dark;
+  --bg:#11171b; --bg2:#182026; --card:#1a2329; --card2:#222d34;
+  --line:#33424c; --tx:#e8edf0; --tx2:#b6c3cb; --tx3:#8c9da7;
+  --gold:#e2a64b; --green:#5ccb8b; --blue:#6aa9ee; --red:#f08b85;
+  --purple:#b897e6; --teal:#4cc6be; --orange:#f2a263;
+  --mar:#4fb3d6; --arena:#3b3327; --selva:#7fcf9c;
+}
+html.oscuro .hero{background:radial-gradient(760px 320px at 12% 0%, rgba(31,143,78,.14), transparent 62%),
+  radial-gradient(700px 300px at 92% 8%, rgba(209,105,28,.16), transparent 62%),
+  linear-gradient(168deg,#0f2229 0%,#1a1712 62%,#14181b 100%)}
+html.oscuro .chip{background:rgba(255,255,255,.06)}
+html.oscuro .tabbar, html.oscuro .subbar, html.oscuro .jump{background:rgba(17,23,27,.94)}
+html.oscuro .edbar{background:rgba(17,23,27,.97)}
+html.oscuro .card, html.oscuro .mini, html.oscuro .hcard, html.oscuro .day{box-shadow:none}
+html.oscuro .dayhead:hover{background:#26323a}
+html.oscuro .pz{background:#1d3a29;color:#8fe0b0}
+html.oscuro .pz.alto{background:#3d2f14;color:#f0c27a}
+html.oscuro .opt{background:#2c3338;color:var(--tx2)}
+html.oscuro .mini.must{border-color:#8a4a46;background:#241a1a}
+html.oscuro .note{background:#16263a;border-color:#2c4a6b}
+html.oscuro .note.alert, html.oscuro .mv.no{background:#2c1a19;border-color:#6b3330}
+html.oscuro .note.tip, html.oscuro .mv.ok, html.oscuro .addr{background:#15291e;border-color:#2e5a40}
+html.oscuro .note.money{background:#2c2414;border-color:#6b5428}
+html.oscuro .mv.ok{color:#8fe0b0}
+html.oscuro .mv.dia{background:#2c2114;border-color:#6b4a28;color:#f2b77a}
+html.oscuro .mv.no{color:#f5a29d}
+html.oscuro .mv.mtr{background:#16263a;border-color:#2c4a6b;color:#9cc6f2}
+html.oscuro .probar-dia, html.oscuro .antojos{background:#2a2114;border-color:#5e4a27}
+html.oscuro .probar-dia li, html.oscuro .ant{border-color:#3d3220}
+html.oscuro .hcard.next{background:#12262a}
+html.oscuro .hcard.alerta{background:#231919;border-color:#6b3330}
+html.oscuro .hcard.alerta .av{border-color:#4a2a28}
+html.oscuro .mlist[style*="e0a09b"]{border-color:#6b3330 !important}
+html.oscuro .stops li.cur{background:#15291e}
+html.oscuro .tels a, html.oscuro .navis, html.oscuro .mrow .badge{background:#2c1a19}
+html.oscuro .zoomctl button{background:rgba(26,35,41,.92)}
+html.oscuro .taxi{background:var(--bg)}
+html.oscuro .tx-a{color:#fff}
+/* botones de color claro: texto oscuro para que se lea */
+html.oscuro .hbtn:not(.gh), html.oscuro .pbtn:not(.gh), html.oscuro .gbtn:not(.gh), html.oscuro .gobtn:not(.gh),
+html.oscuro .edbtn.pri, html.oscuro .saved, html.oscuro .reflowbar button{color:#0b1620}
+html.oscuro .gchip.on, html.oscuro .viewtabs button.on, html.oscuro .mapfilters button.on, html.oscuro .offline{color:var(--bg)}
+html.oscuro .week li.today .daynum{color:#062a28}
+html.oscuro .week li.today .daynum span{color:#0b3d3a}
 /* Más */
 .mgroup{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);margin:22px 0 8px}
 .mlist{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
@@ -669,7 +738,7 @@ body.tabs section.on, body.tabs header.hero.on{animation:vista 180ms var(--ease-
       <span class="chip">&#127749; Ocaso <b>18:37</b></span>
       <span class="chip">&#127860; <b>20.000&ndash;35.000</b> COP por plato</span>
       <span class="chip">&#128204; Con <b>direcciones exactas</b></span>
-      <span class="chip">&#128176; ~<b>R$ 2.611</b>/persona</span>
+      <span class="chip" id="chipPresu">&#128176; Presupuesto <b>18.000.000</b> COP</span>
     </div>
   </div>
 </header>
@@ -710,6 +779,7 @@ body.tabs section.on, body.tabs header.hero.on{animation:vista 180ms var(--ease-
   </div>
   <div class="mgroup">Herramientas</div>
   <div class="mlist">
+    <button class="mrow" id="masTema"><span class="mi">&#127769;</span><span class="mt"><b>Apariencia</b><span id="temaSub">Automática, según el celular</span></span><span class="chev">&#8250;</span></button>
     <button class="mrow js-ics"><span class="mi">&#128197;</span><span class="mt"><b>Agregar al calendario</b><span>Las reservas con hora fija, con alarma</span></span><span class="chev">&#8250;</span></button>
     <button class="mrow" id="masInst"><span class="mi">&#128242;</span><span class="mt"><b>Instalar en el celular</b><span id="instSub">Queda como app y funciona sin internet</span></span><span class="chev">&#8250;</span></button>
     <div class="instbox" id="instBox" hidden>
@@ -1123,6 +1193,7 @@ body.tabs section.on, body.tabs header.hero.on{animation:vista 180ms var(--ease-
         <li class="hi" data-min="45"><div class="hr">20:15</div><div class="bd"><div class="a">🍇 Açaí de premio · Polis Sucos</div><div class="mv ok">🚶 <b>De Havaianas, 300 m · 4 min.</b> Ipanema de noche se camina tranquilo por las calles comerciales.</div><div class="n">Rua Maria Quitéria 70, Ipanema — a 3 cuadras de Havaianas. Hacen el <b>tradicional sin azúcar</b>, que es el bueno. R$ 25–35.</div><div class="addr" data-orig="Rua Maria Quitéria 70, Ipanema" data-q="Polis Sucos, Rua Maria Quitéria 70, Ipanema, Rio de Janeiro"><div class="a1">📌 Rua Maria Quitéria 70, Ipanema</div><div class="a2">Açaí sin azúcar R$ 25-35 · abre hasta tarde</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Polis%20Sucos%2C%20Rua%20Maria%20Quit%C3%A9ria%2070%2C%20Ipanema%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Rua Maria Quitéria 70, Ipanema">Copiar dirección</button></div></div></div></li>
         <li data-min="60"><div class="hr">21:00</div><div class="bd"><div class="a">Metro General Osório → Catete</div><div class="mv ok">🚶 <b>De Polis Sucos a la estación, 400 m · 5 min</b>, y 20 min de metro.</div><div class="n">Línea 1 directa, ~20 min. Corre hasta medianoche. <b>Cenen liviano</b> — con el açaí y lo que comieron ya está, y Ipanema se sale del presupuesto de plato.</div></div></li>
       </ul>
+      <div class="note camara"><b>📹 Miren al Cristo en vivo antes de salir.</b> Si se ve metido en nube, no suban. <a class="lnk" target="_blank" rel="noopener" href="https://globalticket.com.br/temponocristo/">Tempo no Cristo</a> (cámaras del Trem do Corcovado) · <a class="lnk" target="_blank" rel="noopener" href="https://blog.paineirascorcovado.com.br/2023/07/04/ao-vivo-confira-condicoes-do-tempo-antes-de-visitar-o-cristo-redentor-e-morro-dois-irmaos/">Paineiras Corcovado</a> (cámaras en YouTube)</div>
       <div class="probar-dia"><div class="pdh">🍬 Para probar hoy en la zona</div><ul><li data-en="Mirante do Leblon"><span class="pe">🍪</span><span><b>Biscoito Globo + mate</b> · si pasa un vendedor por la playa de Leblon o Ipanema<small>R$ 10 · SÍ O SÍ</small></span></li><li data-en="Leblon"><span class="pe">🍹</span><span><b>Caipirinha de cachaça</b> · Academia da Cachaça, Leblon. Desde 1985<small>R$ 30–40</small></span></li><li data-en="Leblon"><span class="pe">🍢</span><span><b>Petiscos de bar</b> · para acompañar: coxinha, bolinho de bacalhau o torresmo</span></li><li data-en="Polis Sucos"><span class="pe">🍇</span><span><b>Açaí</b> · Polis Sucos, R. Maria Quitéria 70, Ipanema, a las 20:15<small>R$ 25–35</small></span></li><li data-en="Polis Sucos"><span class="pe">🥤</span><span><b>Jugos que no hay en Colombia</b> · también en Polis: maracujá, cajá o graviola</span></li></ul><a class="lnk" href="#probar">Toda la lista para probar</a></div>
       <div class="note alert"><b>Si amanece nublado, no suban.</b> El Cristo metido en nube no se ve y el boleto no se devuelve. Revisen la webcam del Corcovado antes de pedir el Uber; si está cerrado, cambien este día por el del 24 y vayan el jueves temprano.</div>
       <div class="note"><b>Plan B si no consiguen el turno de las 8:00:</b> las <b>vans oficiales salen de Largo do Machado desde las 7:00</b> — y Largo do Machado está a <b>5 minutos caminando del hotel</b>. Cuestan R$ 132, casi lo mismo que el tren, y se ahorran el traslado a Cosme Velho.</div>
@@ -1808,12 +1879,12 @@ body.tabs section.on, body.tabs header.hero.on{animation:vista 180ms var(--ease-
 
 <section id="plata">
   <div class="eyebrow">Números</div>
-  <h2>Presupuesto para 4 personas</h2>
-  <p class="lede">Sin vuelos ni hotel. Las cuentas en pesos usan <b>1 real ≈ 605 pesos colombianos</b>, la tasa de agosto 2026. En el convertidor de abajo pueden poner la tasa del día: el convertidor y el gasto por día se ajustan solos.</p>
+  <h2>Presupuesto y precios</h2>
+  <p class="lede">El presupuesto de ustedes tres, lo que cuesta cada día y los precios de referencia. Sin internet, las cuentas en pesos usan <b>1 real ≈ 605 pesos colombianos</b> (agosto 2026); con internet, la tasa del día.</p>
 
   <!-- Presupuesto en pesos colombianos. Cubre a data-personas viajeros
        (quiénes, se elige en Cuentas). Para cambiarlo, editen los data-*. -->
-  <div id="presu" hidden data-personas="3" data-total="18000000"
+  <div id="presu" hidden data-personas="3" data-total="18000000" data-plan-souvenirs-rs="400"
        data-vuelos="8682000" data-comida="4100000" data-mecatos="1100000"
        data-entradas="1090000" data-transporte="800000" data-souvenirs="1950000"></div>
   <div id="presuIn"></div>
@@ -1836,7 +1907,7 @@ body.tabs section.on, body.tabs header.hero.on{animation:vista 180ms var(--ease-
     <div class="note tip" style="margin-bottom:0"><b>Ya cabe en el presupuesto:</b> sale de los imprevistos (R$ 237 por persona). Precios de temporada alta en Copacabana, reportados en enero de 2026.</div>
   </div>
 
-  <h3 style="font-size:16px;margin:18px 0 10px;color:var(--tx2)" data-chip="Entradas">Entradas · por persona</h3>
+  <h3 style="font-size:16px;margin:18px 0 10px;color:var(--tx2)" data-chip="Entradas">Entradas · referencia por persona</h3>
   <div class="tw">
     <table>
       <thead><tr><th>Atracción</th><th>Día</th><th class="num">R$</th><th class="num">COP aprox.</th></tr></thead>
@@ -1852,9 +1923,8 @@ body.tabs section.on, body.tabs header.hero.on{animation:vista 180ms var(--ease-
     </table>
   </div>
   <p class="swipe">→ desliza la tabla para ver los pesos colombianos</p>
-  <div class="note tip"><b>Bajó R$ 80 por persona</b> (R$ 320 los cuatro) al quitar el Museo del Mañana y el Jardín Botánico.</div>
-
-  <h3 style="font-size:16px;margin:22px 0 10px;color:var(--tx2)" data-chip="Comida">Comida · por persona</h3>
+  
+  <h3 style="font-size:16px;margin:22px 0 10px;color:var(--tx2)" data-chip="Comida">Comida · referencia por persona</h3>
   <div class="tw">
     <table>
       <thead><tr><th>Concepto</th><th class="num">Unidad</th><th class="num">Total R$</th><th class="num">Total COP</th></tr></thead>
@@ -1862,30 +1932,14 @@ body.tabs section.on, body.tabs header.hero.on{animation:vista 180ms var(--ease-
         <tr><td>13 comidas normales</td><td class="num">~R$ 42</td><td class="num">546</td><td class="num">330.000</td></tr>
         <tr><td>Rodizio · 24 dic</td><td class="num">R$ 230</td><td class="num">230</td><td class="num">139.000</td></tr>
         <tr><td>Faenza · 25 dic</td><td class="num">R$ 155</td><td class="num">155</td><td class="num">94.000</td></tr>
-        <tr><td>Açaí, caipiriñas y snacks</td><td class="num">7 días</td><td class="num">200</td><td class="num">121.000</td></tr>
-        <tr class="tot"><td>Total comida</td><td class="num">—</td><td class="num">1.081</td><td class="num">654.000</td></tr>
+        <tr class="tot"><td>Total comida</td><td class="num">—</td><td class="num">931</td><td class="num">563.000</td></tr>
       </tbody>
     </table>
   </div>
   <p class="swipe">→ desliza la tabla</p>
 
-  <h3 style="font-size:16px;margin:22px 0 10px;color:var(--tx2)" data-chip="Total">Todo el viaje</h3>
-  <div class="tw">
-    <table>
-      <thead><tr><th>Rubro</th><th class="num">Por persona</th><th class="num">Los 4</th><th class="num">Los 4 en COP</th></tr></thead>
-      <tbody>
-        <tr><td>Entradas</td><td class="num">R$ 543</td><td class="num">R$ 2.172</td><td class="num">1.314.000</td></tr>
-        <tr><td>Comida</td><td class="num">R$ 1.081</td><td class="num">R$ 4.324</td><td class="num">2.616.000</td></tr>
-        <tr><td>Transporte</td><td class="num">R$ 350</td><td class="num">R$ 1.400</td><td class="num">847.000</td></tr>
-        <tr><td>Compras (SAARA + Havaianas)</td><td class="num">R$ 400</td><td class="num">R$ 1.600</td><td class="num">968.000</td></tr>
-        <tr><td>Imprevistos (10 %)</td><td class="num">R$ 237</td><td class="num">R$ 948</td><td class="num">574.000</td></tr>
-        <tr class="tot"><td>Total estimado</td><td class="num">R$ 2.611</td><td class="num">R$ 10.444</td><td class="num">6.319.000</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="swipe">→ desliza la tabla para ver los pesos colombianos</p>
-
-  <div class="note money"><b>Este presupuesto ya incluye</b> las <b>Havaianas</b> (R$ 100) y margen para <b>açaí y caipiriñas</b> (R$ 50). Todavía se puede recortar: <b>catorce cosas de este itinerario no cuestan nada</b> — Selarón, Arcos da Lapa, Parque das Ruínas, Aterro do Flamengo, Pedra do Sal, Pista Cláudio Coutinho, Praia Vermelha, Mureta da Urca, Parque Lage, la Lagoa, el Arpoador, el Mural Etnias, Quinta da Boa Vista y el Mirante do Pasmado.</div>
+  
+  <div class="note money"><b>Para ahorrar:</b> <b>catorce cosas de este itinerario no cuestan nada</b> — Selarón, Arcos da Lapa, Parque das Ruínas, Aterro do Flamengo, Pedra do Sal, Pista Cláudio Coutinho, Praia Vermelha, Mureta da Urca, Parque Lage, la Lagoa, el Arpoador, el Mural Etnias, Quinta da Boa Vista y el Mirante do Pasmado.</div>
 
   <div class="grid" style="margin-top:16px">
     <div class="mini">
@@ -3042,6 +3096,17 @@ window.__contraerDias();
     hd.insertBefore(s, ar);
   });
 
+  (function(){
+    var TXT={auto:'Automática, según el celular', claro:'Siempre clara', oscuro:'Siempre oscura'}, ORDEN=['auto','oscuro','claro'];
+    var sub=document.getElementById('temaSub'), b=document.getElementById('masTema');
+    if(!b || !window.__tema) return;
+    sub.textContent=TXT[window.__tema()]||TXT.auto;
+    b.addEventListener('click',function(){
+      var t=ORDEN[(ORDEN.indexOf(window.__tema())+1)%ORDEN.length];
+      window.__tema(t); sub.textContent=TXT[t];
+    });
+  })();
+
   document.getElementById('masEdit').addEventListener('click',function(){
     ir('#dias', function(){ arriba(0); var b=document.getElementById('edOn'); if(b) b.click(); });
   });
@@ -3128,6 +3193,11 @@ window.__contraerDias();
       if(doc) html+='<div class="hcard alerta"><h3>🛂 Lo obligatorio para viajar</h3><div class="av">'+doc.innerHTML+'</div>'
         +'<div class="hbtns"><a class="hbtn gh" href="#documentos">Ver documentos</a></div></div>';
       html+='<div class="hbtns" style="margin-top:12px"><a class="hbtn gh" href="#plata">💰 Presupuesto</a><a class="hbtn gh" href="#reservas">📋 Reservas</a></div>';
+      if(window.__climaDe && window.__climaDe(20)){
+        html+='<div class="hcard"><h3>🌦️ Pronóstico de la semana</h3>'+[20,21,22,23,24,25,26].map(function(d){
+          var t=window.__climaTexto(d); return t ? '<div class="prow"><span>'+d+' dic</span><b>'+t+'</b></div>' : '';
+        }).join('')+'<p class="gnota">Open-Meteo · se actualiza solo. El de los últimos días cambia mucho: mírenlo de nuevo la semana antes.</p></div>';
+      }
       html+=reglas();
       html+=semana(null);
     }
@@ -3139,6 +3209,14 @@ window.__contraerDias();
       if(titulo) html+='<div class="big">'+esc(titulo.dt)+'</div><div class="hsub">'+esc(titulo.dd)+'</div>';
       var gd=gastoPorDia().filter(function(g){ return g.num===now.d; })[0];
       if(gd && gd.max) html+='<div class="hoymoney"><span>💰 Hoy, por persona: <b>'+rtxt([gd.min,gd.max])+'</b> · ≈ '+cop(gd.min)+(gd.max!==gd.min?'–'+cop(gd.max):'')+' COP</span></div>';
+      if(window.__climaTexto && window.__climaTexto(now.d)) html+='<div class="hoymoney"><span>'+window.__climaTexto(now.d)+'</span></div>';
+      var cristoHoy = now.d===23 && now.min<11*60, cristoMan = now.d===22;
+      if(cristoHoy || cristoMan){
+        var nb=window.__nubesCristo ? window.__nubesCristo() : null, cam=document.querySelector('#dias .note.camara');
+        html+='<div class="hcard cristo"><h3>⛰️ '+(cristoHoy?'Hoy':'Mañana')+' suben al Cristo</h3>'
+          +(nb!=null ? '<p>Nubes pronosticadas de 6:00 a 10:00: <b>'+nb+' %</b>. '+(nb>=70?'⚠️ Puede estar tapado: miren la cámara antes de pedir el Uber.':nb>=40?'Puede haber nubes: miren la cámara antes de salir.':'✓ Pinta despejado.')+'</p>' : '')
+          +(cam ? '<p>'+cam.innerHTML+'</p>' : '')+'</div>';
+      }
       if(gd && gd.playa) html+='<div class="note money" style="margin-top:12px"><b>🏖️ Hoy es playa.</b> Pidan el kit en recepción. Si no hay, lleven <b>R$ 45 en efectivo por persona</b> para sillas y sombrilla. <a class="lnk" href="#playa">Ver precios</a></div>';
       var paradas=[];
       hoy.forEach(function(x){
@@ -3186,6 +3264,7 @@ window.__contraerDias();
       }
       hoy.forEach(function(x){ var pr=x.card.querySelector('.probar-dia:not(.todo-puesto)'); if(pr) html+=pr.outerHTML; });
       if(man) html+='<div class="hcard"><h3>Mañana · '+esc(SEMANA[man.sem]||man.sem)+' '+man.num+'</h3><div class="w1" style="font-weight:700">'+esc(man.dt)+'</div><div class="hsub" style="font-size:14.5px">'+esc(man.dd)+'</div>'
+        +(window.__climaTexto && window.__climaTexto(man.num) ? '<div class="hsub" style="font-size:14px;margin-top:6px">'+window.__climaTexto(man.num)+'</div>' : '')
         +'<div class="hbtns"><button class="hbtn gh full" data-day="'+D.indexOf(man)+'">Ver el día</button></div></div>';
       html+=reglas();
       html+=semana(now.d);
@@ -3204,10 +3283,25 @@ window.__contraerDias();
     var m=/1 real ≈ ([\d.]+)/.exec((document.querySelector('#plata .lede')||{}).textContent||'');
     return m ? +m[1].replace(/\./g,'') : 605;
   }
-  function tasa(){
-    var t=null; try{ t=parseFloat(localStorage.getItem(TASA_KEY)); }catch(e){}
-    return t>0 ? t : tasaBase();
+  /* la tasa: la que pongan a mano > la del día (internet) > la de agosto */
+  var AUTO_KEY='rio2026:tasa:auto';
+  function tasaAuto(){ try{ var a=JSON.parse(localStorage.getItem(AUTO_KEY)||'null'); if(a && a.v>0) return a; }catch(e){} return null; }
+  function tasaMano(){ var t=null; try{ t=parseFloat(localStorage.getItem(TASA_KEY)); }catch(e){} return t>0 ? t : null; }
+  function tasa(){ var m=tasaMano(); if(m) return m; var a=tasaAuto(); return a ? a.v : tasaBase(); }
+  window.__tasa=tasa;
+  function traerTasa(forzar){
+    if(navigator.onLine===false) return;
+    var a=tasaAuto();
+    if(!forzar && a && Date.now()-a.t < 6*3600e3) return;   /* se pide máximo cada 6 horas */
+    fetch('https://open.er-api.com/v6/latest/BRL').then(function(r){ return r.json(); }).then(function(j){
+      var v=j && j.result==='success' && j.rates && j.rates.COP;
+      if(!(v>0)) return;
+      try{ localStorage.setItem(AUTO_KEY, JSON.stringify({v:Math.round(v*10)/10, t:Date.now()})); }catch(e){}
+      if(actual==='plata') pintarPlata();
+      if(actual==='hoy') pintarHoy();
+    }).catch(function(){});
   }
+  window.addEventListener('online',function(){ traerTasa(); });
   function fmt(n){ return Math.round(n).toLocaleString('es-CO'); }
   function cop(r){ var n=r*tasa(); return fmt(n>=10000 ? Math.round(n/1000)*1000 : Math.round(n/100)*100); }
   /* "R$ 30–45 · 18.000…" → [30,45] */
@@ -3285,9 +3379,9 @@ window.__contraerDias();
       var k = it.antojo ? 'mecatos' : it.ic==='🎟️' ? 'entradas' : (it.ic==='🚖'||it.ic==='🚇') ? 'transporte' : 'comida';
       e[k][0]+=it.r[0]*np; e[k][1]+=it.r[1]*np;
     }); });
-    var tr=[].slice.call(document.querySelectorAll('#plata table tr')).filter(function(t){ return /Compras \(SAARA/.test(t.textContent); })[0];
-    var v=tr && parseFloat(((tr.children[2]||{}).textContent||'').replace(/[^\d]/g,''));
-    if(v>0) e.souvenirs=[v/4*np, v/4*np];   /* la tabla trae el valor de los cuatro */
+    /* compras del plan (SAARA + Havaianas), por persona */
+    var pr=document.getElementById('presu'), v=pr ? parseFloat(pr.getAttribute('data-plan-souvenirs-rs')) : 0;
+    if(v>0) e.souvenirs=[v*np, v*np];
     return e;
   }
   function personasPresu(){ var d=document.getElementById('presu'); return (d && parseInt(d.getAttribute('data-personas'),10)) || 4; }
@@ -3326,6 +3420,11 @@ window.__contraerDias();
       +'<p class="gnota">"El plan calcula" suma los precios del itinerario para '+NUM[np]+' personas, a 1 R$ = '+fmt(tasa())+' COP. "Gastado" sale de lo que anoten en <a class="lnk" href="#cuentas">Cuentas</a>: solo la parte de quienes entran en el presupuesto.</p></div>';
   }
   window.__pintarPresu=pintarPresu;
+  (function(){
+    var d=document.getElementById('presu'), c=document.getElementById('chipPresu');
+    var t=d && parseFloat(d.getAttribute('data-total'));
+    if(c && t) c.innerHTML='&#128176; Presupuesto <b>'+fmt(t)+'</b> COP';
+  })();
 
   function pintarPlata(){
     pintarPresu();
@@ -3336,18 +3435,14 @@ window.__contraerDias();
       +'<div class="conv"><div><label for="cvR">Reales R$</label><input id="cvR" type="number" inputmode="decimal" placeholder="0"></div>'
       +'<div class="eq">=</div><div><label for="cvC">Pesos COP</label><input id="cvC" type="number" inputmode="numeric" placeholder="0"></div></div>'
       +'<div class="qconv">'+[5,10,20,50,100,200].map(function(v){ return '<div><b>R$ '+v+'</b>'+cop(v)+'</div>'; }).join('')+'</div>'
-      +'<div class="tasa">Tasa: 1 R$ = <input id="cvT" type="number" inputmode="numeric" value="'+tasa()+'"> COP</div></div>';
-    /* total */
-    var tTot=[].slice.call(document.querySelectorAll('#plata table')).filter(function(t){ return /Rubro/.test(t.textContent); })[0];
-    var fila=tTot && tTot.querySelector('tr.tot');
-    if(fila){
-      var c=fila.children;
-      html+='<div class="hcard"><h3>Todo el viaje · estimado</h3><div class="tot3">'
-        +'<div><b>'+esc(c[1].textContent)+'</b>por persona</div>'
-        +'<div><b>'+esc(c[2].textContent)+'</b>los cuatro</div>'
-        +'<div><b>'+esc(c[3].textContent)+'</b>COP los cuatro</div></div>'
-        +'<div class="hbtns"><a class="hbtn gh full" href="#plataDet">Ver el detalle</a></div></div>';
-    }
+      +'<div class="tasa">Tasa: 1 R$ = <input id="cvT" type="number" inputmode="decimal" value="'+tasa()+'"> COP</div>'
+      +(function(){
+          var a=tasaAuto(), m=tasaMano();
+          if(m) return '<div class="tinfo">Puesta a mano.'+(a?' La del día es '+a.v+'.':'')+' <button class="lnk tbtn" id="cvAuto">Usar la del día</button></div>';
+          if(a){ var d=new Date(a.t); return '<div class="tinfo">✓ Tasa del día, actualizada '+d.getDate()+'/'+(d.getMonth()+1)+' a las '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+'. Si su banco les da otra, escríbanla.</div>'; }
+          return '<div class="tinfo">Sin internet todavía: se usa la de agosto. Apenas haya señal se actualiza sola.</div>';
+        })()
+      +'</div>';
     /* por día */
     var G=gastoPorDia(), smin=0, smax=0;
     html+='<div class="hcard"><h3 id="pDia" data-chip="Cada día">Lo que cuesta cada día · por persona</h3>'
@@ -3398,6 +3493,11 @@ window.__contraerDias();
 
   /* al terminar de escribir la tasa, el gasto por día se vuelve a calcular en pesos */
   document.addEventListener('change',function(e){ if(e.target.id==='cvT') pintarPlata(); });
+  document.addEventListener('click',function(e){
+    if(e.target.id!=='cvAuto') return;
+    try{ localStorage.removeItem(TASA_KEY); }catch(err){}
+    pintarPlata(); traerTasa(true);
+  });
 
   /* ---------- tablas como tarjetas: cada celda lleva el nombre de su columna ---------- */
   [].slice.call(document.querySelectorAll('.tw table')).forEach(function(t){
@@ -3472,6 +3572,8 @@ window.__contraerDias();
   if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost')){
     window.addEventListener('load',function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
   }
+
+  traerTasa();
 
   window.addEventListener('hashchange',mostrar);
   body.classList.add('tabs');
@@ -3565,7 +3667,7 @@ window.__contraerDias();
   /* ---------- nombres ---------- */
   function nombres(){ var a=[]; for(var i=0;i<4;i++) a.push(val('n',''+i) || ('Viajero '+(i+1))); return a; }
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
-  function tasa(){ var t=null; try{ t=parseFloat(localStorage.getItem('rio2026:tasa')); }catch(e){} return t>0 ? t : 605; }
+  function tasa(){ if(window.__tasa) return window.__tasa(); var t=null; try{ t=parseFloat(localStorage.getItem('rio2026:tasa')); }catch(e){} return t>0 ? t : 605; }
   function fmt(n, dec){ return n.toLocaleString('es-CO',{minimumFractionDigits:dec||0, maximumFractionDigits:dec||0}); }
   function reales(n){ return 'R$ '+fmt(Math.round(n*100)/100, (Math.round(n)===Math.round(n*100)/100)?0:2); }
   function pesos(n){ var c=n*tasa(); return fmt(c>=10000 ? Math.round(c/1000)*1000 : Math.round(c/100)*100); }
@@ -4003,6 +4105,81 @@ window.__contraerDias();
     var t=null;
     new MutationObserver(function(){ clearTimeout(t); t=setTimeout(colocar,200); }).observe(dias,{childList:true,subtree:true});
   }
+})();
+</script>
+
+<script>
+/* ============================================================
+   CLIMA · pronóstico de Open-Meteo (gratis, sin cuenta)
+   Solo llega 16 días adelante: se pide desde el 5 de diciembre.
+   Se guarda en el celular, así se ve también sin señal.
+   ============================================================ */
+(function(){
+  var KEY='rio2026:clima', LAT=-22.93, LON=-43.18;
+  var URL='https://api.open-meteo.com/v1/forecast?latitude='+LAT+'&longitude='+LON
+    +'&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
+    +'&hourly=cloud_cover&timezone=America%2FSao_Paulo&start_date=2026-12-20&end_date=2026-12-26';
+  function codigo(c){
+    if(c===0) return ['☀️','Despejado'];
+    if(c===1) return ['🌤️','Casi despejado'];
+    if(c===2) return ['⛅','Parcialmente nublado'];
+    if(c===3) return ['☁️','Nublado'];
+    if(c===45||c===48) return ['🌫️','Niebla'];
+    if(c>=51&&c<=57) return ['🌦️','Llovizna'];
+    if(c>=61&&c<=67) return ['🌧️','Lluvia'];
+    if(c>=80&&c<=82) return ['🌦️','Aguaceros'];
+    if(c>=95) return ['⛈️','Tormenta'];
+    return ['🌡️',''];
+  }
+  function leer(){ try{ return JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){ return null; } }
+  /* {e, txt, max, min, p} del día 20..26, o null */
+  window.__climaDe=function(d){
+    var c=leer(), x=c && c.d && c.d[d]; if(!x) return null;
+    var k=codigo(x.c); return {e:k[0], txt:k[1], max:x.max, min:x.min, p:x.p};
+  };
+  /* nubes promedio el 23 entre 6:00 y 10:00 (subida al Cristo) */
+  window.__nubesCristo=function(){ var c=leer(); return c && typeof c.cr==='number' ? c.cr : null; };
+  window.__climaTexto=function(d){
+    var x=window.__climaDe(d); if(!x) return '';
+    return x.e+' '+x.txt+' · '+Math.round(x.max)+'° / '+Math.round(x.min)+'°'+(x.p!=null?' · lluvia '+x.p+'%':'');
+  };
+  function marcarDias(){
+    [].slice.call(document.querySelectorAll('#dias .day')).forEach(function(card){
+      var n=+((card.querySelector('.daynum b')||{}).textContent||0), x=window.__climaDe(n);
+      var hd=card.querySelector('.dayhead'), ar=hd && hd.querySelector('.arrow'), s=hd && hd.querySelector('.nclima');
+      if(!x){ if(s) s.remove(); return; }
+      if(!s){ s=document.createElement('span'); s.className='nclima'; hd.insertBefore(s, hd.querySelector('.navis')||ar); }
+      s.textContent=x.e+' '+Math.round(x.max)+'°';
+      s.title=window.__climaTexto(n);
+    });
+  }
+  function pedir(){
+    if(navigator.onLine===false) return;
+    var hoy=new Date(Date.now()-3*3600e3);                    /* fecha de Río */
+    var desde=Date.UTC(2026,11,5), hasta=Date.UTC(2026,11,27);
+    var t=Date.UTC(hoy.getUTCFullYear(),hoy.getUTCMonth(),hoy.getUTCDate());
+    if(t<desde || t>hasta) return;
+    var c=leer(); if(c && Date.now()-c.t < 3*3600e3) return;  /* máximo cada 3 horas */
+    fetch(URL).then(function(r){ return r.json(); }).then(function(j){
+      if(!j || !j.daily || !j.daily.time) return;
+      var d={};
+      j.daily.time.forEach(function(f,i){
+        d[+f.slice(8,10)]={c:j.daily.weather_code[i], max:j.daily.temperature_2m_max[i], min:j.daily.temperature_2m_min[i],
+                           p:(j.daily.precipitation_probability_max||[])[i]};
+      });
+      var cr=null, hs=(j.hourly && j.hourly.time)||[], cc=(j.hourly && j.hourly.cloud_cover)||[], suma=0, n=0;
+      hs.forEach(function(f,i){ if(f.slice(0,10)==='2026-12-23' && +f.slice(11,13)>=6 && +f.slice(11,13)<=10 && cc[i]!=null){ suma+=cc[i]; n++; } });
+      if(n) cr=Math.round(suma/n);
+      try{ localStorage.setItem(KEY, JSON.stringify({t:Date.now(), d:d, cr:cr})); }catch(e){}
+      marcarDias();
+      if(window.__pintarHoy) window.__pintarHoy();
+    }).catch(function(){});
+  }
+  marcarDias();
+  if(leer() && window.__pintarHoy) window.__pintarHoy();   /* Hoy se pintó antes de tener el clima guardado */
+  pedir();
+  window.addEventListener('online', pedir);
+  window.addEventListener('focus', pedir);
 })();
 </script>
 
