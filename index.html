@@ -1767,8 +1767,8 @@ details.lluvia li{margin-bottom:6px}
 
   <!-- Presupuesto en pesos colombianos. Cubre a data-personas viajeros
        (quiénes, se elige en Cuentas). Para cambiarlo, editen los data-*. -->
-  <div id="presu" hidden data-personas="3"
-       data-vuelos="8682000" data-comida="4100000" data-mecatos="1000000"
+  <div id="presu" hidden data-personas="3" data-total="18000000"
+       data-vuelos="8682000" data-comida="4100000" data-mecatos="1100000"
        data-entradas="1090000" data-transporte="800000" data-souvenirs="1950000"></div>
   <div id="presuIn"></div>
   <div id="plataIn"></div>
@@ -3257,6 +3257,13 @@ window.__contraerDias();
         +(g ? '<div class="pbar"><i style="width:'+pct+'%"'+(g>p?' class="over"':'')+'></i></div><div class="pc3">Gastado: '+fmt(Math.round(g))+' · '+(g>p?'se pasaron por '+fmt(Math.round(g-p)):'quedan '+fmt(Math.round(p-g)))+'</div>' : '')
         +'</div>';
     }).join('');
+    /* si el total es mayor que la suma de las categorías, la diferencia queda para imprevistos */
+    var Tt=parseFloat(d.getAttribute('data-total'))||0, libre=Tt-T;
+    if(libre>0){
+      filas+='<div class="pcat"><div class="pc1"><span>🧯 Imprevistos · sin asignar</span><b>'+fmt(libre)+'</b></div>'
+        +'<div class="pc2">Colchón para lo que se pase en otra categoría</div></div>';
+      T=Tt;
+    }
     var np=personasPresu(), quien=(window.__quienesPresu ? window.__quienesPresu() : null);
     box.innerHTML='<div class="hcard" style="margin-top:0"><h3 id="pPresu" data-chip="💼 Presupuesto">💼 Nuestro presupuesto · '+(np===1?'una persona':'para '+NUM[np])+'</h3>'
       +'<div class="ptot"><b>'+fmt(T)+' COP</b><span>≈ R$ '+fmt(Math.round(T/tasa()))+' · '+fmt(Math.round(T/np))+' COP por persona</span>'
