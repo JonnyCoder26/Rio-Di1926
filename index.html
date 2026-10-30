@@ -3307,10 +3307,10 @@ window.__contraerDias();
       +'<div class="prow tot"><span>Suma de los días</span><b>'+rtxt([smin,smax])+'</b></div>'
       + (function(){
           var a0=0,a1=0; G.forEach(function(g){ g.items.forEach(function(it){ if(it.antojo){ a0+=it.r[0]; a1+=it.r[1]; } }); });
-          var fila=[].slice.call(document.querySelectorAll('#plata table tr')).filter(function(tr){ return /Açaí, caipiriñas y snacks/.test(tr.textContent); })[0];
-          var pres=fila ? parseFloat((fila.children[2]||{}).textContent) : 0;
-          if(!a1 || !pres || a0<=pres) return '';
-          return '<div class="note money" style="margin:12px 0 0"><b>Ojo con los antojos:</b> el presupuesto de abajo calculó <b>R$ '+fmt(pres)+' por persona</b> para açaí, caipiriñas y snacks en toda la semana. Si prueban todo lo de la lista son <b>'+rtxt([a0,a1])+'</b>. Elijan, o súmenle la diferencia.</div>';
+          /* contra el presupuesto de mecatos del grupo (por persona, en reales) */
+          var pr=document.getElementById('presu'), pres=pr ? (parseFloat(pr.getAttribute('data-mecatos'))||0)/4/tasa() : 0;
+          if(!a1 || !pres || a1<=pres) return '';
+          return '<div class="note money" style="margin:12px 0 0"><b>Ojo con los antojos:</b> para mecatos tienen <b>'+rtxt([pres,pres])+' por persona</b> ('+fmt(Math.round(pres*tasa()))+' COP). Si prueban todo lo de la lista son <b>'+rtxt([a0,a1])+'</b>'+(a0<=pres?': alcanza si no repiten.':'. Elijan qué probar.')+'</div>';
         })()
       +'<p style="font-size:13.5px;color:var(--tx2);margin-top:8px">Sale de los precios que ya tiene el itinerario: entradas, comidas, Uber (dividido entre los cuatro), metro y los antojos de cada día (açaí, caipirinha, mecatos). Lo que no tiene precio no se suma. No incluye compras.</p></div>';
     box.innerHTML=html;
