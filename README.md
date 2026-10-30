@@ -60,6 +60,13 @@ Mientras no corran el SQL, la página sigue guardando como antes.
   con alarma, sacadas del itinerario.
 - **🔊 Frases**: tocar una frase la dice en portugués.
 - **🌧️ ¿Está lloviendo?** en Hoy: el plan B de lluvia.
+- **💱 Tasa del día**: con internet, la página trae la tasa real a pesos
+  (open.er-api.com, máximo cada 6 horas). Si la escriben a mano, manda
+  la de ustedes. Sin internet usa la última que guardó (o 605).
+- **🌦️ Clima**: pronóstico de Open-Meteo en Hoy y en cada día, desde el
+  5 de diciembre (no da más de 16 días adelante). El día 22 y el 23
+  avisa las nubes de la mañana para el Cristo, con las cámaras en vivo.
+- **🌙 Apariencia** (Más): automática según el celular, clara u oscura.
 
 ## Editar
 
