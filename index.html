@@ -2895,12 +2895,15 @@ window.__contraerDias();
     var cards=[].slice.call(document.querySelectorAll('#dias .day')), destino=cards[+g('pfDia').value], ul=destino && destino.querySelector('[data-tl]');
     var hr=g('pfHr').value, viejoUl=li.parentNode, hrEl=li.querySelector('.hr');
     if(!hrEl){ hrEl=el('div',{'class':'hr'}); li.insertBefore(hrEl, li.firstChild); }
+    var hrVieja=(hrEl.textContent||'').trim();
     if(hr) hrEl.textContent=hr;
-    if(ul && ul!==viejoUl){
+    /* si cambió el día o la hora, la parada se acomoda en el orden de la hora (así cambia también su número en el mapa) */
+    var dest=ul||viejoUl;
+    if(dest && (dest!==viejoUl || (hr && hr!==hrVieja.padStart(5,'0')))){
       var mins=function(t){ var m=/(\d{1,2}):(\d{2})/.exec(t||''); return m ? (+m[1])*60+(+m[2]) : 9999; }, antes=null;
-      [].slice.call(ul.children).some(function(x){ if(mins((x.querySelector('.hr')||{}).textContent)>mins(hr)){ antes=x; return true; } return false; });
-      ul.insertBefore(li, antes);
-      destino.classList.add('open');
+      [].slice.call(dest.children).some(function(x){ if(x!==li && x.tagName==='LI' && mins((x.querySelector('.hr')||{}).textContent)>mins(hr||hrVieja)){ antes=x; return true; } return false; });
+      if(antes!==li.nextElementSibling || dest!==viejoUl) dest.insertBefore(li, antes);
+      if(dest!==viejoUl && destino) destino.classList.add('open');
     }
     hoja.hidden=true; editando=null; nueva=false;
     montar();
