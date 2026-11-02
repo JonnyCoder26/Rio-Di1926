@@ -717,6 +717,25 @@ html.oscuro .leaflet-container .mpop a.hbtn:not(.gh){color:#0b1620}
 .mit .mnm small{display:block;font-size:12px;color:var(--tx3)}
 html.oscuro .mk{border-color:#11171b}
 html.oscuro .mk.hotel, html.oscuro .mk.extra{background:#e8edf0}
+/* Tira de días */
+.dstrip{position:sticky;top:0;z-index:45;margin:0 -16px 14px;padding:8px 16px;background:rgba(251,247,240,.96);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+html.oscuro .dstrip{background:rgba(17,23,27,.94)}
+.dsin{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.dsin::-webkit-scrollbar{display:none}
+.dchip{flex:1 0 auto;min-width:46px;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border:1px solid var(--line);background:var(--card);color:var(--tx);border-radius:12px;font:inherit;cursor:pointer;padding:4px 6px;
+  transition:transform 120ms var(--ease-out),background-color 150ms ease,color 150ms ease}
+.dchip span{font-size:10.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--tx3)}
+.dchip b{font-size:18px;line-height:1.1}
+.dchip.on{background:var(--tx);border-color:var(--tx);color:var(--bg)}
+.dchip.on span{color:var(--bg);opacity:.75}
+.dchip.hoy{border:2px solid var(--teal)}
+.dchip:active{transform:scale(.96)}
+details.leyenda{padding:12px 16px}
+details.leyenda summary{cursor:pointer;font-weight:700;font-size:15px;list-style:none;min-height:24px}
+details.leyenda summary::-webkit-details-marker{display:none}
+details.leyenda .ley{margin-top:10px}
 /* Más */
 .mgroup{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);margin:22px 0 8px}
 .mlist{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
@@ -820,7 +839,7 @@ html.oscuro .mk.hotel, html.oscuro .mk.extra{background:#e8edf0}
   </div>
   <div class="mgroup">En Río</div>
   <div class="mlist">
-    <a class="mrow" href="#mapa-sec"><span class="mi">&#128506;&#65039;</span><span class="mt"><b>Mapa</b><span>Los 54 sitios y cómo cargarlos en Google Maps</span></span><span class="chev">&#8250;</span></a>
+    <a class="mrow" href="#comer"><span class="mi">&#127860;</span><span class="mt"><b>Comer y probar</b><span>Restaurantes, açaí, caipiriñas y lo que hay que probar</span></span><span class="chev">&#8250;</span></a>
     <a class="mrow" href="#moverse"><span class="mi">&#128647;</span><span class="mt"><b>Cómo moverse</b><span>Metro, Uber y bonde</span></span><span class="chev">&#8250;</span></a>
     <a class="mrow" href="#frases"><span class="mi">&#128483;&#65039;</span><span class="mt"><b>Frases</b><span>Portugués de supervivencia</span></span><span class="chev">&#8250;</span></a>
   </div>
@@ -1021,14 +1040,13 @@ html.oscuro .mk.hotel, html.oscuro .mk.extra{background:#e8edf0}
 <section id="dias">
   <div class="eyebrow">El plan</div>
   <h2>Día por día</h2>
-  <p class="lede">Toca cada día para abrirlo. Las ★ son los momentos que no se pueden perder, y <b>cada parada dice cómo se llega desde la anterior</b> y si ese tramo se camina tranquilo.</p>
-  <div class="card" style="padding:14px 16px;margin-bottom:16px">
-    <h3 style="font-size:15px;margin-bottom:10px">Cómo leer los tramos</h3>
+  <p class="lede">Toquen un día en la tira de arriba para ir directo a él. Las ★ son los momentos que no se pueden perder, y <b>cada parada dice cómo se llega desde la anterior</b> y si ese tramo se camina tranquilo.</p>
+  <details class="card leyenda"><summary>🚶 ¿Qué significan los colores de los tramos?</summary><div class="ley">
     <div class="mv ok">🚶 <b>Verde</b> — se camina tranquilo, incluso de noche</div>
     <div class="mv dia" style="margin-top:7px">🚶 <b>Amarillo</b> — se camina, pero solo de día y con cabeza</div>
     <div class="mv no" style="margin-top:7px">🚖 <b>Rojo</b> — este tramo no se camina, Uber</div>
     <div class="mv mtr" style="margin-top:7px">🚇 <b>Azul</b> — metro o transporte</div>
-  </div>
+  </div></details>
 
   <div class="sunbar">
     <span>🌅 Amanece <b>05:05</b></span>
@@ -2795,7 +2813,7 @@ window.__contraerDias();
 <div class="tabbar" id="tabbar" role="navigation" aria-label="Secciones">
   <a href="#hoy" data-tab="hoy"><span class="ic">&#128205;</span>Hoy</a>
   <a href="#dias" data-tab="dias"><span class="ic">&#128197;</span>Días</a>
-  <a href="#comer" data-tab="comer"><span class="ic">&#127860;</span>Comer</a>
+  <a href="#mapa-sec" data-tab="mapa-sec"><span class="ic">&#128506;&#65039;</span>Mapa</a>
   <a href="#plata" data-tab="plata"><span class="ic">&#128176;</span>Plata</a>
   <a href="#mas" data-tab="mas"><span class="ic">&#9776;</span>Más</a>
 </div>
@@ -2809,12 +2827,14 @@ window.__contraerDias();
   var TABS = {
     hoy:   ['hoy'],
     dias:  ['dias','editar'],
-    comer: ['probar','comer'],
+    'mapa-sec': ['mapa-sec'],
     plata: ['cuentas','plata'],
     mas:   ['mas']
   };
   /* páginas que se abren desde "Más" */
-  var SUB = ['maleta','mapa-sec','documentos','reservas','moverse','caminar','cuidado','frases','souvenirs','datos'];
+  /* subpáginas de Más que muestran varias secciones juntas */
+  var SUBG = {comer:['probar','comer']}, SUBT = {comer:'Comer y probar'};
+  var SUB = ['maleta','documentos','reservas','moverse','caminar','cuidado','frases','souvenirs','datos'];
   var body=document.body, hero=document.querySelector('header.hero'), foot=document.querySelector('footer');
   var subbar=document.getElementById('subbar'), subtit=document.getElementById('subtit');
   var tabLinks=[].slice.call(document.querySelectorAll('#tabbar a'));
@@ -2826,6 +2846,8 @@ window.__contraerDias();
   }
   function destino(id){
     if(TABS[id]) return {tab:id, key:id};
+    if(SUBG[id]) return {tab:'mas', sub:id, key:id};
+    for(var g in SUBG) if(SUBG[g].indexOf(id)>-1) return {tab:'mas', sub:g, key:g, el:document.getElementById(id)};
     if(SUB.indexOf(id)>-1) return {tab:'mas', sub:id, key:id};
     var el=id && document.getElementById(id), s=seccionDe(el);
     if(s && s!==id) { var d=destino(s); d.el=el; return d; }
@@ -2836,7 +2858,7 @@ window.__contraerDias();
   function mostrar(){
     var id=decodeURIComponent(location.hash.slice(1)), d=destino(id);
     if(actual) scrolls[actual]=window.scrollY;
-    var visibles = d.sub ? [d.sub] : TABS[d.tab];
+    var visibles = d.sub ? (SUBG[d.sub] || [d.sub]) : TABS[d.tab];
     [].slice.call(document.querySelectorAll('section')).forEach(function(s){
       s.classList.toggle('on', visibles.indexOf(s.id)>-1);
     });
@@ -2844,7 +2866,7 @@ window.__contraerDias();
     if(hero) hero.classList.toggle('on', d.tab==='hoy' && !enViaje());
     if(foot) foot.classList.toggle('on', d.tab==='mas' && !d.sub);
     subbar.classList.toggle('on', !!d.sub);
-    if(d.sub){ var h2=document.querySelector('#'+d.sub+' h2'); subtit.textContent = h2 ? h2.textContent : ''; }
+    if(d.sub){ var h2=document.querySelector('#'+visibles[0]+' h2'); subtit.textContent = SUBT[d.sub] || (h2 ? h2.textContent : ''); }
     tabLinks.forEach(function(a){ a.classList.toggle('on', a.getAttribute('data-tab')===d.tab); });
     if(d.tab==='hoy') pintarHoy();
     if(d.tab==='mas') pintarPendientes();
@@ -2907,6 +2929,50 @@ window.__contraerDias();
     b.addEventListener('click',function(){ var n=+((c.querySelector('.daynum b')||{}).textContent||0); if(window.__mapaVer) window.__mapaVer({dia:n}); });
     body.insertBefore(b, ul);
   });
+
+  /* ---------- Días: tira fija para saltar a un día ---------- */
+  (function(){
+    var sec=document.getElementById('dias'), primera=sec && sec.querySelector('.day'); if(!primera) return;
+    var nums=[], sem={};
+    [].slice.call(sec.querySelectorAll('.day')).forEach(function(c){
+      var n=+((c.querySelector('.daynum b')||{}).textContent||0);
+      if(n && nums.indexOf(n)<0){ nums.push(n); sem[n]=((c.querySelector('.daynum span')||{}).textContent||'').trim(); }
+    });
+    var tira=document.createElement('div'); tira.className='dstrip'; tira.setAttribute('role','tablist'); tira.setAttribute('aria-label','Ir a un día');
+    tira.innerHTML='<div class="dsin">'+nums.map(function(n){
+      return '<button type="button" class="dchip" data-dsel="'+n+'"><span>'+esc(sem[n])+'</span><b>'+n+'</b></button>';
+    }).join('')+'</div>';
+    sec.insertBefore(tira, sec.querySelector('.leyenda') || primera);
+    function cards(n){ return [].slice.call(sec.querySelectorAll('.day')).filter(function(c){ return +((c.querySelector('.daynum b')||{}).textContent||0)===n; }); }
+    function activo(n){
+      [].slice.call(tira.querySelectorAll('.dchip')).forEach(function(b){ b.classList.toggle('on', +b.getAttribute('data-dsel')===n); });
+      /* centrar el día en la tira sin mover la página (scrollIntoView movería todo) */
+      var on=tira.querySelector('.dchip.on'), fila=tira.querySelector('.dsin');
+      if(on && fila) fila.scrollLeft = on.offsetLeft - (fila.clientWidth - on.offsetWidth)/2;
+    }
+    tira.addEventListener('click',function(e){
+      var b=e.target.closest('[data-dsel]'); if(!b) return;
+      var n=+b.getAttribute('data-dsel'), cs=cards(n);
+      /* se abre ese día y se cierran los demás: menos para bajar */
+      [].slice.call(sec.querySelectorAll('.day')).forEach(function(c){ if(cs.indexOf(c)<0) c.classList.remove('open'); });
+      cs.forEach(function(c){ c.classList.add('open'); });
+      var y=cs[cs.length-1].getBoundingClientRect().top + window.scrollY - tira.offsetHeight - 8;
+      arriba(y); activo(n);
+    });
+    /* hoy, durante el viaje */
+    var hoyN = enViaje() ? ahoraRio().d : 0;
+    if(hoyN){ var hb=tira.querySelector('[data-dsel="'+hoyN+'"]'); if(hb) hb.classList.add('hoy'); }
+    /* al bajar, se marca el día que está en pantalla */
+    var t=null;
+    window.addEventListener('scroll',function(){
+      if(actual!=='dias') return;
+      clearTimeout(t); t=setTimeout(function(){
+        var lim=tira.offsetHeight+40, cur=null;
+        [].slice.call(sec.querySelectorAll('.day')).forEach(function(c){ if(c.getBoundingClientRect().top<=lim) cur=+((c.querySelector('.daynum b')||{}).textContent||0); });
+        if(cur) activo(cur);
+      },80);
+    },{passive:true});
+  })();
 
   document.getElementById('masEdit').addEventListener('click',function(){
     ir('#dias', function(){ arriba(0); var b=document.getElementById('edOn'); if(b) b.click(); });
