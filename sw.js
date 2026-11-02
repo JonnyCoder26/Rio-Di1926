@@ -5,11 +5,14 @@
    - Íconos y archivos fijos salen de la copia guardada.
    - Lo que no es de este sitio (sincronización, Google Maps)
      no se toca: va directo a internet como siempre.
-   Subir VERSION cuando cambien los íconos o el manifest.
+   - Las calles del mapa (CARTO) que ya se vieron quedan guardadas.
+   Subir VERSION cuando cambien los íconos, el manifest o Leaflet.
    ============================================================ */
-var VERSION = 'rio2026-v1';
+var VERSION = 'rio2026-v2';
+var TESELAS = 'rio2026-teselas';   /* calles del mapa que ya vieron */
 var ARCHIVOS = ['./', './index.html', './icono.png', './icono-192.png', './icono-512.png',
-                './apple-touch-icon.png', './manifest.webmanifest', './rio-2026-mapa.kml'];
+                './apple-touch-icon.png', './manifest.webmanifest', './rio-2026-mapa.kml',
+                './leaflet/leaflet.js', './leaflet/leaflet.css'];
 
 self.addEventListener('install', function(e){
   e.waitUntil(caches.open(VERSION).then(function(c){
@@ -20,7 +23,7 @@ self.addEventListener('install', function(e){
 
 self.addEventListener('activate', function(e){
   e.waitUntil(caches.keys().then(function(ks){
-    return Promise.all(ks.filter(function(k){ return k !== VERSION; }).map(function(k){ return caches.delete(k); }));
+    return Promise.all(ks.filter(function(k){ return k !== VERSION && k !== TESELAS; }).map(function(k){ return caches.delete(k); }));
   }).then(function(){ return self.clients.claim(); }));
 });
 
@@ -28,6 +31,19 @@ self.addEventListener('fetch', function(e){
   var req = e.request;
   if (req.method !== 'GET') return;
   var url = new URL(req.url);
+  /* calles del mapa: la que ya se vio queda guardada (máximo ~1500) */
+  if (/\.basemaps\.cartocdn\.com$/.test(url.hostname)) {
+    e.respondWith(caches.open(TESELAS).then(function(c){
+      return c.match(req).then(function(g){
+        if (g) return g;
+        return fetch(req).then(function(r){
+          if (r.ok) { c.put(req, r.clone()); c.keys().then(function(k){ if (k.length > 1500) c.delete(k[0]); }); }
+          return r;
+        });
+      });
+    }));
+    return;
+  }
   if (url.origin !== self.location.origin) return;
 
   var esPagina = req.mode === 'navigate' || /\/(index\.html)?$/.test(url.pathname) || url.pathname.slice(-8) === '.json';
