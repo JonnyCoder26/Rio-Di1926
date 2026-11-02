@@ -2814,7 +2814,7 @@ window.__contraerDias();
       if(v.length<5){ box.innerHTML=''; return; }
       if(navigator.onLine===false){ box.innerHTML='<p class="gnota">Sin internet: escríbanla completa y el mapa la ubica cuando haya señal.</p>'; return; }
       tSug=setTimeout(function(){
-        fetch('https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=5&countrycodes=br&bounded=1&viewbox=-43.80,-22.75,-43.10,-23.08&q='+encodeURIComponent(window.__limpiarDir(v)+', Rio de Janeiro'),{headers:{'Accept-Language':'pt'}})
+        fetch('https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=5&countrycodes=br&bounded=1&viewbox=-43.30,-22.86,-43.14,-23.01&q='+encodeURIComponent(window.__limpiarDir(v)+', Rio de Janeiro'),{headers:{'Accept-Language':'pt'}})
           .then(function(r){ return r.json(); }).then(function(j){
             box.innerHTML='';
             (j||[]).forEach(function(x){
@@ -2906,7 +2906,7 @@ window.__contraerDias();
       if(ad) ad.replaceWith(nuevoAd); else bd.appendChild(nuevoAd);
       /* si eligieron una sugerencia, el mapa ya sabe dónde queda */
       if(sug && sug.t===dir){
-        try{ var gk='rio2026:geo2', gg=JSON.parse(localStorage.getItem(gk)||'{}');
+        try{ var gk='rio2026:geo3', gg=JSON.parse(localStorage.getItem(gk)||'{}');
           gg[dir.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\s+/g,' ').trim()]={v:[sug.la,sug.lo], t:Date.now()};
           localStorage.setItem(gk, JSON.stringify(gg)); }catch(e){}
       }
@@ -4560,7 +4560,7 @@ window.__contraerDias();
     'estacao do trem do corcovado, rua cosme velho 513, cosme velho, rio de janeiro':24
   };
   var COLOR={20:'#d9480f',21:'#7048e8',22:'#0c8599',23:'#1971c2',24:'#e67700',25:'#2b8a3e',26:'#c2255c'};
-  var GKEY='rio2026:geo2';   /* geo2: se vuelve a buscar lo que antes quedó mal ubicado */
+  var GKEY='rio2026:geo3';   /* geo3: se vuelve a buscar lo que antes quedó mal ubicado */
   function norm(s){ return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim(); }
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
   var PORQ={}; LUGARES.forEach(function(l,i){ PORQ[norm(l[0])]=i; });
@@ -4826,16 +4826,34 @@ window.__contraerDias();
     var keys=Object.keys(faltan); if(!keys.length) return;
     buscando=true;
     var key=keys[0], q=faltan[key]; delete faltan[key];
+    /* Se busca primero en la zona del viaje (Centro, Zona Sul, Maracanã) y solo si no aparece, en toda la ciudad.
+       De 5 resultados se queda con el del barrio que dice la dirección. */
     var limpia=window.__limpiarDir(q), partes=limpia.split(',').map(function(x){ return x.trim(); }).filter(Boolean);
-    var intentos=[limpia];
-    if(/\d/.test(partes[0]||'')) intentos.push([partes[0].replace(/\s*\d+[a-z]?\s*$/i,'')].concat(partes.slice(1)).join(', '));   /* sin el número */
-    if(partes.length>1) intentos.push(partes.slice(1).join(', ')+'');                                  /* solo el barrio / lugar */
+    var calle=partes[0]||'', barrio=norm(partes[1]||''), m=/^(.*?)\s+(\d+[a-z]?)$/i.exec(calle);
+    var sinNum=m ? m[1] : calle, num=m ? m[2] : '';
+    var ZONA='-43.30,-22.86,-43.14,-23.01', CIUDAD='-43.80,-22.75,-43.10,-23.08';
+    var base='https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=5&countrycodes=br&bounded=1&viewbox=';
+    var estructurada=function(st){ return '&street='+encodeURIComponent(st)+'&city='+encodeURIComponent('Rio de Janeiro')+'&country=Brasil'; };
+    var libre=function(t){ return '&q='+encodeURIComponent(t+', Rio de Janeiro'); };
+    var intentos=[
+      base+ZONA+estructurada((num?num+' ':'')+sinNum),
+      base+ZONA+libre(limpia),
+      num ? base+ZONA+estructurada(sinNum) : null,
+      base+ZONA+libre(partes.length>1 ? sinNum+', '+partes.slice(1).join(', ') : sinNum),
+      base+CIUDAD+libre(limpia),
+      partes.length>1 ? base+ZONA+libre(partes.slice(1).join(', ')) : null   /* al menos el barrio */
+    ].filter(Boolean);
+    function elegir(j){
+      if(!j || !j.length) return null;
+      if(barrio) for(var k=0;k<j.length;k++){ var a=j[k].address||{};
+        if([a.suburb,a.neighbourhood,a.city_district,a.quarter].some(function(b){ return b && norm(b)===barrio; })) return j[k]; }
+      return j[0];
+    }
     function buscarUno(i){
-      if(i>=intentos.length || !intentos[i]) return Promise.resolve(null);
-      return fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=br&bounded=1&viewbox=-43.80,-22.75,-43.10,-23.08&q='+encodeURIComponent(intentos[i]+', Rio de Janeiro'),
-          {headers:{'Accept-Language':'es'}})
+      if(i>=intentos.length) return Promise.resolve(null);
+      return fetch(intentos[i],{headers:{'Accept-Language':'pt'}})
         .then(function(r){ return r.json(); })
-        .then(function(j){ if(j && j[0]) return j[0]; return new Promise(function(ok){ setTimeout(ok,1100); }).then(function(){ return buscarUno(i+1); }); });
+        .then(function(j){ var x=elegir(j); if(x) return x; return new Promise(function(ok){ setTimeout(ok,1100); }).then(function(){ return buscarUno(i+1); }); });
     }
     buscarUno(0)
       .then(function(x){
@@ -5024,7 +5042,7 @@ window.__contraerDias();
      OpenFreeMap de toda la ciudad (zoom 10 a 14, que alcanza para todo).
      Quedan en su propia caché: el sw.js las sirve y no las borra al navegar. */
   var MKEY='rio2026:mapaGuardado2', GCACHE='rio2026-mapa-guardado';
-  try{ localStorage.removeItem('rio2026:mapaGuardado'); localStorage.removeItem('rio2026:geo'); }catch(e){}   /* claves viejas que se mezclaban */
+  try{ localStorage.removeItem('rio2026:mapaGuardado'); localStorage.removeItem('rio2026:geo'); localStorage.removeItem('rio2026:geo2'); }catch(e){}   /* claves viejas que se mezclaban */
   function teselaXY(la,lo,z){ var n=Math.pow(2,z), r=la*Math.PI/180;
     return [Math.floor((lo+180)/360*n), Math.floor((1-Math.log(Math.tan(r)+1/Math.cos(r))/Math.PI)/2*n)]; }
   function rango(la0,lo0,la1,lo1,z,fn){ var a=teselaXY(la0,lo0,z), b=teselaXY(la1,lo1,z);
