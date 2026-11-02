@@ -9,6 +9,26 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#fbf7f0">
 <script>
+/* direcciones como las copia Google Maps ("R. Mal. Cantuária, 8 - Urca, Rio de Janeiro - RJ, 22291-060, Brasil")
+   pasadas a algo que OpenStreetMap entiende: sin código postal ni país, y con las abreviaturas escritas */
+window.__limpiarDir=function(q){
+  var ABR=[['R','Rua'],['Av','Avenida'],['Mal','Marechal'],['Gal','General'],['Gen','General'],['Cel','Coronel'],['Alm','Almirante'],
+    ['Pça','Praça'],['Pç','Praça'],['Pca','Praça'],['Dr','Doutor'],['Est','Estrada'],['Trav','Travessa'],['Tv','Travessa'],['Pres','Presidente'],
+    ['Eng','Engenheiro'],['Prof','Professor'],['Sen','Senador'],['Visc','Visconde'],['Cap','Capitão'],['Ten','Tenente'],['Lgo','Largo'],
+    ['Lad','Ladeira'],['Bco','Beco'],['Al','Alameda'],['Sta','Santa'],['Sto','Santo'],['Sr','Senhor'],['Sra','Senhora'],['N','Nossa']];
+  var t=' '+String(q||'').replace(/\s+/g,' ')+' ';
+  t=t.replace(/\b\d{5}-?\d{3}\b/g,' ')                       /* código postal */
+     .replace(/,?\s*(Brasil|Brazil)\s*$/i,' ')
+     .replace(/\s-\s*(RJ|Rio de Janeiro)\b/gi,',')
+     .replace(/,\s*RJ\b/gi,',')
+     .replace(/\s-\s/g,', ');
+  ABR.forEach(function(a){ t=t.replace(new RegExp('(^|[\\s,(])'+a[0]+'\\.\\s*','g'),'$1'+a[1]+' '); });
+  t=t.replace(/,?\s*Rio de Janeiro\b/gi,'');                /* se agrega al buscar */
+  t=t.replace(/,\s*(\d+[A-Za-z]?)\s*(?=,|$)/,' $1');          /* "Rua X, 8" → "Rua X 8" */
+  return t.replace(/\s+,/g,',').replace(/,+/g,',').replace(/\s+/g,' ').replace(/^[\s,]+|[\s,]+$/g,'');
+};
+</script>
+<script>
 /* modo oscuro: "auto" sigue al celular; "claro" u "oscuro" si lo eligen en Más */
 (function(){
   var t='auto'; try{ t=localStorage.getItem('rio2026:tema')||'auto'; }catch(e){}
@@ -2794,7 +2814,7 @@ window.__contraerDias();
       if(v.length<5){ box.innerHTML=''; return; }
       if(navigator.onLine===false){ box.innerHTML='<p class="gnota">Sin internet: escríbanla completa y el mapa la ubica cuando haya señal.</p>'; return; }
       tSug=setTimeout(function(){
-        fetch('https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=5&countrycodes=br&bounded=1&viewbox=-43.80,-22.75,-43.10,-23.08&q='+encodeURIComponent(v+', Rio de Janeiro'),{headers:{'Accept-Language':'pt'}})
+        fetch('https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=5&countrycodes=br&bounded=1&viewbox=-43.80,-22.75,-43.10,-23.08&q='+encodeURIComponent(window.__limpiarDir(v)+', Rio de Janeiro'),{headers:{'Accept-Language':'pt'}})
           .then(function(r){ return r.json(); }).then(function(j){
             box.innerHTML='';
             (j||[]).forEach(function(x){
@@ -2886,7 +2906,7 @@ window.__contraerDias();
       if(ad) ad.replaceWith(nuevoAd); else bd.appendChild(nuevoAd);
       /* si eligieron una sugerencia, el mapa ya sabe dónde queda */
       if(sug && sug.t===dir){
-        try{ var gk='rio2026:geo', gg=JSON.parse(localStorage.getItem(gk)||'{}');
+        try{ var gk='rio2026:geo2', gg=JSON.parse(localStorage.getItem(gk)||'{}');
           gg[dir.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\s+/g,' ').trim()]={v:[sug.la,sug.lo], t:Date.now()};
           localStorage.setItem(gk, JSON.stringify(gg)); }catch(e){}
       }
@@ -4540,7 +4560,7 @@ window.__contraerDias();
     'estacao do trem do corcovado, rua cosme velho 513, cosme velho, rio de janeiro':24
   };
   var COLOR={20:'#d9480f',21:'#7048e8',22:'#0c8599',23:'#1971c2',24:'#e67700',25:'#2b8a3e',26:'#c2255c'};
-  var GKEY='rio2026:geo';
+  var GKEY='rio2026:geo2';   /* geo2: se vuelve a buscar lo que antes quedó mal ubicado */
   function norm(s){ return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim(); }
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
   var PORQ={}; LUGARES.forEach(function(l,i){ PORQ[norm(l[0])]=i; });
@@ -4806,11 +4826,20 @@ window.__contraerDias();
     var keys=Object.keys(faltan); if(!keys.length) return;
     buscando=true;
     var key=keys[0], q=faltan[key]; delete faltan[key];
-    fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=br&bounded=1&viewbox=-43.80,-22.75,-43.10,-23.08&q='+encodeURIComponent(q+', Rio de Janeiro'),
+    var limpia=window.__limpiarDir(q), partes=limpia.split(',').map(function(x){ return x.trim(); }).filter(Boolean);
+    var intentos=[limpia];
+    if(/\d/.test(partes[0]||'')) intentos.push([partes[0].replace(/\s*\d+[a-z]?\s*$/i,'')].concat(partes.slice(1)).join(', '));   /* sin el número */
+    if(partes.length>1) intentos.push(partes.slice(1).join(', ')+'');                                  /* solo el barrio / lugar */
+    function buscarUno(i){
+      if(i>=intentos.length || !intentos[i]) return Promise.resolve(null);
+      return fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=br&bounded=1&viewbox=-43.80,-22.75,-43.10,-23.08&q='+encodeURIComponent(intentos[i]+', Rio de Janeiro'),
           {headers:{'Accept-Language':'es'}})
-      .then(function(r){ return r.json(); })
-      .then(function(j){
-        var g=geo(); g[key] = (j && j[0]) ? {v:[+j[0].lat, +j[0].lon], t:Date.now()} : {v:0, t:Date.now()};
+        .then(function(r){ return r.json(); })
+        .then(function(j){ if(j && j[0]) return j[0]; return new Promise(function(ok){ setTimeout(ok,1100); }).then(function(){ return buscarUno(i+1); }); });
+    }
+    buscarUno(0)
+      .then(function(x){
+        var g=geo(); g[key] = x ? {v:[+x.lat, +x.lon], t:Date.now()} : {v:0, t:Date.now()};
         guardarGeo(g);
       }).catch(function(){})
       .then(function(){ setTimeout(function(){ buscando=false; pintar(false); }, 1100); });   /* máximo una búsqueda por segundo */
@@ -4994,7 +5023,8 @@ window.__contraerDias();
      lugar, zoom 15 a 17) del satélite con calles y nombres, y el mapa de
      OpenFreeMap de toda la ciudad (zoom 10 a 14, que alcanza para todo).
      Quedan en su propia caché: el sw.js las sirve y no las borra al navegar. */
-  var GKEY='rio2026:mapaGuardado', GCACHE='rio2026-mapa-guardado';
+  var MKEY='rio2026:mapaGuardado2', GCACHE='rio2026-mapa-guardado';
+  try{ localStorage.removeItem('rio2026:mapaGuardado'); localStorage.removeItem('rio2026:geo'); }catch(e){}   /* claves viejas que se mezclaban */
   function teselaXY(la,lo,z){ var n=Math.pow(2,z), r=la*Math.PI/180;
     return [Math.floor((lo+180)/360*n), Math.floor((1-Math.log(Math.tan(r)+1/Math.cos(r))/Math.PI)/2*n)]; }
   function rango(la0,lo0,la1,lo1,z,fn){ var a=teselaXY(la0,lo0,z), b=teselaXY(la1,lo1,z);
@@ -5033,9 +5063,9 @@ window.__contraerDias();
   function fechaCorta(t){ try{ return new Date(t).toLocaleDateString('es-CO',{day:'numeric',month:'short'}); }catch(e){ return ''; } }
   function pintarGuardado(){
     var b=document.getElementById('mBajar'), tx=document.getElementById('mBajarTx'); if(!b) return;
-    var g=null; try{ g=JSON.parse(localStorage.getItem(GKEY)||'null'); }catch(e){}
+    var g=null; try{ g=JSON.parse(localStorage.getItem(MKEY)||'null'); }catch(e){}
     if(!window.caches){ document.getElementById('mGuardar').hidden=true; return; }
-    if(g){ b.textContent='🔄 Volver a guardar el mapa';
+    if(g && g.t && g.mb){ b.textContent='🔄 Volver a guardar el mapa';
       tx.textContent='✅ Mapa de Río guardado el '+fechaCorta(g.t)+' ('+g.mb+' MB). Sin señal se ven las calles de todas las zonas del viaje.'; }
   }
   var bajando=false;
@@ -5070,7 +5100,7 @@ window.__contraerDias();
         return Promise.all(obreros).then(function(){
           var mb=Math.max(1,Math.round(bytes/1048576));
           if(malos>total*0.2){ tx.textContent='Se guardó solo una parte ('+(total-malos)+' de '+total+'). Vuelvan a intentarlo con mejor señal: sigue desde donde quedó.'; b.textContent='📴 Seguir guardando el mapa'; return; }
-          try{ localStorage.setItem(GKEY, JSON.stringify({t:Date.now(), mb:mb})); }catch(e){}
+          try{ localStorage.setItem(MKEY, JSON.stringify({t:Date.now(), mb:mb})); }catch(e){}
           pintarGuardado();
         });
       });
