@@ -91,7 +91,7 @@ Mientras no corran el SQL, la página sigue guardando como antes.
   satélite con calles de 600 m alrededor de cada lugar del viaje (zoom 15–17) y el mapa de
   OpenFreeMap de toda la zona (zoom 10–14). Queda en la caché `rio2026-mapa-guardado`, que
   `sw.js` no borra. Sin señal, el satélite agranda el zoom 17 para que no quede en blanco.
-- **Precios de entradas** revisados en noviembre de 2026 (Bondinho R$ 210, Cristo R$ 134,
+- **Precios de entradas** revisados en noviembre de 2026 (Bondinho R$ 210, Cristo R$ 139,
   Maracanã R$ 115, AquaRio R$ 160, bonde R$ 20, Forte R$ 10). Lo que ya estaba guardado se
   corrige solo con la lista `CORRECCIONES`.
 
