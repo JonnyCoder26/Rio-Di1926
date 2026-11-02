@@ -5,14 +5,15 @@
    - Íconos y archivos fijos salen de la copia guardada.
    - Lo que no es de este sitio (sincronización, Google Maps)
      no se toca: va directo a internet como siempre.
-   - Las calles del mapa (OpenStreetMap) que ya se vieron quedan guardadas.
+   - El mapa (OpenFreeMap / OpenStreetMap) que ya se vio queda guardado.
    Subir VERSION cuando cambien los íconos, el manifest o Leaflet.
    ============================================================ */
-var VERSION = 'rio2026-v3';
+var VERSION = 'rio2026-v4';
 var TESELAS = 'rio2026-calles';    /* calles del mapa que ya vieron (la caché vieja de CARTO se borra) */
 var ARCHIVOS = ['./', './index.html', './icono.png', './icono-192.png', './icono-512.png',
                 './apple-touch-icon.png', './manifest.webmanifest', './rio-2026-mapa.kml',
-                './leaflet/leaflet.js', './leaflet/leaflet.css'];
+                './leaflet/leaflet.js', './leaflet/leaflet.css', './leaflet/leaflet-maplibre-gl.js',
+                './maplibre/maplibre-gl.js', './maplibre/maplibre-gl.css'];
 
 self.addEventListener('install', function(e){
   e.waitUntil(caches.open(VERSION).then(function(c){
@@ -32,12 +33,20 @@ self.addEventListener('fetch', function(e){
   if (req.method !== 'GET') return;
   var url = new URL(req.url);
   /* calles del mapa: la que ya se vio queda guardada (máximo ~1500) */
-  if (url.hostname === 'tile.openstreetmap.org') {
+  /* el estilo de OpenFreeMap dice qué versión de mapa usar: red primero, para no quedar pegados a una vieja */
+  if (url.hostname === 'tiles.openfreemap.org' && url.pathname.indexOf('/styles/') === 0) {
+    e.respondWith(fetch(req).then(function(r){
+      if (r.ok) { var copia = r.clone(); caches.open(TESELAS).then(function(c){ c.put(req, copia); }); }
+      return r;
+    }).catch(function(){ return caches.match(req); }));
+    return;
+  }
+  if (url.hostname === 'tile.openstreetmap.org' || url.hostname === 'tiles.openfreemap.org') {
     e.respondWith(caches.open(TESELAS).then(function(c){
       return c.match(req).then(function(g){
         if (g) return g;
         return fetch(req).then(function(r){
-          if (r.ok) { c.put(req, r.clone()); c.keys().then(function(k){ if (k.length > 1500) c.delete(k[0]); }); }
+          if (r.ok) { c.put(req, r.clone()); c.keys().then(function(k){ if (k.length > 3000) c.delete(k[0]); }); }
           return r;
         });
       });

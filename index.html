@@ -549,7 +549,7 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
 details.gnom summary{cursor:pointer;font-weight:700;font-size:15px;list-style:none;min-height:28px}
 details.gnom summary::-webkit-details-marker{display:none}
 /* Taxista */
-.taxi{position:fixed;inset:0;z-index:400;background:#fff;overflow:auto;display:flex;align-items:center;justify-content:center;
+.taxi{position:fixed;inset:0;z-index:1200;background:#fff;overflow:auto;display:flex;align-items:center;justify-content:center;
   padding:calc(20px + env(safe-area-inset-top)) 20px calc(20px + env(safe-area-inset-bottom))}
 .taxi[hidden]{display:none}
 .taxi-in{max-width:640px;width:100%}
@@ -692,7 +692,7 @@ html.oscuro .week li.today .daynum span{color:#0b3d3a}
 .leaflet-popup-content{margin:12px 14px;font:inherit}
 .leaflet-container{font:inherit}
 .leaflet-control-attribution{font-size:10px}
-html.oscuro .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.9) contrast(.9)}
+html.oscuro .leaflet-tile-pane img.leaflet-tile{filter:invert(1) hue-rotate(180deg) brightness(.9) contrast(.9)}
 .mpop .mp1{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--tx2)}
 .mpop .mp2{font-size:16px;font-weight:750;margin-top:6px;line-height:1.3;color:var(--tx)}
 .mpop .mp3{font-size:13.5px;color:var(--tx2);margin-top:4px}
@@ -705,6 +705,10 @@ html.oscuro .leaflet-container .mpop a.hbtn:not(.gh){color:#0b1620}
   background:var(--c);color:#fff;font-size:12.5px;font-weight:800}
 .mpn.vacio{background:transparent;border:1.5px dashed var(--line)}
 #mLista{margin-top:14px}
+.mley{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px;font-size:12.5px;color:var(--tx2)}
+.mley span{display:inline-flex;align-items:center;gap:6px}
+.mley i{width:18px;height:4px;border-radius:3px;display:inline-block}
+.mley i.dash{background:repeating-linear-gradient(90deg,var(--c) 0 5px,transparent 5px 9px)}
 .vermapa{width:100%;margin:6px 0 4px}
 .mdia{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:12px}
 .mdh{display:flex;gap:10px;align-items:baseline;padding:11px 14px;background:var(--card2);border-left:5px solid var(--c)}
@@ -741,10 +745,18 @@ details.leyenda summary{cursor:pointer;font-weight:700;font-size:15px;list-style
 details.leyenda summary::-webkit-details-marker{display:none}
 details.leyenda .ley{margin-top:10px}
 /* Versiones */
-.vers{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center}
+.vers{position:fixed;inset:0;z-index:1200;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center}
 .vers[hidden]{display:none}
 .vers-in{background:var(--bg);width:100%;max-width:560px;border-radius:18px 18px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:80vh;overflow:auto;animation:vista 220ms var(--ease-out)}
 .vers-in h3{font-size:17px}
+.crow{display:flex;gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.crow:first-child{border-top:0}
+.crow .ce{flex:none;font-size:22px}
+.crow .ct{flex:1;min-width:0;font-size:15px}
+.crow .ct small{display:block;font-size:12.5px;color:var(--tx3)}
+.crow .ct small.cp2{color:var(--orange)}
+.crow .cb{flex:none;display:flex;gap:6px}
+.crow .hbtn{min-height:40px;padding:0 12px;font-size:14px}
 .vrow{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;padding:12px 14px;margin-top:8px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--tx);font:inherit;text-align:left;cursor:pointer;min-height:56px}
 .vrow b{font-size:15.5px}
 .vrow span{font-size:13px;color:var(--tx3)}
@@ -757,6 +769,22 @@ details.hcard.seg summary{color:var(--red);margin-top:0;font-size:15px}
 details.mnota summary::-webkit-details-marker, details.hcard.seg summary::-webkit-details-marker{display:none}
 details.mnota div{font-size:14.5px;color:var(--tx2);margin-top:6px}
 details.hcard.seg[open] summary{margin-bottom:10px}
+/* Misión, cerca y tarde */
+.hcard.mision h3{color:var(--green)}
+.mprog{height:10px;border-radius:10px;background:var(--card2);overflow:hidden;margin:4px 0 8px}
+.mprog i{display:block;height:100%;background:var(--green);border-radius:10px;transition:width 300ms var(--ease-out)}
+.hcard.mision p{font-size:14.5px;color:var(--tx2)}
+.mbtn2{margin-left:auto;flex:none;min-height:34px;padding:0 11px;border-radius:100px;border:1px solid var(--green);background:none;color:var(--green);font:inherit;font-size:12.5px;font-weight:800;cursor:pointer;transition:transform 120ms var(--ease-out)}
+.mbtn2.on{background:var(--green);color:#fff}
+.mbtn2:active{transform:scale(.95)}
+html.oscuro .mbtn2.on{color:#0b1620}
+.mini.probado{opacity:.75}
+.mhit{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:15px}
+.mhit:first-of-type{border-top:0}
+.mhit small{display:block;font-size:12.5px;color:var(--tx3)}
+.tarde{margin-top:10px}
+.tchips{display:flex;flex-wrap:wrap;gap:6px}
+.tarde p{font-size:15px;color:var(--tx2);margin-top:10px;line-height:1.45}
 /* Más */
 .mgroup{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);margin:22px 0 8px}
 .mlist{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
@@ -1012,12 +1040,14 @@ details.hcard.seg[open] summary{margin-bottom:10px}
   <div class="mapa-box">
     <div id="lmap" class="lmap" aria-label="Mapa del viaje"></div>
     <div class="mbtns">
+      <button class="mbtn" id="mCerca" aria-label="Qué hay cerca para comer">🍴</button>
       <button class="mbtn" id="mYo" aria-label="Dónde estoy">📍</button>
       <button class="mbtn" id="mHotel" aria-label="Ver el hotel">🏨</button>
       <button class="mbtn" id="mTodo" aria-label="Ver todo el día">⤢</button>
     </div>
     <div class="moff" id="mOff">📴 Sin internet: se ven los puntos y el recorrido; las calles aparecen cuando haya señal.</div>
   </div>
+  <div class="mley"><span><i style="background:#2b8a3e"></i>a pie, tranquilo</span><span><i style="background:#e67700"></i>a pie, solo de día</span><span><i class="dash" style="--c:#868e96"></i>Uber</span><span><i class="dash" style="--c:#1971c2"></i>metro</span></div>
   <div id="mLista"></div>
 
   <button class="comtog" id="comTog" aria-expanded="false"><span><span class="car">▶</span> 📌 Comodines · sitios sueltos para cualquier momento</span><span class="cnt">8</span></button><div id="comWrap" class="hidden"><p style="color:var(--tx2);font-size:14px;margin:12px 0 0">La dirección de cada parada está dentro de su día. Estos son los extras: por si da hambre a deshoras, por otra caipirinha, o si el rodizio del 24 se cae.</p><div class="plist"><div class="place" data-orig="Av. Nossa Senhora de Copacabana, Copacabana (también en Botafogo)" data-q="Fat Guys Copacabana Rio de Janeiro"><div class="phead"><span class="pt">🍔</span><span class="pn">Fat Guys</span></div><div class="paddr">📌 Av. Nossa Senhora de Copacabana, Copacabana (también en Botafogo)</div><div class="pk">Hamburguesería carioca muy querida. La <b>Double Fat</b> y los nuggets son los pedidos estrella, y los milkshakes también. R$ 40–60. Buena salida si alguno se cansa de la comida brasileña.</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Fat+Guys+Copacabana+Rio+de+Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Fat Guys, Av. Nossa Senhora de Copacabana, Copacabana">Copiar dirección</button></div></div><div class="place" data-orig="Praia do Flamengo 300, Flamengo" data-q="Belmonte, Praia do Flamengo 300, Flamengo, Rio de Janeiro"><div class="phead"><span class="pt">🍹</span><span class="pn">Belmonte Flamengo</span></div><div class="paddr">📌 Praia do Flamengo 300, Flamengo</div><div class="pk">Chopp y empadas · 10:00-3:00 · caipirinha cualquier noche</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Belmonte%2C%20Praia%20do%20Flamengo%20300%2C%20Flamengo%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Praia do Flamengo 300, Flamengo">Copiar dirección</button><button class="pbtn gh vm" data-q="Belmonte, Praia do Flamengo 300, Flamengo, Rio de Janeiro" data-n="Belmonte Flamengo">Ver aquí</button></div></div><div class="place" data-orig="Rua Voluntários da Pátria 446, Humaitá" data-q="Cobal do Humaitá, Rua Voluntários da Pátria 446, Humaitá, Rio de Janeiro"><div class="phead"><span class="pt">🍽️</span><span class="pn">Cobal do Humaitá</span></div><div class="paddr">📌 Rua Voluntários da Pátria 446, Humaitá</div><div class="pk">Mercado con 15 restaurantes al aire libre · R$ 60-110</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Cobal%20do%20Humait%C3%A1%2C%20Rua%20Volunt%C3%A1rios%20da%20P%C3%A1tria%20446%2C%20Humait%C3%A1%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Rua Voluntários da Pátria 446, Humaitá">Copiar dirección</button><button class="pbtn gh vm" data-q="Cobal do Humaitá, Rua Voluntários da Pátria 446, Humaitá, Rio de Janeiro" data-n="Cobal do Humaitá">Ver aquí</button></div></div><div class="place" data-orig="Av. Repórter Nestor Moreira 11, Botafogo" data-q="Fogo de Chão, Av. Repórter Nestor Moreira 11, Botafogo, Rio de Janeiro"><div class="phead"><span class="pt">🍽️</span><span class="pn">Fogo de Chão Botafogo</span></div><div class="paddr">📌 Av. Repórter Nestor Moreira 11, Botafogo</div><div class="pk">Rodizio premium R$ 150-180 · alternativa para el 24</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Fogo%20de%20Ch%C3%A3o%2C%20Av.%20Rep%C3%B3rter%20Nestor%20Moreira%2011%2C%20Botafogo%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Av. Repórter Nestor Moreira 11, Botafogo">Copiar dirección</button><button class="pbtn gh vm" data-q="Fogo de Chão, Av. Repórter Nestor Moreira 11, Botafogo, Rio de Janeiro" data-n="Fogo de Chão Botafogo">Ver aquí</button></div></div><div class="place" data-orig="Av. Nossa Senhora de Copacabana 936, Copacabana" data-q="Supermercado Zona Sul, Av. Nossa Senhora de Copacabana 936, Copacabana, Rio de Janeiro"><div class="phead"><span class="pt">🛒</span><span class="pn">Zona Sul Copacabana · 24 h</span></div><div class="paddr">📌 Av. Nossa Senhora de Copacabana 936, Copacabana</div><div class="pk">ABIERTO 24 HORAS</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Supermercado%20Zona%20Sul%2C%20Av.%20Nossa%20Senhora%20de%20Copacabana%20936%2C%20Copacabana%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Av. Nossa Senhora de Copacabana 936, Copacabana">Copiar dirección</button><button class="pbtn gh vm" data-q="Supermercado Zona Sul, Av. Nossa Senhora de Copacabana 936, Copacabana, Rio de Janeiro" data-n="Zona Sul Copacabana · 24 h">Ver aquí</button></div></div><div class="place" data-orig="Rua Barata Ribeiro 7, Copacabana" data-q="Galeto Sat&#x27;s, Rua Barata Ribeiro 7, Copacabana, Rio de Janeiro"><div class="phead"><span class="pt">🍹</span><span class="pn">Galeto Sat&#x27;s</span></div><div class="paddr">📌 Rua Barata Ribeiro 7, Copacabana</div><div class="pk">+300 cachaças · pollo a la brasa R$ 50-70 · abre hasta tarde</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Galeto%20Sat%27s%2C%20Rua%20Barata%20Ribeiro%207%2C%20Copacabana%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Rua Barata Ribeiro 7, Copacabana">Copiar dirección</button><button class="pbtn gh vm" data-q="Galeto Sat&#x27;s, Rua Barata Ribeiro 7, Copacabana, Rio de Janeiro" data-n="Galeto Sat&#x27;s">Ver aquí</button></div></div><div class="place" data-orig="Av. Rio Branco 156, Centro" data-q="Tapí Tapioca, Avenida Rio Branco, Centro, Rio de Janeiro"><div class="phead"><span class="pt">🍇</span><span class="pn">Tapí Centro</span></div><div class="paddr">📌 Av. Rio Branco 156, Centro</div><div class="pk">Açaí R$ 20-30 · dentro del Edifício Avenida Central</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Tap%C3%AD%20Tapioca%2C%20Avenida%20Rio%20Branco%2C%20Centro%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Av. Rio Branco 156, Centro">Copiar dirección</button><button class="pbtn gh vm" data-q="Tapí Tapioca, Avenida Rio Branco, Centro, Rio de Janeiro" data-n="Tapí Centro">Ver aquí</button></div></div><div class="place" data-orig="Rua Conde de Bernadotte 26, loja G, Leblon" data-q="Academia da Cachaça, Rua Conde de Bernadotte 26, Leblon, Rio de Janeiro"><div class="phead"><span class="pt">🍹</span><span class="pn">Academia da Cachaça</span></div><div class="paddr">📌 Rua Conde de Bernadotte 26, loja G, Leblon</div><div class="pk">Caipirinha R$ 30-40 · la mejor de Río según los cariocas</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Academia%20da%20Cacha%C3%A7a%2C%20Rua%20Conde%20de%20Bernadotte%2026%2C%20Leblon%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Rua Conde de Bernadotte 26, loja G, Leblon">Copiar dirección</button><button class="pbtn gh vm" data-q="Academia da Cachaça, Rua Conde de Bernadotte 26, Leblon, Rio de Janeiro" data-n="Academia da Cachaça">Ver aquí</button></div></div></div></div>
@@ -3061,6 +3091,58 @@ window.__contraerDias();
     if(plegadas) return '<details class="hcard seg"><summary>🛡️ Las reglas de seguridad · toquen para verlas</summary>'+cuerpo+'</details>';
     return '<div class="hcard seg"><h3>🛡️ Seguridad · las reglas</h3>'+cuerpo+'</div>';
   }
+  /* ¿Vamos tarde?: qué saltar para llegar a lo que tiene hora fija, sin tocar las ★ */
+  var FIJO=/Bondinho|Tren del Corcovado|Misa|Cena de Navidad|Faenza|Tour Maracan|Vuelo|aeropuerto|check-out|Roda de Samba|AquaRio/i;
+  var TRAYECTO=/^(Uber|Metro|Bajada|Bajan|Salida|Vuelta|Regreso|Llegada|Caminar al|Recogen)/i;
+  var COMIDA=/Desayuno|Almuerzo|Cena|Buffet|rodizio/i;
+  function tarde(D, paradas, sig){
+    if(sig<0) return '';
+    /* desde lo que están haciendo ahora (eso también se puede cortar) */
+    var desde=sig; if(sig>0 && paradas[sig-1].t!==null) desde=sig-1;
+    var resto=paradas.slice(desde), fijo=-1;
+    resto.some(function(p,i){
+      if(i===0 && desde<sig) return false;            /* ya están ahí: no hay que llegar a tiempo */
+      var n=nombreLimpio(p.li); if(FIJO.test(n) && !TRAYECTO.test(n)){ fijo=i; return true; } return false;
+    });
+    var hasta = fijo>-1 ? resto.slice(0,fijo) : resto;
+    var cand=hasta.filter(function(p){
+      var n=nombreLimpio(p.li);
+      return !p.li.classList.contains('hi') && !TRAYECTO.test(n) && !COMIDA.test(n);
+    }).map(function(p){ return {n:nombreLimpio(p.li), m:parseInt(p.li.getAttribute('data-min'),10)||0, hr:(p.li.querySelector('.hr')||{}).textContent||''}; })
+      .filter(function(c){ return c.m>0; }).sort(function(a,b){ return b.m-a.m; });
+    var elegidos=[], suma=0;
+    cand.some(function(c){ if(suma>=D) return true; elegidos.push(c); suma+=c.m; return false; });
+    var lista=elegidos.map(function(c){ return '<b>'+esc(c.n)+'</b> ('+c.m+' min)'; }).join(' y ');
+    if(fijo>-1){
+      var F=resto[fijo], fn=esc(nombreLimpio(F.li)), fh=esc((F.li.querySelector('.hr')||{}).textContent||'');
+      if(!elegidos.length) return '<p>No hay nada que se pueda saltar antes de <b>'+fn+'</b> ('+fh+'). Pidan Uber en vez de caminar y vayan directo.</p>';
+      if(suma>=D) return '<p>Para llegar a tiempo a <b>'+fn+'</b> ('+fh+'): salten '+lista+'. Las ★ se quedan.</p>';
+      return '<p>Aunque salten '+lista+', llegan unos <b>'+(D-suma)+' min tarde</b> a <b>'+fn+'</b> ('+fh+'). Pidan Uber en vez de caminar y, si es una reserva, avisen.</p>';
+    }
+    if(!elegidos.length) return '<p>Hoy ya no hay nada con hora fija: sigan el plan corrido unos '+D+' min.</p>';
+    return '<p>Hoy ya no hay nada con hora fija: pueden seguir corridos '+D+' min o saltar '+lista+'.</p>';
+  }
+  function nombreLimpio(li){ var a=li.querySelector('.bd .a'); if(!a) return ''; var c=a.cloneNode(true); [].slice.call(c.querySelectorAll('.pz')).forEach(function(x){ x.remove(); }); return c.textContent.replace(/^[^\p{L}\d]+/u,'').trim(); }
+
+  /* de la misión, lo que todavía no han probado y hoy les queda en el camino */
+  function misionHoy(hoy){
+    if(!window.__mision) return '';
+    var M=window.__mision(), falta=M.filter(function(x){ return !x.hecho; }); if(!falta.length) return '';
+    var nrm=function(s){ return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); };
+    var hits=[];
+    falta.forEach(function(x){
+      hoy.some(function(d){
+        return [].slice.call(d.card.querySelectorAll('[data-tl] > li')).some(function(li){
+          var an=li.querySelector('.antojos'); if(!an || nrm(an.textContent).indexOf(x.clave)<0) return false;
+          hits.push({x:x, hr:(li.querySelector('.hr')||{}).textContent||'', n:nombre(li)}); return true;
+        });
+      });
+    });
+    if(!hits.length) return '';
+    return '<div class="hcard mision"><h3>✅ Hoy pueden tachar de la misión</h3>'+hits.map(function(o){
+      return '<div class="mhit"><span>'+o.x.emo+' <b>'+esc(o.x.nom)+'</b><small>'+esc(o.hr)+' · '+o.n+'</small></span><button class="mbtn2" data-mision="'+o.x.id+'">✓</button></div>';
+    }).join('')+'</div>';
+  }
   /* lo que hay que llevar hoy: sale de las paradas y notas del día y del clima */
   function mochila(hoy, gd, now){
     var txt=hoy.map(function(x){ return x.card.textContent; }).join(' '), cl=window.__climaDe ? window.__climaDe(now.d) : null;
@@ -3165,7 +3247,9 @@ window.__contraerDias();
           +'<div class="hbtns">'
           +(ad&&ad.getAttribute('data-q')?'<a class="hbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(ad.getAttribute('data-q'))+'">🧭 Cómo llegar</a>':'')
           +'<button class="hbtn gh" data-stop="'+sig+'">Ver detalles</button>'
-          +'<button class="hbtn gh" data-mapstop="'+sig+'">🗺️ Mapa</button></div>'
+          +'<button class="hbtn gh" data-mapstop="'+sig+'">🗺️ Mapa</button>'
+          +'<button class="hbtn gh" data-tarde>⏰ ¿Vamos tarde?</button></div>'
+          +'<div class="tarde" id="tardeBox" hidden><div class="tchips">'+[15,30,45,60,90].map(function(m){ return '<button class="gchip" data-tmin="'+m+'">'+m+' min</button>'; }).join('')+'</div><div id="tardeRes"></div></div>'
           +(cur>-1?'<div class="nx-now">Ahora: <b>'+nombre(paradas[cur].li)+'</b></div>':'')
           +'</div>';
       } else if(paradas.length){
@@ -3173,6 +3257,7 @@ window.__contraerDias();
       }
       html+=avisos(hoy.map(function(x){ return x.card; }));
       html+=mochila(hoy, gd, now);
+      html+=misionHoy(hoy);
       if(paradas.length){
         html+='<div class="hcard"><h3>El plan de hoy</h3><button class="hbtn gh full" data-maphoy="'+now.d+'" style="margin-bottom:8px">🗺️ Ver el recorrido de hoy en el mapa</button><ul class="stops" id="hoyStops">'
           + paradas.map(function(p,i){
@@ -3201,7 +3286,7 @@ window.__contraerDias();
         +(window.__climaTexto && window.__climaTexto(man.num) ? '<div class="hsub" style="font-size:14px;margin-top:6px">'+window.__climaTexto(man.num)+'</div>' : '')
         +'<div class="hbtns"><button class="hbtn gh full" data-day="'+D.indexOf(man)+'">Ver el día</button></div></div>';
       html+=reglas(true);
-      box._paradas=paradas;
+      box._paradas=paradas; box._sig=sig;
     }
     else {
       html+='<div class="hoyday">Río de Janeiro · diciembre 2026</div><div class="big">Boa viagem de volta 🇧🇷</div>'
@@ -3479,6 +3564,13 @@ window.__contraerDias();
   document.addEventListener('click',function(e){
     var box=document.getElementById('hoyIn');
     if(!box || !box.contains(e.target)) return;
+    if(e.target.closest('[data-tarde]')){ var tb=document.getElementById('tardeBox'); if(tb) tb.hidden=!tb.hidden; return; }
+    var tm=e.target.closest('[data-tmin]');
+    if(tm && box._paradas){
+      [].slice.call(box.querySelectorAll('[data-tmin]')).forEach(function(b){ b.classList.toggle('on', b===tm); });
+      document.getElementById('tardeRes').innerHTML=tarde(+tm.getAttribute('data-tmin'), box._paradas, box._sig);
+      return;
+    }
     var mp=e.target.closest('[data-mapstop]');
     if(mp && box._paradas && window.__mapaVer){ var pp=box._paradas[+mp.getAttribute('data-mapstop')]; if(pp) window.__mapaVer({li:pp.li}); return; }
     var mh=e.target.closest('[data-maphoy]');
@@ -3518,6 +3610,14 @@ window.__contraerDias();
 })();
 </script>
 
+<div class="vers" id="cerca" hidden role="dialog" aria-modal="true" aria-label="Qué hay cerca">
+  <div class="vers-in">
+    <h3>🍴 Qué hay cerca para comer y probar</h3>
+    <p class="gnota" id="cercaDe"></p>
+    <div id="cercaLista"></div>
+    <button class="hbtn gh full" id="cercaCerrar" style="margin-top:10px">Cerrar</button>
+  </div>
+</div>
 <div class="vers" id="vers" hidden role="dialog" aria-modal="true" aria-label="Versiones anteriores">
   <div class="vers-in">
     <h3>↩️ Volver a una versión anterior</h3>
@@ -3558,7 +3658,7 @@ window.__contraerDias();
 
   function cargar(){
     var g={}; try{ g=JSON.parse(localStorage.getItem(LKEY)||'{}')||{}; }catch(e){}
-    g.n=g.n||{}; g.g=g.g||{}; g.m=g.m||{}; return g;
+    g.n=g.n||{}; g.g=g.g||{}; g.m=g.m||{}; g.p=g.p||{}; return g;
   }
   function guardarLocal(){ try{ localStorage.setItem(LKEY, JSON.stringify(G)); }catch(e){} }
   function sucio(v){
@@ -3568,7 +3668,7 @@ window.__contraerDias();
   /* trae lo de b a G; gana el dato más reciente */
   function juntar(b){
     var cambio=false;
-    ['n','g','m'].forEach(function(s){
+    ['n','g','m','p'].forEach(function(s){
       var B=(b && b[s]) || {};
       Object.keys(B).forEach(function(k){
         var x=G[s][k], y=B[k];
@@ -3838,7 +3938,44 @@ window.__contraerDias();
     });
     return s;
   };
-  function pintar(){ pintarCuentas(); pintarMaleta(); if(window.__pintarPresu) window.__pintarPresu(); }
+  /* ---------- LISTA DE MISIÓN: lo que hay que probar, tachado entre los cuatro ---------- */
+  function nrm(s){ return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function mision(){
+    /* solo la primera grilla: las diez de la lista (no las de "Y si quieren ir más allá") */
+    var g0=document.querySelector('#probar .grid'); if(!g0) return [];
+    return [].slice.call(g0.children).filter(function(c){ return c.classList.contains('mini'); }).map(function(c){
+      var hd=c.querySelector('.h'), t=hd ? hd.cloneNode(true) : null;
+      if(t) [].slice.call(t.querySelectorAll('.pz,.sisi,.opt,.mbtn2')).forEach(function(x){ x.remove(); });
+      var txt=(t ? t.textContent : '').trim(), emo=(txt.match(/^\S+/)||[''])[0], nom=txt.replace(/^\S+\s*/,'');
+      var id=nrm(nom).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+      return {id:id, nom:nom, emo:emo, must:c.classList.contains('must'), card:c, clave:nrm(nom).split(/\s+/)[0], hecho:!!val('p',id)};
+    });
+  }
+  window.__mision=mision;
+  window.__marcarMision=function(id){ poner('p', id, !val('p',id)); };
+  function pintarMision(){
+    var M=mision(); if(!M.length) return;
+    var hechos=M.filter(function(x){ return x.hecho; }).length, mus=M.filter(function(x){ return x.must; }), mh=mus.filter(function(x){ return x.hecho; }).length;
+    var bar=document.getElementById('misionBar');
+    if(!bar){
+      bar=document.createElement('div'); bar.id='misionBar'; bar.className='hcard mision';
+      var g=document.querySelector('#probar .grid'); g.parentNode.insertBefore(bar,g);
+    }
+    bar.innerHTML='<h3>✅ La misión</h3><div class="mprog"><i style="width:'+Math.round(hechos/M.length*100)+'%"></i></div>'
+      +'<p><b>'+hechos+' de '+M.length+'</b> probados · imperdibles <b>'+mh+' de '+mus.length+'</b>. Toquen ✓ en cada uno cuando lo prueben: se marca para los cuatro.</p>';
+    M.forEach(function(x){
+      var b=x.card.querySelector('.mbtn2');
+      if(!b){ b=document.createElement('button'); b.type='button'; b.className='mbtn2'; b.setAttribute('data-mision',x.id); x.card.querySelector('.h').appendChild(b); }
+      b.textContent = x.hecho ? '✅ Probado' : '✓ Lo probamos';
+      b.classList.toggle('on', x.hecho);
+      x.card.classList.toggle('probado', x.hecho);
+    });
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-mision]'); if(!b) return;
+    window.__marcarMision(b.getAttribute('data-mision'));
+  });
+  function pintar(){ pintarCuentas(); pintarMaleta(); pintarMision(); if(window.__pintarPresu) window.__pintarPresu(); if(window.__pintarHoy) window.__pintarHoy(); }
   window.__pintarGrupo=pintar;
   pintar();
   if(sucio()) enviar(); else bajar();
@@ -4243,27 +4380,48 @@ window.__contraerDias();
   function cargarLeaflet(){
     if(window.L) return Promise.resolve();
     if(cargando) return cargando;
-    cargando=new Promise(function(ok,mal){
-      var css=document.createElement('link'); css.rel='stylesheet'; css.href='leaflet/leaflet.css'; document.head.appendChild(css);
-      var s=document.createElement('script'); s.src='leaflet/leaflet.js'; s.onload=ok; s.onerror=mal; document.head.appendChild(s);
+    function js(src){ return new Promise(function(ok,mal){ var s=document.createElement('script'); s.src=src; s.onload=ok; s.onerror=mal; document.head.appendChild(s); }); }
+    function css(href){ var l=document.createElement('link'); l.rel='stylesheet'; l.href=href; document.head.appendChild(l); }
+    css('leaflet/leaflet.css'); css('maplibre/maplibre-gl.css');
+    /* MapLibre dibuja el mapa bonito (OpenFreeMap); si el celular no puede, quedan las calles normales */
+    cargando=js('leaflet/leaflet.js').then(function(){
+      return js('maplibre/maplibre-gl.js').then(function(){ return js('leaflet/leaflet-maplibre-gl.js'); }).catch(function(){});
     });
     return cargando;
   }
 
   var mapa=null, capa=null, tiles=null, yo=null, sel='todos', extras=false, D=null, marcas=[];
   function oscuro(){ return document.documentElement.classList.contains('oscuro'); }
+  var sinVectorial=false;   /* si OpenFreeMap falla, se queda en las calles normales */
   function ponerTiles(){
     if(tiles) mapa.removeLayer(tiles);
-    /* calles de OpenStreetMap: no piden clave. En modo oscuro se oscurecen con un filtro (CSS) */
-    tiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-      {maxZoom:19, attribution:'© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'});
+    var osm='© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>';
+    if(vectorial() && !sinVectorial){
+      /* OpenFreeMap: gratis, sin clave; "liberty" muestra senderos y calles peatonales */
+      tiles=L.maplibreGL({style:'https://tiles.openfreemap.org/styles/'+(oscuro()?'dark':'liberty'),
+        attribution:'<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> '+osm});
+    } else {
+      /* respaldo: OpenStreetMap normal (en oscuro se oscurece con un filtro) */
+      tiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19, attribution:osm});
+    }
     tiles.addTo(mapa);
+    var gl=tiles.getMaplibreMap && tiles.getMaplibreMap();
+    if(gl){
+      var listo=false; gl.once('load',function(){ listo=true; });
+      setTimeout(function(){ if(!listo && navigator.onLine!==false){ sinVectorial=true; ponerTiles(); } }, 8000);
+    }
+  }
+  function vectorial(){
+    if(!window.maplibregl || !L.maplibreGL) return false;
+    try{ var c=document.createElement('canvas'); return !!(c.getContext('webgl2')||c.getContext('webgl')); }catch(e){ return false; }
   }
   function iniciar(){
     mapa=L.map('lmap',{zoomControl:false, attributionControl:true}).setView([-22.93,-43.19],12);
     L.control.zoom({position:'topright'}).addTo(mapa);
     ponerTiles();
     capa=L.layerGroup().addTo(mapa);
+    /* cambiar a oscuro/claro cambia el estilo del mapa */
+    new MutationObserver(function(){ ponerTiles(); }).observe(document.documentElement,{attributes:true, attributeFilter:['class']});
   }
   function icono(txt, color, cls){
     return L.divIcon({className:'', iconSize:[30,30], iconAnchor:[15,15], popupAnchor:[0,-14],
@@ -4295,7 +4453,7 @@ window.__contraerDias();
         m.on('popupopen',function(){ marcar(p); });
         marcas.push({p:p, m:m});
       });
-      if(linea.length>1) L.polyline(linea,{color:COLOR[n], weight:4, opacity:.75, dashArray:'2 8', lineCap:'round'}).addTo(capa);
+      tramos(dia).forEach(function(t){ dibujarTramo(t); });
     });
     if(extras) [].slice.call(document.querySelectorAll('#comWrap .place')).forEach(function(pl){
       var v=pl.querySelector('.vm'), i=v ? PORQ[norm(v.getAttribute('data-q'))] : null; if(i==null) return;
@@ -4314,6 +4472,7 @@ window.__contraerDias();
     pintarLista();
     chips();
     buscarFaltan();
+    rutear();
   }
   function chips(){
     var box=document.getElementById('mDias'); if(!box || !D) return;
@@ -4345,6 +4504,66 @@ window.__contraerDias();
     Object.keys(D.dias).some(function(k){ var j=D.dias[k].paradas.indexOf(p); if(j>-1){ i=j; n=k; return true; } });
     marcada=document.querySelector('[data-mi="'+n+'-'+i+'"]');
     if(marcada) marcada.classList.add('on');
+  }
+
+  /* ---------- tramos entre paradas ----------
+     El itinerario dice cómo se llega a cada parada (.mv): ok/dia = a pie,
+     no = Uber, mtr = metro. A pie va por las calles (ruta de FOSSGIS),
+     guardada en el celular; mientras no la haya, una línea recta.       */
+  var RKEY='rio2026:rutas', TIPO_COLOR={ok:'#2b8a3e', dia:'#e67700', no:'#868e96', mtr:'#1971c2'};
+  function rutas(){ try{ return JSON.parse(localStorage.getItem(RKEY)||'{}'); }catch(e){ return {}; } }
+  function distancia(a,b){
+    var R=6371000, r=Math.PI/180, dLa=(b[0]-a[0])*r, dLo=(b[1]-a[1])*r;
+    var x=Math.sin(dLa/2)*Math.sin(dLa/2)+Math.cos(a[0]*r)*Math.cos(b[0]*r)*Math.sin(dLo/2)*Math.sin(dLo/2);
+    return 2*R*Math.asin(Math.sqrt(x));
+  }
+  window.__distancia=distancia;
+  function clave(a,b){ return a[0].toFixed(5)+','+a[1].toFixed(5)+'>'+b[0].toFixed(5)+','+b[1].toFixed(5); }
+  var porRutear={};
+  function tramos(dia){
+    var out=[], ant=null;
+    dia.paradas.forEach(function(p){
+      if(!p.pos) return;
+      var ll=[p.pos.la,p.pos.lo];
+      if(ant && distancia(ant,ll)>25){
+        var mv=p.li.querySelector('.mv'), tipo = !mv ? 'otro' : mv.classList.contains('ok') ? 'ok' : mv.classList.contains('dia') ? 'dia'
+          : mv.classList.contains('mtr') ? 'mtr' : mv.classList.contains('no') ? 'no' : 'otro';
+        if((tipo==='ok'||tipo==='dia') && distancia(ant,ll)>4000) tipo='otro';   /* tan lejos no es a pie */
+        out.push({a:ant, b:ll, tipo:tipo, color:COLOR[dia.num]});
+      }
+      ant=ll;
+    });
+    return out;
+  }
+  function dibujarTramo(t){
+    var pie = t.tipo==='ok' || t.tipo==='dia';
+    if(pie){
+      var k=clave(t.a,t.b), r=rutas()[k], pts = (r && r.length) ? r : [t.a,t.b];
+      if(!r) porRutear[k]=t;
+      L.polyline(pts,{color:'#fff', weight:8, opacity:.9, lineCap:'round', lineJoin:'round', interactive:false}).addTo(capa);
+      L.polyline(pts,{color:TIPO_COLOR[t.tipo], weight:5, opacity:.95, lineCap:'round', lineJoin:'round', interactive:false,
+        dashArray: r ? null : '1 9'}).addTo(capa);
+    } else if(t.tipo==='no' || t.tipo==='mtr'){
+      L.polyline([t.a,t.b],{color:TIPO_COLOR[t.tipo], weight:3, opacity:.8, dashArray:'6 8', interactive:false}).addTo(capa);
+    } else {
+      L.polyline([t.a,t.b],{color:t.color, weight:3, opacity:.55, dashArray:'2 8', lineCap:'round', interactive:false}).addTo(capa);
+    }
+  }
+  var ruteando=false;
+  function rutear(){
+    if(ruteando || navigator.onLine===false) return;
+    var ks=Object.keys(porRutear); if(!ks.length) return;
+    ruteando=true;
+    var k=ks[0], t=porRutear[k]; delete porRutear[k];
+    fetch('https://routing.openstreetmap.de/routed-foot/route/v1/foot/'+t.a[1]+','+t.a[0]+';'+t.b[1]+','+t.b[0]+'?overview=full&geometries=geojson')
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        var g=j && j.routes && j.routes[0] && j.routes[0].geometry;
+        if(!g || !g.coordinates) return;
+        var all=rutas(); all[k]=g.coordinates.map(function(c){ return [+c[1].toFixed(5), +c[0].toFixed(5)]; });
+        try{ localStorage.setItem(RKEY, JSON.stringify(all)); }catch(e){}
+      }).catch(function(){})
+      .then(function(){ setTimeout(function(){ ruteando=false; if(Object.keys(porRutear).length) rutear(); else pintar(false); }, 1100); });   /* máximo una por segundo */
   }
 
   /* ---------- buscar en OpenStreetMap lo que no se conoce ---------- */
@@ -4392,6 +4611,55 @@ window.__contraerDias();
     }
   }
   /* desde otras pestañas: __mapaVer({dia:22}) · ({li}) · ({q}) */
+  /* ---------- ¿Qué hay cerca? ----------
+     Lugares para comer/probar del viaje (restaurantes, açaí, caipiriñas,
+     súper, comodines y las paradas con antojos), ordenados por distancia
+     desde donde están (o desde el centro del mapa si no hay ubicación). */
+  var EMO={r:'🍽️',c:'🍹',z:'🍇',m:'🛒',t:'🛍️'};
+  function lugaresComida(){
+    var L0=[];
+    LUGARES.forEach(function(l){ if(EMO[l[4]]) L0.push({n:l[3], ll:[l[1],l[2]], e:EMO[l[4]], probar:[]}); });
+    if(!D) D=datos();
+    D.orden.forEach(function(n){ D.dias[n].paradas.forEach(function(p){
+      var an=p.li.querySelector('.antojos'); if(!an || !p.pos) return;
+      var items=[].slice.call(an.querySelectorAll('.ant')).map(function(a){ return ((a.querySelector('.ape')||{}).textContent||'')+' '+((a.querySelector('.atx b')||{}).textContent||''); });
+      var ll=[p.pos.la,p.pos.lo], cerca=L0.filter(function(x){ return distancia(x.ll,ll)<80; })[0];
+      if(cerca){ items.forEach(function(i){ if(cerca.probar.indexOf(i)<0) cerca.probar.push(i); }); }
+      else L0.push({n:p.n.replace(/^[^\p{L}\d]+/u,''), ll:ll, e:'🍬', probar:items});
+    }); });
+    return L0;
+  }
+  function abrirCerca(){
+    var ov=document.getElementById('cerca'); ov.hidden=false;
+    document.getElementById('cercaLista').innerHTML='<p class="gnota">Buscando dónde están…</p>';
+    function listar(desde, txt){
+      document.getElementById('cercaDe').textContent=txt;
+      var L0=lugaresComida().map(function(x){ x.d=distancia(desde,x.ll); return x; }).sort(function(a,b){ return a.d-b.d; }).slice(0,8);
+      document.getElementById('cercaLista').innerHTML=L0.map(function(x,i){
+        var m=Math.round(x.d*1.25/80), dist = x.d<1000 ? Math.round(x.d/10)*10+' m' : (x.d/1000).toFixed(1).replace('.',',')+' km';
+        return '<div class="crow"><span class="ce">'+x.e+'</span><span class="ct"><b>'+esc(x.n)+'</b><small>'+dist+(x.d<2500?' · '+Math.max(1,m)+' min a pie':' · mejor en Uber')+'</small>'
+          +(x.probar.length?'<small class="cp2">Para probar: '+esc(x.probar.slice(0,3).join(', '))+'</small>':'')+'</span>'
+          +'<span class="cb"><a class="hbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&travelmode=walking&destination='+x.ll[0]+','+x.ll[1]+'">🧭</a>'
+          +'<button class="hbtn gh" data-cver="'+x.ll[0]+','+x.ll[1]+'">Ver</button></span></div>';
+      }).join('') || '<p class="gnota">No hay lugares guardados.</p>';
+    }
+    var centro=function(){ var c=mapa ? mapa.getCenter() : {lat:LUGARES[0][1], lng:LUGARES[0][2]}; listar([c.lat,c.lng],'Desde el centro del mapa.'); };
+    if(!navigator.geolocation){ centro(); return; }
+    navigator.geolocation.getCurrentPosition(function(pos){
+      var ll=[pos.coords.latitude,pos.coords.longitude];
+      if(distancia(ll,[LUGARES[0][1],LUGARES[0][2]])>40000) centro();   /* todavía no están en Río */
+      else listar(ll,'Desde donde están ahora.');
+    }, centro, {enableHighAccuracy:true, timeout:8000, maximumAge:60000});
+  }
+  /* al cambiar de pestaña, la hoja se cierra */
+  window.addEventListener('hashchange',function(){ var o=document.getElementById('cerca'); if(o) o.hidden=true; });
+  document.addEventListener('click',function(e){
+    if(e.target.closest('#mCerca')){ abrirCerca(); return; }
+    if(e.target.closest('#cercaCerrar') || e.target.id==='cerca'){ document.getElementById('cerca').hidden=true; return; }
+    var v=e.target.closest('[data-cver]');
+    if(v && mapa){ var c=v.getAttribute('data-cver').split(',').map(Number); document.getElementById('cerca').hidden=true; mapa.setView(c,17); }
+  });
+
   /* KML para Google My Maps, con el itinerario como está ahora */
   function kml(){
     var X=function(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); };

@@ -7,8 +7,8 @@ Itinerario del viaje. Una sola página.
 - `index.html` — la página completa. Todo está adentro.
 - `rio-2026-mapa.kml` — los 54 sitios originales. El botón "Descargar el mapa (KML)"
   de la página arma uno nuevo con el itinerario como esté.
-- `leaflet/` — la librería del mapa (Leaflet 1.9.4, licencia BSD-2), local para que
-  funcione sin internet.
+- `leaflet/` y `maplibre/` — las librerías del mapa (Leaflet 1.9.4, MapLibre GL 5.6.0 y
+  maplibre-gl-leaflet 0.1.4; licencias en cada carpeta), locales para que funcione sin internet.
 - `icono.png`, `icono-192.png`, `icono-512.png`, `apple-touch-icon.png` — los íconos.
 - `manifest.webmanifest` — para instalarla en el celular como app.
 - `sw.js` — para que funcione sin internet.
@@ -74,9 +74,16 @@ Mientras no corran el SQL, la página sigue guardando como antes.
 - **↩️ Versiones** (modo edición): las últimas 10 versiones del itinerario que pasaron
   por ese celular; al restaurar una, queda así para los cuatro.
 - **🎒 Hoy llevan** (Hoy, durante el viaje): qué llevar y cuánto efectivo, según el día.
+- **🍴 ¿Qué hay cerca?** (botón en el mapa): lo más cercano para comer y probar, con minutos a pie.
+- **✅ La misión** (Comer y probar): las 10 cosas para probar, tachadas entre los cuatro; Hoy
+  recuerda cuáles les quedan en el camino ese día.
+- **⏰ ¿Vamos tarde?** (Hoy → Lo que sigue): qué saltar para llegar a lo que tiene hora fija,
+  sin tocar las ★.
 - **🇨🇴 Consulado de Colombia en Río**: emergencias +55 21 99958-9043 (riodejaneiro.consulado.gov.co).
-- **🗺️ Mapa** (pestaña Mapa): un mapa real (calles de OpenStreetMap) con
-  cada parada numerada en orden y el recorrido del día. Sale del itinerario:
+- **🗺️ Mapa** (pestaña Mapa): un mapa real (OpenFreeMap, sin clave; si falla,
+  OpenStreetMap) con cada parada numerada en orden. Los tramos que el itinerario marca a pie
+  van por las calles (rutas de FOSSGIS/OSRM, guardadas): verde si es tranquilo, amarillo si es
+  solo de día; Uber y metro en línea punteada. Sale del itinerario:
   si cambian una parada, su orden o su dirección, el mapa cambia. Las
   direcciones nuevas o editadas se buscan en OpenStreetMap (Nominatim) y
   quedan guardadas. Las calles que ya vieron quedan guardadas sin internet.
