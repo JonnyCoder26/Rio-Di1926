@@ -538,6 +538,9 @@ body.tabs .edbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scr
 .gm{font-weight:800;color:var(--tx);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 .gm small{display:block;font-size:11.5px;color:var(--tx3);font-weight:700}
 .gtot{font-size:13px;color:var(--tx2);margin-top:10px;padding-top:10px;border-top:2px solid var(--gold);line-height:1.5}
+.gya{flex:none;min-height:36px;padding:0 10px;border-radius:9px;border:1px solid var(--green);background:none;color:var(--green);font:inherit;font-size:12.5px;font-weight:800;cursor:pointer}
+.gpago{flex-wrap:wrap}
+.gitem.pago b{color:var(--green)}
 .gitem{padding:10px 0;border-bottom:1px solid var(--line)}
 .gitem:last-child{border-bottom:0}
 .gi1{display:flex;justify-content:space-between;gap:12px;font-size:15.5px}
@@ -689,6 +692,7 @@ html.oscuro .week li.today .daynum span{color:#0b3d3a}
 .leaflet-popup-content{margin:12px 14px;font:inherit}
 .leaflet-container{font:inherit}
 .leaflet-control-attribution{font-size:10px}
+html.oscuro .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.9) contrast(.9)}
 .mpop .mp1{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--tx2)}
 .mpop .mp2{font-size:16px;font-weight:750;margin-top:6px;line-height:1.3;color:var(--tx)}
 .mpop .mp3{font-size:13.5px;color:var(--tx2);margin-top:4px}
@@ -736,6 +740,23 @@ details.leyenda{padding:12px 16px}
 details.leyenda summary{cursor:pointer;font-weight:700;font-size:15px;list-style:none;min-height:24px}
 details.leyenda summary::-webkit-details-marker{display:none}
 details.leyenda .ley{margin-top:10px}
+/* Versiones */
+.vers{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center}
+.vers[hidden]{display:none}
+.vers-in{background:var(--bg);width:100%;max-width:560px;border-radius:18px 18px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:80vh;overflow:auto;animation:vista 220ms var(--ease-out)}
+.vers-in h3{font-size:17px}
+.vrow{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;padding:12px 14px;margin-top:8px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--tx);font:inherit;text-align:left;cursor:pointer;min-height:56px}
+.vrow b{font-size:15.5px}
+.vrow span{font-size:13px;color:var(--tx3)}
+.hcard.mochila .mch{display:flex;flex-wrap:wrap;gap:6px}
+.hcard.mochila .mch span{background:var(--card2);border:1px solid var(--line);border-radius:100px;padding:5px 11px;font-size:13.5px;color:var(--tx)}
+.hcard.mochila .efec{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:15px;color:var(--tx2)}
+.hcard.mochila .efec b{color:var(--tx)}
+details.mnota summary, details.hcard.seg summary{cursor:pointer;list-style:none;font-weight:700;font-size:14.5px;color:var(--blue);margin-top:8px}
+details.hcard.seg summary{color:var(--red);margin-top:0;font-size:15px}
+details.mnota summary::-webkit-details-marker, details.hcard.seg summary::-webkit-details-marker{display:none}
+details.mnota div{font-size:14.5px;color:var(--tx2);margin-top:6px}
+details.hcard.seg[open] summary{margin-bottom:10px}
 /* Más */
 .mgroup{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);margin:22px 0 8px}
 .mlist{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
@@ -2133,7 +2154,7 @@ details.leyenda .ley{margin-top:10px}
         <li><b>192</b> — Ambulancia (SAMU)</li>
         <li><b>193</b> — Bomberos</li>
         <li><b>Hotel:</b> +55 21 2112-6000</li>
-        <li>Consulado de Colombia en Río — guarden el número antes de viajar</li>
+        <li><b>Consulado de Colombia</b> — emergencias <a class="lnk" href="tel:+5521999589043">+55 21 99958-9043</a> · Praia de Botafogo 228 B, Edificio Argentina, sala 801, Botafogo · lun–vie 8:00–14:00 con cita</li>
       </ul>
     </div>
     <div class="mini">
@@ -2198,6 +2219,7 @@ details.leyenda .ley{margin-top:10px}
   <button class="edbtn" id="edExport">⬇️ Descargar cambios</button>
   <button class="edbtn" id="edImport">⬆️ Cargar cambios</button>
   <button class="edbtn" id="edTest">🔌 Probar sincronización</button>
+  <button class="edbtn" id="edVers">↩️ Versiones</button>
   <button class="edbtn dan" id="edReset">↺ Volver al original</button>
   <input type="file" id="edFile" accept=".json" style="display:none">
 </div>
@@ -2304,6 +2326,7 @@ window.__contraerDias();
           if(document.body.classList.contains('editing')) return null;
           ultimoSello = fila.sello;
           aplicar(fila.data);
+          versionar(fila.data,'grupo');
           try{ localStorage.setItem(KEY, JSON.stringify(fila.data)); }catch(e){}
           if(!silencioso) marcaSync('✓ Actualizado desde el grupo','var(--green)');
           return fila.data;
@@ -2403,6 +2426,23 @@ window.__contraerDias();
     [].slice.call(c.querySelectorAll('[contenteditable]')).forEach(function(n){ n.removeAttribute('contenteditable'); });
     return c.innerHTML;
   }
+  /* ---------- versiones: las últimas 10, en este celular, para deshacer ---------- */
+  var VKEY='rio2026:versiones';
+  function versiones(){ try{ return JSON.parse(localStorage.getItem(VKEY)||'[]'); }catch(e){ return []; } }
+  function versionar(d, quien){
+    var v=versiones(), firma=function(x){ return JSON.stringify({tl:x.tl, ed:x.ed, com:x.com}); };
+    if(v.length && firma(v[v.length-1].d)===firma(d)) return;   /* igual a la última: nada */
+    v.push({t:Date.now(), q:quien, d:d});
+    while(v.length>10) v.shift();
+    while(v.length){ try{ localStorage.setItem(VKEY, JSON.stringify(v)); break; }catch(e){ v.shift(); } }   /* sin espacio: se bota la más vieja */
+  }
+  window.__versiones=versiones;
+  window.__restaurar=function(i){
+    var v=versiones()[i]; if(!v) return false;
+    aplicar(v.d); guardar(); aviso('↩️ Versión restaurada para los 4');
+    return true;
+  };
+
   function guardar(){
     var d={tl:{},ed:{}};
     [].slice.call(document.querySelectorAll('[data-tl]')).forEach(function(u){
@@ -2420,6 +2460,7 @@ window.__contraerDias();
     [].slice.call(document.querySelectorAll('[data-chk]')).forEach(function(c){
       d.chk[c.getAttribute('data-chk')]=c.checked;
     });
+    versionar(d,'tú');
     try{ localStorage.setItem(KEY, JSON.stringify(d)); aviso(syncOn ? '✓ Guardado y enviado' : '✓ Guardado'); }
     catch(e){ aviso('⚠ No se pudo guardar'); }
     if(window.__subir) window.__subir(d);
@@ -3011,12 +3052,35 @@ window.__contraerDias();
   }
 
   /* las reglas de seguridad salen de la sección Cuidados, para no tener dos versiones */
-  function reglas(){
+  function reglas(plegadas){
     var h3=[].slice.call(document.querySelectorAll('#cuidado h3')).filter(function(x){ return /Seguridad/.test(x.textContent); })[0];
     var ul=h3 && h3.parentNode.querySelector('ul');
     if(!ul) return '';
-    return '<div class="hcard seg"><h3>🛡️ Seguridad · las reglas</h3><ul class="reglas">'+ul.innerHTML+'</ul>'
-      +'<div class="hbtns"><a class="hbtn gh" href="#caminar">🚶 Por dónde caminar</a><a class="hbtn gh" href="#cuidado">Todos los cuidados</a></div></div>';
+    var cuerpo='<ul class="reglas">'+ul.innerHTML+'</ul>'
+      +'<div class="hbtns"><a class="hbtn gh" href="#caminar">🚶 Por dónde caminar</a><a class="hbtn gh" href="#cuidado">Todos los cuidados</a></div>';
+    if(plegadas) return '<details class="hcard seg"><summary>🛡️ Las reglas de seguridad · toquen para verlas</summary>'+cuerpo+'</details>';
+    return '<div class="hcard seg"><h3>🛡️ Seguridad · las reglas</h3>'+cuerpo+'</div>';
+  }
+  /* lo que hay que llevar hoy: sale de las paradas y notas del día y del clima */
+  function mochila(hoy, gd, now){
+    var txt=hoy.map(function(x){ return x.card.textContent; }).join(' '), cl=window.__climaDe ? window.__climaDe(now.d) : null;
+    var c=['💧 Agua','🧴 Protector','🔋 Batería','📱 Foto del pasaporte'];
+    if(/Praia Vermelha|Playa de Copacabana|kit de playa/i.test(txt)) c.push('🩱 Vestido de baño y canga');
+    if(/abrigad/i.test(txt)) c.push('🧥 Algo abrigado');
+    if(/calçadão|caminata|Pista Cláudio/i.test(txt)) c.push('👟 Tenis cómodos');
+    if(/Misa en la Catedral/.test(txt)) c.push('👔 Ropa para la misa');
+    if(/Cena de Navidad/.test(txt)) c.push('🎄 Ropa para la noche');
+    c.push(cl && cl.p>=40 ? '☂️ Paraguas · lluvia '+cl.p+'%' : '☂️ Paraguas pequeño');
+    /* efectivo: antojos de la calle y la playa, sillas si hay playa, y un margen */
+    var ant=0; if(gd) gd.items.forEach(function(it){ if(it.antojo) ant+=it.r[1]; });
+    var ef=Math.max(50, Math.ceil((ant + (gd && gd.playa ? 45 : 0) + 20)/10)*10);
+    var nota=null;
+    hoy.forEach(function(x){ [].slice.call(x.card.querySelectorAll('.daybody > .note')).forEach(function(n){ if(/mochila/i.test(n.textContent)) nota=n; }); });
+    return '<div class="hcard mochila"><h3>🎒 Hoy llevan</h3><div class="mch">'+c.map(function(x){ return '<span>'+esc(x)+'</span>'; }).join('')+'</div>'
+      +'<div class="efec">💵 Efectivo: <b>unos R$ '+ef+' por persona</b> (≈ '+cop(ef)+' COP) para puestos, playa y propinas. Lo demás, con tarjeta.</div>'
+      +(gd && gd.playa ? '<p class="gnota">🏖️ Pidan el kit de playa en recepción. Si no hay, del efectivo salen ~R$ 45 para sillas y sombrilla. <a class="lnk" href="#playa">Precios</a></p>' : '')
+      +(nota ? '<details class="mnota"><summary>La lista completa de hoy</summary><div>'+nota.innerHTML+'</div></details>' : '')
+      +'</div>';
   }
   function avisos(cards){
     var n=[];
@@ -3075,16 +3139,16 @@ window.__contraerDias();
       html+='<div class="hoyday">Hoy · '+(titulo?SEMANA[titulo.sem]||titulo.sem:'')+' '+now.d+' de diciembre</div>';
       if(titulo) html+='<div class="big">'+esc(titulo.dt)+'</div><div class="hsub">'+esc(titulo.dd)+'</div>';
       var gd=gastoPorDia().filter(function(g){ return g.num===now.d; })[0];
-      if(gd && gd.max) html+='<div class="hoymoney"><span>💰 Hoy, por persona: <b>'+rtxt([gd.min,gd.max])+'</b> · ≈ '+cop(gd.min)+(gd.max!==gd.min?'–'+cop(gd.max):'')+' COP</span></div>';
-      if(window.__climaTexto && window.__climaTexto(now.d)) html+='<div class="hoymoney"><span>'+window.__climaTexto(now.d)+'</span></div>';
-      var cristoHoy = now.d===23 && now.min<11*60, cristoMan = now.d===22;
+      var ct=window.__climaTexto ? window.__climaTexto(now.d) : '';
+      if(ct || (gd && gd.max)) html+='<div class="hoymoney">'+(ct?'<span>'+ct+'</span>':'')
+        +(gd && gd.max ? '<span>💰 <b>'+rtxt([gd.min,gd.max])+'</b> por persona</span>' : '')+'</div>';
+      var cristoHoy = now.d===23 && now.min<11*60, cristoMan = now.d===22 && now.min>=15*60;
       if(cristoHoy || cristoMan){
         var nb=window.__nubesCristo ? window.__nubesCristo() : null, cam=document.querySelector('#dias .note.camara');
         html+='<div class="hcard cristo"><h3>⛰️ '+(cristoHoy?'Hoy':'Mañana')+' suben al Cristo</h3>'
           +(nb!=null ? '<p>Nubes pronosticadas de 6:00 a 10:00: <b>'+nb+' %</b>. '+(nb>=70?'⚠️ Puede estar tapado: miren la cámara antes de pedir el Uber.':nb>=40?'Puede haber nubes: miren la cámara antes de salir.':'✓ Pinta despejado.')+'</p>' : '')
           +(cam ? '<p>'+cam.innerHTML+'</p>' : '')+'</div>';
       }
-      if(gd && gd.playa) html+='<div class="note money" style="margin-top:12px"><b>🏖️ Hoy es playa.</b> Pidan el kit en recepción. Si no hay, lleven <b>R$ 45 en efectivo por persona</b> para sillas y sombrilla. <a class="lnk" href="#playa">Ver precios</a></div>';
       var paradas=[];
       hoy.forEach(function(x){
         [].slice.call(x.card.querySelectorAll('.tl > li')).forEach(function(li){
@@ -3108,17 +3172,7 @@ window.__contraerDias();
         html+='<div class="hcard"><h3>Listo por hoy</h3><p>El plan de hoy ya terminó.'+(man?' Mañana: <b>'+esc(man.dt)+'</b>.':'')+'</p></div>';
       }
       html+=avisos(hoy.map(function(x){ return x.card; }));
-      var ll=document.querySelector('#cuidado [data-chip="Si llueve"]');
-      if(ll){
-        var llc=ll.parentNode.cloneNode(true); llc.querySelector('h3').remove();
-        html+='<details class="hcard lluvia"><summary>🌧️ ¿Está lloviendo? Toquen aquí</summary>'+llc.innerHTML+'</details>';
-      }
-      var hotel=document.querySelector('#dias .addr[data-q*="Riale"]');
-      html+='<div class="hcard"><h3>A la mano</h3><div class="hbtns" style="margin-top:0">'
-        +(hotel?'<a class="hbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(hotel.getAttribute('data-q'))+'">🏨 Volver al hotel</a>':'')
-        +'<a class="hbtn gh" href="tel:+552121126000">📞 Llamar al hotel</a>'
-        +(hotel?'<button class="hbtn gh" data-taxi-hotel>🚕 Mostrarle el hotel al taxista</button>':'')+'</div>'
-        +'<div class="tels"><a href="tel:190">190<span>Policía</span></a><a href="tel:192">192<span>Ambulancia</span></a><a href="tel:193">193<span>Bomberos</span></a></div></div>';
+      html+=mochila(hoy, gd, now);
       if(paradas.length){
         html+='<div class="hcard"><h3>El plan de hoy</h3><button class="hbtn gh full" data-maphoy="'+now.d+'" style="margin-bottom:8px">🗺️ Ver el recorrido de hoy en el mapa</button><ul class="stops" id="hoyStops">'
           + paradas.map(function(p,i){
@@ -3130,12 +3184,23 @@ window.__contraerDias();
             }).join('')
           +'</ul></div>';
       }
+      var hotel=document.querySelector('#dias .addr[data-q*="Riale"]');
+      html+='<div class="hcard"><h3>A la mano</h3><div class="hbtns" style="margin-top:0">'
+        +(hotel?'<a class="hbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(hotel.getAttribute('data-q'))+'">🏨 Volver al hotel</a>':'')
+        +'<a class="hbtn gh" href="tel:+552121126000">📞 Llamar al hotel</a>'
+        +(hotel?'<button class="hbtn gh" data-taxi-hotel>🚕 Mostrarle el hotel al taxista</button>':'')+'</div>'
+        +'<div class="tels"><a href="tel:190">190<span>Policía</span></a><a href="tel:192">192<span>Ambulancia</span></a><a href="tel:193">193<span>Bomberos</span></a></div>'
+        +'<a class="hbtn gh full" style="margin-top:8px" href="tel:+5521999589043">🇨🇴 Consulado de Colombia · emergencias</a></div>';
+      var ll=document.querySelector('#cuidado [data-chip="Si llueve"]');
+      if(ll){
+        var llc=ll.parentNode.cloneNode(true); llc.querySelector('h3').remove();
+        html+='<details class="hcard lluvia"><summary>🌧️ ¿Está lloviendo? Toquen aquí</summary>'+llc.innerHTML+'</details>';
+      }
       hoy.forEach(function(x){ var pr=x.card.querySelector('.probar-dia:not(.todo-puesto)'); if(pr) html+=pr.outerHTML; });
       if(man) html+='<div class="hcard"><h3>Mañana · '+esc(SEMANA[man.sem]||man.sem)+' '+man.num+'</h3><div class="w1" style="font-weight:700">'+esc(man.dt)+'</div><div class="hsub" style="font-size:14.5px">'+esc(man.dd)+'</div>'
         +(window.__climaTexto && window.__climaTexto(man.num) ? '<div class="hsub" style="font-size:14px;margin-top:6px">'+window.__climaTexto(man.num)+'</div>' : '')
         +'<div class="hbtns"><button class="hbtn gh full" data-day="'+D.indexOf(man)+'">Ver el día</button></div></div>';
-      html+=reglas();
-      html+=semana(now.d);
+      html+=reglas(true);
       box._paradas=paradas;
     }
     else {
@@ -3453,6 +3518,14 @@ window.__contraerDias();
 })();
 </script>
 
+<div class="vers" id="vers" hidden role="dialog" aria-modal="true" aria-label="Versiones anteriores">
+  <div class="vers-in">
+    <h3>↩️ Volver a una versión anterior</h3>
+    <p class="gnota">Las últimas versiones del itinerario que pasaron por este celular. Al restaurar una, queda así para los cuatro.</p>
+    <div id="versLista"></div>
+    <button class="hbtn gh full" id="versCerrar" style="margin-top:10px">Cerrar</button>
+  </div>
+</div>
 <div class="taxi" id="taxi" hidden role="dialog" aria-modal="true" aria-label="Dirección para el taxista">
   <div class="taxi-in">
     <div class="tx-pt">Por favor, me leve para:</div>
@@ -3578,6 +3651,14 @@ window.__contraerDias();
         if(sel.length) poner('n','presu',sel.sort());
         return;
       }
+      c=e.target.closest('[data-saldar]');
+      if(c){
+        var sp=c.getAttribute('data-saldar').split('|'), Nn=nombres();
+        if(confirm('¿'+Nn[+sp[0]]+' ya le pagó '+reales(+sp[2])+' a '+Nn[+sp[1]]+'? Queda anotado para los cuatro.'))
+          poner('g', Date.now().toString(36)+Math.random().toString(36).slice(2,6),
+                {q:'Pago', m:+sp[2], mon:'R$', p:sp[0], para:[sp[1]], c:'pago', f:Date.now()});
+        return;
+      }
       c=e.target.closest('[data-borrar]');
       if(c){
         var id=c.getAttribute('data-borrar'), g=val('g',id);
@@ -3624,7 +3705,8 @@ window.__contraerDias();
     gastos().forEach(function(x){
       var r=enReales(x.v), q=(x.v.para||[]).filter(function(i){ return i>='0' && i<='3'; });
       if(!q.length) return;
-      total+=r; pagado[+x.v.p]+=r; neto[+x.v.p]+=r;
+      if(x.v.c!=='pago'){ total+=r; pagado[+x.v.p]+=r; }
+      neto[+x.v.p]+=r;
       q.forEach(function(i){ neto[+i]-=r/q.length; });
     });
     /* quién le paga a quién: el que más debe le paga al que más puso */
@@ -3667,7 +3749,8 @@ window.__contraerDias();
     else if(!s.pagos.length) h='<p class="gok">✓ Están a paz y salvo.</p>';
     else h=s.pagos.map(function(p){
       return '<div class="gpago"><span><b>'+esc(N[p.de])+'</b> le paga a <b>'+esc(N[p.a])+'</b></span>'
-        +'<span class="gm">'+reales(p.m)+'<small>≈ '+pesos(p.m)+' COP</small></span></div>';
+        +'<span class="gm">'+reales(p.m)+'<small>≈ '+pesos(p.m)+' COP</small></span>'
+        +'<button class="gya" data-saldar="'+p.de+'|'+p.a+'|'+(Math.round(p.m*100)/100)+'">✓ Ya pagó</button></div>';
     }).join('');
     if(L.length){
       h+='<div class="gtot">Entre todos: <b>'+reales(s.total)+'</b> · '
@@ -3676,6 +3759,9 @@ window.__contraerDias();
     document.getElementById('cSaldo').innerHTML=h;
     document.getElementById('cLista').innerHTML = L.length ? L.map(function(x){
       var v=x.v, q=(v.para||[]), d=new Date(v.f||0);
+      if(v.c==='pago') return '<div class="gitem pago"><div class="gi1"><b>💸 '+esc(N[+v.p])+' le pagó a '+esc(N[+q[0]])+'</b><span class="gm">R$ '+fmt(v.m, v.m%1?2:0)+'</span></div>'
+        +'<div class="gi2"><span>'+d.getDate()+'/'+(d.getMonth()+1)+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+'</span>'
+        +'<button class="gdel" data-borrar="'+x.id+'" aria-label="Borrar">🗑</button></div></div>';
       var pq = q.length===4 ? 'para los cuatro' : 'para '+q.map(function(i){ return esc(N[+i]); }).join(', ');
       var ct=(window.__CATS||[]).filter(function(c){ return c[0]===v.c; })[0];
       if(ct) pq=ct[1]+' · '+pq;
@@ -3747,7 +3833,7 @@ window.__contraerDias();
     gastos().forEach(function(x){
       var q=(x.v.para||[]); if(!q.length) return;
       var mias=q.filter(function(i){ return Q.indexOf(i)>-1; }).length; if(!mias) return;
-      var k=x.v.c||'otro';
+      var k=x.v.c||'otro'; if(k==='pago') return;
       s[k]=(s[k]||0)+enReales(x.v)*tasa()*mias/q.length;
     });
     return s;
@@ -3756,6 +3842,27 @@ window.__contraerDias();
   window.__pintarGrupo=pintar;
   pintar();
   if(sucio()) enviar(); else bajar();
+})();
+
+/* versiones: lista y restaurar */
+(function(){
+  var ov=document.getElementById('vers'), b=document.getElementById('edVers'); if(!ov || !b) return;
+  function pintar(){
+    var v=(window.__versiones ? window.__versiones() : []), box=document.getElementById('versLista');
+    if(!v.length){ box.innerHTML='<p class="gnota">Todavía no hay versiones guardadas en este celular.</p>'; return; }
+    box.innerHTML=v.map(function(x,i){ return {x:x,i:i}; }).reverse().map(function(o,k){
+      var d=new Date(o.x.t), f=d.getDate()+'/'+(d.getMonth()+1)+' · '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+      return '<button class="vrow" data-vi="'+o.i+'"><b>'+f+'</b><span>'+(k===0?'la actual · ':'')+(o.x.q==='grupo'?'llegó del grupo':'cambio hecho aquí')+'</span></button>';
+    }).join('');
+  }
+  b.addEventListener('click',function(){ pintar(); ov.hidden=false; });
+  document.getElementById('versCerrar').addEventListener('click',function(){ ov.hidden=true; });
+  ov.addEventListener('click',function(e){
+    if(e.target===ov){ ov.hidden=true; return; }
+    var r=e.target.closest('[data-vi]'); if(!r) return;
+    if(!confirm('¿Volver el itinerario a como estaba el '+r.querySelector('b').textContent+'? Queda así para los cuatro.')) return;
+    if(window.__restaurar(+r.getAttribute('data-vi'))) ov.hidden=true;
+  });
 })();
 
 /* ============================================================
@@ -4147,8 +4254,9 @@ window.__contraerDias();
   function oscuro(){ return document.documentElement.classList.contains('oscuro'); }
   function ponerTiles(){
     if(tiles) mapa.removeLayer(tiles);
-    tiles=L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/'+(oscuro()?'dark_all':'voyager')+'/{z}/{x}/{y}{r}.png',
-      {subdomains:'abcd', maxZoom:19, attribution:'© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> © <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>'});
+    /* calles de OpenStreetMap: no piden clave. En modo oscuro se oscurecen con un filtro (CSS) */
+    tiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+      {maxZoom:19, attribution:'© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'});
     tiles.addTo(mapa);
   }
   function iniciar(){
@@ -4156,7 +4264,6 @@ window.__contraerDias();
     L.control.zoom({position:'topright'}).addTo(mapa);
     ponerTiles();
     capa=L.layerGroup().addTo(mapa);
-    new MutationObserver(function(){ ponerTiles(); }).observe(document.documentElement,{attributes:true, attributeFilter:['class']});
   }
   function icono(txt, color, cls){
     return L.divIcon({className:'', iconSize:[30,30], iconAnchor:[15,15], popupAnchor:[0,-14],
