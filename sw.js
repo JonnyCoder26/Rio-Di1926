@@ -8,8 +8,9 @@
    - El mapa (satélite de Esri, OpenFreeMap u OpenStreetMap) que ya se vio queda guardado.
    Subir VERSION cuando cambien los íconos, el manifest o Leaflet.
    ============================================================ */
-var VERSION = 'rio2026-v5';
+var VERSION = 'rio2026-v6';
 var TESELAS = 'rio2026-calles';    /* calles del mapa que ya vieron (la caché vieja de CARTO se borra) */
+var GUARDADO = 'rio2026-mapa-guardado';  /* lo que bajó el botón "Guardar el mapa de Río": no se borra solo */
 var ARCHIVOS = ['./', './index.html', './icono.png', './icono-192.png', './icono-512.png',
                 './apple-touch-icon.png', './manifest.webmanifest', './rio-2026-mapa.kml',
                 './leaflet/leaflet.js', './leaflet/leaflet.css', './leaflet/leaflet-maplibre-gl.js',
@@ -24,7 +25,7 @@ self.addEventListener('install', function(e){
 
 self.addEventListener('activate', function(e){
   e.waitUntil(caches.keys().then(function(ks){
-    return Promise.all(ks.filter(function(k){ return k !== VERSION && k !== TESELAS; }).map(function(k){ return caches.delete(k); }));
+    return Promise.all(ks.filter(function(k){ return k !== VERSION && k !== TESELAS && k !== GUARDADO; }).map(function(k){ return caches.delete(k); }));
   }).then(function(){ return self.clients.claim(); }));
 });
 
@@ -38,12 +39,12 @@ self.addEventListener('fetch', function(e){
     e.respondWith(fetch(req).then(function(r){
       if (r.ok) { var copia = r.clone(); caches.open(TESELAS).then(function(c){ c.put(req, copia); }); }
       return r;
-    }).catch(function(){ return caches.match(req); }));
+    }).catch(function(){ return caches.match(req, {ignoreVary:true}); }));
     return;
   }
   if (url.hostname === 'tile.openstreetmap.org' || url.hostname === 'tiles.openfreemap.org' || url.hostname === 'server.arcgisonline.com') {
     e.respondWith(caches.open(TESELAS).then(function(c){
-      return c.match(req).then(function(g){
+      return caches.match(req, {ignoreVary:true}).then(function(g){   /* busca en las dos: lo visto y lo guardado */
         if (g) return g;
         return fetch(req).then(function(r){
           if (r.ok) { c.put(req, r.clone()); c.keys().then(function(k){ if (k.length > 3000) c.delete(k[0]); }); }

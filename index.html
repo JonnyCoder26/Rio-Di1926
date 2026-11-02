@@ -707,6 +707,10 @@ html.oscuro .leaflet-container .mpop a.hbtn:not(.gh){color:#0b1620}
 .mley{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px;font-size:12.5px;color:var(--tx2)}
 .mley span{display:inline-flex;align-items:center;gap:6px}
 .mley i{width:18px;height:4px;border-radius:3px;display:inline-block}
+.mguardar{margin-top:12px}
+.mguardar p{font-size:13px;color:var(--tx2);margin:6px 2px 0}
+.mguardar .mbar{height:6px;border-radius:4px;background:var(--line);margin-top:8px;overflow:hidden}
+.mguardar .mbar i{display:block;height:100%;width:0;background:var(--green);transition:width .3s var(--ease-out)}
 .mley i.dash{background:repeating-linear-gradient(90deg,var(--c) 0 5px,transparent 5px 9px)}
 .vermapa{width:100%;margin:6px 0 4px}
 .mdia{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:12px}
@@ -1014,7 +1018,7 @@ html.oscuro .rowctl button.edit{color:#0b1620}
 
   <div class="ck">
     <div class="when">🟠 Cuanto antes</div>
-    <label><input type="checkbox" data-chk="c3"><span>Bondinho Pan de Azúcar, martes 22, turno de las 14:00 <small>bondinho.com.br · ~R$ 210 · el ticket vale por todo el día dentro del parque</small></span></label>
+    <label><input type="checkbox" data-chk="c3"><span>Bondinho Pan de Azúcar, martes 22, turno de las 14:00 <small>bondinho.com.br · R$ 205 · mayores de 60 pagan media · el ticket vale por todo el día dentro del parque</small></span></label>
     <label><input type="checkbox" data-chk="c4"><span>Rodizio del 24 · elegir y reservar <small>Comparación de las tres opciones en la sección Comer. La reserva de Nochebuena hay que hacerla con un mes de anticipación.</small></span></label>
     <label><input type="checkbox" data-chk="c5"><span>Faenza, viernes 25 · buffet de Navidad <small>Rua Siqueira Campos 18 · desde R$ 118 · el 25 es feriado, confirmen que abren</small></span></label>
     <label><input type="checkbox" data-chk="c6"><span>Tour Maracaná, sábado 26, 9:00 <small>R$ 115 desde septiembre (ahora lo opera Viva Maracanã) · verificar que no haya partido ese día</small></span></label>
@@ -1022,7 +1026,7 @@ html.oscuro .rowctl button.edit{color:#0b1620}
 
   <div class="ck">
     <div class="when">🟡 En noviembre</div>
-    <label><input type="checkbox" data-chk="c7"><span>AquaRio, jueves 24, entrada 9:00 <small>~R$ 80 online, más barato que en taquilla</small></span></label>
+    <label><input type="checkbox" data-chk="c7"><span>AquaRio, jueves 24, entrada 9:00 <small>aquariomarinhodorio.com.br · R$ 160 · mayores de 60 pagan media (R$ 80) · con hora marcada</small></span></label>
     <label><input type="checkbox" data-chk="c8"><span>Revisar la programación de diciembre del Sunset del Bondinho <small>blog.bondinho.com.br · el DJ set no es todos los días, cambia cada mes</small></span></label>
     <label><input type="checkbox" data-chk="c9"><span>eSIM o chip brasileño <small>Sin datos no hay Uber ni mapas. Un eSIM de 10 GB sale ~US$ 15.</small></span></label>
     <label><input type="checkbox" data-chk="c10"><span>Seguro de viaje</span></label>
@@ -1059,6 +1063,11 @@ html.oscuro .rowctl button.edit{color:#0b1620}
     <div class="moff" id="mOff">📴 Sin internet: se ven los puntos y el recorrido; las calles aparecen cuando haya señal.</div>
   </div>
   <div class="mley"><span><i style="background:#2b8a3e"></i>a pie, tranquilo</span><span><i style="background:#e67700"></i>a pie, solo de día</span><span><i class="dash" style="--c:#868e96"></i>Uber</span><span><i class="dash" style="--c:#1971c2"></i>metro</span></div>
+  <div class="mguardar" id="mGuardar">
+    <button class="hbtn gh full" id="mBajar">📴 Guardar el mapa de Río</button>
+    <p id="mBajarTx">Para verlo sin internet. Háganlo una vez con wifi (unos 30 MB): guarda todas las zonas del viaje con zoom de caminar.</p>
+    <div class="mbar" hidden><i></i></div>
+  </div>
   <div id="mLista"></div>
 
   <button class="comtog" id="comTog" aria-expanded="false"><span><span class="car">▶</span> 📌 Comodines · sitios sueltos para cualquier momento</span><span class="cnt">8</span></button><div id="comWrap" class="hidden"><p style="color:var(--tx2);font-size:14px;margin:12px 0 0">La dirección de cada parada está dentro de su día. Estos son los extras: por si da hambre a deshoras, por otra caipirinha, o si el rodizio del 24 se cae.</p><div class="plist"><div class="place" data-orig="Av. Nossa Senhora de Copacabana, Copacabana (también en Botafogo)" data-q="Fat Guys Copacabana Rio de Janeiro"><div class="phead"><span class="pt">🍔</span><span class="pn">Fat Guys</span></div><div class="paddr">📌 Av. Nossa Senhora de Copacabana, Copacabana (también en Botafogo)</div><div class="pk">Hamburguesería carioca muy querida. La <b>Double Fat</b> y los nuggets son los pedidos estrella, y los milkshakes también. R$ 40–60. Buena salida si alguno se cansa de la comida brasileña.</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Fat+Guys+Copacabana+Rio+de+Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Fat Guys, Av. Nossa Senhora de Copacabana, Copacabana">Copiar dirección</button></div></div><div class="place" data-orig="Praia do Flamengo 300, Flamengo" data-q="Belmonte, Praia do Flamengo 300, Flamengo, Rio de Janeiro"><div class="phead"><span class="pt">🍹</span><span class="pn">Belmonte Flamengo</span></div><div class="paddr">📌 Praia do Flamengo 300, Flamengo</div><div class="pk">Chopp y empadas · 10:00-3:00 · caipirinha cualquier noche</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Belmonte%2C%20Praia%20do%20Flamengo%20300%2C%20Flamengo%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Praia do Flamengo 300, Flamengo">Copiar dirección</button><button class="pbtn gh vm" data-q="Belmonte, Praia do Flamengo 300, Flamengo, Rio de Janeiro" data-n="Belmonte Flamengo">Ver aquí</button></div></div><div class="place" data-orig="Rua Voluntários da Pátria 446, Humaitá" data-q="Cobal do Humaitá, Rua Voluntários da Pátria 446, Humaitá, Rio de Janeiro"><div class="phead"><span class="pt">🍽️</span><span class="pn">Cobal do Humaitá</span></div><div class="paddr">📌 Rua Voluntários da Pátria 446, Humaitá</div><div class="pk">Mercado con 15 restaurantes al aire libre · R$ 60-110</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Cobal%20do%20Humait%C3%A1%2C%20Rua%20Volunt%C3%A1rios%20da%20P%C3%A1tria%20446%2C%20Humait%C3%A1%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Rua Voluntários da Pátria 446, Humaitá">Copiar dirección</button><button class="pbtn gh vm" data-q="Cobal do Humaitá, Rua Voluntários da Pátria 446, Humaitá, Rio de Janeiro" data-n="Cobal do Humaitá">Ver aquí</button></div></div><div class="place" data-orig="Av. Repórter Nestor Moreira 11, Botafogo" data-q="Fogo de Chão, Av. Repórter Nestor Moreira 11, Botafogo, Rio de Janeiro"><div class="phead"><span class="pt">🍽️</span><span class="pn">Fogo de Chão Botafogo</span></div><div class="paddr">📌 Av. Repórter Nestor Moreira 11, Botafogo</div><div class="pk">Rodizio premium R$ 150-180 · alternativa para el 24</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Fogo%20de%20Ch%C3%A3o%2C%20Av.%20Rep%C3%B3rter%20Nestor%20Moreira%2011%2C%20Botafogo%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Av. Repórter Nestor Moreira 11, Botafogo">Copiar dirección</button><button class="pbtn gh vm" data-q="Fogo de Chão, Av. Repórter Nestor Moreira 11, Botafogo, Rio de Janeiro" data-n="Fogo de Chão Botafogo">Ver aquí</button></div></div><div class="place" data-orig="Av. Nossa Senhora de Copacabana 936, Copacabana" data-q="Supermercado Zona Sul, Av. Nossa Senhora de Copacabana 936, Copacabana, Rio de Janeiro"><div class="phead"><span class="pt">🛒</span><span class="pn">Zona Sul Copacabana · 24 h</span></div><div class="paddr">📌 Av. Nossa Senhora de Copacabana 936, Copacabana</div><div class="pk">ABIERTO 24 HORAS</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Supermercado%20Zona%20Sul%2C%20Av.%20Nossa%20Senhora%20de%20Copacabana%20936%2C%20Copacabana%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Av. Nossa Senhora de Copacabana 936, Copacabana">Copiar dirección</button><button class="pbtn gh vm" data-q="Supermercado Zona Sul, Av. Nossa Senhora de Copacabana 936, Copacabana, Rio de Janeiro" data-n="Zona Sul Copacabana · 24 h">Ver aquí</button></div></div><div class="place" data-orig="Rua Barata Ribeiro 7, Copacabana" data-q="Galeto Sat&#x27;s, Rua Barata Ribeiro 7, Copacabana, Rio de Janeiro"><div class="phead"><span class="pt">🍹</span><span class="pn">Galeto Sat&#x27;s</span></div><div class="paddr">📌 Rua Barata Ribeiro 7, Copacabana</div><div class="pk">+300 cachaças · pollo a la brasa R$ 50-70 · abre hasta tarde</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Galeto%20Sat%27s%2C%20Rua%20Barata%20Ribeiro%207%2C%20Copacabana%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Rua Barata Ribeiro 7, Copacabana">Copiar dirección</button><button class="pbtn gh vm" data-q="Galeto Sat&#x27;s, Rua Barata Ribeiro 7, Copacabana, Rio de Janeiro" data-n="Galeto Sat&#x27;s">Ver aquí</button></div></div><div class="place" data-orig="Av. Rio Branco 156, Centro" data-q="Tapí Tapioca, Avenida Rio Branco, Centro, Rio de Janeiro"><div class="phead"><span class="pt">🍇</span><span class="pn">Tapí Centro</span></div><div class="paddr">📌 Av. Rio Branco 156, Centro</div><div class="pk">Açaí R$ 20-30 · dentro del Edifício Avenida Central</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Tap%C3%AD%20Tapioca%2C%20Avenida%20Rio%20Branco%2C%20Centro%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Av. Rio Branco 156, Centro">Copiar dirección</button><button class="pbtn gh vm" data-q="Tapí Tapioca, Avenida Rio Branco, Centro, Rio de Janeiro" data-n="Tapí Centro">Ver aquí</button></div></div><div class="place" data-orig="Rua Conde de Bernadotte 26, loja G, Leblon" data-q="Academia da Cachaça, Rua Conde de Bernadotte 26, Leblon, Rio de Janeiro"><div class="phead"><span class="pt">🍹</span><span class="pn">Academia da Cachaça</span></div><div class="paddr">📌 Rua Conde de Bernadotte 26, loja G, Leblon</div><div class="pk">Caipirinha R$ 30-40 · la mejor de Río según los cariocas</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Academia%20da%20Cacha%C3%A7a%2C%20Rua%20Conde%20de%20Bernadotte%2026%2C%20Leblon%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Rua Conde de Bernadotte 26, loja G, Leblon">Copiar dirección</button><button class="pbtn gh vm" data-q="Academia da Cachaça, Rua Conde de Bernadotte 26, Leblon, Rio de Janeiro" data-n="Academia da Cachaça">Ver aquí</button></div></div></div></div>
@@ -1231,7 +1240,7 @@ html.oscuro .rowctl button.edit{color:#0b1620}
         <li data-min="45"><div class="hr">13:00</div><div class="bd"><div class="a">Almuerzo · Bar Urca <span class="pz">R$ 40–50 · 24.000–30.000 COP</span></div><div class="n">Se pide en la ventanilla del bar y se come sentado en el muro. Los <b>pastéis de camarão</b> son legendarios. Coman bien: la próxima comida es la cena.</div></div></li>
         <li data-min="15"><div class="hr">13:45</div><div class="bd"><div class="a">Caminar al Bondinho</div><div class="mv ok">🚶 <b>De la Mureta, 800 m · 12 min.</b> Por la Av. Pasteur. Tranquilo, es Urca.</div><div class="n">Av. Pasteur 520, Urca.</div></div></li>
         <li data-min="30"><div class="hr">14:00</div><div class="bd"><div class="a">Ingreso al Parque Bondinho</div><div class="n">Con el ticket de hora comprado online no hacen fila de taquilla.</div></div></li>
-        <li class="hi" data-min="135"><div class="hr">14:30</div><div class="bd"><div class="a">Suben directo al Pan de Azúcar</div><div class="n">396 m. <b>Pasen de largo el Morro da Urca y suban de una</b> — a esta hora arriba hay poca gente y a partir de las 16:00 empieza a llenarse. Dos horas para dar la vuelta completa: el lado que mira a Copacabana, el que mira al Corcovado y el que mira a la bahía y Niterói.</div><div class="addr" data-orig="Av. Pasteur 520, Urca" data-q="Parque Bondinho Pão de Açúcar, Av. Pasteur 520, Urca, Rio de Janeiro"><div class="a1">📌 Av. Pasteur 520, Urca</div><div class="a2">Bondinho · ~R$ 210 · el ticket vale todo el día dentro del parque</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Parque%20Bondinho%20P%C3%A3o%20de%20A%C3%A7%C3%BAcar%2C%20Av.%20Pasteur%20520%2C%20Urca%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Av. Pasteur 520, Urca">Copiar dirección</button></div></div></div></li>
+        <li class="hi" data-min="135"><div class="hr">14:30</div><div class="bd"><div class="a">Suben directo al Pan de Azúcar</div><div class="n">396 m. <b>Pasen de largo el Morro da Urca y suban de una</b> — a esta hora arriba hay poca gente y a partir de las 16:00 empieza a llenarse. Dos horas para dar la vuelta completa: el lado que mira a Copacabana, el que mira al Corcovado y el que mira a la bahía y Niterói.</div><div class="addr" data-orig="Av. Pasteur 520, Urca" data-q="Parque Bondinho Pão de Açúcar, Av. Pasteur 520, Urca, Rio de Janeiro"><div class="a1">📌 Av. Pasteur 520, Urca</div><div class="a2">Bondinho · R$ 205 (mayores de 60, media) · 8:30–21:00, último ascenso 19:30 · el ticket vale todo el día</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Parque%20Bondinho%20P%C3%A3o%20de%20A%C3%A7%C3%BAcar%2C%20Av.%20Pasteur%20520%2C%20Urca%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Av. Pasteur 520, Urca">Copiar dirección</button></div></div></div></li>
         <li class="hi" data-min="112"><div class="hr">16:45</div><div class="bd"><div class="a">Bajan al Morro da Urca</div><div class="n">220 m. Aquí están el <b>Jardim dos Discos</b> (donde ponen el DJ del Sunset cuando hay), el bosque, los miradores y la <b>Vila do Noel</b> en el Mirante Maria Ercília — casa de Papá Noel, taller de cartas y feria navideña, del 5 al 25, de 11:00 a 18:00, con Noel hasta las 19:00. Todo incluido en el ticket.</div><div class="addr" data-orig="Av. Pasteur 520, Urca (primera parada del bondinho)" data-q="Parque Bondinho Pão de Açúcar, Av. Pasteur 520, Urca, Rio de Janeiro"><div class="a1">📌 Av. Pasteur 520, Urca (primera parada del bondinho)</div><div class="a2">220 m · atardecer 18:37 · martes cierra a las 20:00</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Parque%20Bondinho%20P%C3%A3o%20de%20A%C3%A7%C3%BAcar%2C%20Av.%20Pasteur%20520%2C%20Urca%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Av. Pasteur 520, Urca (primera parada del bondinho)">Copiar dirección</button></div></div></div></li>
         <li class="hi" data-min="38"><div class="hr">18:37</div><div class="bd"><div class="a">Atardecer</div><div class="n">El sol se mete detrás del Corcovado. Quédense hasta las 19:00, cuando se encienden las luces de la ciudad y del Cristo.<br><br><b>Dónde verlo, la decisión:</b> desde el <b>Morro da Urca</b> (220 m) hay más ambiente, hay dónde sentarse y la bajada es más rápida. Desde el <b>Pan de Azúcar</b> (396 m) la vista es superior pero la cola de bajada después del atardecer es la peor. Para el grupo conviene más quedarse en el Morro da Urca.</div></div></li>
         <li data-min="75"><div class="hr">19:15</div><div class="bd"><div class="a">Bajada</div><div class="n"><b>⚠️ La última bajada es 19:30 en punto.</b> Después del atardecer bajan todos a la vez y la cola es de 30–40 min: <b>pónganse en la fila a las 19:00</b>. El martes el parque cierra a las 20:00 (lunes a jueves), así que no hay margen para demorarse.</div></div></li>
@@ -1240,7 +1249,7 @@ html.oscuro .rowctl button.edit{color:#0b1620}
       </ul>
       <div class="probar-dia"><div class="pdh">🍬 Para probar hoy en la zona</div><ul><li data-en="Mureta da Urca"><span class="pe">🦐</span><span><b>Pastel de camarão</b> · Mureta da Urca. No se lo pierdan</span></li><li data-en="Mureta da Urca"><span class="pe">🍺</span><span><b>Chopp o Brahma bem gelada</b> · sentados en el muro de la Mureta, mirando la bahía<small>R$ 8–14</small></span></li><li data-en="Mureta da Urca"><span class="pe">🍹</span><span><b>Caipirinha</b> · en la Mureta al mediodía o en Belmonte Botafogo de noche<small>R$ 20–30</small></span></li><li><span class="pe">🥧</span><span><b>Empadas</b> · las de Belmonte son famosas</span></li><li data-en="Restaurante Adriano"><span class="pe">🍇</span><span><b>Açaí</b> · Tapí Botafogo, antes o después de la cena<small>R$ 20–30</small></span></li></ul><a class="lnk" href="#probar">Toda la lista para probar</a></div>
       <div class="note"><b>🎒 La mochila del martes</b> — hoy no pasan por la habitación:<br>protector solar y gorra · <b>una camiseta seca por persona</b> (van a sudar en la Pista) · batería portátil cargada · agua · desodorante · <b>algo abrigado ligero</b> (arriba del Pan de Azúcar a las 19:00 corre viento y baja bastante la temperatura) · efectivo para el Bar Urca · paraguas pequeño.</div>
-      <div class="note money"><b>Si quieren recortar aquí:</b> el Bondinho es lo más caro del viaje (~R$ 210 c/u = R$ 840 los cuatro). Se puede <b>subir gratis caminando al Morro da Urca</b> por el sendero que arranca en la Pista Cláudio Coutinho (40 min, moderado) y pagar solo el tramo de arriba. Pero con el plan del día completo, vale la pena pagar los dos tramos.</div>
+      <div class="note money"><b>Si quieren recortar aquí:</b> el Bondinho es lo más caro del viaje (R$ 205 c/u = R$ 820 los cuatro). Se puede <b>subir gratis caminando al Morro da Urca</b> por el sendero que arranca en la Pista Cláudio Coutinho (40 min, moderado) y pagar solo el tramo de arriba. Pero con el plan del día completo, vale la pena pagar los dos tramos.</div>
     </div>
   </div>
 
@@ -1313,7 +1322,7 @@ html.oscuro .rowctl button.edit{color:#0b1620}
       <ul class="tl" data-tl="d6">
         <li data-min="45"><div class="hr">07:30</div><div class="bd"><div class="a">Desayuno</div></div></li>
         <li data-min="75"><div class="hr">08:15</div><div class="bd"><div class="a">Salida hacia Praça Mauá</div><div class="mv no">🚖 <b>Uber, 25 min · R$ 40</b> los cuatro. O metro a Cinelândia + VLT, más lento.</div><div class="n">Uber ~25 min (R$ 40 los cuatro), o metro a Cinelândia + VLT línea 1.</div></div></li>
-        <li class="hi" data-min="135"><div class="hr">09:30</div><div class="bd"><div class="a">AquaRio</div><div class="n">~R$ 80. Abre a las 9:00 y ustedes entran 9:30, apenas pasa el primer tumulto. El acuario marino más grande de Sudamérica: el tanque oceánico de 3,5 millones de litros con el túnel de tiburones. Es el único gasto pago del día y se justifica.</div><div class="addr" data-orig="Praça Muhammad Ali s/n, Gamboa" data-q="AquaRio, Praça Muhammad Ali, Gamboa, Rio de Janeiro"><div class="a1">📌 Praça Muhammad Ali s/n, Gamboa</div><div class="a2">~R$ 80 online · abre 9:00, última entrada 16:00 · VLT Parada dos Museus</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=AquaRio%2C%20Pra%C3%A7a%20Muhammad%20Ali%2C%20Gamboa%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Praça Muhammad Ali s/n, Gamboa">Copiar dirección</button></div></div></div></li>
+        <li class="hi" data-min="135"><div class="hr">09:30</div><div class="bd"><div class="a">AquaRio</div><div class="n">R$ 160 la entrada completa; mayores de 60, media (R$ 80). Abre a las 9:00 y ustedes entran 9:30, apenas pasa el primer tumulto. El acuario marino más grande de Sudamérica: el tanque oceánico de 3,5 millones de litros con el túnel de tiburones. Es el único gasto pago del día y se justifica.</div><div class="addr" data-orig="Praça Muhammad Ali s/n, Gamboa" data-q="AquaRio, Praça Muhammad Ali, Gamboa, Rio de Janeiro"><div class="a1">📌 Praça Muhammad Ali s/n, Gamboa</div><div class="a2">R$ 160 · media R$ 80 · 9:00–17:00, última entrada 16:00 · VLT Parada dos Museus · CONFIRMAR horario del 24</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=AquaRio%2C%20Pra%C3%A7a%20Muhammad%20Ali%2C%20Gamboa%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Praça Muhammad Ali s/n, Gamboa">Copiar dirección</button></div></div></div></li>
         <li data-min="75"><div class="hr">11:45</div><div class="bd"><div class="a">Almuerzo en la zona portuaria <span class="pz">R$ 35–50 · 21.000–30.000 COP</span></div><div class="mv dia">🚶 <b>Alrededor de Praça Mauá, 300 m.</b> Solo de día y sobre el Boulevard, nunca por las calles de atrás.</div><div class="n">Hay por kilo alrededor de Praça Mauá. <b>Coman temprano</b> — el 24 las cocinas cierran antes de lo normal.</div></div></li>
         <li data-min="45"><div class="hr">13:00</div><div class="bd"><div class="a">Museu do Amanhã · por fuera</div><div class="mv dia">🚶 <b>Del almuerzo, 400 m · 6 min.</b> Todo el Boulevard Olímpico se camina de día sin problema.</div><div class="n"><b>Gratis.</b> No hace falta entrar para que valga: el edificio de Calatrava sobresale 75 metros sobre la bahía como el esqueleto de un animal, y está rodeado de <b>espejos de agua</b> que lo reflejan entero. Es lo más fotogénico del puerto. Denle la vuelta completa y busquen el ángulo desde el lado del mar.</div><div class="addr" data-orig="Praça Mauá 1, Centro" data-q="Museu do Amanhã, Praça Mauá 1, Centro, Rio de Janeiro"><div class="a1">📌 Praça Mauá 1, Centro</div><div class="a2">Por fuera es GRATIS · edificio de Calatrava con espejos de agua</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Museu%20do%20Amanh%C3%A3%2C%20Pra%C3%A7a%20Mau%C3%A1%201%2C%20Centro%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Praça Mauá 1, Centro">Copiar dirección</button></div></div></div></li>
         <li data-min="45"><div class="hr">13:45</div><div class="bd"><div class="a">Boulevard Olímpico</div><div class="n">El paseo del puerto renovado para 2016. Grafitis por todos lados y buena sombra en tramos.</div></div></li>
@@ -1359,7 +1368,7 @@ html.oscuro .rowctl button.edit{color:#0b1620}
         <li class="hi" data-min="30"><div class="hr">14:15</div><div class="bd"><div class="a">🍇 Açaí a media cuadra · Casa do Açaí</div><div class="mv ok">🚶 <b>De Faenza, 150 m · 2 min.</b> La misma calle.</div><div class="n"><b>Rua Siqueira Campos 143</b>, la misma calle. Es de los más baratos y mejor calificados de Río: <b>R$ 15–20</b>. Al lado está <b>Blezz</b> (nº 128A), que hace açaí amazónico auténtico por R$ 25–35. Si están muy llenos del buffet, guárdenlo para la vuelta.</div><div class="addr" data-orig="Rua Siqueira Campos 143, Copacabana" data-q="Casa do Açaí, Rua Siqueira Campos 143, Copacabana, Rio de Janeiro"><div class="a1">📌 Rua Siqueira Campos 143, Copacabana</div><div class="a2">El açaí más barato de la zona · R$ 15-20</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Casa%20do%20A%C3%A7a%C3%AD%2C%20Rua%20Siqueira%20Campos%20143%2C%20Copacabana%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Rua Siqueira Campos 143, Copacabana">Copiar dirección</button></div></div></div></li>
         <li class="hi" data-min="55"><div class="hr">14:45</div><div class="bd"><div class="a">🚶 Empieza la caminata · calçadão hacia el sur</div><div class="mv ok">🚶 <b>2 km hasta el Posto 6 · 30 min.</b> Por el calçadão de Av. Atlântica. <b>Es de los sitios más seguros de Río a esta hora</b>: gente, quioscos y policía turística todo el recorrido.</div><div class="n">Vuelven a la Av. Atlântica y de ahí <b>todo derecho hacia la izquierda mirando el mar</b>. Van pasando Posto 4 → 5 → 6. Son 2 km de olas blancas y negras de Burle Marx, con quioscos cada pocos metros para parar a tomar agua.</div></div></li>
         <li data-min="20"><div class="hr">15:40</div><div class="bd"><div class="a">Posto 6 · el extremo tranquilo</div><div class="n">El final de Copacabana, del lado del Forte. Menos gente, mejor vista del arco completo de la playa hacia atrás.</div><div class="addr" data-orig="Av. Atlântica, extremo sur (frente al Forte)" data-q="Posto 6 Copacabana, Rio de Janeiro"><div class="a1">📌 Av. Atlântica, extremo sur (frente al Forte)</div><div class="a2">Gratis · el tramo más tranquilo de la playa</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Posto%206%20Copacabana%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Av. Atlântica, extremo sur (frente al Forte)">Copiar dirección</button></div></div></div></li>
-        <li data-min="50"><div class="hr">16:00</div><div class="bd"><div class="a">Forte de Copacabana <span class="pz">R$ 5 · 3.000 COP</span></div><div class="mv ok">🚶 <b>Del Posto 6, 400 m · 6 min.</b> La entrada está al final de la playa.</div><div class="n">Fuerte militar de 1914 en la punta. Desde la muralla se ve Copacabana entera de un lado y el Pan de Azúcar del otro.<br><b>⚠️ Puede no abrir el 25 por feriado.</b> Si está cerrado, no pasa nada: sigan caminando, que lo bueno viene después.</div><div class="addr" data-orig="Praça Coronel Eugênio Franco 1, Copacabana" data-q="Forte de Copacabana, Praça Coronel Eugênio Franco 1, Copacabana, Rio de Janeiro"><div class="a1">📌 Praça Coronel Eugênio Franco 1, Copacabana</div><div class="a2">R$ 5 · mar-dom 10:00-19:00 · cerrado lunes · CONFIRMAR si abre el 25</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Forte%20de%20Copacabana%2C%20Pra%C3%A7a%20Coronel%20Eug%C3%AAnio%20Franco%201%2C%20Copacabana%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Praça Coronel Eugênio Franco 1, Copacabana">Copiar dirección</button></div></div></div></li>
+        <li data-min="50"><div class="hr">16:00</div><div class="bd"><div class="a">Forte de Copacabana <span class="pz">R$ 10 · 6.000 COP</span></div><div class="mv ok">🚶 <b>Del Posto 6, 400 m · 6 min.</b> La entrada está al final de la playa.</div><div class="n">Fuerte militar de 1914 en la punta. Desde la muralla se ve Copacabana entera de un lado y el Pan de Azúcar del otro.<br><b>⚠️ Puede no abrir el 25 por feriado.</b> Si está cerrado, no pasa nada: sigan caminando, que lo bueno viene después.</div><div class="addr" data-orig="Praça Coronel Eugênio Franco 1, Copacabana" data-q="Forte de Copacabana, Praça Coronel Eugênio Franco 1, Copacabana, Rio de Janeiro"><div class="a1">📌 Praça Coronel Eugênio Franco 1, Copacabana</div><div class="a2">R$ 10 · media R$ 5 · mar-dom 10:00-19:00 · cerrado lunes · CONFIRMAR si abre el 25</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Forte%20de%20Copacabana%2C%20Pra%C3%A7a%20Coronel%20Eug%C3%AAnio%20Franco%201%2C%20Copacabana%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Praça Coronel Eugênio Franco 1, Copacabana">Copiar dirección</button></div></div></div></li>
         <li data-min="20"><div class="hr">16:50</div><div class="bd"><div class="a">Rodean hacia Arpoador</div><div class="mv ok">🚶 <b>Del Forte, 1,2 km · 18 min.</b> Bordeando el final de Copacabana hasta el Parque Garota de Ipanema.</div><div class="n">Salen del Forte y bordean el final de Copacabana. Son 15 minutos hasta el Parque Garota de Ipanema.</div></div></li>
         <li data-min="35"><div class="hr">17:10</div><div class="bd"><div class="a">Bajan un rato a Ipanema, Posto 8</div><div class="n">Al otro lado de la roca ya es Ipanema. Métanse al agua un rato — el mar aquí es más bravo que en Copacabana, pero está más limpio.</div></div></li>
         <li class="hi" data-min="75"><div class="hr">17:45</div><div class="bd"><div class="a">🌅 Pedra do Arpoador</div><div class="mv ok">🚶 <b>De la playa, 300 m.</b> Se sube por escaleras de piedra. Al atardecer está lleno de gente.</div><div class="n">Suban a la roca. <b>No lleguen más tarde</b> — se llena y hay que trepar un poco. El sol se mete a las <b>18:38</b> exacto detrás de los Dois Irmãos y <b>toda la roca aplaude</b>. Es una tradición carioca de verdad, no un show para turistas. Gratis.</div><div class="addr" data-orig="Av. Francisco Bhering s/n, Arpoador" data-q="Pedra do Arpoador, Ipanema, Rio de Janeiro"><div class="a1">📌 Av. Francisco Bhering s/n, Arpoador</div><div class="a2">Gratis · atardecer 18:38 · lleguen 17:15 que se llena</div><div class="a3"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pedra%20do%20Arpoador%2C%20Ipanema%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Av. Francisco Bhering s/n, Arpoador">Copiar dirección</button></div></div></div></li>
@@ -2011,18 +2020,19 @@ html.oscuro .rowctl button.edit{color:#0b1620}
     <table>
       <thead><tr><th>Atracción</th><th>Día</th><th class="num">R$</th><th class="num">COP aprox.</th></tr></thead>
       <tbody>
-        <tr><td>Pan de Azúcar</td><td>mar 22</td><td class="num">210</td><td class="num">127.000</td></tr>
+        <tr><td>Pan de Azúcar</td><td>mar 22</td><td class="num">205</td><td class="num">124.000</td></tr>
         <tr><td>Cristo Redentor (tren)</td><td>mié 23</td><td class="num">134</td><td class="num">81.000</td></tr>
         <tr><td>Tour Maracaná</td><td>sáb 26</td><td class="num">115</td><td class="num">70.000</td></tr>
-        <tr><td>AquaRio</td><td>jue 24</td><td class="num">80</td><td class="num">48.000</td></tr>
+        <tr><td>AquaRio</td><td>jue 24</td><td class="num">160</td><td class="num">97.000</td></tr>
         <tr><td>Bonde de Santa Teresa</td><td>dom 20</td><td class="num">20</td><td class="num">12.000</td></tr>
-        <tr><td>Forte de Copacabana</td><td>vie 25</td><td class="num">5</td><td class="num">3.000</td></tr>
-        <tr class="tot"><td>Total entradas</td><td>—</td><td class="num">564</td><td class="num">341.000</td></tr>
+        <tr><td>Forte de Copacabana</td><td>vie 25</td><td class="num">10</td><td class="num">6.000</td></tr>
+        <tr class="tot"><td>Total entradas</td><td>—</td><td class="num">644</td><td class="num">390.000</td></tr>
       </tbody>
     </table>
   </div>
   <p class="swipe">→ desliza la tabla para ver los pesos colombianos</p>
   
+  <div class="note tip"><b>Precios revisados en noviembre de 2026</b>, entrada completa. Bondinho, AquaRio y Forte cobran <b>media entrada a mayores de 60</b> (lleven el pasaporte): si sus papás califican, el total baja bastante. AquaRio subió de R$ 80 a R$ 160.</div>
   <h3 style="font-size:16px;margin:22px 0 10px;color:var(--tx2)" data-chip="Comida">Comida · referencia por persona</h3>
   <div class="tw">
     <table>
@@ -2509,6 +2519,11 @@ window.__contraerDias();
   }
   /* direcciones corregidas (nov 2026): se arreglan también en lo que ya estaba guardado */
   var CORRECCIONES = [
+    ["<div class=\"a2\">Bondinho · ~R$ 210 · el ticket vale todo el día dentro del parque</div>", "<div class=\"a2\">Bondinho · R$ 205 (mayores de 60, media) · 8:30–21:00, último ascenso 19:30 · el ticket vale todo el día</div>"],
+    ["<div class=\"n\">~R$ 80. Abre a las 9:00", "<div class=\"n\">R$ 160 la entrada completa; mayores de 60, media (R$ 80). Abre a las 9:00"],
+    ["<div class=\"a2\">~R$ 80 online · abre 9:00, última entrada 16:00 · VLT Parada dos Museus</div>", "<div class=\"a2\">R$ 160 · media R$ 80 · 9:00–17:00, última entrada 16:00 · VLT Parada dos Museus · CONFIRMAR horario del 24</div>"],
+    ["Forte de Copacabana <span class=\"pz\">R$ 5 · 3.000 COP</span>", "Forte de Copacabana <span class=\"pz\">R$ 10 · 6.000 COP</span>"],
+    ["<div class=\"a2\">R$ 5 · mar-dom 10:00-19:00 · cerrado lunes · CONFIRMAR si abre el 25</div>", "<div class=\"a2\">R$ 10 · media R$ 5 · mar-dom 10:00-19:00 · cerrado lunes · CONFIRMAR si abre el 25</div>"],
     ["<div class=\"a2\">Al final de Praia Vermelha · gratis · abre 6:00</div>", "<div class=\"a2\">Al final de Praia Vermelha, a la izquierda mirando al mar · gratis · 6:00 a 18:00</div>"],
     ["<b>Portón A abre 9:00; entren 9:30</b>, R$ 94.", "<b>Portón A abre 9:00; entren 9:30</b>, R$ 115."],
     ["R$ 94 · abre 9:00, última entrada 16:30 · metro Maracanã", "R$ 115 · abre 9:00, última entrada 16:15 · metro Maracanã"],
@@ -4600,11 +4615,12 @@ window.__contraerDias();
     if(tipoMapa()==='sat'){
       /* satélite (Esri World Imagery) con calles y nombres encima */
       var esri='https://server.arcgisonline.com/ArcGIS/rest/services/';
-      var fallos=0, sat=L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19, attribution:'Imágenes © Esri, Maxar, Earthstar Geographics'});
-      sat.on('tileerror',function(){ if(++fallos===12 && navigator.onLine!==false){ satFallo=true; ponerTiles(); } });
+      var nat=navigator.onLine===false ? 17 : 19;
+      var fallos=0, sat=L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19, maxNativeZoom:nat, attribution:'Imágenes © Esri, Maxar, Earthstar Geographics'});
+      sat.on('tileerror',function(){ if(++fallos===12 && navigator.onLine!==false && nat===19){ satFallo=true; ponerTiles(); } });
       capas.push(sat,
-        L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19, opacity:.9}),
-        L.tileLayer(esri+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:19}));
+        L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19, maxNativeZoom:nat, opacity:.9}),
+        L.tileLayer(esri+'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:19, maxNativeZoom:nat}));
       if(b){ b.textContent='🗺️'; b.setAttribute('aria-label','Ver mapa'); }
     } else if(vectorial() && !sinVectorial){
       /* OpenFreeMap: gratis, sin clave; "liberty" muestra senderos y calles peatonales */
@@ -4963,8 +4979,99 @@ window.__contraerDias();
   }
   /* sin internet */
   function red(){ var o=document.getElementById('mOff'); if(o) o.classList.toggle('on', navigator.onLine===false); }
-  window.addEventListener('online',function(){ red(); if(mapa) buscarFaltan(); });
-  window.addEventListener('offline',red); red();
+  window.addEventListener('online',function(){ red(); if(mapa){ buscarFaltan(); if(tipoMapa()==='sat') ponerTiles(); } });
+  window.addEventListener('offline',function(){ red(); if(mapa && tipoMapa()==='sat') ponerTiles(); }); red();
+
+  /* ---------- Guardar el mapa de Río para usar sin internet ----------
+     Baja una vez las teselas de las zonas del viaje (600 m alrededor de cada
+     lugar, zoom 15 a 17) del satélite con calles y nombres, y el mapa de
+     OpenFreeMap de toda la ciudad (zoom 10 a 14, que alcanza para todo).
+     Quedan en su propia caché: el sw.js las sirve y no las borra al navegar. */
+  var GKEY='rio2026:mapaGuardado', GCACHE='rio2026-mapa-guardado';
+  function teselaXY(la,lo,z){ var n=Math.pow(2,z), r=la*Math.PI/180;
+    return [Math.floor((lo+180)/360*n), Math.floor((1-Math.log(Math.tan(r)+1/Math.cos(r))/Math.PI)/2*n)]; }
+  function rango(la0,lo0,la1,lo1,z,fn){ var a=teselaXY(la0,lo0,z), b=teselaXY(la1,lo1,z);
+    for(var x=a[0];x<=b[0];x++) for(var y=a[1];y<=b[1];y++) fn(z,x,y); }
+  function urlsSat(){
+    var esri='https://server.arcgisonline.com/ArcGIS/rest/services/', vistos={}, u=[];
+    var capasE=['World_Imagery/MapServer','Reference/World_Transportation/MapServer','Reference/World_Boundaries_and_Places/MapServer'];
+    function add(z,x,y){ var k=z+'/'+y+'/'+x; if(vistos[k]) return; vistos[k]=1; capasE.forEach(function(c){ u.push(esri+c+'/tile/'+k); }); }
+    var las=LUGARES.map(function(l){ return l[1]; }), los=LUGARES.map(function(l){ return l[2]; });
+    var N=Math.max.apply(null,las)+.005, S=Math.min.apply(null,las)-.005, O=Math.min.apply(null,los)-.005, E=Math.max.apply(null,los)+.005;
+    for(var z=11;z<=14;z++) rango(N,O,S,E,z,add);
+    LUGARES.forEach(function(l){ var dla=600/111320, dlo=600/(111320*Math.cos(l[1]*Math.PI/180));
+      for(var z=15;z<=17;z++) rango(l[1]+dla,l[2]-dlo,l[1]-dla,l[2]+dlo,z,add); });
+    return {u:u, caja:[N,O,S,E]};
+  }
+  function urlsVector(caja){
+    /* estilo → fuente → plantilla de teselas, más íconos y letras */
+    var st='https://tiles.openfreemap.org/styles/liberty';
+    return fetch(st).then(function(r){ return r.json(); }).then(function(js){
+      var u=[st], fuentes={}, src=null;
+      Object.keys(js.sources||{}).forEach(function(k){ var o=js.sources[k]; if(o.type==='vector' && o.url && !src) src=o.url; });
+      (js.layers||[]).forEach(function(l){ var f=l.layout && l.layout['text-font']; if(Array.isArray(f) && typeof f[0]==='string') fuentes[f.join(',')]=1; });
+      if(js.sprite && typeof js.sprite==='string') ['.json','.png','@2x.json','@2x.png'].forEach(function(e){ u.push(js.sprite+e); });
+      if(js.glyphs) Object.keys(fuentes).forEach(function(f){ ['0-255','256-511','8192-8447'].forEach(function(r){
+        u.push(js.glyphs.replace('{fontstack}',encodeURIComponent(f)).replace('{range}',r)); }); });
+      if(!src) return u;
+      u.push(src);
+      return fetch(src).then(function(r){ return r.json(); }).then(function(tj){
+        var pl=(tj.tiles||[])[0]; if(!pl) return u;
+        for(var z=10;z<=Math.min(14,tj.maxzoom||14);z++) rango(caja[0],caja[1],caja[2],caja[3],z,function(z,x,y){
+          u.push(pl.replace('{z}',z).replace('{x}',x).replace('{y}',y)); });
+        return u;
+      });
+    }).catch(function(){ return []; });
+  }
+  function fechaCorta(t){ try{ return new Date(t).toLocaleDateString('es-CO',{day:'numeric',month:'short'}); }catch(e){ return ''; } }
+  function pintarGuardado(){
+    var b=document.getElementById('mBajar'), tx=document.getElementById('mBajarTx'); if(!b) return;
+    var g=null; try{ g=JSON.parse(localStorage.getItem(GKEY)||'null'); }catch(e){}
+    if(!window.caches){ document.getElementById('mGuardar').hidden=true; return; }
+    if(g){ b.textContent='🔄 Volver a guardar el mapa';
+      tx.textContent='✅ Mapa de Río guardado el '+fechaCorta(g.t)+' ('+g.mb+' MB). Sin señal se ven las calles de todas las zonas del viaje.'; }
+  }
+  var bajando=false;
+  function guardarMapa(){
+    if(bajando || !window.caches) return;
+    var b=document.getElementById('mBajar'), tx=document.getElementById('mBajarTx'), bar=document.querySelector('#mGuardar .mbar'), barI=bar.firstElementChild;
+    if(navigator.onLine===false){ tx.textContent='Ahora no hay internet. Háganlo con wifi, por ejemplo en el hotel.'; return; }
+    bajando=true; b.disabled=true; bar.hidden=false; barI.style.width='0';
+    b.textContent='⏳ Preparando…';
+    try{ if(navigator.storage && navigator.storage.persist) navigator.storage.persist(); }catch(e){}
+    var sat=urlsSat();
+    urlsVector(sat.caja).then(function(vec){
+      var lista=vec.concat(sat.u), i=0, hechos=0, malos=0, bytes=0, total=lista.length;
+      return caches.open(GCACHE).then(function(c){
+        function uno(){
+          if(i>=total) return Promise.resolve();
+          var url=lista[i++];
+          return c.match(url).then(function(ya){
+            if(ya) return ya.clone().blob().then(function(bl){ bytes+=bl.size; });
+            return fetch(url,{mode:'cors', credentials:'omit'}).then(function(r){
+              if(!r.ok) throw 0;
+              return r.clone().blob().then(function(bl){ bytes+=bl.size; return c.put(url,r); });
+            });
+          }).catch(function(){ malos++; }).then(function(){
+            hechos++;
+            if(hechos%10===0 || hechos===total){ barI.style.width=Math.round(hechos/total*100)+'%';
+              b.textContent='⏳ Guardando '+Math.round(hechos/total*100)+' %'; }
+            return uno();
+          });
+        }
+        var obreros=[]; for(var k=0;k<6;k++) obreros.push(uno());
+        return Promise.all(obreros).then(function(){
+          var mb=Math.max(1,Math.round(bytes/1048576));
+          if(malos>total*0.2){ tx.textContent='Se guardó solo una parte ('+(total-malos)+' de '+total+'). Vuelvan a intentarlo con mejor señal: sigue desde donde quedó.'; b.textContent='📴 Seguir guardando el mapa'; return; }
+          try{ localStorage.setItem(GKEY, JSON.stringify({t:Date.now(), mb:mb})); }catch(e){}
+          pintarGuardado();
+        });
+      });
+    }).catch(function(){ tx.textContent='No se pudo guardar. Revisen el espacio libre del celular y vuelvan a intentarlo.'; b.textContent='📴 Guardar el mapa de Río'; })
+    .then(function(){ bajando=false; b.disabled=false; setTimeout(function(){ bar.hidden=true; },800); });
+  }
+  document.addEventListener('click',function(e){ if(e.target.closest('#mBajar')) guardarMapa(); });
+  pintarGuardado();
 
   /* si cambia el itinerario con el mapa abierto, se vuelve a pintar */
   var dias=document.getElementById('dias'), t=null;
