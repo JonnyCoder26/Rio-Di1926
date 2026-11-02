@@ -5,11 +5,11 @@
    - Íconos y archivos fijos salen de la copia guardada.
    - Lo que no es de este sitio (sincronización, Google Maps)
      no se toca: va directo a internet como siempre.
-   - Las calles del mapa (CARTO) que ya se vieron quedan guardadas.
+   - Las calles del mapa (OpenStreetMap) que ya se vieron quedan guardadas.
    Subir VERSION cuando cambien los íconos, el manifest o Leaflet.
    ============================================================ */
-var VERSION = 'rio2026-v2';
-var TESELAS = 'rio2026-teselas';   /* calles del mapa que ya vieron */
+var VERSION = 'rio2026-v3';
+var TESELAS = 'rio2026-calles';    /* calles del mapa que ya vieron (la caché vieja de CARTO se borra) */
 var ARCHIVOS = ['./', './index.html', './icono.png', './icono-192.png', './icono-512.png',
                 './apple-touch-icon.png', './manifest.webmanifest', './rio-2026-mapa.kml',
                 './leaflet/leaflet.js', './leaflet/leaflet.css'];
@@ -32,7 +32,7 @@ self.addEventListener('fetch', function(e){
   if (req.method !== 'GET') return;
   var url = new URL(req.url);
   /* calles del mapa: la que ya se vio queda guardada (máximo ~1500) */
-  if (/\.basemaps\.cartocdn\.com$/.test(url.hostname)) {
+  if (url.hostname === 'tile.openstreetmap.org') {
     e.respondWith(caches.open(TESELAS).then(function(c){
       return c.match(req).then(function(g){
         if (g) return g;

@@ -70,7 +70,12 @@ Mientras no corran el SQL, la página sigue guardando como antes.
   5 de diciembre (no da más de 16 días adelante). El día 22 y el 23
   avisa las nubes de la mañana para el Cristo, con las cámaras en vivo.
 - **🌙 Apariencia** (Más): automática según el celular, clara u oscura.
-- **🗺️ Mapa** (pestaña Mapa): un mapa real (calles de OpenStreetMap/CARTO) con
+- **💸 Ya pagó** (Cuentas): marca que alguien saldó su deuda; no cuenta como gasto.
+- **↩️ Versiones** (modo edición): las últimas 10 versiones del itinerario que pasaron
+  por ese celular; al restaurar una, queda así para los cuatro.
+- **🎒 Hoy llevan** (Hoy, durante el viaje): qué llevar y cuánto efectivo, según el día.
+- **🇨🇴 Consulado de Colombia en Río**: emergencias +55 21 99958-9043 (riodejaneiro.consulado.gov.co).
+- **🗺️ Mapa** (pestaña Mapa): un mapa real (calles de OpenStreetMap) con
   cada parada numerada en orden y el recorrido del día. Sale del itinerario:
   si cambian una parada, su orden o su dirección, el mapa cambia. Las
   direcciones nuevas o editadas se buscan en OpenStreetMap (Nominatim) y
