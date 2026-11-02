@@ -5,7 +5,10 @@ Itinerario del viaje. Una sola página.
 ## Archivos
 
 - `index.html` — la página completa. Todo está adentro.
-- `rio-2026-mapa.kml` — los 54 sitios para cargar en Google My Maps.
+- `rio-2026-mapa.kml` — los 54 sitios originales. El botón "Descargar el mapa (KML)"
+  de la página arma uno nuevo con el itinerario como esté.
+- `leaflet/` — la librería del mapa (Leaflet 1.9.4, licencia BSD-2), local para que
+  funcione sin internet.
 - `icono.png`, `icono-192.png`, `icono-512.png`, `apple-touch-icon.png` — los íconos.
 - `manifest.webmanifest` — para instalarla en el celular como app.
 - `sw.js` — para que funcione sin internet.
@@ -67,6 +70,11 @@ Mientras no corran el SQL, la página sigue guardando como antes.
   5 de diciembre (no da más de 16 días adelante). El día 22 y el 23
   avisa las nubes de la mañana para el Cristo, con las cámaras en vivo.
 - **🌙 Apariencia** (Más): automática según el celular, clara u oscura.
+- **🗺️ Mapa** (Más → Mapa): un mapa real (calles de OpenStreetMap/CARTO) con
+  cada parada numerada en orden y el recorrido del día. Sale del itinerario:
+  si cambian una parada, su orden o su dirección, el mapa cambia. Las
+  direcciones nuevas o editadas se buscan en OpenStreetMap (Nominatim) y
+  quedan guardadas. Las calles que ya vieron quedan guardadas sin internet.
 
 ## Editar
 

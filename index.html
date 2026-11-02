@@ -659,6 +659,64 @@ html.oscuro .edbtn.pri, html.oscuro .saved, html.oscuro .reflowbar button{color:
 html.oscuro .gchip.on, html.oscuro .viewtabs button.on, html.oscuro .mapfilters button.on, html.oscuro .offline{color:var(--bg)}
 html.oscuro .week li.today .daynum{color:#062a28}
 html.oscuro .week li.today .daynum span{color:#0b3d3a}
+/* ===== MAPA ===== */
+.mchips{display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none}
+.mchips::-webkit-scrollbar{display:none}
+.mchip{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 13px;border-radius:100px;
+  border:1px solid var(--line);background:var(--card);color:var(--tx2);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;
+  transition:transform 120ms var(--ease-out),background-color 150ms ease,color 150ms ease}
+.mchip i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.mchip.on{background:var(--tx);border-color:var(--tx);color:var(--bg)}
+.mchip:active{transform:scale(.96)}
+.mapa-box{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--card2)}
+.lmap{height:min(62vh,520px);min-height:320px;background:var(--card2)}
+.mbtns{position:absolute;left:10px;bottom:24px;z-index:500;display:flex;flex-direction:column;gap:8px}
+.mbtn{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--tx);
+  font-size:19px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:transform 120ms var(--ease-out)}
+.mbtn:active{transform:scale(.94)}
+.mbtn.busca{animation:fundido 600ms ease infinite alternate}
+.moff{display:none;position:absolute;left:10px;right:10px;top:10px;z-index:500;background:var(--tx);color:var(--bg);
+  font-size:13px;font-weight:700;padding:8px 12px;border-radius:10px}
+.moff.on{display:block}
+.mk{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--c);
+  color:#fff;font-size:13.5px;font-weight:800;border:2.5px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif}
+.mk.star{box-shadow:0 0 0 3px rgba(255,212,59,.9),0 2px 6px rgba(0,0,0,.35)}
+.mk.hotel{background:#fff;font-size:16px;border-color:#212529}
+.mk.extra{background:#fff;color:#495057;border-color:#495057;width:26px;height:26px;font-size:13px}
+.leaflet-popup-content-wrapper{border-radius:14px;background:var(--card);color:var(--tx)}
+.leaflet-popup-tip{background:var(--card)}
+.leaflet-popup-content{margin:12px 14px;font:inherit}
+.leaflet-container{font:inherit}
+.leaflet-control-attribution{font-size:10px}
+.mpop .mp1{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--tx2)}
+.mpop .mp2{font-size:16px;font-weight:750;margin-top:6px;line-height:1.3;color:var(--tx)}
+.mpop .mp3{font-size:13.5px;color:var(--tx2);margin-top:4px}
+.mpop .mpb{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.mpop .hbtn{min-height:38px;font-size:13.5px;padding:0 12px}
+.leaflet-container .mpop a.hbtn:not(.gh){color:#fff}
+html.oscuro .leaflet-container .mpop a.hbtn:not(.gh){color:#0b1620}
+.leaflet-container a.lnk{color:var(--blue)}
+.mpn{flex:none;display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;
+  background:var(--c);color:#fff;font-size:12.5px;font-weight:800}
+.mpn.vacio{background:transparent;border:1.5px dashed var(--line)}
+#mLista{margin-top:14px}
+.vermapa{width:100%;margin:6px 0 4px}
+.mdia{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:12px}
+.mdh{display:flex;gap:10px;align-items:baseline;padding:11px 14px;background:var(--card2);border-left:5px solid var(--c)}
+.mdh span{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--tx3)}
+.mdh b{font-size:15px}
+.mit{display:flex;gap:10px;align-items:center;width:100%;padding:10px 14px;border:0;border-top:1px solid var(--line);
+  background:none;color:var(--tx);font:inherit;text-align:left;cursor:pointer;min-height:48px;transition:background-color 150ms ease}
+.mit:active{background:var(--card2)}
+.mit.on{background:var(--card2)}
+.mit.sin{color:var(--tx3)}
+.mit .mhr{flex:none;width:46px;font-size:13.5px;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums}
+.mit .mnm{flex:1;min-width:0;font-size:15px;line-height:1.35}
+.mit .mnm i{font-style:normal;color:var(--gold)}
+.mit .mnm small{display:block;font-size:12px;color:var(--tx3)}
+html.oscuro .mk{border-color:#11171b}
+html.oscuro .mk.hotel, html.oscuro .mk.extra{background:#e8edf0}
 /* Más */
 .mgroup{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);margin:22px 0 8px}
 .mlist{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
@@ -908,65 +966,26 @@ html.oscuro .week li.today .daynum span{color:#0b3d3a}
 <section id="mapa-sec">
   <div class="eyebrow">Mapa y direcciones</div>
   <h2>Dónde queda cada cosa</h2>
-  <p class="lede">El esquema para ver cómo se conecta el viaje. <b>La dirección de cada sitio está dentro de su día</b>, en el itinerario de abajo — con calle, número, barrio y botón para copiarla.</p>
+  <p class="lede">Cada parada del itinerario, numerada en orden, con el recorrido del día. Si cambian algo en el itinerario, el mapa cambia solo.</p>
 
-  <button class="maptoggle" id="mtog">🗺️ Ocultar el mapa</button>
-
-  <div id="mapzone">
-    <div class="mapbox">
-      <div class="mapfilters" id="mf">
-        <button data-d="all" class="on">Todos</button>
-        <button data-d="1"><i style="background:#f0b429"></i>Dom 20</button>
-        <button data-d="2"><i style="background:#a371f7"></i>Lun 21</button>
-        <button data-d="3"><i style="background:#39c5bb"></i>Mar 22</button>
-        <button data-d="4"><i style="background:#4a9eff"></i>Mié 23</button>
-        <button data-d="5"><i style="background:#ff9f43"></i>Jue 24</button>
-        <button data-d="6"><i style="background:#3fb950"></i>Vie 25</button>
-        <button data-d="7"><i style="background:#f4645f"></i>Sáb 26</button>
-      </div>
-      <div class="mapfilters" id="mt" style="padding-top:0">
-        <button data-t="a" class="on">📍 Atracciones</button>
-        <button data-t="r" class="on">🍽️ Comida</button>
-        <button data-t="z" class="on">🍇 Açaí</button>
-        <button data-t="c" class="on">🍹 Caipiriñas</button>
-        <button data-t="m" class="on">🛒 Súper 24h</button>
-        <button data-t="w" class="on">🚶 Caminatas</button>
-      </div>
-      <div class="mapwrap" id="wEsq"><svg id="mapa" viewBox="0 0 820 1019" preserveAspectRatio="xMidYMid meet"><g id="mapz"><rect width="100%" height="100%" fill="#17281c"/><path d="M 481.9,0.0 L 536.8,50.5 L 617.1,101.0 L 659.4,165.2 L 694.9,211.1 L 676.3,247.8 L 623.9,257.0 L 604.4,307.5 L 608.7,367.2 L 618.8,426.9 L 604.4,477.3 L 570.6,514.1 L 542.7,560.0 L 557.9,587.5 L 604.4,601.3 L 657.7,587.5 L 701.6,560.0 L 762.5,534.3 L 792.9,527.8 L 798.9,573.7 L 752.4,604.0 L 711.8,616.9 L 678.0,671.9 L 661.1,697.6 L 618.8,723.4 L 581.6,752.7 L 534.3,794.0 L 500.5,839.9 L 475.1,881.2 L 458.2,916.1 L 432.8,929.0 L 393.1,916.1 L 338.1,908.8 L 270.5,905.1 L 207.1,901.4 L 143.7,918.0 L 84.5,963.9 L 25.4,1018.9 L 820.0,1018.9 L 820.0,0.0 Z" fill="#10283c"/><path d="M 312.8,697.6 L 363.5,674.7 L 401.5,697.6 L 401.5,752.7 L 372.0,807.8 L 317.0,835.3 L 262.1,821.6 L 245.2,771.1 L 266.3,720.6 Z" fill="#10283c"/><path d="M 481.9,0.0 L 536.8,50.5 L 617.1,101.0 L 659.4,165.2 L 694.9,211.1 L 676.3,247.8 L 623.9,257.0 L 604.4,307.5 L 608.7,367.2 L 618.8,426.9 L 604.4,477.3 L 570.6,514.1 L 542.7,560.0 L 557.9,587.5 L 604.4,601.3 L 657.7,587.5 L 701.6,560.0 L 762.5,534.3 L 792.9,527.8 L 798.9,573.7 L 752.4,604.0 L 711.8,616.9 L 678.0,671.9 L 661.1,697.6 L 618.8,723.4 L 581.6,752.7 L 534.3,794.0 L 500.5,839.9 L 475.1,881.2 L 458.2,916.1 L 432.8,929.0 L 393.1,916.1 L 338.1,908.8 L 270.5,905.1 L 207.1,901.4 L 143.7,918.0 L 84.5,963.9 L 25.4,1018.9" fill="none" stroke="#3d6b8f" stroke-width="3"/><path d="M 312.8,697.6 L 363.5,674.7 L 401.5,697.6 L 401.5,752.7 L 372.0,807.8 L 317.0,835.3 L 262.1,821.6 L 245.2,771.1 L 266.3,720.6 Z" fill="none" stroke="#3d6b8f" stroke-width="2.5"/><text x="515.7" y="126.7" fill="#79947f" font-size="18" text-anchor="middle" font-family="sans-serif">Centro</text><text x="524.1" y="227.7" fill="#79947f" font-size="18" text-anchor="middle" font-family="sans-serif">Lapa</text><text x="456.5" y="316.7" fill="#79947f" font-size="18" text-anchor="middle" font-family="sans-serif">Santa Teresa</text><text x="557.9" y="449.8" fill="#79947f" font-size="18" text-anchor="middle" font-family="sans-serif">Flamengo</text><text x="464.9" y="569.1" fill="#79947f" font-size="18" text-anchor="middle" font-family="sans-serif">Botafogo</text><text x="634.0" y="624.2" fill="#79947f" font-size="18" text-anchor="middle" font-family="sans-serif">Urca</text><text x="439.6" y="817.0" fill="#79947f" font-size="18" text-anchor="middle" font-family="sans-serif">Copacabana</text><text x="295.9" y="885.8" fill="#79947f" font-size="18" text-anchor="middle" font-family="sans-serif">Ipanema</text><text x="177.5" y="862.9" fill="#79947f" font-size="18" text-anchor="middle" font-family="sans-serif">Leblon</text><text x="325.5" y="752.7" fill="#79947f" font-size="18" text-anchor="middle" font-family="sans-serif">Lagoa</text><text x="236.7" y="560.0" fill="#79947f" font-size="18" text-anchor="middle" font-family="sans-serif">Corcovado</text><text x="93.0" y="261.6" fill="#79947f" font-size="18" text-anchor="middle" font-family="sans-serif">Maracanã</text><text x="752.4" y="348.8" fill="#4d7fa6" font-size="20" font-style="italic" text-anchor="middle" font-family="sans-serif">Bahía de</text><text x="752.4" y="372.8" fill="#4d7fa6" font-size="20" font-style="italic" text-anchor="middle" font-family="sans-serif">Guanabara</text><text x="422.7" y="982.2" fill="#4d7fa6" font-size="22" font-style="italic" text-anchor="middle" font-family="sans-serif">Océano Atlántico</text><path class="walkhit" data-i="0" d="M 557.1,250.6 L 550.3,232.2 L 545.3,210.2" fill="none" stroke="transparent" stroke-width="26" stroke-linecap="round" style="cursor:pointer"/><path class="walk" data-i="0" d="M 557.1,250.6 L 550.3,232.2 L 545.3,210.2" fill="none" stroke="#4ade80" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0"/><path class="walkhit" data-i="1" d="M 545.3,210.2 L 564.7,198.3" fill="none" stroke="transparent" stroke-width="26" stroke-linecap="round" style="cursor:pointer"/><path class="walk" data-i="1" d="M 545.3,210.2 L 564.7,198.3" fill="none" stroke="#4ade80" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0"/><path class="walkhit" data-i="2" d="M 486.1,291.9 L 490.3,284.6 L 524.1,263.5" fill="none" stroke="transparent" stroke-width="26" stroke-linecap="round" style="cursor:pointer"/><path class="walk" data-i="2" d="M 486.1,291.9 L 490.3,284.6 L 524.1,263.5" fill="none" stroke="#4ade80" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0"/><path class="walkhit" data-i="3" d="M 535.1,152.4 L 530.9,158.8 L 549.5,143.2 L 566.4,154.2" fill="none" stroke="transparent" stroke-width="26" stroke-linecap="round" style="cursor:pointer"/><path class="walk" data-i="3" d="M 535.1,152.4 L 530.9,158.8 L 549.5,143.2 L 566.4,154.2" fill="none" stroke="#4ade80" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0"/><path class="walkhit" data-i="4" d="M 578.2,363.5 L 562.2,381.0 L 566.4,402.1 L 562.2,422.3 L 590.1,413.1 L 585.0,402.1" fill="none" stroke="transparent" stroke-width="26" stroke-linecap="round" style="cursor:pointer"/><path class="walk" data-i="4" d="M 578.2,363.5 L 562.2,381.0 L 566.4,402.1 L 562.2,422.3 L 590.1,413.1 L 585.0,402.1" fill="none" stroke="#4ade80" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0"/><path class="walkhit" data-i="5" d="M 578.2,363.5 L 612.9,426.9" fill="none" stroke="transparent" stroke-width="26" stroke-linecap="round" style="cursor:pointer"/><path class="walk" data-i="5" d="M 578.2,363.5 L 612.9,426.9" fill="none" stroke="#4ade80" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0"/><path class="walkhit" data-i="6" d="M 678.0,613.2 L 689.8,551.7 L 747.3,557.2" fill="none" stroke="transparent" stroke-width="26" stroke-linecap="round" style="cursor:pointer"/><path class="walk" data-i="6" d="M 678.0,613.2 L 689.8,551.7 L 747.3,557.2" fill="none" stroke="#4ade80" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0"/><path class="walkhit" data-i="7" d="M 530.9,68.8 L 553.7,55.1 L 492.0,74.4 L 450.6,50.5" fill="none" stroke="transparent" stroke-width="26" stroke-linecap="round" style="cursor:pointer"/><path class="walk" data-i="7" d="M 530.9,68.8 L 553.7,55.1 L 492.0,74.4 L 450.6,50.5" fill="none" stroke="#4ade80" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0"/><path class="walkhit" data-i="8" d="M 549.5,757.3 L 524.1,794.0 L 492.0,844.5 L 471.7,885.8 L 483.5,915.2 L 435.4,924.4 L 372.0,910.6" fill="none" stroke="transparent" stroke-width="26" stroke-linecap="round" style="cursor:pointer"/><path class="walk" data-i="8" d="M 549.5,757.3 L 524.1,794.0 L 492.0,844.5 L 471.7,885.8 L 483.5,915.2 L 435.4,924.4 L 372.0,910.6" fill="none" stroke="#4ade80" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0"/><path class="walkhit" data-i="9" d="M 501.3,722.4 L 492.0,732.5 L 500.5,723.4" fill="none" stroke="transparent" stroke-width="26" stroke-linecap="round" style="cursor:pointer"/><path class="walk" data-i="9" d="M 501.3,722.4 L 492.0,732.5 L 500.5,723.4" fill="none" stroke="#4ade80" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0"/><path class="walkhit" data-i="10" d="M 325.5,876.7 L 338.1,881.2 L 350.8,885.8" fill="none" stroke="transparent" stroke-width="26" stroke-linecap="round" style="cursor:pointer"/><path class="walk" data-i="10" d="M 325.5,876.7 L 338.1,881.2 L 350.8,885.8" fill="none" stroke="#4ade80" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0"/><path class="ruta r1" d="M 612.9,426.9 L 545.3,210.2 L 550.3,232.2 L 557.1,250.6 L 564.7,198.3 L 486.1,291.9 L 524.1,263.5 L 566.4,552.6" fill="none" stroke="#f0b429" stroke-width="3.5" stroke-dasharray="9 7" stroke-linejoin="round" opacity="0"/><path class="ruta r2" d="M 535.1,152.4 L 530.9,158.8 L 501.3,87.2" fill="none" stroke="#a371f7" stroke-width="3.5" stroke-dasharray="9 7" stroke-linejoin="round" opacity="0"/><path class="ruta r3" d="M 673.8,620.5 L 678.0,613.2 L 747.3,557.2 L 689.8,587.5" fill="none" stroke="#39c5bb" stroke-width="3.5" stroke-dasharray="9 7" stroke-linejoin="round" opacity="0"/><path class="ruta r4" d="M 350.0,430.5 L 291.6,586.6 L 279.0,660.9 L 295.9,765.6 L 105.7,931.7" fill="none" stroke="#4a9eff" stroke-width="3.5" stroke-dasharray="9 7" stroke-linejoin="round" opacity="0"/><path class="ruta r5" d="M 450.6,50.5 L 553.7,55.1 L 492.0,74.4 L 530.9,68.8" fill="none" stroke="#ff9f43" stroke-width="3.5" stroke-dasharray="9 7" stroke-linejoin="round" opacity="0"/><path class="ruta r6" d="M 549.5,757.3 L 471.7,885.8 L 483.5,915.2 L 435.4,924.4" fill="none" stroke="#3fb950" stroke-width="3.5" stroke-dasharray="9 7" stroke-linejoin="round" opacity="0"/><path class="ruta r7" d="M 125.1,221.2 L 185.1,158.8" fill="none" stroke="#f4645f" stroke-width="3.5" stroke-dasharray="9 7" stroke-linejoin="round" opacity="0"/><g data-la="-22.927599" data-lo="-43.176603" class="poi ty-h p0" data-i="0" data-l="Hotel Riale Imperial" data-k="Av. do Catete · metro Catete · base del viaje" data-d="0" data-t="h" data-q="Av. do Catete, Rio de Janeiro"><circle cx="578.2" cy="363.5" r="24" fill="transparent"/><circle class="hal" cx="578.2" cy="363.5" r="19" fill="#ffffff" opacity="0"/><circle class="dot" cx="578.2" cy="363.5" r="14" fill="#fff" stroke="#0d1117" stroke-width="3.5"/><text x="578.2" y="368.5" font-size="15" font-weight="800" fill="#0d1117" text-anchor="middle" font-family="sans-serif">H</text></g><g data-la="-22.934505" data-lo="-43.172498" class="poi ty-a p1" data-i="1" data-l="08:30 · Aterro do Flamengo" data-k="Gratis · domingo sin carros · SOLO de mañana" data-d="1" data-t="a" data-q="Aterro do Flamengo, Parque do Flamengo, Rio de Janeiro"><circle cx="612.9" cy="426.9" r="24" fill="transparent"/><circle class="hal" cx="612.9" cy="426.9" r="19" fill="#f0b429" opacity="0"/><circle class="dot" cx="612.9" cy="426.9" r="10.5" fill="#f0b429" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.910899" data-lo="-43.180495" class="poi ty-a p1" data-i="2" data-l="10:00 · Catedral Metropolitana" data-k="Misa 10:00 · 96 m de alto · gratis" data-d="1" data-t="a" data-q="Catedral Metropolitana de São Sebastião, Av. República do Chile 245, Centro, Rio de Janeiro"><circle cx="545.3" cy="210.2" r="24" fill="transparent"/><circle class="hal" cx="545.3" cy="210.2" r="19" fill="#f0b429" opacity="0"/><circle class="dot" cx="545.3" cy="210.2" r="10.5" fill="#f0b429" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.913295" data-lo="-43.179904" class="poi ty-a p1" data-i="3" data-l="11:10 · Arcos da Lapa" data-k="Acueducto terminado en 1750 · gratis" data-d="1" data-t="a" data-q="Arcos da Lapa, Lapa, Rio de Janeiro"><circle cx="550.3" cy="232.2" r="24" fill="transparent"/><circle class="hal" cx="550.3" cy="232.2" r="19" fill="#f0b429" opacity="0"/><circle class="dot" cx="550.3" cy="232.2" r="10.5" fill="#f0b429" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.9153" data-lo="-43.179099" class="poi ty-a p1" data-i="4" data-l="11:30 · Escadaria Selarón" data-k="215 escalones · gratis · siempre abierta" data-d="1" data-t="a" data-q="Escadaria Selarón, Lapa, Rio de Janeiro"><circle cx="557.1" cy="250.6" r="24" fill="transparent"/><circle class="hal" cx="557.1" cy="250.6" r="19" fill="#f0b429" opacity="0"/><circle class="dot" cx="557.1" cy="250.6" r="10.5" fill="#f0b429" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.914199" data-lo="-43.1815" class="poi ty-r p1" data-i="5" data-l="12:45 · Os Ximenes" data-k="Lapa · nordestino · platos R$ 27,60" data-d="1" data-t="r" data-q="Botequim Os Ximenes, Rua Riachuelo 49, Lapa, Rio de Janeiro"><circle cx="536.8" cy="240.5" r="24" fill="transparent"/><circle class="hal" cx="536.8" cy="240.5" r="19" fill="#ff8a5b" opacity="0"/><rect class="dot" x="528.3" y="232.0" width="17.0" height="17.0" rx="3" fill="#ff8a5b" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 536.8 240.5)"/></g><g data-la="-22.909602" data-lo="-43.1782" class="poi ty-a p1" data-i="6" data-l="14:00 · Estação Carioca · bonde" data-k="R$ 20 ida y vuelta · guardar el boleto · bajarse en Largo dos Guimarães" data-d="1" data-t="a" data-q="Estação Carioca do Bonde de Santa Teresa, Rua Lélio Gama, Centro, Rio de Janeiro"><circle cx="564.7" cy="198.3" r="24" fill="transparent"/><circle class="hal" cx="564.7" cy="198.3" r="19" fill="#f0b429" opacity="0"/><circle class="dot" cx="564.7" cy="198.3" r="10.5" fill="#f0b429" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.919799" data-lo="-43.187498" class="poi ty-a p1" data-i="7" data-l="14:40 · Largo dos Guimarães" data-k="Corazón de Santa Teresa" data-d="1" data-t="a" data-q="Largo dos Guimarães, Santa Teresa, Rio de Janeiro"><circle cx="486.1" cy="291.9" r="24" fill="transparent"/><circle class="hal" cx="486.1" cy="291.9" r="19" fill="#f0b429" opacity="0"/><circle class="dot" cx="486.1" cy="291.9" r="10.5" fill="#f0b429" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.919004" data-lo="-43.187001" class="poi ty-c p1" data-i="8" data-l="15:30 · Bar do Mineiro" data-k="R. Paschoal Carlos Magno 99 · caipirinha R$ 22-30" data-d="1" data-t="c" data-q="Bar do Mineiro, Rua Paschoal Carlos Magno 99, Santa Teresa, Rio de Janeiro"><circle cx="490.3" cy="284.6" r="24" fill="transparent"/><circle class="hal" cx="490.3" cy="284.6" r="19" fill="#ff5c8a" opacity="0"/><rect class="dot" x="481.8" y="276.1" width="17.0" height="17.0" rx="3" fill="#ff5c8a" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 490.3 284.6)"/></g><g data-la="-22.916705" data-lo="-43.183003" class="poi ty-a p1" data-i="9" data-l="16:00 · Parque das Ruínas" data-k="Mirador gratis · cierra ~18:00" data-d="1" data-t="a" data-q="Parque das Ruínas, Rua Murtinho Nobre 169, Santa Teresa, Rio de Janeiro"><circle cx="524.1" cy="263.5" r="24" fill="transparent"/><circle class="hal" cx="524.1" cy="263.5" r="19" fill="#f0b429" opacity="0"/><circle class="dot" cx="524.1" cy="263.5" r="10.5" fill="#f0b429" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.948199" data-lo="-43.177999" class="poi ty-a p1" data-i="10" data-l="18:00 · Mirante do Pasmado" data-k="Atardecer 18:36 · gratis · postal de Botafogo" data-d="1" data-t="a" data-q="Mirante do Pasmado, Botafogo, Rio de Janeiro"><circle cx="566.4" cy="552.6" r="24" fill="transparent"/><circle class="hal" cx="566.4" cy="552.6" r="19" fill="#f0b429" opacity="0"/><circle class="dot" cx="566.4" cy="552.6" r="10.5" fill="#f0b429" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.929505" data-lo="-43.178496" class="poi ty-r p1" data-i="11" data-l="19:20 · Braseirinho da Glória" data-k="Rua do Russel, Glória · a la brasa · R$ 30–45" data-d="1" data-t="r" data-q="Rua do Russel, Glória, Rio de Janeiro"><circle cx="562.2" cy="381.0" r="24" fill="transparent"/><circle class="hal" cx="562.2" cy="381.0" r="19" fill="#ff8a5b" opacity="0"/><rect class="dot" x="553.7" y="372.5" width="17.0" height="17.0" rx="3" fill="#ff8a5b" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 562.2 381.0)"/></g><g data-la="-22.904602" data-lo="-43.181702" class="poi ty-a p2" data-i="12" data-l="08:45 · SAARA / Uruguaiana" data-k="1.300 tiendas · compras del viaje" data-d="2" data-t="a" data-q="SAARA, Rua da Alfândega, Centro, Rio de Janeiro"><circle cx="535.1" cy="152.4" r="24" fill="transparent"/><circle class="hal" cx="535.1" cy="152.4" r="19" fill="#a371f7" opacity="0"/><circle class="dot" cx="535.1" cy="152.4" r="10.5" fill="#a371f7" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.905299" data-lo="-43.182198" class="poi ty-a p2" data-i="13" data-l="12:15 · Real Gabinete Português" data-k="R. Luís de Camões 30 · gratis · lun-vie 10-17" data-d="2" data-t="a" data-q="Real Gabinete Português de Leitura, Rua Luís de Camões 30, Centro, Rio de Janeiro"><circle cx="530.9" cy="158.8" r="24" fill="transparent"/><circle class="hal" cx="530.9" cy="158.8" r="19" fill="#a371f7" opacity="0"/><circle class="dot" cx="530.9" cy="158.8" r="10.5" fill="#a371f7" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.9036" data-lo="-43.179998" class="poi ty-r p2" data-i="14" data-l="13:00 · Casa Paladino" data-k="Centro · centenario · R$ 14-35" data-d="2" data-t="r" data-q="Casa Paladino, Rua Uruguaiana 226, Centro, Rio de Janeiro"><circle cx="549.5" cy="143.2" r="24" fill="transparent"/><circle class="hal" cx="549.5" cy="143.2" r="19" fill="#ff8a5b" opacity="0"/><rect class="dot" x="541.0" y="134.7" width="17.0" height="17.0" rx="3" fill="#ff8a5b" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 549.5 143.2)"/></g><g data-la="-22.904798" data-lo="-43.177999" class="poi ty-r p2" data-i="15" data-l="14:15 · Confeitaria Colombo" data-k="R. Gonçalves Dias 32 · café y postre R$ 30" data-d="2" data-t="r" data-q="Confeitaria Colombo, Rua Gonçalves Dias 32, Centro, Rio de Janeiro"><circle cx="566.4" cy="154.2" r="24" fill="transparent"/><circle class="hal" cx="566.4" cy="154.2" r="19" fill="#ff8a5b" opacity="0"/><rect class="dot" x="557.9" y="145.7" width="17.0" height="17.0" rx="3" fill="#ff8a5b" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 566.4 154.2)"/></g><g data-la="-22.904003" data-lo="-43.176201" class="poi ty-z p2" data-i="16" data-l="Tapí Centro" data-k="Av. Rio Branco · açaí R$ 20-30" data-d="2" data-t="z" data-q="Tapí Tapioca, Avenida Rio Branco, Centro, Rio de Janeiro"><circle cx="581.6" cy="146.9" r="24" fill="transparent"/><circle class="hal" cx="581.6" cy="146.9" r="19" fill="#b06cf5" opacity="0"/><rect class="dot" x="573.1" y="138.4" width="17.0" height="17.0" rx="3" fill="#b06cf5" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 581.6 146.9)"/></g><g data-la="-22.897499" data-lo="-43.1857" class="poi ty-a p2" data-i="17" data-l="19:30 · Pedra do Sal" data-k="Samba solo lunes 19-24h · gratis" data-d="2" data-t="a" data-q="Pedra do Sal, Largo João da Baiana, Saúde, Rio de Janeiro"><circle cx="501.3" cy="87.2" r="24" fill="transparent"/><circle class="hal" cx="501.3" cy="87.2" r="19" fill="#a371f7" opacity="0"/><circle class="dot" cx="501.3" cy="87.2" r="10.5" fill="#a371f7" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.955596" data-lo="-43.165294" class="poi ty-a p3" data-i="18" data-l="08:15 · Pista Cláudio Coutinho" data-k="Gratis · abre 6:00 · 1,25 km · micos" data-d="3" data-t="a" data-q="Pista Cláudio Coutinho, Urca, Rio de Janeiro"><circle cx="673.8" cy="620.5" r="24" fill="transparent"/><circle class="hal" cx="673.8" cy="620.5" r="19" fill="#39c5bb" opacity="0"/><circle class="dot" cx="673.8" cy="620.5" r="10.5" fill="#39c5bb" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.9548" data-lo="-43.164798" class="poi ty-a p3" data-i="19" data-l="09:30 · Praia Vermelha" data-k="Playa tranquila al pie del morro" data-d="3" data-t="a" data-q="Praia Vermelha, Urca, Rio de Janeiro"><circle cx="678.0" cy="613.2" r="24" fill="transparent"/><circle class="hal" cx="678.0" cy="613.2" r="19" fill="#39c5bb" opacity="0"/><circle class="dot" cx="678.0" cy="613.2" r="10.5" fill="#39c5bb" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.948101" data-lo="-43.163402" class="poi ty-c p3" data-i="20" data-l="11:45 · Mureta da Urca / Bar Urca" data-k="Pastéis de camarão · chopp · R$ 40-50" data-d="3" data-t="c" data-q="Bar Urca, Rua Cândido Gaffrée 205, Urca, Rio de Janeiro"><circle cx="689.8" cy="551.7" r="24" fill="transparent"/><circle class="hal" cx="689.8" cy="551.7" r="19" fill="#ff5c8a" opacity="0"/><rect class="dot" x="681.3" y="543.2" width="17.0" height="17.0" rx="3" fill="#ff5c8a" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 689.8 551.7)"/></g><g data-la="-22.9487" data-lo="-43.1566" class="poi ty-a p3" data-i="21" data-l="14:30 · Pão de Açúcar" data-k="396 m · el ticket vale todo el día" data-d="3" data-t="a" data-q="Parque Bondinho Pão de Açúcar, Av. Pasteur 520, Urca, Rio de Janeiro"><circle cx="747.3" cy="557.2" r="24" fill="transparent"/><circle class="hal" cx="747.3" cy="557.2" r="19" fill="#39c5bb" opacity="0"/><circle class="dot" cx="747.3" cy="557.2" r="10.5" fill="#39c5bb" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.952001" data-lo="-43.163402" class="poi ty-a p3" data-i="22" data-l="16:45 · Morro da Urca · Vila do Noel" data-k="220 m · atardecer 18:37 · ÚLTIMA BAJADA 19:30" data-d="3" data-t="a" data-q="Parque Bondinho Pão de Açúcar, Av. Pasteur 520, Urca, Rio de Janeiro"><circle cx="689.8" cy="587.5" r="24" fill="transparent"/><circle class="hal" cx="689.8" cy="587.5" r="19" fill="#39c5bb" opacity="0"/><circle class="dot" cx="689.8" cy="587.5" r="10.5" fill="#39c5bb" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.952502" data-lo="-43.185795" class="poi ty-r p3" data-i="23" data-l="20:30 · Restaurante Adriano" data-k="Botafogo · 70 años · pescado R$ 28" data-d="3" data-t="r" data-q="Restaurante Adriano, Rua Real Grandeza 162, Botafogo, Rio de Janeiro"><circle cx="500.5" cy="592.1" r="24" fill="transparent"/><circle class="hal" cx="500.5" cy="592.1" r="19" fill="#ff8a5b" opacity="0"/><rect class="dot" x="492.0" y="583.6" width="17.0" height="17.0" rx="3" fill="#ff8a5b" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 500.5 592.1)"/></g><g data-la="-22.934898" data-lo="-43.203598" class="poi ty-a p4" data-i="24" data-l="06:00 · Estación Cosme Velho" data-k="Llegar 6:00 · check-in 7:20 · primer tren 8:00" data-d="4" data-t="a" data-q="Estação do Trem do Corcovado, Rua Cosme Velho 513, Rio de Janeiro"><circle cx="350.0" cy="430.5" r="24" fill="transparent"/><circle class="hal" cx="350.0" cy="430.5" r="19" fill="#4a9eff" opacity="0"/><circle class="dot" cx="350.0" cy="430.5" r="10.5" fill="#4a9eff" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.951903" data-lo="-43.210506" class="poi ty-a p4" data-i="25" data-l="08:25 · Cristo Redentor" data-k="710 m · R$ 134" data-d="4" data-t="a" data-q="Cristo Redentor, Corcovado, Rio de Janeiro"><circle cx="291.6" cy="586.6" r="24" fill="transparent"/><circle class="hal" cx="291.6" cy="586.6" r="19" fill="#4a9eff" opacity="0"/><circle class="dot" cx="291.6" cy="586.6" r="10.5" fill="#4a9eff" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.959997" data-lo="-43.211996" class="poi ty-a p4" data-i="26" data-l="10:40 · Parque Lage" data-k="Gratis · palacete 9-17 · café en el patio" data-d="4" data-t="a" data-q="Parque Lage, Rua Jardim Botânico 414, Jardim Botânico, Rio de Janeiro"><circle cx="279.0" cy="660.9" r="24" fill="transparent"/><circle class="hal" cx="279.0" cy="660.9" r="19" fill="#4a9eff" opacity="0"/><circle class="dot" cx="279.0" cy="660.9" r="10.5" fill="#4a9eff" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.971402" data-lo="-43.209997" class="poi ty-a p4" data-i="27" data-l="14:30 · Lagoa Rodrigo de Freitas" data-k="Gratis · 7,5 km de borde peatonal" data-d="4" data-t="a" data-q="Lagoa Rodrigo de Freitas, Rio de Janeiro"><circle cx="295.9" cy="765.6" r="24" fill="transparent"/><circle class="hal" cx="295.9" cy="765.6" r="19" fill="#4a9eff" opacity="0"/><circle class="dot" cx="295.9" cy="765.6" r="10.5" fill="#4a9eff" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.983996" data-lo="-43.222501" class="poi ty-c p4" data-i="28" data-l="Academia da Cachaça" data-k="R. Conde de Bernadotte 26, Leblon · R$ 30-40" data-d="4" data-t="c" data-q="Academia da Cachaça, Rua Conde de Bernadotte 26, Leblon, Rio de Janeiro"><circle cx="190.2" cy="881.2" r="24" fill="transparent"/><circle class="hal" cx="190.2" cy="881.2" r="19" fill="#ff5c8a" opacity="0"/><rect class="dot" x="181.7" y="872.7" width="17.0" height="17.0" rx="3" fill="#ff5c8a" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 190.2 881.2)"/></g><g data-la="-22.989497" data-lo="-43.232496" class="poi ty-a p4" data-i="29" data-l="17:45 · Mirante do Leblon" data-k="Atardecer 18:37 · gratis · llegar 40 min antes" data-d="4" data-t="a" data-q="Mirante do Leblon, Av. Niemeyer, Leblon, Rio de Janeiro"><circle cx="105.7" cy="931.7" r="24" fill="transparent"/><circle class="hal" cx="105.7" cy="931.7" r="19" fill="#4a9eff" opacity="0"/><circle class="dot" cx="105.7" cy="931.7" r="10.5" fill="#4a9eff" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.983505" data-lo="-43.206496" class="poi ty-t p4" data-i="30" data-l="19:10 · Havaianas flagship" data-k="R. Garcia D'Ávila 124 · 4 pisos · hasta ~22:00" data-d="4" data-t="t" data-q="Havaianas, Rua Garcia D&#x27;Ávila 124, Ipanema, Rio de Janeiro"><circle cx="325.5" cy="876.7" r="24" fill="transparent"/><circle class="hal" cx="325.5" cy="876.7" r="19" fill="#25d0e0" opacity="0"/><rect class="dot" x="317.0" y="868.2" width="17.0" height="17.0" rx="3" fill="#25d0e0" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 325.5 876.7)"/></g><g data-la="-22.983996" data-lo="-43.205005" class="poi ty-z p4" data-i="31" data-l="20:15 · Polis Sucos" data-k="R. Maria Quitéria 70 · açaí sin azúcar R$ 25-35" data-d="4" data-t="z" data-q="Polis Sucos, Rua Maria Quitéria 70, Ipanema, Rio de Janeiro"><circle cx="338.1" cy="881.2" r="24" fill="transparent"/><circle class="hal" cx="338.1" cy="881.2" r="19" fill="#b06cf5" opacity="0"/><rect class="dot" x="329.6" y="872.7" width="17.0" height="17.0" rx="3" fill="#b06cf5" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 338.1 881.2)"/></g><g data-la="-22.893501" data-lo="-43.191697" class="poi ty-a p5" data-i="32" data-l="09:00 · AquaRio" data-k="R$ 80 · entrada 9:30 · 2h30" data-d="5" data-t="a" data-q="AquaRio, Praça Muhammad Ali, Gamboa, Rio de Janeiro"><circle cx="450.6" cy="50.5" r="24" fill="transparent"/><circle class="hal" cx="450.6" cy="50.5" r="19" fill="#ff9f43" opacity="0"/><circle class="dot" cx="450.6" cy="50.5" r="10.5" fill="#ff9f43" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.894002" data-lo="-43.179501" class="poi ty-a p5" data-i="33" data-l="13:00 · Museu do Amanhã (por fuera)" data-k="Gratis · Calatrava · espejos de agua" data-d="5" data-t="a" data-q="Museu do Amanhã, Praça Mauá 1, Centro, Rio de Janeiro"><circle cx="553.7" cy="55.1" r="24" fill="transparent"/><circle class="hal" cx="553.7" cy="55.1" r="19" fill="#ff9f43" opacity="0"/><circle class="dot" cx="553.7" cy="55.1" r="10.5" fill="#ff9f43" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.896105" data-lo="-43.1868" class="poi ty-a p5" data-i="34" data-l="14:30 · Mural Etnias" data-k="190 m · récord Guinness · gratis" data-d="5" data-t="a" data-q="Mural Etnias Eduardo Kobra, Boulevard Olímpico, Gamboa, Rio de Janeiro"><circle cx="492.0" cy="74.4" r="24" fill="transparent"/><circle class="hal" cx="492.0" cy="74.4" r="19" fill="#ff9f43" opacity="0"/><circle class="dot" cx="492.0" cy="74.4" r="10.5" fill="#ff9f43" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.895495" data-lo="-43.182198" class="poi ty-a p5" data-i="35" data-l="15:15 · Praça Mauá" data-k="Fotos del puerto" data-d="5" data-t="a" data-q="Praça Mauá, Centro, Rio de Janeiro"><circle cx="530.9" cy="68.8" r="24" fill="transparent"/><circle class="hal" cx="530.9" cy="68.8" r="19" fill="#ff9f43" opacity="0"/><circle class="dot" cx="530.9" cy="68.8" r="10.5" fill="#ff9f43" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.966805" data-lo="-43.185795" class="poi ty-r p5" data-i="36" data-l="19:15 · Carretão Siqueira Campos" data-k="R. Siqueira Campos 23 · rodizio ~R$ 180 + servicio" data-d="5" data-t="r" data-q="Churrascaria Carretão Siqueira Campos, Rua Siqueira Campos 23, Copacabana, Rio de Janeiro"><circle cx="500.5" cy="723.4" r="24" fill="transparent"/><circle class="hal" cx="500.5" cy="723.4" r="19" fill="#ff8a5b" opacity="0"/><rect class="dot" x="492.0" y="714.9" width="17.0" height="17.0" rx="3" fill="#ff8a5b" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 500.5 723.4)"/></g><g data-la="-22.931804" data-lo="-43.175799" class="poi ty-m p5" data-i="37" data-l="21:30 · Zona Sul Flamengo · 24 h" data-k="R. Machado de Assis 40 · licor · ABIERTO 24 H" data-d="5" data-t="m" data-q="Supermercado Zona Sul, Rua Machado de Assis 40, Flamengo, Rio de Janeiro"><circle cx="585.0" cy="402.1" r="24" fill="transparent"/><circle class="hal" cx="585.0" cy="402.1" r="19" fill="#7fd1a8" opacity="0"/><rect class="dot" x="576.5" y="393.6" width="17.0" height="17.0" rx="3" fill="#7fd1a8" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 585.0 402.1)"/></g><g data-la="-22.970498" data-lo="-43.179998" class="poi ty-a p6" data-i="38" data-l="09:25 · Copacabana · bandera verde" data-k="Buscar bandera verde antes de meterse · kit del hotel gratis" data-d="6" data-t="a" data-q="Praia de Copacabana, Rio de Janeiro"><circle cx="549.5" cy="757.3" r="24" fill="transparent"/><circle class="hal" cx="549.5" cy="757.3" r="19" fill="#3fb950" opacity="0"/><circle class="dot" cx="549.5" cy="757.3" r="10.5" fill="#3fb950" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.966696" data-lo="-43.1857" class="poi ty-r p6" data-i="39" data-l="12:45 · Faenza · buffet" data-k="R. Siqueira Campos 18 · buffet · confirmar precio" data-d="6" data-t="r" data-q="Faenza Restaurante, Rua Siqueira Campos 18, Copacabana, Rio de Janeiro"><circle cx="501.3" cy="722.4" r="24" fill="transparent"/><circle class="hal" cx="501.3" cy="722.4" r="19" fill="#ff8a5b" opacity="0"/><rect class="dot" x="492.8" y="713.9" width="17.0" height="17.0" rx="3" fill="#ff8a5b" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 501.3 722.4)"/></g><g data-la="-22.967797" data-lo="-43.1868" class="poi ty-z p6" data-i="40" data-l="14:15 · Casa do Açaí" data-k="R. Siqueira Campos 143 · el más barato R$ 15-20" data-d="6" data-t="z" data-q="Casa do Açaí, Rua Siqueira Campos 143, Copacabana, Rio de Janeiro"><circle cx="492.0" cy="732.5" r="24" fill="transparent"/><circle class="hal" cx="492.0" cy="732.5" r="19" fill="#b06cf5" opacity="0"/><rect class="dot" x="483.5" y="724.0" width="17.0" height="17.0" rx="3" fill="#b06cf5" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 492.0 732.5)"/></g><g data-la="-22.984497" data-lo="-43.189201" class="poi ty-a p6" data-i="41" data-l="15:40 · Copacabana Posto 6" data-k="Extremo tranquilo" data-d="6" data-t="a" data-q="Posto 6 Copacabana, Rio de Janeiro"><circle cx="471.7" cy="885.8" r="24" fill="transparent"/><circle class="hal" cx="471.7" cy="885.8" r="19" fill="#3fb950" opacity="0"/><circle class="dot" cx="471.7" cy="885.8" r="10.5" fill="#3fb950" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.987699" data-lo="-43.187805" class="poi ty-a p6" data-i="42" data-l="16:00 · Forte de Copacabana" data-k="R$ 5 · confirmar si abre el 25" data-d="6" data-t="a" data-q="Forte de Copacabana, Praça Coronel Eugênio Franco 1, Copacabana, Rio de Janeiro"><circle cx="483.5" cy="915.2" r="24" fill="transparent"/><circle class="hal" cx="483.5" cy="915.2" r="19" fill="#3fb950" opacity="0"/><circle class="dot" cx="483.5" cy="915.2" r="10.5" fill="#3fb950" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.988702" data-lo="-43.193495" class="poi ty-a p6" data-i="43" data-l="17:45 · Pedra do Arpoador" data-k="Atardecer 18:38 · aplauso al sol · gratis" data-d="6" data-t="a" data-q="Pedra do Arpoador, Ipanema, Rio de Janeiro"><circle cx="435.4" cy="924.4" r="24" fill="transparent"/><circle class="hal" cx="435.4" cy="924.4" r="19" fill="#3fb950" opacity="0"/><circle class="dot" cx="435.4" cy="924.4" r="10.5" fill="#3fb950" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.987198" data-lo="-43.200995" class="poi ty-c p6" data-i="44" data-l="19:00 · Quioscos Av. Vieira Souto" data-k="Ipanema · caipirinha frente al mar R$ 25-35" data-d="6" data-t="c" data-q="Quiosques Avenida Vieira Souto, Ipanema, Rio de Janeiro"><circle cx="372.0" cy="910.6" r="24" fill="transparent"/><circle class="hal" cx="372.0" cy="910.6" r="19" fill="#ff5c8a" opacity="0"/><rect class="dot" x="363.5" y="902.1" width="17.0" height="17.0" rx="3" fill="#ff5c8a" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 372.0 910.6)"/></g><g data-la="-22.912097" data-lo="-43.230202" class="poi ty-a p7" data-i="45" data-l="09:00 · Tour Maracaná" data-k="R$ 94 · entrada 9:30 · verificar que no haya partido" data-d="7" data-t="a" data-q="Estádio do Maracanã, Portão A, Maracanã, Rio de Janeiro"><circle cx="125.1" cy="221.2" r="24" fill="transparent"/><circle class="hal" cx="125.1" cy="221.2" r="19" fill="#f4645f" opacity="0"/><circle class="dot" cx="125.1" cy="221.2" r="10.5" fill="#f4645f" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.905299" data-lo="-43.223104" class="poi ty-a p7" data-i="46" data-l="10:45 · Quinta da Boa Vista" data-k="Gratis · metro São Cristóvão" data-d="7" data-t="a" data-q="Quinta da Boa Vista, São Cristóvão, Rio de Janeiro"><circle cx="185.1" cy="158.8" r="24" fill="transparent"/><circle class="hal" cx="185.1" cy="158.8" r="19" fill="#f4645f" opacity="0"/><circle class="dot" cx="185.1" cy="158.8" r="10.5" fill="#f4645f" stroke="#0d1117" stroke-width="3"/></g><g data-la="-22.931804" data-lo="-43.177999" class="poi ty-z p7" data-i="47" data-l="17:30 · Tacacá do Norte" data-k="R. Barão do Flamengo 35 · EL MEJOR açaí · R$ 25-35" data-d="7" data-t="z" data-q="Tacacá do Norte, Rua Barão do Flamengo 35, Flamengo, Rio de Janeiro"><circle cx="566.4" cy="402.1" r="24" fill="transparent"/><circle class="hal" cx="566.4" cy="402.1" r="19" fill="#b06cf5" opacity="0"/><rect class="dot" x="557.9" y="393.6" width="17.0" height="17.0" rx="3" fill="#b06cf5" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 566.4 402.1)"/></g><g data-la="-22.934004" data-lo="-43.178496" class="poi ty-c p7" data-i="48" data-l="19:15 · Café Lamas" data-k="R. Marquês de Abrantes 18 · desde 1874 · hasta 2 a.m." data-d="7" data-t="c" data-q="Café Lamas, Rua Marquês de Abrantes 18, Flamengo, Rio de Janeiro"><circle cx="562.2" cy="422.3" r="24" fill="transparent"/><circle class="hal" cx="562.2" cy="422.3" r="19" fill="#ff5c8a" opacity="0"/><rect class="dot" x="553.7" y="413.8" width="17.0" height="17.0" rx="3" fill="#ff5c8a" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 562.2 422.3)"/></g><g data-la="-22.933002" data-lo="-43.175195" class="poi ty-c p0" data-i="49" data-l="Belmonte Flamengo" data-k="Praia do Flamengo 300 · caipirinha cualquier noche" data-d="0" data-t="c" data-q="Belmonte, Praia do Flamengo 300, Flamengo, Rio de Janeiro"><circle cx="590.1" cy="413.1" r="24" fill="transparent"/><circle class="hal" cx="590.1" cy="413.1" r="19" fill="#ff5c8a" opacity="0"/><rect class="dot" x="581.6" y="404.6" width="17.0" height="17.0" rx="3" fill="#ff5c8a" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 590.1 413.1)"/></g><g data-la="-22.955999" data-lo="-43.192999" class="poi ty-r p0" data-i="50" data-l="Cobal do Humaitá" data-k="Botafogo · 15 restaurantes al aire libre" data-d="0" data-t="r" data-q="Cobal do Humaitá, Rua Voluntários da Pátria 446, Humaitá, Rio de Janeiro"><circle cx="439.6" cy="624.2" r="24" fill="transparent"/><circle class="hal" cx="439.6" cy="624.2" r="19" fill="#ff8a5b" opacity="0"/><rect class="dot" x="431.1" y="615.7" width="17.0" height="17.0" rx="3" fill="#ff8a5b" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 439.6 624.2)"/></g><g data-la="-22.944495" data-lo="-43.179998" class="poi ty-r p0" data-i="51" data-l="Fogo de Chão Botafogo" data-k="Rodizio premium ~R$ 300 · alternativa del 24" data-d="0" data-t="r" data-q="Fogo de Chão, Av. Repórter Nestor Moreira 11, Botafogo, Rio de Janeiro"><circle cx="549.5" cy="518.6" r="24" fill="transparent"/><circle class="hal" cx="549.5" cy="518.6" r="19" fill="#ff8a5b" opacity="0"/><rect class="dot" x="541.0" y="510.1" width="17.0" height="17.0" rx="3" fill="#ff8a5b" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 549.5 518.6)"/></g><g data-la="-22.972002" data-lo="-43.185499" class="poi ty-m p0" data-i="52" data-l="Zona Sul Copacabana · 24 h" data-k="Av. N.S. de Copacabana 936 · licor y agua" data-d="0" data-t="m" data-q="Supermercado Zona Sul, Av. Nossa Senhora de Copacabana 936, Copacabana, Rio de Janeiro"><circle cx="503.0" cy="771.1" r="24" fill="transparent"/><circle class="hal" cx="503.0" cy="771.1" r="19" fill="#7fd1a8" opacity="0"/><rect class="dot" x="494.5" y="762.6" width="17.0" height="17.0" rx="3" fill="#7fd1a8" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 503.0 771.1)"/></g><g data-la="-22.964496" data-lo="-43.172995" class="poi ty-c p0" data-i="53" data-l="Galeto Sat's" data-k="Copacabana · +300 cachaças · comida barata" data-d="0" data-t="c" data-q="Galeto Sat&#x27;s, Rua Barata Ribeiro 7, Copacabana, Rio de Janeiro"><circle cx="608.7" cy="702.2" r="24" fill="transparent"/><circle class="hal" cx="608.7" cy="702.2" r="19" fill="#ff5c8a" opacity="0"/><rect class="dot" x="600.2" y="693.7" width="17.0" height="17.0" rx="3" fill="#ff5c8a" stroke="#0d1117" stroke-width="2.6" transform="rotate(45 608.7 702.2)"/></g></g></svg><div class="zoomctl">
-        <button id="zin" aria-label="Acercar">+</button>
-        <button id="zout" aria-label="Alejar">−</button>
-        <button id="zrst" class="sm" aria-label="Reiniciar">⟲</button>
-      </div>
+  <div class="mchips" id="mDias" role="tablist" aria-label="Elegir día"></div>
+  <div class="mapa-box">
+    <div id="lmap" class="lmap" aria-label="Mapa del viaje"></div>
+    <div class="mbtns">
+      <button class="mbtn" id="mYo" aria-label="Dónde estoy">📍</button>
+      <button class="mbtn" id="mHotel" aria-label="Ver el hotel">🏨</button>
+      <button class="mbtn" id="mTodo" aria-label="Ver todo el día">⤢</button>
     </div>
-      <div class="mapinfo" id="mi"><div class="row1"><span class="swatch" style="background:#fff"></span><span>Pellizca para ampliar y arrastra para moverte. <b>H</b> es el hotel · las líneas verdes son los tramos a pie.</span></div></div>
-      <div class="maplegend">
-        <span><i class="ln" style="background:#4ade80"></i>a pie</span>
-        <span><i class="ln" style="background:#8b98a8"></i>ruta del día</span>
-        <span><i class="sq" style="background:#ff8a5b"></i>restaurante</span>
-        <span><i class="sq" style="background:#b06cf5"></i>açaí</span>
-        <span><i class="sq" style="background:#ff5c8a"></i>caipirinha</span>
-        <span><i class="sq" style="background:#7fd1a8"></i>súper 24 h</span>
-        <span><i class="sq" style="background:#25d0e0"></i>Havaianas</span>
-      </div>
-    </div>
+    <div class="moff" id="mOff">📴 Sin internet: se ven los puntos y el recorrido; las calles aparecen cuando haya señal.</div>
   </div>
-
-  <div class="gmap hidden" id="gmap">
-    <div class="fr">
-      <div class="off">
-        <b>📶 Esta vista necesita internet</b>
-        <span>Sin señal no carga, pero <b>las direcciones de abajo sí funcionan</b>.</span>
-      </div>
-      <iframe id="gm" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa de Río"></iframe>
-    </div>
-    <div class="bar" id="gmbar"></div>
-  </div>
+  <div id="mLista"></div>
 
   <button class="comtog" id="comTog" aria-expanded="false"><span><span class="car">▶</span> 📌 Comodines · sitios sueltos para cualquier momento</span><span class="cnt">8</span></button><div id="comWrap" class="hidden"><p style="color:var(--tx2);font-size:14px;margin:12px 0 0">La dirección de cada parada está dentro de su día. Estos son los extras: por si da hambre a deshoras, por otra caipirinha, o si el rodizio del 24 se cae.</p><div class="plist"><div class="place" data-orig="Av. Nossa Senhora de Copacabana, Copacabana (también en Botafogo)" data-q="Fat Guys Copacabana Rio de Janeiro"><div class="phead"><span class="pt">🍔</span><span class="pn">Fat Guys</span></div><div class="paddr">📌 Av. Nossa Senhora de Copacabana, Copacabana (también en Botafogo)</div><div class="pk">Hamburguesería carioca muy querida. La <b>Double Fat</b> y los nuggets son los pedidos estrella, y los milkshakes también. R$ 40–60. Buena salida si alguno se cansa de la comida brasileña.</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Fat+Guys+Copacabana+Rio+de+Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Fat Guys, Av. Nossa Senhora de Copacabana, Copacabana">Copiar dirección</button></div></div><div class="place" data-orig="Praia do Flamengo 300, Flamengo" data-q="Belmonte, Praia do Flamengo 300, Flamengo, Rio de Janeiro"><div class="phead"><span class="pt">🍹</span><span class="pn">Belmonte Flamengo</span></div><div class="paddr">📌 Praia do Flamengo 300, Flamengo</div><div class="pk">Chopp y empadas · 10:00-3:00 · caipirinha cualquier noche</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Belmonte%2C%20Praia%20do%20Flamengo%20300%2C%20Flamengo%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Praia do Flamengo 300, Flamengo">Copiar dirección</button><button class="pbtn gh vm" data-q="Belmonte, Praia do Flamengo 300, Flamengo, Rio de Janeiro" data-n="Belmonte Flamengo">Ver aquí</button></div></div><div class="place" data-orig="Rua Voluntários da Pátria 446, Humaitá" data-q="Cobal do Humaitá, Rua Voluntários da Pátria 446, Humaitá, Rio de Janeiro"><div class="phead"><span class="pt">🍽️</span><span class="pn">Cobal do Humaitá</span></div><div class="paddr">📌 Rua Voluntários da Pátria 446, Humaitá</div><div class="pk">Mercado con 15 restaurantes al aire libre · R$ 60-110</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Cobal%20do%20Humait%C3%A1%2C%20Rua%20Volunt%C3%A1rios%20da%20P%C3%A1tria%20446%2C%20Humait%C3%A1%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Rua Voluntários da Pátria 446, Humaitá">Copiar dirección</button><button class="pbtn gh vm" data-q="Cobal do Humaitá, Rua Voluntários da Pátria 446, Humaitá, Rio de Janeiro" data-n="Cobal do Humaitá">Ver aquí</button></div></div><div class="place" data-orig="Av. Repórter Nestor Moreira 11, Botafogo" data-q="Fogo de Chão, Av. Repórter Nestor Moreira 11, Botafogo, Rio de Janeiro"><div class="phead"><span class="pt">🍽️</span><span class="pn">Fogo de Chão Botafogo</span></div><div class="paddr">📌 Av. Repórter Nestor Moreira 11, Botafogo</div><div class="pk">Rodizio premium R$ 150-180 · alternativa para el 24</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Fogo%20de%20Ch%C3%A3o%2C%20Av.%20Rep%C3%B3rter%20Nestor%20Moreira%2011%2C%20Botafogo%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Av. Repórter Nestor Moreira 11, Botafogo">Copiar dirección</button><button class="pbtn gh vm" data-q="Fogo de Chão, Av. Repórter Nestor Moreira 11, Botafogo, Rio de Janeiro" data-n="Fogo de Chão Botafogo">Ver aquí</button></div></div><div class="place" data-orig="Av. Nossa Senhora de Copacabana 936, Copacabana" data-q="Supermercado Zona Sul, Av. Nossa Senhora de Copacabana 936, Copacabana, Rio de Janeiro"><div class="phead"><span class="pt">🛒</span><span class="pn">Zona Sul Copacabana · 24 h</span></div><div class="paddr">📌 Av. Nossa Senhora de Copacabana 936, Copacabana</div><div class="pk">ABIERTO 24 HORAS</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Supermercado%20Zona%20Sul%2C%20Av.%20Nossa%20Senhora%20de%20Copacabana%20936%2C%20Copacabana%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Av. Nossa Senhora de Copacabana 936, Copacabana">Copiar dirección</button><button class="pbtn gh vm" data-q="Supermercado Zona Sul, Av. Nossa Senhora de Copacabana 936, Copacabana, Rio de Janeiro" data-n="Zona Sul Copacabana · 24 h">Ver aquí</button></div></div><div class="place" data-orig="Rua Barata Ribeiro 7, Copacabana" data-q="Galeto Sat&#x27;s, Rua Barata Ribeiro 7, Copacabana, Rio de Janeiro"><div class="phead"><span class="pt">🍹</span><span class="pn">Galeto Sat&#x27;s</span></div><div class="paddr">📌 Rua Barata Ribeiro 7, Copacabana</div><div class="pk">+300 cachaças · pollo a la brasa R$ 50-70 · abre hasta tarde</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Galeto%20Sat%27s%2C%20Rua%20Barata%20Ribeiro%207%2C%20Copacabana%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Rua Barata Ribeiro 7, Copacabana">Copiar dirección</button><button class="pbtn gh vm" data-q="Galeto Sat&#x27;s, Rua Barata Ribeiro 7, Copacabana, Rio de Janeiro" data-n="Galeto Sat&#x27;s">Ver aquí</button></div></div><div class="place" data-orig="Av. Rio Branco 156, Centro" data-q="Tapí Tapioca, Avenida Rio Branco, Centro, Rio de Janeiro"><div class="phead"><span class="pt">🍇</span><span class="pn">Tapí Centro</span></div><div class="paddr">📌 Av. Rio Branco 156, Centro</div><div class="pk">Açaí R$ 20-30 · dentro del Edifício Avenida Central</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Tap%C3%AD%20Tapioca%2C%20Avenida%20Rio%20Branco%2C%20Centro%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Av. Rio Branco 156, Centro">Copiar dirección</button><button class="pbtn gh vm" data-q="Tapí Tapioca, Avenida Rio Branco, Centro, Rio de Janeiro" data-n="Tapí Centro">Ver aquí</button></div></div><div class="place" data-orig="Rua Conde de Bernadotte 26, loja G, Leblon" data-q="Academia da Cachaça, Rua Conde de Bernadotte 26, Leblon, Rio de Janeiro"><div class="phead"><span class="pt">🍹</span><span class="pn">Academia da Cachaça</span></div><div class="paddr">📌 Rua Conde de Bernadotte 26, loja G, Leblon</div><div class="pk">Caipirinha R$ 30-40 · la mejor de Río según los cariocas</div><div class="pacts"><a class="pbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Academia%20da%20Cacha%C3%A7a%2C%20Rua%20Conde%20de%20Bernadotte%2026%2C%20Leblon%2C%20Rio%20de%20Janeiro">Google Maps</a><button class="pbtn gh cp" data-a="Rua Conde de Bernadotte 26, loja G, Leblon">Copiar dirección</button><button class="pbtn gh vm" data-q="Academia da Cachaça, Rua Conde de Bernadotte 26, Leblon, Rio de Janeiro" data-n="Academia da Cachaça">Ver aquí</button></div></div></div></div>
 
   <div class="card" style="margin-top:18px;border-left:3px solid var(--green)">
-    <h3>📥 Carguen los 54 pines en su Google Maps</h3>
-    <p style="margin-bottom:10px">Junto a esta página va el archivo <b>rio-2026-mapa.kml</b>. Al importarlo queda <b>un mapa propio con los 54 sitios marcados</b>, agrupados por día. Es lo que de verdad les va a ubicar caminando por allá.</p>
+    <h3>📥 Lleven estos puntos a su Google Maps</h3>
+    <p style="margin-bottom:10px">Este botón arma el archivo <b>rio-2026-mapa.kml</b> con el itinerario <b>como está ahora</b>: cada parada numerada y agrupada por día. Al importarlo en Google queda un mapa propio. Si cambian el plan, descárguenlo de nuevo.</p>
+    <button class="hbtn full" id="mKml" style="margin-bottom:12px">⬇️ Descargar el mapa (KML)</button>
     <ol style="margin:0 0 10px 18px;color:var(--tx2);font-size:14px">
       <li style="margin-bottom:6px">Desde el computador: <b>google.com/mymaps</b> con su Gmail.</li>
       <li style="margin-bottom:6px"><b>Crear un mapa nuevo → Importar →</b> suban <b>rio-2026-mapa.kml</b>.</li>
@@ -2206,228 +2225,17 @@ window.__contraerDias();
   if(ref) ref.parentNode.insertBefore(b, ref.nextSibling);
 })();
 
-/* ---- MAPA ---- */
+/* ---- COMODINES Y DIRECCIONES ---- */
 (function(){
-  var svg=document.getElementById('mapa'); if(!svg) return;
-  var info=document.getElementById('mi');
-  var WALKS=[{"n": "Selarón → Arcos → Catedral", "k": "900 m · de día"}, {"n": "Catedral → Estação Carioca", "k": "400 m · de día"}, {"n": "Largo dos Guimarães → Parque das Ruínas", "k": "700 m · de día"}, {"n": "SAARA → Real Gabinete → Colombo", "k": "1,2 km · día hábil"}, {"n": "Hotel → Largo do Machado → Flamengo", "k": "1,2 km · día y noche"}, {"n": "Hotel → Aterro do Flamengo", "k": "800 m · solo de mañana"}, {"n": "Praia Vermelha → Urca → Bondinho", "k": "2 km · día y noche"}, {"n": "Praça Mauá → Museu do Amanhã → Mural Etnias", "k": "1,5 km · solo de día"}, {"n": "Copacabana P4 → P6 → Forte → Arpoador → Ipanema", "k": "4,5 km · el paseo del viernes"}, {"n": "Faenza → Casa do Açaí → Carretão", "k": "200 m · la cuadra que resuelve el 24 y el 25"}, {"n": "Havaianas → Polis → metro General Osório", "k": "500 m · día y noche"}];
-  var DCOL={0:'#8b98a8',1:'#f0b429',2:'#a371f7',3:'#39c5bb',4:'#4a9eff',5:'#ff9f43',6:'#3fb950',7:'#f4645f'};
-  var TCOL={h:'#ffffff',r:'#ff8a5b',c:'#ff5c8a',z:'#b06cf5',m:'#7fd1a8',t:'#25d0e0'};
-  var DIA={0:'Cualquier día',1:'Domingo 20',2:'Lunes 21',3:'Martes 22',4:'Miércoles 23',5:'Jueves 24',6:'Viernes 25',7:'Sábado 26'};
-  var TIPO={a:'Atracción',r:'Restaurante',c:'Caipirinha',z:'Açaí',m:'Supermercado 24 h',t:'Tienda',h:'Hotel'};
-  var pois=[].slice.call(svg.querySelectorAll('.poi'));
-  var rutas=[].slice.call(svg.querySelectorAll('.ruta'));
-  var walks=[].slice.call(svg.querySelectorAll('.walk'));
-  var day='all', tipos={a:1,r:1,z:1,c:1,m:1,w:1};
-
-  var sel=null;
-  function say(html,color,q,lo,nm){
-    var b='';
-    if(q){
-      var e=encodeURIComponent(q);
-      b='<div style="display:flex;gap:7px;flex-wrap:wrap">'
-       +'<a class="gobtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+e+'">📍 Google Maps</a>'
-       +'<a class="gobtn gh" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+e+'&travelmode=walking">🚶 Cómo llegar</a></div>';
-    }
-    info.innerHTML='<div class="row1"><span class="swatch" style="background:'+(color||'#8b98a8')+'"></span><span>'+html+'</span></div>'+b;
-    sel = q ? {q:q,nm:nm||''} : null;
-  }
-  function color(g){ var t=g.getAttribute('data-t'); return t==='a'?DCOL[g.getAttribute('data-d')]:TCOL[t]; }
-
-  function render(){
-    pois.forEach(function(g){
-      var t=g.getAttribute('data-t'), d=g.getAttribute('data-d');
-      var onT = (t==='h') || tipos[t==='t'?'r':t];
-      var onD = (day==='all') || d===day || d==='0';
-      g.style.display = onT ? '' : 'none';
-      g.classList.toggle('dim', !onD);
-    });
-    rutas.forEach(function(r){
-      r.setAttribute('opacity', (day!=='all' && r.classList.contains('r'+day)) ? '0.7' : '0');
-    });
-    walks.forEach(function(w){ w.setAttribute('opacity', tipos.w ? '0.5' : '0'); });
-    [].slice.call(svg.querySelectorAll('.walkhit')).forEach(function(w){ w.style.pointerEvents = tipos.w ? 'stroke' : 'none'; });
-  }
-
-  pois.forEach(function(g){
-    g.addEventListener('click',function(e){
-      e.stopPropagation();
-      pois.forEach(function(o){o.classList.remove('sel')});
-      g.classList.add('sel');
-      var _c=g.querySelector('circle'), _r=g.querySelector('rect');
-      if(window.__setFocus) window.__setFocus(_c?[+_c.getAttribute('cx'),+_c.getAttribute('cy')]
-                                                :[+_r.getAttribute('x')+8.5,+_r.getAttribute('y')+8.5]);
-      var d=g.getAttribute('data-d'), t=g.getAttribute('data-t');
-      say('<b>'+g.getAttribute('data-l')+'</b><br>'+g.getAttribute('data-k')+'<br><small style="opacity:.7">'+TIPO[t]+' · '+DIA[d]+'</small>', color(g), g.getAttribute('data-q'), null, g.getAttribute('data-l'));
-    });
-  });
-  [].slice.call(svg.querySelectorAll('.walkhit')).forEach(function(w){
-    w.addEventListener('click',function(e){
-      e.stopPropagation();
-      var i=+w.getAttribute('data-i');
-      say('🚶 <b>'+WALKS[i].n+'</b><br>'+WALKS[i].k, '#4ade80');
-    });
-  });
-
-  document.getElementById('mf').addEventListener('click',function(e){
-    var b=e.target.closest('button'); if(!b) return;
-    [].slice.call(this.querySelectorAll('button')).forEach(function(o){o.classList.remove('on')});
-    b.classList.add('on'); day=b.getAttribute('data-d');
-    pois.forEach(function(g){g.classList.remove('sel')});
-    render();
-    if(window.__fit){
-      if(day==='all'){ document.getElementById('zrst').click(); }
-      else { window.__fit(pois.filter(function(g){return g.getAttribute('data-d')===day;}),110); }
-    }
-    if(day==='all') say('Toca cualquier punto. <b>H</b> es el hotel · <b>círculos</b> atracciones · <b>rombos</b> comida · <b>verde</b> los tramos a pie.','#fff');
-    else {
-      var ds=pois.filter(function(g){return g.getAttribute('data-d')===day && g.getAttribute('data-t')==='a'});
-      var cs=ds.map(function(g){return encodeURIComponent(g.getAttribute('data-q')||'');}).filter(Boolean);
-      var url='';
-      if(cs.length>1){
-        url='https://www.google.com/maps/dir/?api=1&origin='+cs[0]+'&destination='+cs[cs.length-1]
-          +(cs.length>2?'&waypoints='+cs.slice(1,-1).slice(0,9).join('%7C'):'')+'&travelmode=walking';
-      }
-      info.innerHTML='<div class="row1"><span class="swatch" style="background:'+DCOL[day]+'"></span>'
-        +'<span><b>'+DIA[day]+'</b> · '+ds.length+' paradas. Toca cada punto para ver hora, dirección y precio.</span></div>'
-        +(url?'<a class="gobtn" target="_blank" rel="noopener" href="'+url+'">🗺️ Abrir la ruta del día en Google Maps</a>':'');
-      sel=null;
-    }
-  });
-  document.getElementById('mt').addEventListener('click',function(e){
-    var b=e.target.closest('button'); if(!b) return;
-    var t=b.getAttribute('data-t');
-    tipos[t]=!tipos[t]; b.classList.toggle('on',!!tipos[t]);
-    render();
-  });
-  render();
-
-  /* --- zoom y desplazamiento --- */
-  var gz=document.getElementById('mapz'), k=1, tx=0, ty=0, VW=820, VH=1019;
-  function apply(){ gz.setAttribute('transform','translate('+tx+','+ty+') scale('+k+')'); }
-  function clamp(){
-    k=Math.min(6,Math.max(1,k));
-    var maxx=VW*(k-1), maxy=VH*(k-1);
-    tx=Math.min(0,Math.max(-maxx,tx)); ty=Math.min(0,Math.max(-maxy,ty));
-  }
-  function zoomAt(f,cx,cy){
-    var k0=k; k=Math.min(6,Math.max(1,k*f));
-    var r=k/k0; tx=cx-(cx-tx)*r; ty=cy-(cy-ty)*r; clamp(); apply();
-  }
-  function toSvg(px,py){
-    var r=svg.getBoundingClientRect();
-    return [ (px-r.left)/r.width*VW, (py-r.top)/r.height*VH ];
-  }
-  var focus=null;   /* [x,y] en unidades del svg */
-  function ctr(){ return focus ? [focus[0]*k+tx, focus[1]*k+ty] : [VW/2,VH/2]; }
-  document.getElementById('zin').onclick=function(){ var c=ctr(); zoomAt(1.6,c[0],c[1]); };
-  document.getElementById('zout').onclick=function(){ var c=ctr(); zoomAt(1/1.6,c[0],c[1]); };
-  document.getElementById('zrst').onclick=function(){ k=1;tx=0;ty=0;focus=null;apply(); };
-
-  /* encuadra un grupo de puntos */
-  function fit(list,pad){
-    if(!list.length){ return; }
-    var xs=[],ys=[];
-    list.forEach(function(g){
-      var c=g.querySelector('circle'), r=g.querySelector('rect');
-      if(c){ xs.push(+c.getAttribute('cx')); ys.push(+c.getAttribute('cy')); }
-      else if(r){ xs.push(+r.getAttribute('x')+8.5); ys.push(+r.getAttribute('y')+8.5); }
-    });
-    if(!xs.length) return;
-    pad=pad||90;
-    var x0=Math.min.apply(null,xs)-pad, x1=Math.max.apply(null,xs)+pad;
-    var y0=Math.min.apply(null,ys)-pad, y1=Math.max.apply(null,ys)+pad;
-    var w=Math.max(x1-x0,120), hh=Math.max(y1-y0,120);
-    k=Math.min(5, Math.max(1, Math.min(VW/w, VH/hh)));
-    tx=-((x0+x1)/2)*k+VW/2; ty=-((y0+y1)/2)*k+VH/2;
-    clamp(); apply();
-    focus=[(x0+x1)/2,(y0+y1)/2];
-  }
-  window.__fit=fit;
-  window.__setFocus=function(p){ focus=p; };
-  svg.addEventListener('wheel',function(e){
-    e.preventDefault(); var p=toSvg(e.clientX,e.clientY);
-    zoomAt(e.deltaY<0?1.18:1/1.18,p[0],p[1]);
-  },{passive:false});
-
-  var pts={}, last=null, moved=0, startD=0, startK=1;
-  svg.addEventListener('pointerdown',function(e){
-    pts[e.pointerId]={x:e.clientX,y:e.clientY};
-    var ids=Object.keys(pts);
-    if(ids.length===1){ last=[e.clientX,e.clientY]; moved=0; svg.classList.add('drag'); }
-    else if(ids.length===2){ startD=dist(); startK=k; }
-  });
-  function dist(){
-    var v=Object.values(pts); if(v.length<2) return 0;
-    return Math.hypot(v[0].x-v[1].x, v[0].y-v[1].y);
-  }
-  function mid(){
-    var v=Object.values(pts);
-    return toSvg((v[0].x+v[1].x)/2,(v[0].y+v[1].y)/2);
-  }
-  window.addEventListener('pointermove',function(e){
-    if(!pts[e.pointerId]) return;
-    pts[e.pointerId]={x:e.clientX,y:e.clientY};
-    var ids=Object.keys(pts);
-    if(ids.length===2 && startD){
-      var m=mid(), k0=k; k=Math.min(6,Math.max(1,startK*(dist()/startD)));
-      var r=k/k0; tx=m[0]-(m[0]-tx)*r; ty=m[1]-(m[1]-ty)*r; clamp(); apply(); moved=99; return;
-    }
-    if(ids.length===1 && last){
-      var rc=svg.getBoundingClientRect();
-      var pdx=e.clientX-last[0], pdy=e.clientY-last[1];
-      moved+=Math.hypot(pdx,pdy);          /* en pixeles de pantalla */
-      if(moved>8){                          /* recien ahi es un arrastre, no un toque */
-        tx+=pdx/rc.width*VW; ty+=pdy/rc.height*VH; clamp(); apply();
-      }
-      last=[e.clientX,e.clientY];
-    }
-  });
-  function up(e){
-    delete pts[e.pointerId];
-    if(!Object.keys(pts).length){ last=null; startD=0; svg.classList.remove('drag'); }
-  }
-  window.addEventListener('pointerup',up); window.addEventListener('pointercancel',up);
-  svg.addEventListener('click',function(e){ if(moved>14){ e.stopPropagation(); e.preventDefault(); } },true);
-
-  /* --- ocultar mapa, copiar direccion, ver en Google --- */
   var ctog=document.getElementById('comTog'), cwrap=document.getElementById('comWrap');
   if(ctog) ctog.addEventListener('click',function(){
     var abierto=!cwrap.classList.toggle('hidden');
     ctog.classList.toggle('open',abierto);
     ctog.setAttribute('aria-expanded', abierto?'true':'false');
   });
-
-  var mtog=document.getElementById('mtog'), mzone=document.getElementById('mapzone');
-  if(mtog) mtog.addEventListener('click',function(){
-    var oculto=mzone.classList.toggle('hidden');
-    mtog.textContent = oculto ? '🗺️ Mostrar el mapa' : '🗺️ Ocultar el mapa';
-  });
-
-  var gbox=document.getElementById('gmap'), gm=document.getElementById('gm'), gmbar=document.getElementById('gmbar');
-  var tipoMapa='m', cur=null;
-  function net(){ var on=navigator.onLine!==false; gbox.classList.toggle('nonet',!on); return on; }
-  window.addEventListener('online',function(){ if(net()&&cur) verEn(cur.q,null,cur.nm); });
-  window.addEventListener('offline',net);
-  function verEn(q,lo,nm){
-    cur={q:q,nm:nm};
-    gbox.classList.remove('hidden');
-    if(net()) gm.src='https://maps.google.com/maps?q='+encodeURIComponent(q)+'&z=17&t='+tipoMapa+'&hl=es&output=embed';
-    gmbar.innerHTML='<b>'+nm+'</b><div class="gbtns">'
-      +'<button class="gbtn gh" id="tsat">🛰️ Satélite</button>'
-      +'<button class="gbtn gh" id="tmap">🗺️ Mapa</button>'
-      +'<a class="gbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q)+'">📍 Abrir en la app</a>'
-      +'<button class="gbtn gh" id="gclose">✕ Cerrar</button></div>';
-    gbox.scrollIntoView({behavior:'smooth',block:'center'});
-  }
   document.addEventListener('click',function(ev){
-    if(ev.target.closest('#tsat')||ev.target.closest('#tmap')){
-      tipoMapa = ev.target.closest('#tsat') ? 'k' : 'm';
-      if(cur) verEn(cur.q,null,cur.nm); return;
-    }
-    if(ev.target.closest('#gclose')){ gbox.classList.add('hidden'); return; }
     var v=ev.target.closest('.vm');
-    if(v){ verEn(v.getAttribute('data-q'),null,v.getAttribute('data-n')); return; }
+    if(v){ if(window.__mapaVer) window.__mapaVer({q:v.getAttribute('data-q'), n:v.getAttribute('data-n')}); return; }
     var c=ev.target.closest('.cp');
     if(c){
       var txt=c.getAttribute('data-a')+', Rio de Janeiro, Brasil';
@@ -2438,21 +2246,6 @@ window.__contraerDias();
              t.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(t); done(); }
     }
   });
-
-  /* buscador */
-  var q=document.getElementById('plq');
-  if(q) q.addEventListener('input',function(){
-    var s=q.value.toLowerCase().trim();
-    [].slice.call(document.querySelectorAll('#plist .place')).forEach(function(p){
-      p.style.display = (!s || p.textContent.toLowerCase().indexOf(s)>-1) ? '' : 'none';
-    });
-    [].slice.call(document.querySelectorAll('.plday')).forEach(function(hd){
-      var vis=false, n=hd.nextElementSibling;
-      while(n && n.classList.contains('place')){ if(n.style.display!=='none') vis=true; n=n.nextElementSibling; }
-      hd.style.display = vis ? '' : 'none';
-    });
-  });
-  net();
 })();
 
 /* ================= EDITOR ================= */
@@ -3107,6 +2900,14 @@ window.__contraerDias();
     });
   })();
 
+  [].slice.call(document.querySelectorAll('#dias .day')).forEach(function(c){
+    var body=c.querySelector('.daybody'), ul=body && body.querySelector('[data-tl]');
+    if(!ul || body.querySelector('.vermapa')) return;
+    var b=document.createElement('button'); b.type='button'; b.className='hbtn gh vermapa'; b.textContent='🗺️ Ver este día en el mapa';
+    b.addEventListener('click',function(){ var n=+((c.querySelector('.daynum b')||{}).textContent||0); if(window.__mapaVer) window.__mapaVer({dia:n}); });
+    body.insertBefore(b, ul);
+  });
+
   document.getElementById('masEdit').addEventListener('click',function(){
     ir('#dias', function(){ arriba(0); var b=document.getElementById('edOn'); if(b) b.click(); });
   });
@@ -3233,7 +3034,8 @@ window.__contraerDias();
           +(s.li.querySelector('.antojos') ? s.li.querySelector('.antojos').outerHTML : '')
           +'<div class="hbtns">'
           +(ad&&ad.getAttribute('data-q')?'<a class="hbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(ad.getAttribute('data-q'))+'">🧭 Cómo llegar</a>':'')
-          +'<button class="hbtn gh" data-stop="'+sig+'">Ver detalles</button></div>'
+          +'<button class="hbtn gh" data-stop="'+sig+'">Ver detalles</button>'
+          +'<button class="hbtn gh" data-mapstop="'+sig+'">🗺️ Mapa</button></div>'
           +(cur>-1?'<div class="nx-now">Ahora: <b>'+nombre(paradas[cur].li)+'</b></div>':'')
           +'</div>';
       } else if(paradas.length){
@@ -3252,7 +3054,7 @@ window.__contraerDias();
         +(hotel?'<button class="hbtn gh" data-taxi-hotel>🚕 Mostrarle el hotel al taxista</button>':'')+'</div>'
         +'<div class="tels"><a href="tel:190">190<span>Policía</span></a><a href="tel:192">192<span>Ambulancia</span></a><a href="tel:193">193<span>Bomberos</span></a></div></div>';
       if(paradas.length){
-        html+='<div class="hcard"><h3>El plan de hoy</h3><ul class="stops" id="hoyStops">'
+        html+='<div class="hcard"><h3>El plan de hoy</h3><button class="hbtn gh full" data-maphoy="'+now.d+'" style="margin-bottom:8px">🗺️ Ver el recorrido de hoy en el mapa</button><ul class="stops" id="hoyStops">'
           + paradas.map(function(p,i){
               return '<li data-stop="'+i+'" class="'+(sig<0||i<cur?'past':i===cur?'cur':'')+'"><span class="t">'
                 +esc((p.li.querySelector('.hr')||{}).textContent||'')+'</span><span class="s">'+nombre(p.li)
@@ -3546,6 +3348,10 @@ window.__contraerDias();
   document.addEventListener('click',function(e){
     var box=document.getElementById('hoyIn');
     if(!box || !box.contains(e.target)) return;
+    var mp=e.target.closest('[data-mapstop]');
+    if(mp && box._paradas && window.__mapaVer){ var pp=box._paradas[+mp.getAttribute('data-mapstop')]; if(pp) window.__mapaVer({li:pp.li}); return; }
+    var mh=e.target.closest('[data-maphoy]');
+    if(mh && window.__mapaVer){ window.__mapaVer({dia:+mh.getAttribute('data-maphoy')}); return; }
     if(e.target.closest('[data-taxi-hotel]')){ var ho=document.querySelector('#dias .addr[data-q*="Riale"]'); if(ho && window.__taxista) window.__taxista(ho); return; }
     var st=e.target.closest('[data-stop]');
     if(st && box._paradas){ var p=box._paradas[+st.getAttribute('data-stop')]; if(p){ abrirDia(p.card, p.li); } return; }
@@ -4180,6 +3986,340 @@ window.__contraerDias();
   pedir();
   window.addEventListener('online', pedir);
   window.addEventListener('focus', pedir);
+})();
+</script>
+
+<script>
+/* ============================================================
+   MAPA · Leaflet (archivos en /leaflet, funciona sin internet)
+   Los puntos salen del itinerario cada vez que se abre: si cambian
+   una parada, su hora, su orden o su dirección, el mapa cambia.
+   - Dirección original: coordenadas conocidas (LUGARES).
+   - Dirección editada o parada nueva: se busca en OpenStreetMap
+     (Nominatim) con internet y queda guardada en el celular.
+   ============================================================ */
+(function(){
+  /* [búsqueda, lat, lon, nombre, tipo, día] · sacado del mapa anterior */
+  var LUGARES=[["Av. do Catete, Rio de Janeiro", -22.927599, -43.176603, "Hotel Riale Imperial", "h", 0], ["Aterro do Flamengo, Parque do Flamengo, Rio de Janeiro", -22.934505, -43.172498, "Aterro do Flamengo", "a", 1], ["Catedral Metropolitana de São Sebastião, Av. República do Chile 245, Centro, Rio de Janeiro", -22.910899, -43.180495, "Catedral Metropolitana", "a", 1], ["Arcos da Lapa, Lapa, Rio de Janeiro", -22.913295, -43.179904, "Arcos da Lapa", "a", 1], ["Escadaria Selarón, Lapa, Rio de Janeiro", -22.9153, -43.179099, "Escadaria Selarón", "a", 1], ["Botequim Os Ximenes, Rua Riachuelo 49, Lapa, Rio de Janeiro", -22.914199, -43.1815, "Os Ximenes", "r", 1], ["Estação Carioca do Bonde de Santa Teresa, Rua Lélio Gama, Centro, Rio de Janeiro", -22.909602, -43.1782, "Estação Carioca · bonde", "a", 1], ["Largo dos Guimarães, Santa Teresa, Rio de Janeiro", -22.919799, -43.187498, "Largo dos Guimarães", "a", 1], ["Bar do Mineiro, Rua Paschoal Carlos Magno 99, Santa Teresa, Rio de Janeiro", -22.919004, -43.187001, "Bar do Mineiro", "c", 1], ["Parque das Ruínas, Rua Murtinho Nobre 169, Santa Teresa, Rio de Janeiro", -22.916705, -43.183003, "Parque das Ruínas", "a", 1], ["Mirante do Pasmado, Botafogo, Rio de Janeiro", -22.948199, -43.177999, "Mirante do Pasmado", "a", 1], ["Rua do Russel, Glória, Rio de Janeiro", -22.929505, -43.178496, "Braseirinho da Glória", "r", 1], ["SAARA, Rua da Alfândega, Centro, Rio de Janeiro", -22.904602, -43.181702, "SAARA / Uruguaiana", "a", 2], ["Real Gabinete Português de Leitura, Rua Luís de Camões 30, Centro, Rio de Janeiro", -22.905299, -43.182198, "Real Gabinete Português", "a", 2], ["Casa Paladino, Rua Uruguaiana 226, Centro, Rio de Janeiro", -22.9036, -43.179998, "Casa Paladino", "r", 2], ["Confeitaria Colombo, Rua Gonçalves Dias 32, Centro, Rio de Janeiro", -22.904798, -43.177999, "Confeitaria Colombo", "r", 2], ["Tapí Tapioca, Avenida Rio Branco, Centro, Rio de Janeiro", -22.904003, -43.176201, "Tapí Centro", "z", 2], ["Pedra do Sal, Largo João da Baiana, Saúde, Rio de Janeiro", -22.897499, -43.1857, "Pedra do Sal", "a", 2], ["Pista Cláudio Coutinho, Urca, Rio de Janeiro", -22.955596, -43.165294, "Pista Cláudio Coutinho", "a", 3], ["Praia Vermelha, Urca, Rio de Janeiro", -22.9548, -43.164798, "Praia Vermelha", "a", 3], ["Bar Urca, Rua Cândido Gaffrée 205, Urca, Rio de Janeiro", -22.948101, -43.163402, "Mureta da Urca / Bar Urca", "c", 3], ["Parque Bondinho Pão de Açúcar, Av. Pasteur 520, Urca, Rio de Janeiro", -22.9487, -43.1566, "Pão de Açúcar", "a", 3], ["Parque Bondinho Pão de Açúcar, Av. Pasteur 520, Urca, Rio de Janeiro", -22.952001, -43.163402, "Morro da Urca · Vila do Noel", "a", 3], ["Restaurante Adriano, Rua Real Grandeza 162, Botafogo, Rio de Janeiro", -22.952502, -43.185795, "Restaurante Adriano", "r", 3], ["Estação do Trem do Corcovado, Rua Cosme Velho 513, Rio de Janeiro", -22.934898, -43.203598, "Estación Cosme Velho", "a", 4], ["Cristo Redentor, Corcovado, Rio de Janeiro", -22.951903, -43.210506, "Cristo Redentor", "a", 4], ["Parque Lage, Rua Jardim Botânico 414, Jardim Botânico, Rio de Janeiro", -22.959997, -43.211996, "Parque Lage", "a", 4], ["Lagoa Rodrigo de Freitas, Rio de Janeiro", -22.971402, -43.209997, "Lagoa Rodrigo de Freitas", "a", 4], ["Academia da Cachaça, Rua Conde de Bernadotte 26, Leblon, Rio de Janeiro", -22.983996, -43.222501, "Academia da Cachaça", "c", 4], ["Mirante do Leblon, Av. Niemeyer, Leblon, Rio de Janeiro", -22.989497, -43.232496, "Mirante do Leblon", "a", 4], ["Havaianas, Rua Garcia D'Ávila 124, Ipanema, Rio de Janeiro", -22.983505, -43.206496, "Havaianas flagship", "t", 4], ["Polis Sucos, Rua Maria Quitéria 70, Ipanema, Rio de Janeiro", -22.983996, -43.205005, "Polis Sucos", "z", 4], ["AquaRio, Praça Muhammad Ali, Gamboa, Rio de Janeiro", -22.893501, -43.191697, "AquaRio", "a", 5], ["Museu do Amanhã, Praça Mauá 1, Centro, Rio de Janeiro", -22.894002, -43.179501, "Museu do Amanhã (por fuera)", "a", 5], ["Mural Etnias Eduardo Kobra, Boulevard Olímpico, Gamboa, Rio de Janeiro", -22.896105, -43.1868, "Mural Etnias", "a", 5], ["Praça Mauá, Centro, Rio de Janeiro", -22.895495, -43.182198, "Praça Mauá", "a", 5], ["Churrascaria Carretão Siqueira Campos, Rua Siqueira Campos 23, Copacabana, Rio de Janeiro", -22.966805, -43.185795, "Carretão Siqueira Campos", "r", 5], ["Supermercado Zona Sul, Rua Machado de Assis 40, Flamengo, Rio de Janeiro", -22.931804, -43.175799, "Zona Sul Flamengo · 24 h", "m", 5], ["Praia de Copacabana, Rio de Janeiro", -22.970498, -43.179998, "Copacabana · bandera verde", "a", 6], ["Faenza Restaurante, Rua Siqueira Campos 18, Copacabana, Rio de Janeiro", -22.966696, -43.1857, "Faenza · buffet", "r", 6], ["Casa do Açaí, Rua Siqueira Campos 143, Copacabana, Rio de Janeiro", -22.967797, -43.1868, "Casa do Açaí", "z", 6], ["Posto 6 Copacabana, Rio de Janeiro", -22.984497, -43.189201, "Copacabana Posto 6", "a", 6], ["Forte de Copacabana, Praça Coronel Eugênio Franco 1, Copacabana, Rio de Janeiro", -22.987699, -43.187805, "Forte de Copacabana", "a", 6], ["Pedra do Arpoador, Ipanema, Rio de Janeiro", -22.988702, -43.193495, "Pedra do Arpoador", "a", 6], ["Quiosques Avenida Vieira Souto, Ipanema, Rio de Janeiro", -22.987198, -43.200995, "Quioscos Av. Vieira Souto", "c", 6], ["Estádio do Maracanã, Portão A, Maracanã, Rio de Janeiro", -22.912097, -43.230202, "Tour Maracaná", "a", 7], ["Quinta da Boa Vista, São Cristóvão, Rio de Janeiro", -22.905299, -43.223104, "Quinta da Boa Vista", "a", 7], ["Tacacá do Norte, Rua Barão do Flamengo 35, Flamengo, Rio de Janeiro", -22.931804, -43.177999, "Tacacá do Norte", "z", 7], ["Café Lamas, Rua Marquês de Abrantes 18, Flamengo, Rio de Janeiro", -22.934004, -43.178496, "Café Lamas", "c", 7], ["Belmonte, Praia do Flamengo 300, Flamengo, Rio de Janeiro", -22.933002, -43.175195, "Belmonte Flamengo", "c", 0], ["Cobal do Humaitá, Rua Voluntários da Pátria 446, Humaitá, Rio de Janeiro", -22.955999, -43.192999, "Cobal do Humaitá", "r", 0], ["Fogo de Chão, Av. Repórter Nestor Moreira 11, Botafogo, Rio de Janeiro", -22.944495, -43.179998, "Fogo de Chão Botafogo", "r", 0], ["Supermercado Zona Sul, Av. Nossa Senhora de Copacabana 936, Copacabana, Rio de Janeiro", -22.972002, -43.185499, "Zona Sul Copacabana · 24 h", "m", 0], ["Galeto Sat's, Rua Barata Ribeiro 7, Copacabana, Rio de Janeiro", -22.964496, -43.172995, "Galeto Sat's", "c", 0]];
+  /* direcciones del itinerario que corresponden a un lugar conocido */
+  var ALIAS={
+    'riale imperial flamengo hotel, rua do catete 186, catete, rio de janeiro':0,
+    'braseirinho da gloria, gloria, rio de janeiro':11,
+    'rua dos andradas 36, centro, rio de janeiro':12,
+    'rua goncalves dias 80, centro, rio de janeiro':15,
+    'praia vermelha, praca general tiburcio, urca, rio de janeiro':19,
+    'estacao do trem do corcovado, rua cosme velho 513, cosme velho, rio de janeiro':24
+  };
+  var COLOR={20:'#d9480f',21:'#7048e8',22:'#0c8599',23:'#1971c2',24:'#e67700',25:'#2b8a3e',26:'#c2255c'};
+  var GKEY='rio2026:geo';
+  function norm(s){ return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim(); }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  var PORQ={}; LUGARES.forEach(function(l,i){ PORQ[norm(l[0])]=i; });
+  function geo(){ try{ return JSON.parse(localStorage.getItem(GKEY)||'{}'); }catch(e){ return {}; } }
+  function guardarGeo(g){ try{ localStorage.setItem(GKEY, JSON.stringify(g)); }catch(e){} }
+
+  var faltan={};   /* direcciones por buscar en internet */
+  function ubicar(li){
+    var ad=li.querySelector('.addr');
+    if(ad){
+      var a1=((ad.querySelector('.a1')||{}).textContent||'').replace(/^📌\s*/,'').trim();
+      var orig=ad.getAttribute('data-orig')||'';
+      if(norm(a1)===norm(orig)){
+        var q=norm(ad.getAttribute('data-q')), i=PORQ[q]; if(i==null) i=ALIAS[q];
+        if(i!=null) return {la:LUGARES[i][1], lo:LUGARES[i][2]};
+      }
+      var key=norm(a1), g=geo()[key];
+      if(g && g.v) return {la:g.v[0], lo:g.v[1], buscada:true};
+      if(!g && a1){ faltan[key]=a1; return {busca:true}; }
+      return null;
+    }
+    /* parada sin dirección: si su nombre es el de un lugar conocido */
+    var nom=norm(nombreDe(li));
+    /* los trayectos (Uber, metro, bajadas) no son un lugar: no llevan punto */
+    if(/^(uber|metro|taxi|bus|van|tren de bajada|bajada|salida|vuelta|regreso|caminar|desayuno|a dormir)/.test(nom)) return null;
+    for(var k=0;k<LUGARES.length;k++){
+      var n=norm(LUGARES[k][3]).split(' / ')[0].split(' · ')[0];
+      if(n.length>=6 && nom.indexOf(n)>-1) return {la:LUGARES[k][1], lo:LUGARES[k][2]};
+    }
+    return null;
+  }
+  function nombreDe(li){
+    var a=li.querySelector('.bd .a'); if(!a) return '';
+    var c=a.cloneNode(true); [].slice.call(c.querySelectorAll('.pz')).forEach(function(x){ x.remove(); });
+    return c.textContent.trim();
+  }
+  /* los días, con sus paradas en el orden del itinerario */
+  function datos(){
+    var dias={}, orden=[];
+    [].slice.call(document.querySelectorAll('#dias .day')).forEach(function(card){
+      var num=+((card.querySelector('.daynum b')||{}).textContent||0); if(!num) return;
+      if(!dias[num]){ dias[num]={num:num, sem:((card.querySelector('.daynum span')||{}).textContent||'').trim(), tit:'', paradas:[]}; orden.push(num); }
+      var d=dias[num]; d.tit=((card.querySelector('.dt')||{}).textContent||'').trim() || d.tit;
+      [].slice.call(card.querySelectorAll('[data-tl] > li')).forEach(function(li){
+        var u=ubicar(li), busca=!!(u && u.busca);
+        d.paradas.push({li:li, card:card, hr:((li.querySelector('.hr')||{}).textContent||'').trim(), n:nombreDe(li),
+                        star:li.classList.contains('hi'), pos:busca?null:u, busca:busca, ad:li.querySelector('.addr')});
+      });
+    });
+    orden.forEach(function(n){ var k=0; dias[n].paradas.forEach(function(p){ if(p.pos) p.k=++k; }); });
+    return {dias:dias, orden:orden};
+  }
+
+  /* ---------- cargar Leaflet solo cuando se abre el mapa ---------- */
+  var cargando=null;
+  function cargarLeaflet(){
+    if(window.L) return Promise.resolve();
+    if(cargando) return cargando;
+    cargando=new Promise(function(ok,mal){
+      var css=document.createElement('link'); css.rel='stylesheet'; css.href='leaflet/leaflet.css'; document.head.appendChild(css);
+      var s=document.createElement('script'); s.src='leaflet/leaflet.js'; s.onload=ok; s.onerror=mal; document.head.appendChild(s);
+    });
+    return cargando;
+  }
+
+  var mapa=null, capa=null, tiles=null, yo=null, sel='todos', extras=false, D=null, marcas=[];
+  function oscuro(){ return document.documentElement.classList.contains('oscuro'); }
+  function ponerTiles(){
+    if(tiles) mapa.removeLayer(tiles);
+    tiles=L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/'+(oscuro()?'dark_all':'voyager')+'/{z}/{x}/{y}{r}.png',
+      {subdomains:'abcd', maxZoom:19, attribution:'© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> © <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>'});
+    tiles.addTo(mapa);
+  }
+  function iniciar(){
+    mapa=L.map('lmap',{zoomControl:false, attributionControl:true}).setView([-22.93,-43.19],12);
+    L.control.zoom({position:'topright'}).addTo(mapa);
+    ponerTiles();
+    capa=L.layerGroup().addTo(mapa);
+    new MutationObserver(function(){ ponerTiles(); }).observe(document.documentElement,{attributes:true, attributeFilter:['class']});
+  }
+  function icono(txt, color, cls){
+    return L.divIcon({className:'', iconSize:[30,30], iconAnchor:[15,15], popupAnchor:[0,-14],
+      html:'<span class="mk '+(cls||'')+'" style="--c:'+color+'">'+txt+'</span>'});
+  }
+  function popup(p, dia){
+    var h='<div class="mpop"><div class="mp1"><span class="mpn" style="--c:'+COLOR[dia.num]+'">'+p.k+'</span>'
+      +'<span>'+esc(dia.sem)+' '+dia.num+' · <b>'+esc(p.hr)+'</b></span></div>'
+      +'<div class="mp2">'+esc(p.n)+(p.star?' ★':'')+'</div>';
+    if(p.ad){ var a1=((p.ad.querySelector('.a1')||{}).textContent||'').replace(/^📌\s*/,''); h+='<div class="mp3">'+esc(a1)+'</div>'; }
+    if(p.pos.buscada) h+='<div class="mp3">📍 Ubicación buscada en OpenStreetMap</div>';
+    h+='<div class="mpb"><a class="hbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+p.pos.la+','+p.pos.lo+'">🧭 Cómo llegar</a>'
+      +(p.ad?'<button class="hbtn gh" data-mtaxi>🚕 Taxista</button>':'')
+      +'<button class="hbtn gh" data-mdia>Ver en el día</button></div></div>';
+    return h;
+  }
+  function pintar(enfocar){
+    if(!mapa) return;
+    D=datos(); capa.clearLayers(); marcas=[];
+    var puntos=[], dias = sel==='todos' ? D.orden : [sel];
+    dias.forEach(function(n){
+      var dia=D.dias[n]; if(!dia) return;
+      var linea=[];
+      dia.paradas.forEach(function(p){
+        if(!p.pos) return;
+        var ll=[p.pos.la,p.pos.lo]; linea.push(ll); puntos.push(ll);
+        var m=L.marker(ll,{icon:icono(p.k, COLOR[n], p.star?'star':''), riseOnHover:true, title:p.hr+' '+p.n}).addTo(capa);
+        m.bindPopup(popup(p,dia),{maxWidth:280, autoPanPadding:[20,60]});
+        m.on('popupopen',function(){ marcar(p); });
+        marcas.push({p:p, m:m});
+      });
+      if(linea.length>1) L.polyline(linea,{color:COLOR[n], weight:4, opacity:.75, dashArray:'2 8', lineCap:'round'}).addTo(capa);
+    });
+    if(extras) [].slice.call(document.querySelectorAll('#comWrap .place')).forEach(function(pl){
+      var v=pl.querySelector('.vm'), i=v ? PORQ[norm(v.getAttribute('data-q'))] : null; if(i==null) return;
+      var l=LUGARES[i];
+      L.marker([l[1],l[2]],{icon:icono('★','#495057','extra'), title:l[3]}).addTo(capa)
+        .bindPopup('<div class="mpop"><div class="mp2">'+esc(l[3])+'</div><div class="mp3">'+esc(((pl.querySelector('.paddr')||{}).textContent||'').replace(/^📌\s*/,''))+'</div>'
+          +'<div class="mpb"><a class="hbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+l[1]+','+l[2]+'">🧭 Cómo llegar</a></div></div>');
+    });
+    /* el hotel siempre */
+    var H=LUGARES[0];
+    L.marker([H[1],H[2]],{icon:icono('🏨','#212529','hotel'), zIndexOffset:-100, title:'Hotel'}).addTo(capa)
+      .bindPopup('<div class="mpop"><div class="mp2">Hotel Riale Imperial</div><div class="mp3">Rua do Catete 186, Catete</div></div>');
+    if(enfocar!==false){
+      if(puntos.length) mapa.fitBounds(L.latLngBounds(puntos.concat([[H[1],H[2]]])).pad(0.12),{maxZoom:15});
+    }
+    pintarLista();
+    chips();
+    buscarFaltan();
+  }
+  function chips(){
+    var box=document.getElementById('mDias'); if(!box || !D) return;
+    box.innerHTML='<button class="mchip'+(sel==='todos'?' on':'')+'" data-mdia-sel="todos">Todos</button>'
+      + D.orden.map(function(n){ var d=D.dias[n];
+          return '<button class="mchip'+(sel===n?' on':'')+'" data-mdia-sel="'+n+'" style="--c:'+COLOR[n]+'"><i></i>'+esc(d.sem)+' '+n+'</button>'; }).join('')
+      + '<button class="mchip'+(extras?' on':'')+'" data-mextras>★ Comodines</button>';
+  }
+  function pintarLista(){
+    var box=document.getElementById('mLista'); if(!box || !D) return;
+    var dias = sel==='todos' ? D.orden : [sel], h='';
+    dias.forEach(function(n){
+      var d=D.dias[n]; if(!d) return;
+      h+='<div class="mdia"><div class="mdh" style="--c:'+COLOR[n]+'"><span>'+esc(d.sem)+' '+n+'</span><b>'+esc(d.tit)+'</b></div>'
+        + d.paradas.map(function(p,i){
+            if(sel==='todos' && !p.pos && !p.busca) return '';
+            return '<button class="mit'+(p.pos?'':' sin')+'" data-mi="'+n+'-'+i+'">'
+              +(p.pos ? '<span class="mpn" style="--c:'+COLOR[n]+'">'+p.k+'</span>' : '<span class="mpn vacio"></span>')
+              +'<span class="mhr">'+esc(p.hr)+'</span><span class="mnm">'+esc(p.n)+(p.star?' <i>★</i>':'')
+              +(p.busca ? '<small>Buscando la dirección en el mapa…</small>' : (!p.pos && p.ad ? '<small>No se encontró la dirección</small>' : ''))+'</span></button>';
+          }).join('')+'</div>';
+    });
+    box.innerHTML=h;
+  }
+  var marcada=null;
+  function marcar(p){
+    if(marcada) marcada.classList.remove('on');
+    var i=-1, n=null;
+    Object.keys(D.dias).some(function(k){ var j=D.dias[k].paradas.indexOf(p); if(j>-1){ i=j; n=k; return true; } });
+    marcada=document.querySelector('[data-mi="'+n+'-'+i+'"]');
+    if(marcada) marcada.classList.add('on');
+  }
+
+  /* ---------- buscar en OpenStreetMap lo que no se conoce ---------- */
+  var buscando=false;
+  function buscarFaltan(){
+    if(buscando || navigator.onLine===false) return;
+    var keys=Object.keys(faltan); if(!keys.length) return;
+    buscando=true;
+    var key=keys[0], q=faltan[key]; delete faltan[key];
+    fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=br&bounded=1&viewbox=-43.80,-22.75,-43.10,-23.08&q='+encodeURIComponent(q+', Rio de Janeiro'),
+          {headers:{'Accept-Language':'es'}})
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        var g=geo(); g[key] = (j && j[0]) ? {v:[+j[0].lat, +j[0].lon], t:Date.now()} : {v:0, t:Date.now()};
+        guardarGeo(g);
+      }).catch(function(){})
+      .then(function(){ setTimeout(function(){ buscando=false; pintar(false); }, 1100); });   /* máximo una búsqueda por segundo */
+  }
+
+  /* ---------- mostrar ---------- */
+  var porVer=null;
+  function abrir(){
+    cargarLeaflet().then(function(){
+      if(!mapa) iniciar();
+      setTimeout(function(){
+        mapa.invalidateSize();
+        pintar(!porVer);
+        if(porVer){ var x=porVer; porVer=null; enfocar(x); }
+      },60);
+    }).catch(function(){
+      document.getElementById('lmap').innerHTML='<p class="gnota" style="padding:16px">No se pudo cargar el mapa. Abran la página una vez con internet.</p>';
+    });
+  }
+  function enfocar(x){
+    if(x.dia!=null && x.dia!==sel){ sel=x.dia; pintar(); }
+    if(x.li){
+      var hit=marcas.filter(function(m){ return m.p.li===x.li; })[0];
+      if(hit){ mapa.setView(hit.m.getLatLng(), 16); hit.m.openPopup(); }
+    }
+    if(x.q){
+      var i=PORQ[norm(x.q)]; if(i==null) return;
+      if(!extras){ extras=true; pintar(false); }
+      mapa.setView([LUGARES[i][1],LUGARES[i][2]],16);
+      capa.eachLayer(function(l){ if(l.getLatLng && Math.abs(l.getLatLng().lat-LUGARES[i][1])<1e-6 && l.openPopup) l.openPopup(); });
+    }
+  }
+  /* desde otras pestañas: __mapaVer({dia:22}) · ({li}) · ({q}) */
+  /* KML para Google My Maps, con el itinerario como está ahora */
+  function kml(){
+    var X=function(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); };
+    var d=datos(), out=['<?xml version="1.0" encoding="UTF-8"?>','<kml xmlns="http://www.opengis.net/kml/2.2"><Document>','<name>Río de Janeiro · 20–26 dic 2026</name>'];
+    d.orden.forEach(function(n){
+      var c=COLOR[n].slice(1), abgr='ff'+c.slice(4,6)+c.slice(2,4)+c.slice(0,2);
+      out.push('<Style id="d'+n+'"><IconStyle><color>'+abgr+'</color><Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon></IconStyle></Style>');
+    });
+    d.orden.forEach(function(n){
+      var dia=d.dias[n];
+      out.push('<Folder><name>'+X(dia.sem+' '+n+' · '+dia.tit)+'</name>');
+      dia.paradas.forEach(function(p){
+        if(!p.pos) return;
+        var a1=p.ad ? ((p.ad.querySelector('.a1')||{}).textContent||'').replace(/^📌\s*/,'') : '';
+        out.push('<Placemark><name>'+X(p.k+' · '+p.hr+' · '+p.n)+'</name><description>'+X(a1)+'</description><styleUrl>#d'+n+'</styleUrl>'
+          +'<Point><coordinates>'+p.pos.lo+','+p.pos.la+',0</coordinates></Point></Placemark>');
+      });
+      out.push('</Folder>');
+    });
+    out.push('</Document></kml>');
+    return out.join('\n');
+  }
+  window.__kml=kml;
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('#mKml')) return;
+    var a=document.createElement('a');
+    a.href='data:application/vnd.google-earth.kml+xml;charset=utf-8,'+encodeURIComponent(kml());
+    a.download='rio-2026-mapa.kml'; document.body.appendChild(a); a.click(); a.remove();
+  });
+
+  window.__mapaVer=function(x){
+    porVer=x||null;
+    if(x && x.li){ var c=x.li.closest('.day'), n=c && +((c.querySelector('.daynum b')||{}).textContent||0); if(n) x.dia=n; }
+    if(location.hash==='#mapa-sec') abrir(); else location.hash='#mapa-sec';
+  };
+  window.addEventListener('hashchange',function(){ if(location.hash==='#mapa-sec') abrir(); });
+  if(location.hash==='#mapa-sec') abrir();
+
+  /* durante el viaje, el mapa abre en el día de hoy */
+  (function(){
+    var t=new Date(Date.now()-3*3600e3), m=/[?&]hoy=2026-12-(\d\d)/.exec(location.search);
+    var d = m ? +m[1] : (t.getUTCFullYear()===2026 && t.getUTCMonth()===11 ? t.getUTCDate() : 0);
+    if(d>=20 && d<=26) sel=d;
+  })();
+
+  document.addEventListener('click',function(e){
+    var c=e.target.closest('[data-mdia-sel]');
+    if(c){ var v=c.getAttribute('data-mdia-sel'); sel = v==='todos' ? 'todos' : +v; pintar(); return; }
+    if(e.target.closest('[data-mextras]')){ extras=!extras; pintar(false); return; }
+    var it=e.target.closest('[data-mi]');
+    if(it && D){
+      var k=it.getAttribute('data-mi').split('-'), p=D.dias[+k[0]].paradas[+k[1]];
+      if(p.pos){
+        var hit=marcas.filter(function(m){ return m.p===p; })[0];
+        if(hit){ mapa.setView(hit.m.getLatLng(),16); hit.m.openPopup(); document.getElementById('lmap').scrollIntoView({behavior:'smooth',block:'center'}); }
+      } else if(window.__irA){ irAlDia(p); }
+      return;
+    }
+    var pop=e.target.closest('.mpop');
+    if(pop && D){
+      var act=marcas.filter(function(m){ return m.m.isPopupOpen && m.m.isPopupOpen(); })[0];
+      if(!act) return;
+      if(e.target.closest('[data-mtaxi]') && window.__taxista && act.p.ad) window.__taxista(act.p.ad);
+      if(e.target.closest('[data-mdia]')) irAlDia(act.p);
+    }
+    if(e.target.closest('#mYo')) ubicarme();
+    if(e.target.closest('#mHotel') && mapa){ mapa.setView([LUGARES[0][1],LUGARES[0][2]],16); }
+    if(e.target.closest('#mTodo') && mapa){ pintar(true); }
+  });
+  function irAlDia(p){
+    if(!window.__irA) return;
+    window.__irA('#dias', function(){
+      p.card.classList.add('open');
+      var y=p.li.getBoundingClientRect().top+window.scrollY-12;
+      try{ window.scrollTo({top:y, behavior:'instant'}); }catch(err){ window.scrollTo(0,y); }
+    });
+  }
+  function ubicarme(){
+    if(!navigator.geolocation || !mapa) return;
+    var b=document.getElementById('mYo'); b.classList.add('busca');
+    navigator.geolocation.getCurrentPosition(function(pos){
+      b.classList.remove('busca');
+      var ll=[pos.coords.latitude, pos.coords.longitude];
+      if(yo) mapa.removeLayer(yo);
+      yo=L.layerGroup([L.circle(ll,{radius:Math.min(pos.coords.accuracy,300), color:'#1c7ed6', weight:1, fillOpacity:.12}),
+                       L.circleMarker(ll,{radius:7, color:'#fff', weight:3, fillColor:'#1c7ed6', fillOpacity:1})]).addTo(mapa);
+      mapa.setView(ll,16);
+    },function(){ b.classList.remove('busca'); alert('No se pudo saber dónde están. Revisen que el celular deje usar la ubicación.'); },
+    {enableHighAccuracy:true, timeout:10000, maximumAge:30000});
+  }
+  /* sin internet */
+  function red(){ var o=document.getElementById('mOff'); if(o) o.classList.toggle('on', navigator.onLine===false); }
+  window.addEventListener('online',function(){ red(); if(mapa) buscarFaltan(); });
+  window.addEventListener('offline',red); red();
+
+  /* si cambia el itinerario con el mapa abierto, se vuelve a pintar */
+  var dias=document.getElementById('dias'), t=null;
+  if(dias && window.MutationObserver) new MutationObserver(function(){
+    if(!mapa || location.hash!=='#mapa-sec') return;
+    clearTimeout(t); t=setTimeout(function(){ pintar(false); },400);
+  }).observe(dias,{childList:true, subtree:true, characterData:true});
 })();
 </script>
 
