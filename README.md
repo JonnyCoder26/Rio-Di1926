@@ -80,8 +80,8 @@ Mientras no corran el SQL, la página sigue guardando como antes.
 - **⏰ ¿Vamos tarde?** (Hoy → Lo que sigue): qué saltar para llegar a lo que tiene hora fija,
   sin tocar las ★.
 - **🇨🇴 Consulado de Colombia en Río**: emergencias +55 21 99958-9043 (riodejaneiro.consulado.gov.co).
-- **🗺️ Mapa** (pestaña Mapa): un mapa real (OpenFreeMap, sin clave; si falla,
-  OpenStreetMap) con cada parada numerada en orden. Los tramos que el itinerario marca a pie
+- **🗺️ Mapa** (pestaña Mapa): satélite (Esri) con calles y nombres, o mapa (OpenFreeMap;
+  si falla, OpenStreetMap) con el botón 🛰️/🗺️, con cada parada numerada en orden. Los tramos que el itinerario marca a pie
   van por las calles (rutas de FOSSGIS/OSRM, guardadas): verde si es tranquilo, amarillo si es
   solo de día; Uber y metro en línea punteada. Sale del itinerario:
   si cambian una parada, su orden o su dirección, el mapa cambia. Las
@@ -90,8 +90,11 @@ Mientras no corran el SQL, la página sigue guardando como antes.
 
 ## Editar
 
-Pestaña **Más → ✏️ Editar el itinerario**. Los cambios se guardan solos
-y se sincronizan entre los cuatro celulares.
+Pestaña **Más → ✏️ Editar el itinerario**. En cada parada aparece **✏️ Editar**,
+que abre un formulario con hora, duración, nombre, ★, precio, cómo se llega,
+nota, dirección (con sugerencias) y el día. "+ Agregar una parada" abre el
+mismo formulario. Al guardar se actualizan el mapa, Google Maps, "Copiar
+dirección" y "Al taxista", y se sincroniza entre los cuatro celulares.
 
 ## Navegación
 

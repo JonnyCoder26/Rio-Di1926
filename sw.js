@@ -5,10 +5,10 @@
    - Íconos y archivos fijos salen de la copia guardada.
    - Lo que no es de este sitio (sincronización, Google Maps)
      no se toca: va directo a internet como siempre.
-   - El mapa (OpenFreeMap / OpenStreetMap) que ya se vio queda guardado.
+   - El mapa (satélite de Esri, OpenFreeMap u OpenStreetMap) que ya se vio queda guardado.
    Subir VERSION cuando cambien los íconos, el manifest o Leaflet.
    ============================================================ */
-var VERSION = 'rio2026-v4';
+var VERSION = 'rio2026-v5';
 var TESELAS = 'rio2026-calles';    /* calles del mapa que ya vieron (la caché vieja de CARTO se borra) */
 var ARCHIVOS = ['./', './index.html', './icono.png', './icono-192.png', './icono-512.png',
                 './apple-touch-icon.png', './manifest.webmanifest', './rio-2026-mapa.kml',
@@ -41,7 +41,7 @@ self.addEventListener('fetch', function(e){
     }).catch(function(){ return caches.match(req); }));
     return;
   }
-  if (url.hostname === 'tile.openstreetmap.org' || url.hostname === 'tiles.openfreemap.org') {
+  if (url.hostname === 'tile.openstreetmap.org' || url.hostname === 'tiles.openfreemap.org' || url.hostname === 'server.arcgisonline.com') {
     e.respondWith(caches.open(TESELAS).then(function(c){
       return c.match(req).then(function(g){
         if (g) return g;
